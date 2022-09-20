@@ -6,6 +6,8 @@ const db = require('./db');
 
 const app = express();
 
+app.use(express.json());
+
 app.use(staticMiddleware);
 
 app.get('/api/hello', (req, res) => {
@@ -22,7 +24,7 @@ app.post('/api/artists', (req, res) => {
   }
   const sql = `
   insert into "artists" ("name")
-  values      ('$1')`;
+  values      ($1)`;
 
   const params = [name];
   db.query(sql, params)
