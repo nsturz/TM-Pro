@@ -13,15 +13,15 @@ export default class Form extends React.Component {
   // }
   render() {
     return (
-      <div className="form-wrapper">
-        <form>
-          <div className="d-flex justify-content-center form-group">
+      <div className="d-flex justify-content-center form-wrapper">
+        <form className="d-flex justify-content-center align-self-center align-items-center flex-column">
+          <div className="form-group">
             <label htmlFor="new-artist">Add a new artist.</label>
           </div>
-          <div className="d-flex justify-content-center form-group">
-            <input name="new-artist" type="text" className="form-control col-4" id="new-artist" />
+          <div className="form-group">
+            <input name="new-artist" type="text" className="form-control col-12" id="new-artist" required/>
           </div>
-          <div className="d-flex justify-content-center">
+          <div className="">
             <button type="submit" className="btn new-artist-submit">Submit</button>
           </div>
         </form>

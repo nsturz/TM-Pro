@@ -2,10 +2,20 @@ body {
   height: 100%;
 }
 
+form {
+  min-height: 500px;
+  width: 700px;
+  border: 2px solid #808080;
+  background: transparent;
+}
+
 .form-wrapper {
-  margin-top: 15%;
-  border: 2px solid black;
-  height: 500px;
+  min-height: 700px;
+}
+
+input {
+  background-color: white;
+  opacity: 0.5;
 }
 
 .new-artist-submit {
