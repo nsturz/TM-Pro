@@ -1,0 +1,14 @@
+body {
+  height: 100%;
+}
+
+.form-wrapper {
+  margin-top: 15%;
+  border: 2px solid black;
+  height: 500px;
+}
+
+.new-artist-submit {
+  background-color: #f7343e;
+  color: white;
+}
