@@ -1,12 +1,10 @@
 import React from 'react';
-// import ReactDom from 'react-dom'
 
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: ''
-      // route: parseRoute(window.location.hash)
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
