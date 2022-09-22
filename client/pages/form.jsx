@@ -39,7 +39,13 @@ export default class Form extends React.Component {
             <label htmlFor="new-artist">Add a new artist.</label>
           </div>
           <div className="form-group">
-            <input name="new-artist" type="text" className="form-control col-12" id="new-artist" required/>
+            <input
+            name="new-artist"
+            type="text"
+            className="form-control col-12"
+            id="new-artist"
+            onChange={this.handleChange}
+            required/>
           </div>
           <div className="">
             <button type="submit" className="btn new-artist-submit">Submit</button>

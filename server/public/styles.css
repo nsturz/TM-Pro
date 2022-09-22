@@ -2,14 +2,16 @@ body {
   height: 100%;
   background-color: rgb(0, 0, 0, 0.8);
   background-image: url("/images/live-shot.png");
-  background-size: 100vh;
+
+  /* background-size: 100%; */
   background-repeat: no-repeat;
+  background-size: 200vh;
 }
 
 form {
   margin-top: 2rem;
   min-height: 500px;
-  width: 700px;
+  width: 100%;
   border: 2px solid #808080;
   background: transparent;
 }

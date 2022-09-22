@@ -1,5 +1,5 @@
 // import React from 'react';
-// import Home from './pages/home';
+// //import Home from './pages/home';
 // import Form from './pages/form';
 
 // export default class App extends React.Component {
@@ -12,6 +12,7 @@
 //   }
 
 //   addName(newArtist){
+
 //     fetch('/api/artists',{
 //       method: 'POST',
 //       headers:{
@@ -22,7 +23,7 @@
 //     .then(response => response.json())
 //     .then(name =>{
 //       this.setState({
-//         name: this.state.artists.concat(artists)
+//         name: this.state.name.concat(artists)
 //       })
 //     })
 //     .catch(console.error)
