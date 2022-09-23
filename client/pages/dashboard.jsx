@@ -8,16 +8,16 @@ export default class Dashboard extends React.Component {
           <div className="venues col-12 h-50 info">
             <h6>VENUE</h6>
             <i className="fa-solid fa-location-dot" />
-            <p id="venue">CHAIN REACTION</p>
+            {/* <p id="venue">CHAIN REACTION</p>
             <p id="address">1652 LINCOLN AVE
-              ANAHEIM, CA</p>
-            <p id="phone-number">714-635-6067</p>
-            <a href="https://www.allages.com" id="website">allages.com</a>
+              ANAHEIM, CA</p> */}
+            {/* <p id="phone-number">714-635-6067</p>
+            <a href="https://www.allages.com" id="website">allages.com</a> */}
           </div>
           <div className="notes col-12 h-50 info">
             <h6>NOTES</h6>
             <i className="fa-solid fa-clipboard-list" />
-            <p>SHOWERS: NO
+            {/* <p>SHOWERS: NO
               LAUNDRY: NO
 
               +++++
@@ -32,14 +32,14 @@ export default class Dashboard extends React.Component {
               +++++
 
               WIFI: GENERICWIFINAME
-              PASSWORD: LFZFINALPROJECT</p>
+              PASSWORD: LFZFINALPROJECT</p> */}
           </div>
         </div>
         <div className="schedule-wrapper col-sm-3 col-12  ">
           <div className=" schedules col-12 h-100 info">
             <h6>SCHEDULE</h6>
             <i className="fa-solid fa-clock" />
-            <ul>
+            {/* <ul>
               <li>8:00PM - 11:00AM - TRAVEL</li>
               <li>4:00PM LOAD IN</li>
               <li>5:00PM WILDER SOUNDCHECK</li>
@@ -52,14 +52,14 @@ export default class Dashboard extends React.Component {
               <li>9:30PM - END  WILDER</li>
               <li>11:00PM CURFEW</li>
               <li>12:00AM - DEPART</li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="contacts-wrapper col-sm-3 col-12  ">
           <div className="contacts col-12 h-50 info">
             <h6>CONTACTS</h6>
             <i className="fa-solid fa-phone" />
-            <p>EDGY PROMOTER DUDE
+            {/* <p>EDGY PROMOTER DUDE
 
               714-459-3836
 
@@ -69,7 +69,7 @@ export default class Dashboard extends React.Component {
 
               JOSH PHOTOGRPAHER:
 
-              562-927-2882</p>
+              562-927-2882</p> */}
           </div>
         </div>
         <div className="dates-wrapper col-sm-3 col-12 ">

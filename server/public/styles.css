@@ -117,9 +117,13 @@ p {
   form {
     margin-top: 10%;
   }
+
+  .dashboard-container {
+    margin-top: 5%;
+  }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 575px) {
   .contacts {
     margin-top: 10%;
   }
@@ -134,6 +138,10 @@ p {
 
   .fa-clipboard-list {
     margin-right: 0;
+  }
+
+  .navbar-top {
+    height: 70px;
   }
 
   .venues-notes-wrapper {

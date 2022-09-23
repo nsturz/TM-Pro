@@ -3,6 +3,7 @@
 // import Form from './form';
 // import Footer from './footer';
 // import Dashboard from '../pages/dashboard';
+// import NavBar from './navbar';
 
 // export default class App extends React.Component {
 //   constructor(props){
@@ -53,6 +54,7 @@
 //   render() {
 //     return(
 //       <div>
+//         <NavBar />
 //         <Dashboard />
 //         {/* <Form onSubmit={this.addName} /> */}
 //         <Footer />
