@@ -1,24 +1,26 @@
 // import React from 'react';
 // import Home from '../pages/home';
 // import Form from './form';
+// import Footer from './footer';
+// import Dashboard from '../pages/dashboard';
 
 // export default class App extends React.Component {
 //   constructor(props){
 //     super(props)
 //     this.state = {
 //       artists: [],
-//       route: parseRoute(window.location.hash)
+//       //route: parseRoute(window.location.hash)
 //     }
 //     this.addName = this.addName.bind(this);
 //   }
 
-//   componentDidMount(){
-//     window.addEventListener('haschchange', event =>{
-//       this.setState({
-//         route: parseRoute(window.location.hash)
-//       })
-//     })
-//   }
+//   // componentDidMount(){
+//   //   window.addEventListener('haschchange', event =>{
+//   //     this.setState({
+//   //       route: parseRoute(window.location.hash)
+//   //     })
+//   //   })
+//   // }
 
 //   renderPage(){
 //     const { route } = this.state;
@@ -50,8 +52,10 @@
 //   }
 //   render() {
 //     return(
-//       <div className="container">
-//         <Form onSubmit={this.addName} />
+//       <div>
+//         <Dashboard />
+//         {/* <Form onSubmit={this.addName} /> */}
+//         <Footer />
 //       </div>
 //     )
 //   }
