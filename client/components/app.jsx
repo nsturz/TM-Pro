@@ -5,6 +5,7 @@
 // import Dashboard from '../pages/dashboard';
 // import NavBar from './navbar';
 // import parseRoute from '../lib/parse-route';
+// import NotFound from '../pages/not-found';
 
 // export default class App extends React.Component {
 //   constructor(props){
@@ -29,10 +30,10 @@
 //     if(route.path ===''){
 //       return <Dashboard />;
 //     }
-//     //  else if(route.path ==='form'){
-//     //   return <Form />;
-//     // }
-//     //return <NotFound />;
+//      if(route.path ==='form'){
+//       return <Form />;
+//     }
+//     return <NotFound />;
 //   }
 
 //   addName(newArtist){
@@ -56,7 +57,8 @@
 //     return(
 //       <div>
 //         <NavBar artists={this.state.artists} />
-//         {this.renderPage()}
+//         {/* {this.renderPage()} */}
+//         <NotFound />
 //         <Footer />
 //       </div>
 //     )
