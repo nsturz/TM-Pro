@@ -25,6 +25,7 @@ export default class Form extends React.Component {
     this.setState({
       name: ''
     });
+    document.getElementById('new-artist-form').reset();
   }
 
   render() {
@@ -32,7 +33,7 @@ export default class Form extends React.Component {
       <div className="d-flex justify-content-center form-wrapper">
         <form
           className="d-flex justify-content-center align-self-center align-items-center flex-column"
-          onSubmit={ this.handleSubmit} >
+          onSubmit={ this.handleSubmit} id="new-artist-form" >
           <div className="form-group">
             <label htmlFor="new-artist">Add a new artist.</label>
           </div>
