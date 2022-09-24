@@ -57,8 +57,7 @@
 //     return(
 //       <div>
 //         <NavBar artists={this.state.artists} />
-//         {/* {this.renderPage()} */}
-//         <NotFound />
+//         {this.renderPage()}
 //         <Footer />
 //       </div>
 //     )
