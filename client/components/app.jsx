@@ -59,8 +59,7 @@ export default class App extends React.Component {
     return (
       <div>
         <NavBar artists={this.state.artists} />
-        {/* {this.renderPage()} */}
-        <Form onSubmit={this.addName} />
+        {this.renderPage()}
         <Footer />
       </div>
     );
