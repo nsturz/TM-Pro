@@ -1,5 +1,14 @@
 import React from 'react';
 
+// function Artists(props){
+// const { name } = props.artist
+// return (
+//   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+//     {name}
+//   </a>
+// )
+// }
+
 export default class NavBar extends React.Component {
   render() {
     return (

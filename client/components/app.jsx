@@ -4,34 +4,35 @@
 // import Footer from './footer';
 // import Dashboard from '../pages/dashboard';
 // import NavBar from './navbar';
+// import parseRoute from '../lib/parse-route';
 
 // export default class App extends React.Component {
 //   constructor(props){
 //     super(props)
 //     this.state = {
 //       artists: [],
-//       //route: parseRoute(window.location.hash)
+//       route: parseRoute(window.location.hash)
 //     }
 //     this.addName = this.addName.bind(this);
 //   }
 
-//   // componentDidMount(){
-//   //   window.addEventListener('haschchange', event =>{
-//   //     this.setState({
-//   //       route: parseRoute(window.location.hash)
-//   //     })
-//   //   })
-//   // }
-
+//   componentDidMount(){
+//     window.addEventListener('hashchange', event =>{
+//       this.setState({
+//         route: parseRoute(window.location.hash)
+//       })
+//     })
+//   }
+// // at this point, we do not need hash routing but this works so far!!! 9/23/22
 //   renderPage(){
 //     const { route } = this.state;
 //     if(route.path ===''){
 //       return <Dashboard />;
 //     }
-//     if(route.path ==='form'){
-//       return <Form />;
-//     }
-//     return <NotFound />;
+//     //  else if(route.path ==='form'){
+//     //   return <Form />;
+//     // }
+//     //return <NotFound />;
 //   }
 
 //   addName(newArtist){
@@ -54,9 +55,8 @@
 //   render() {
 //     return(
 //       <div>
-//         <NavBar />
-//         <Dashboard />
-//         {/* <Form onSubmit={this.addName} /> */}
+//         <NavBar artists={this.state.artists} />
+//         {this.renderPage()}
 //         <Footer />
 //       </div>
 //     )
