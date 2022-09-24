@@ -25,7 +25,6 @@ export default class App extends React.Component {
     });
   }
 
-  // at this point, we do not need hash routing but this works so far!!! 9/23/22
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
