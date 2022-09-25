@@ -97,6 +97,56 @@
 
 // // })
 
+// //GET specific CONTACT info 👇🏼
+// app.get('/api/contacts/:contactId', (req, res, next) => {
+//   const contactId = Number(req.params.contactId);
+//   if (!contactId) {
+//     throw new ClientError(400, 'contactId must be a positive integer')
+//   }
+//   const sql = `
+//   select "email",
+//          "name",
+//          "phone"
+//   from   "contacts"
+//   where "contactId" = $1`;
+
+//   const params = [contactId];
+//   db.query(sql, params)
+//     .then(result => {
+//       if (!result.rows[0]) {
+//         throw new ClientError(404, `cannot find note with ncontactId ${contactId}`);
+//       }
+//       res.json(result.rows[0]);
+//     })
+//     .catch(err => next(err))
+// })
+// //GET specific SHOW info 👇🏼
+// app.get('/api/shows/:showId', (req, res, next) => {
+//   const showId = Number(req.params.showId);
+//   if (!showId) {
+//     throw new ClientError(400, 'showId must be a positive integer')
+//   }
+//   const sql = `
+//   select "date",
+//          "name",
+//          "city",
+//          "state"
+//   from   "shows"
+//   join "venues" using ("venueId")
+//   join "addresses" using ("addressId")
+//   where "showId" = $1`;
+
+//   const params = [showId];
+//   db.query(sql, params)
+//     .then(result => {
+//       if (!result.rows[0]) {
+//         throw new ClientError(404, `cannot find note with showId ${showId}`);
+//       }
+//       res.json(result.rows[0]);
+//     })
+//     .catch(err => next(err))
+// })
+
 // app.post('/api/artists', (req, res) => {
 //   const name = req.body.name;
 //   if (!name) {

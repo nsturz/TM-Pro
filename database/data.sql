@@ -7,8 +7,8 @@ values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA');
 insert into "venues" ("name", "addressId", "phone")
 values      ('Chain Reaction', 1, 7146356067);
 
-insert into "shows" ("venueId", "artistId", "date")
-values      (1, 1, DATE '2023-1-5');
+insert into "shows" ("venueId", "artistId", "addressId", "date")
+values      (1, 1, 1, DATE '2023-1-5');
 
 insert into "notes" ("details", "showId")
 values      (
