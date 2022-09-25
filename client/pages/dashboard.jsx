@@ -5,16 +5,15 @@ export default class Dashboard extends React.Component {
     return (
       <div className="container dashboard-container d-flex flex-wrap">
         <div className="venues-notes-wrapper col-sm-3 col-12 ">
-          <div className="venues col-12 h-50 info">
+          <div className="venues col-12 h-50 info" id="venue">
             <h6>VENUE</h6>
             <i className="fa-solid fa-location-dot" />
             {/* <p id="venue">CHAIN REACTION</p>
             <p id="address">1652 LINCOLN AVE
-              ANAHEIM, CA</p> */}
-            {/* <p id="phone-number">714-635-6067</p>
-            <a href="https://www.allages.com" id="website">allages.com</a> */}
+              ANAHEIM, CA</p>
+            <p id="phone-number">714-635-6067</p> */}
           </div>
-          <div className="notes col-12 h-50 info">
+          <div className="notes col-12 h-50 info" id="notes">
             <h6>NOTES</h6>
             <i className="fa-solid fa-clipboard-list" />
             {/* <p>SHOWERS: NO
@@ -35,7 +34,7 @@ export default class Dashboard extends React.Component {
               PASSWORD: LFZFINALPROJECT</p> */}
           </div>
         </div>
-        <div className="schedule-wrapper col-sm-3 col-12  ">
+        <div className="schedule-wrapper col-sm-3 col-12  " id="schedule">
           <div className=" schedules col-12 h-100 info">
             <h6>SCHEDULE</h6>
             <i className="fa-solid fa-clock" />
@@ -55,7 +54,7 @@ export default class Dashboard extends React.Component {
             </ul> */}
           </div>
         </div>
-        <div className="contacts-wrapper col-sm-3 col-12  ">
+        <div className="contacts-wrapper col-sm-3 col-12" id="contacts">
           <div className="contacts col-12 h-50 info">
             <h6>CONTACTS</h6>
             <i className="fa-solid fa-phone" />
@@ -72,7 +71,7 @@ export default class Dashboard extends React.Component {
               562-927-2882</p> */}
           </div>
         </div>
-        <div className="dates-wrapper col-sm-3 col-12 ">
+        <div className="dates-wrapper col-sm-3 col-12" id="dates">
           <div className="dates col-12 h-100 info">
             <h6>DATES</h6>
             <i className="fa-solid fa-calendar-days" />
