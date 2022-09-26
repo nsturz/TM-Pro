@@ -28,6 +28,7 @@ export default class App extends React.Component {
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
+      // const showId = route.params.get('showId')
       return <Dashboard />;
     }
     if (route.path === 'form') {
