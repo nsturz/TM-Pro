@@ -20,9 +20,19 @@ body {
   margin-top: 15%;
 }
 
+.date {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .dates {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+}
+
+.date-wrapper:hover {
+  color: #f7343e;
+  cursor: pointer;
 }
 
 .fa-house {
@@ -49,6 +59,11 @@ h2 {
   color: white;
 }
 
+hr {
+  background-color: #808080;
+  padding-left: 0%;
+}
+
 h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
@@ -56,8 +71,7 @@ h6 {
   margin-right: 0.5rem;
 }
 
-.nav-bottom-icon,
-.return-dashboard:hover {
+.nav-bottom-icon:hover {
   cursor: pointer;
   color: #f7343e;
 }
@@ -112,6 +126,11 @@ p {
   font-size: 12px;
 }
 
+pre {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
@@ -137,8 +156,12 @@ p {
     margin-top: 10%;
   }
 
+  .dashboard-container {
+    margin-top: 2%;
+  }
+
   .dates {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .fa-house {

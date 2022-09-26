@@ -63,7 +63,6 @@ CREATE TABLE "public"."shows" (
     "showId" serial NOT NULL,
     "venueId" integer NOT NULL,
     "artistId" integer NOT NULL,
-    "addressId" integer NOT NULL,
     "date" DATE NOT NULL,
     CONSTRAINT "shows_pk" PRIMARY KEY ("showId")
 ) WITH (
@@ -75,4 +74,3 @@ ALTER TABLE "schedules" ADD CONSTRAINT "schedules_fk0" FOREIGN KEY ("showId") RE
 ALTER TABLE "contacts" ADD CONSTRAINT "contacts_fk0" FOREIGN KEY ("showId") REFERENCES "shows"("showId");
 ALTER TABLE "shows" ADD CONSTRAINT "shows_fk0" FOREIGN KEY ("venueId") REFERENCES "venues"("venueId");
 ALTER TABLE "shows" ADD CONSTRAINT "shows_fk1" FOREIGN KEY ("artistId") REFERENCES "artists"("artistId");
-ALTER TABLE "shows" ADD CONSTRAINT "shows_fk2" FOREIGN KEY ("addressId") REFERENCES "addresses"("addressId");

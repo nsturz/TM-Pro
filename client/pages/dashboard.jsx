@@ -6,7 +6,8 @@
 //     this.state = {
 //       show:'',
 //       notes:'',
-//       contacts:''
+//       contacts:'',
+//       schedules: []
 //     };
 
 //   };
@@ -24,50 +25,57 @@
 //     .then(res => res.json())
 //     .then(contacts => this.setState({ contacts }))
 
-//   }
+//     fetch('api/schedules')
+//     .then(res => res.json())
+//     .then(schedules => this.setState({ schedules }))
 
+//   }
 //   render() {
 //     // if(!this.state.product){
 //     //   return null;
 //     // }
+
 //     const { city, date, line1, state, venueName, phone  } = this.state.show;
 //     const { details } = this.state.notes;
 //     const { email, name, contactPhone } = this.state.contacts;
+//     const { endTime, startTime, scheduleDetails } = this.state.schedules;
+//     console.log('type of this.state.schedules:',this.state.schedules[0])
+//     console.log('props.schedules', this.props.schedules)
 //     return (
-//       <div className="container dashboard-container d-flex flex-wrap">
-//         <div className="venues-notes-wrapper col-sm-3 col-12 ">
+//       <div className="container dashboard-container d-flex flex-wrap mh-100">
+//         <div className="venues-notes-wrapper col-sm-3 col-12 mh-100">
 //           <div className="venues col-12 h-50 info" id="venue">
 //             <h6>VENUE</h6>
 //             <i className="fa-solid fa-location-dot" />
-//             <p>{venueName}</p>
-//             <p>{line1}</p>
-//             <p>{city}, {state}</p>
-//             <p>{phone}</p>
+//             <div className="row d-block">
+//               <hr className="col-11" />
+//               <p className="text-center lead">{venueName}</p>
+//               <p className="text-center lead">{line1}</p>
+//               <p className="text-center lead">{city}, {state}</p>
+//               <p className="text-center lead ">{phone}</p>
+//             </div>
 //           </div>
 //           <div className="notes col-12 h-50 info" id="notes">
 //             <h6>NOTES</h6>
 //             <i className="fa-solid fa-clipboard-list" />
-//             <p>{ details }</p>
+//               <pre>{ details }</pre>
 //           </div>
 //         </div>
-//         <div className="schedule-wrapper col-sm-3 col-12  " id="schedule">
+//         <div className="schedule-wrapper col-sm-3 col-12 mh-100 " id="schedule">
 //           <div className=" schedules col-12 h-100 info">
 //             <h6>SCHEDULE</h6>
 //             <i className="fa-solid fa-clock" />
-//             {/* <ul>
-//               <li>8:00PM - 11:00AM - TRAVEL</li>
-//               <li>4:00PM LOAD IN</li>
-//               <li>5:00PM WILDER SOUNDCHECK</li>
-//               <li>6:00PM SUPPORT SOUNDCHECK</li>
-//               <li>7:00PM DOORS</li>
-//               <li>8:00PM SUPPORT 1</li>
-//               <li>8:30PM  CHANGEOVER</li>
-//               <li>8:45PM SUPPORT 2</li>
-//               <li>9:15PM CHANGEOVER</li>
-//               <li>9:30PM - END  WILDER</li>
-//               <li>11:00PM CURFEW</li>
-//               <li>12:00AM - DEPART</li>
-//             </ul> */}
+//             <ul>
+//               {
+//                 this.state.schedules.map(event => {
+//                   console.log('EVENT:', event);
+//                   return (
+//                     <li>{event.startTime} - {event.endTime} {event.scheduleDetails}</li>
+//                   )
+//                 })
+//               }
+//             </ul>
+
 //           </div>
 //         </div>
 //         <div className="contacts-wrapper col-sm-3 col-12" id="contacts">
@@ -80,9 +88,14 @@
 //           </div>
 //         </div>
 //         <div className="dates-wrapper col-sm-3 col-12" id="dates">
-//           <div className="dates col-12 h-100 info">
+//           <div className="dates col-12 h-100 info m-0">
 //             <h6>DATES</h6>
 //             <i className="fa-solid fa-calendar-days" />
+//               <div className="row date-wrapper">
+//                 <hr className="col-11" />
+//                 <p className="date col-5">{date}</p>
+//                 <p className="city"><b>{city},{state} </b><br />{ venueName }</p>
+//               </div>
 //           </div>
 //         </div>
 //       </div>

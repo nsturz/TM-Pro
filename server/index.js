@@ -15,6 +15,28 @@ app.get('/api/hello', (req, res) => {
   res.json({ hello: 'world' });
 });
 
+// Get specific ARTIST info 👇🏼
+app.get('/api/artists/:artistId', (req, res, next) => {
+  const artistId = Number(req.params.artistId);
+  if (!artistId) {
+    throw new ClientError(400, 'artistId must be a positive integer');
+  }
+  const sql = `
+  select "name"
+  from   "artists"
+  where "artistId" = $1`;
+
+  const params = [artistId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find venue with artistId ${artistId}`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 // GET specific VENUE information 👇🏼
 app.get('/api/venues/:venueId', (req, res, next) => {
   const venueId = Number(req.params.venueId);
@@ -86,17 +108,20 @@ app.get('/api/notes/:noteId', (req, res, next) => {
 // })
 
 // GET specific SCHEDULE information (using showId?) 👇🏼
-// app.get('/api/schedules', (req,res,next) =>{
-//   const sql =`
-//   select *
-//   from "schedules"
-//   where "scheduleId" = 1
-//   `;
-//   db.query(sql)
-//   .then(result => res.json(result.rows))
-//   .catch(err => next(err))
+app.get('/api/schedules', (req, res, next) => {
+  const sql = `
+  select "details" as "scheduleDetails",
+         to_char("endTime", 'HH:MI AM') as "endTime",
+         to_char("startTime", 'HH:MI AM') as "startTime"
+  from "schedules"
+  where "showId" = 1
+  order by "startTime" asc
+`;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
 
-// })
+});
 
 // GET specific CONTACT info 👇🏼
 app.get('/api/contacts/:contactId', (req, res, next) => {
@@ -128,8 +153,8 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select "date",
-         "phone",
+  select "phone",
+         to_char("date",'MM/DD/YYYY') as "date",
          "venues"."name" as "venueName",
          "venueId",
          "showId",

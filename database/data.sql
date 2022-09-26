@@ -7,12 +7,12 @@ values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA');
 insert into "venues" ("name", "addressId", "phone")
 values      ('Chain Reaction', 1, 7146356067);
 
-insert into "shows" ("venueId", "artistId", "addressId", "date")
-values      (1, 1, 1, DATE '2023-1-5');
+insert into "shows" ("venueId", "artistId", "date")
+values      (1, 1, DATE '2023-1-5');
 
 insert into "notes" ("details", "showId")
 values      (
-  'Showers: No
+  'Showers: Yes
    Laundry: No
    ++++++++++
 
@@ -27,7 +27,7 @@ values      (
 );
 
 insert into "contacts" ("email", "name", "phone","showId")
-values      ('booker@booking.com', 'Edgy Pormoter Dude',7777777, 1);
+values      ('booker@booking.com', 'Edgy Promoter Dude',7777777, 1);
 
 insert into "schedules" ("startTime", "endTime", "details", "showId")
 values
