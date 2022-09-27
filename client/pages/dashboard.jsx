@@ -45,9 +45,6 @@
 //     const { email, name, contactPhone } = this.state.contacts;
 //     const { endTime, startTime, scheduleDetails } = this.state.schedules;
 //     const { dateCity, dateState, dateVenue, showDate} = this.state.dates;
-
-//     console.log('this.state.dates:',this.state.dates)
-//     console.log('props.schedules', this.props.schedules)
 //     return (
 //       <div className="container dashboard-container d-flex flex-wrap mh-100">
 //         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
