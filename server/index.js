@@ -146,7 +146,8 @@ app.get('/api/contacts/:contactId', (req, res, next) => {
     })
     .catch(err => next(err));
 });
-// GET specific SHOW info 👇🏼
+
+// GET specific show info 👇🏼
 app.get('/api/shows/:showId', (req, res, next) => {
   const showId = Number(req.params.showId);
   if (!showId) {
@@ -173,6 +174,26 @@ app.get('/api/shows/:showId', (req, res, next) => {
         throw new ClientError(404, `cannot find note with showId ${showId}`);
       }
       res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+// GET DATE info for DATES section 👇🏼
+app.get('/api/shows', (req, res, next) => {
+  const sql = `
+  select "phone",
+         to_char("date",'MM/DD/YYYY') as "showDate",
+         "venues"."name" as "dateVenue",
+         "addresses"."city" as "dateCity",
+         "addresses"."state" as "dateState"
+  from   "shows"
+  join "venues" using ("venueId")
+  join "addresses" using ("addressId")
+  order by "showDate" asc
+  `;
+
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
     })
     .catch(err => next(err));
 });

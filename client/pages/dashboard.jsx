@@ -7,7 +7,8 @@
 //       show:'',
 //       notes:'',
 //       contacts:'',
-//       schedules: []
+//       schedules: [],
+//       dates: []
 //     };
 
 //   };
@@ -16,6 +17,10 @@
 //     fetch('/api/shows/1')
 //     .then(res => res.json())
 //     .then(show => this.setState({show}))
+
+//     fetch('api/shows')
+//     .then(res => res.json())
+//     .then(dates => this.setState({dates}))
 
 //     fetch('api/notes/1')
 //     .then(res => res.json())
@@ -39,16 +44,19 @@
 //     const { details } = this.state.notes;
 //     const { email, name, contactPhone } = this.state.contacts;
 //     const { endTime, startTime, scheduleDetails } = this.state.schedules;
-//     console.log('type of this.state.schedules:',this.state.schedules[0])
+//     const { dateCity, dateState, dateVenue, showDate} = this.state.dates;
+
+//     console.log('this.state.dates:',this.state.dates)
 //     console.log('props.schedules', this.props.schedules)
 //     return (
 //       <div className="container dashboard-container d-flex flex-wrap mh-100">
+//         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
 //         <div className="venues-notes-wrapper col-sm-3 col-12 mh-100">
 //           <div className="venues col-12 h-50 info" id="venue">
 //             <h6>VENUE</h6>
 //             <i className="fa-solid fa-location-dot" />
 //             <div className="row d-block">
-//               <hr className="col-11" />
+//               <hr className="w-100" />
 //               <p className="text-center lead">{venueName}</p>
 //               <p className="text-center lead">{line1}</p>
 //               <p className="text-center lead">{city}, {state}</p>
@@ -58,17 +66,20 @@
 //           <div className="notes col-12 h-50 info" id="notes">
 //             <h6>NOTES</h6>
 //             <i className="fa-solid fa-clipboard-list" />
-//               <pre>{ details }</pre>
+//             <div className="row">
+//               <hr className="w-100" />
+//               <pre className="pl-3">{details}</pre>
+//             </div>
 //           </div>
 //         </div>
 //         <div className="schedule-wrapper col-sm-3 col-12 mh-100 " id="schedule">
 //           <div className=" schedules col-12 h-100 info">
-//             <h6>SCHEDULE</h6>
+//             <h6 className="pl-2">SCHEDULE</h6>
 //             <i className="fa-solid fa-clock" />
-//             <ul>
+//             <hr className="w-100" />
+//             <ul className="pl-2">
 //               {
 //                 this.state.schedules.map(event => {
-//                   console.log('EVENT:', event);
 //                   return (
 //                     <li>{event.startTime} - {event.endTime} {event.scheduleDetails}</li>
 //                   )
@@ -80,22 +91,30 @@
 //         </div>
 //         <div className="contacts-wrapper col-sm-3 col-12" id="contacts">
 //           <div className="contacts col-12 h-50 info">
-//             <h6>CONTACTS</h6>
+//             <h6 className="pl-2">CONTACTS</h6>
 //             <i className="fa-solid fa-phone" />
-//             <p>{ email } </p>
-//             <p>{ name }</p>
-//             <p>{ contactPhone }</p>
+//             <hr className="w-100" />
+//             <p className="pl-2">{ email } </p>
+//             <p className="pl-2">{ name }</p>
+//             <p className="pl-2">{ contactPhone }</p>
 //           </div>
 //         </div>
 //         <div className="dates-wrapper col-sm-3 col-12" id="dates">
-//           <div className="dates col-12 h-100 info m-0">
+//           <div className=" dates col-12 mh-100 info m-0">
 //             <h6>DATES</h6>
 //             <i className="fa-solid fa-calendar-days" />
-//               <div className="row date-wrapper">
-//                 <hr className="col-11" />
-//                 <p className="date col-5">{date}</p>
-//                 <p className="city"><b>{city},{state} </b><br />{ venueName }</p>
-//               </div>
+//             <ul className="dates-list">
+//               {
+//                 this.state.dates.map(event => {
+//                   return (
+//                     <li className="row date-wrapper">
+//                       <p className="date col-6">{event.showDate}</p>
+//                       <p className="city"><b>{event.dateCity},{event.dateState} </b><br />{event.dateVenue}</p>
+//                     </li>
+//                   )
+//                 })
+//               }
+//             </ul>
 //           </div>
 //         </div>
 //       </div>

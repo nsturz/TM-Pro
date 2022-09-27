@@ -13,6 +13,7 @@ body {
 .contacts {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+  padding: 0;
 }
 
 .dashboard-container {
@@ -28,6 +29,10 @@ body {
 .dates {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+}
+
+.dates-list {
+  padding: 0;
 }
 
 .date-wrapper:hover {
@@ -59,6 +64,11 @@ h2 {
   color: white;
 }
 
+h3 {
+  color: white;
+  font-size: 25px;
+}
+
 hr {
   background-color: #808080;
   padding-left: 0%;
@@ -67,6 +77,7 @@ hr {
 h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  font-size: 20px;
   display: inline;
   margin-right: 0.5rem;
 }
@@ -134,6 +145,7 @@ pre {
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+  padding: 0;
 }
 
 .venues {

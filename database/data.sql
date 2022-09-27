@@ -2,13 +2,25 @@ insert into "artists" ("name")
 values      ('Wilder.');
 
 insert into "addresses" ("line1", "city", "state", "country")
-values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA');
+values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA'),
+            ('2303 E Indian School Rd', 'Phoenix', 'AZ', 'USA'),
+            ('310 Pacific Ave', 'Henderson', 'NV', 'USA'),
+            ('1489 Major St', 'Salt Lake City', 'UT', 'USA'),
+            ('2935 W 7th Ave', 'Denver', 'CO', 'USA');
 
 insert into "venues" ("name", "addressId", "phone")
-values      ('Chain Reaction', 1, 7146356067);
+values      ('Chain Reaction', 1, 7146356067),
+            ('Rebel Lounge', 2, 6022967013),
+            ('Eagles Aerie Hall', 3, 7025652672),
+            ('Loading Dock', 4, 7777777),
+            ('7th Circle', 5, 7205423286);
 
 insert into "shows" ("venueId", "artistId", "date")
-values      (1, 1, DATE '2023-1-5');
+values      (1, 1, DATE '2023-1-5'),
+            (2, 1, DATE '2023-1-6'),
+            (3, 1, DATE '2023-1-7'),
+            (4, 1, DATE '2023-1-8'),
+            (5, 1, DATE '2023-1-9');
 
 insert into "notes" ("details", "showId")
 values      (
