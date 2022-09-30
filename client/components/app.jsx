@@ -31,7 +31,7 @@ export default class App extends React.Component {
       return <Dashboard />;
     }
     if (route.path === 'form') {
-      return <Form onSubmit={this.addName}/>;
+      return <Form onSubmit={ this.addName }/>;
     }
     return <NotFound />;
   }

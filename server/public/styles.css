@@ -3,16 +3,22 @@ a {
   color: white;
 }
 
+a:hover {
+  color: #f7343e;
+}
+
 body {
-  height: 100%;
+  /* min-height: 100%; */
   background-image: url("/images/live-shot.png");
   background-repeat: no-repeat;
-  background-size: 200vh;
+
+  /* background-size: 200vh; */
 }
 
 .contacts {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+  padding: 0;
 }
 
 .dashboard-container {
@@ -20,9 +26,23 @@ body {
   margin-top: 15%;
 }
 
+.date {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 .dates {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+}
+
+.dates-list {
+  padding: 0;
+}
+
+.date-wrapper:hover {
+  color: #f7343e;
+  cursor: pointer;
 }
 
 .fa-house {
@@ -49,18 +69,27 @@ h2 {
   color: white;
 }
 
+h3 {
+  color: white;
+  font-size: 25px;
+}
+
+hr {
+  background-color: #808080;
+  padding-left: 0%;
+}
+
 h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
+  font-size: 20px;
   display: inline;
   margin-right: 0.5rem;
 }
 
-.nav-bottom-icon,
-.return-dashboard:hover {
-  cursor: pointer;
-  color: #f7343e;
-}
+/* html{
+  min-height: 100%;
+} */
 
 .info {
   border: 2px solid #808080;
@@ -85,6 +114,11 @@ li {
 nav {
   height: 10%;
   background-color: rgb(0, 0, 0, 0.4);
+}
+
+.nav-bottom-icon:hover {
+  cursor: pointer;
+  color: #f7343e;
 }
 
 .notes {
@@ -112,9 +146,15 @@ p {
   font-size: 12px;
 }
 
+pre {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
+  padding: 0;
 }
 
 .venues {
@@ -132,17 +172,32 @@ p {
   }
 }
 
+@media screen and (max-width: 1000px) {
+  .contacts-wrapper,
+  .schedule-wrapper {
+    margin-top: 10%;
+  }
+}
+
 @media screen and (max-width: 575px) {
   .contacts {
     margin-top: 10%;
   }
 
+  .dashboard-container {
+    margin-top: 2%;
+  }
+
   .dates {
-    margin-top: 10%;
+    margin-top: 5%;
   }
 
   .fa-house {
     margin-left: 0;
+  }
+
+  .footer {
+    background-color: black;
   }
 
   .fa-clipboard-list {

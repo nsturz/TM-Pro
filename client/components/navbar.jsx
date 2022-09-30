@@ -9,42 +9,32 @@ import React from 'react';
 //       { name }
 //       </a>
 //     </li>
-//   )
-// }
+//   );
+// };
 
-function NavBar(props) {
-  // constructor(props){
+export default class NavBar extends React.Component {
+  // constructor(props) {
   //   super(props)
   // }
-  // render(){
-  return (
-    <nav className="navbar navbar-top navbar-expand-sm">
-      <ul id="navbarSupportedContent">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Artist
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          {/* {
-              props.artists.map(artist => {
-                return (
-                  <Artist />
-                );
-              })
-            } */}
-        </div>
-        {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Artist
-           </a>
-           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-             <a className="dropdown-item" href="#">Action</a>
-             <a className="dropdown-item" href="#">Another action</a>
-             <div className="dropdown-divider" />
-             <a className="dropdown-item" href="#">Something else here</a>
-           </div> */}
-      </ul>
-    </nav>
-  );
-  // }
+  render() {
+    return (
+      <nav className="navbar navbar-top navbar-expand-sm">
+        <ul id="navbarSupportedContent">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Artist
+          </a>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown" />
+          {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Artist
+            </a>
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a className="dropdown-item" href="#">Action</a>
+              <a className="dropdown-item" href="#">Another action</a>
+              <div className="dropdown-divider" />
+              <a className="dropdown-item" href="#">Something else here</a>
+            </div> */}
+        </ul>
+      </nav>
+    );
+  }
 }
-
-export default NavBar;
