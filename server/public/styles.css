@@ -1,0 +1,159 @@
+a {
+  text-decoration: none;
+  color: white;
+}
+
+body {
+  height: 100%;
+  background-image: url("/images/live-shot.png");
+  background-repeat: no-repeat;
+  background-size: 200vh;
+}
+
+.contacts {
+  background-color: rgb(0, 0, 0, 0.4);
+  overflow-y: scroll;
+}
+
+.dashboard-container {
+  height: 50vh;
+  margin-top: 15%;
+}
+
+.dates {
+  background-color: rgb(0, 0, 0, 0.4);
+  overflow-y: scroll;
+}
+
+.fa-house {
+  margin-left: 10%;
+}
+
+.fa-clipboard-list {
+  margin-right: 10%;
+}
+
+form {
+  margin-top: 2rem;
+  min-height: 500px;
+  width: 80%;
+  border: 2px solid #808080;
+  background: transparent;
+}
+
+.form-wrapper {
+  min-height: 700px;
+}
+
+h2 {
+  color: white;
+}
+
+h6 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+.nav-bottom-icon,
+.return-dashboard:hover {
+  cursor: pointer;
+  color: #f7343e;
+}
+
+.info {
+  border: 2px solid #808080;
+  color: whitesmoke;
+}
+
+input {
+  background-color: white;
+  opacity: 0.5;
+}
+
+label {
+  color: white;
+}
+
+li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 2rem;
+}
+
+nav {
+  height: 10%;
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.notes {
+  background-color: rgb(0, 0, 0, 0.4);
+  margin-top: 5%;
+  overflow-y: scroll;
+}
+
+.not-found {
+  margin-top: 20%;
+}
+
+.navigation {
+  color: white;
+  font-size: 60px;
+}
+
+.new-artist-submit {
+  background-color: #f7343e;
+  color: white;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.schedules {
+  background-color: rgb(0, 0, 0, 0.4);
+  overflow-y: scroll;
+}
+
+.venues {
+  background-color: rgb(0, 0, 0, 0.4);
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 1000px) {
+  form {
+    margin-top: 10%;
+  }
+
+  .dashboard-container {
+    margin-top: 5%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .contacts {
+    margin-top: 10%;
+  }
+
+  .dates {
+    margin-top: 10%;
+  }
+
+  .fa-house {
+    margin-left: 0;
+  }
+
+  .fa-clipboard-list {
+    margin-right: 0;
+  }
+
+  .navbar-top {
+    height: 70px;
+  }
+
+  .venues-notes-wrapper {
+    margin-bottom: 10%;
+  }
+}
