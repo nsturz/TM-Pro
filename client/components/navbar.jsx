@@ -21,7 +21,7 @@ export default class NavBar extends React.Component {
       <nav className="navbar navbar-top navbar-expand-sm">
         <ul id="navbarSupportedContent">
           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Wilder.
+            Artist
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown" />
           {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

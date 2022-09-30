@@ -83,7 +83,7 @@ app.get('/api/notes/:noteId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET specific SCHEDULE information 👇🏼
+// GET specific SCHEDULE information DO NOT DELETE YET!!! 👇🏼
 // app.get('/api/schedules/:scheduleId', (req, res, next) => {
 //   const scheduleId = Number(req.params.scheduleId);
 //   if (!scheduleId) {
@@ -112,7 +112,8 @@ app.get('/api/schedules', (req, res, next) => {
   const sql = `
   select "details" as "scheduleDetails",
          to_char("endTime", 'HH:MI AM') as "endTime",
-         to_char("startTime", 'HH:MI AM') as "startTime"
+         to_char("startTime", 'HH:MI AM') as "startTime",
+         "scheduleId"
   from "schedules"
   where "showId" = 1
   order by "startTime" asc
@@ -184,7 +185,8 @@ app.get('/api/shows', (req, res, next) => {
          to_char("date",'MM/DD/YYYY') as "showDate",
          "venues"."name" as "dateVenue",
          "addresses"."city" as "dateCity",
-         "addresses"."state" as "dateState"
+         "addresses"."state" as "dateState",
+         "showId"
   from   "shows"
   join "venues" using ("venueId")
   join "addresses" using ("addressId")
