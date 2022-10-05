@@ -39,6 +39,8 @@ export default class Dashboard extends React.Component {
   render() {
     const { city, date, line1, state, venueName, phone } = this.state.show;
     const { details } = this.state.notes;
+    // may need to change these destructured variable names for contacts,
+    // and in the server code:👇🏼👇🏼👇🏼
     const { email, name, contactPhone } = this.state.contacts;
     return (
       <div className="container dashboard-container d-flex flex-wrap mh-100">

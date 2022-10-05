@@ -1,6 +1,6 @@
 import React from 'react';
 // import Home from '../pages/home';
-import Form from './form';
+import NewArtistForm from './new-artist-form';
 import Footer from './footer';
 import Dashboard from '../pages/dashboard';
 import NavBar from './navbar';
@@ -31,7 +31,7 @@ export default class App extends React.Component {
       return <Dashboard />;
     }
     if (route.path === 'form') {
-      return <Form onSubmit={ this.addName }/>;
+      return <NewArtistForm onSubmit={ this.addName }/>;
     }
     return <NotFound />;
   }

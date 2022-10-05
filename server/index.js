@@ -227,6 +227,69 @@ app.post('/api/artists', (req, res) => {
     });
 });
 
+// POST new ADDRESSES to the database 👇🏼
+
+app.post('/api/addresses', (req, res) => {
+  const { line1, city, state, country } = req.body;
+  if (!line1 || !city || !state || !country) {
+    res.status(400).json({
+      error: 'address, city, state, and country are required fields'
+    });
+    return;
+  }
+  const sql = `
+  insert into "addresses" ("line1", "city", "state", "country")
+  values      ($1, $2, $3, $4)
+  `;
+
+  const params = [line1, city, state, country];
+  db.query(sql, params)
+    .then(result => {
+      const [newAddress] = result.rows;
+      res.status(201).json(newAddress);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
+// POST new CONTACTS to the database 👇🏼
+app.post('/api/contacts', (req, res) => {
+  let { email, name, phone, showId } = req.body;
+  phone = Number(phone);
+  if (!email || !name || !showId || !phone) {
+    res.status(400).json({
+      error: 'email, name, showId, and phone are required fields'
+    });
+    return;
+  } else if (typeof phone !== 'number') {
+    res.status(400).json({
+      error: 'phone number must be a number'
+    });
+    return;
+  }
+  const sql = `
+  insert into "contacts" ("email", "name", "phone", "showId")
+  values      ($1, $2, $3, $4)
+  `;
+
+  const params = [email, name, phone, showId];
+  db.query(sql, params)
+    .then(result => {
+      const [newContact] = result.rows;
+      res.status(201).json(newContact);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
