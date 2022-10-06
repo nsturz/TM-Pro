@@ -290,6 +290,127 @@ app.post('/api/contacts', (req, res) => {
     });
 });
 
+// POST new VENUES nto the database 👇🏼
+app.post('/api/venues', (req, res) => {
+  let { name, phone, addressId } = req.body;
+  phone = Number(phone);
+  if (!name || !phone || !addressId) {
+    res.status(400).json({
+      error: 'Name, phone, and address ID are required fields'
+    });
+    return;
+  } else if (typeof phone !== 'number') {
+    res.status(400).json({
+      error: 'phone number must be a number'
+    });
+    return;
+  }
+  const sql = `
+  insert into "venues" ("name", "phone", "addressId")
+  values      ($1, $2, $3)
+  `;
+
+  const params = [name, phone, addressId];
+  db.query(sql, params)
+    .then(result => {
+      const [newVenue] = result.rows;
+      res.status(201).json(newVenue);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
+// POST new NOTES to the database 👇🏼
+app.post('/api/notes', (req, res) => {
+  const { details, showId } = req.body;
+  if (!details || !showId) {
+    res.status(400).json({
+      error: 'Details and showId are required fields'
+    });
+    return;
+  }
+  const sql = `
+  insert into "notes" ("details", "showId")
+  values      ($1, $2)
+  `;
+
+  const params = [details, showId];
+  db.query(sql, params)
+    .then(result => {
+      const [newNote] = result.rows;
+      res.status(201).json(newNote);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
+// POST new SCHEDULES to the database 👇🏼
+// schedules are indeed posting to database but not showing in the "schedules"
+// table. a db query does show them though. 🤔
+
+app.post('/api/schedules', (req, res) => {
+  const { startTime, endTime, details, showId } = req.body;
+  if (!startTime || !endTime || !details || !showId) {
+    res.status(400).json({
+      error: 'Start time, end time, details, and show id are required fields'
+    });
+    return;
+  }
+  const sql = `
+  insert into "schedules" ("startTime", "endTime", "details", "showId")
+  values      ($1, $2, $3, $4)
+  `;
+  const params = [startTime, endTime, details, showId];
+  db.query(sql, params)
+    .then(result => {
+      const [newSchedule] = result.rows;
+      res.status(201).json(newSchedule);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
+// POST new DATES to the database 👇🏼
+
+app.post('/api/shows', (req, res) => {
+  const { venueId, artistId, date } = req.body;
+  if (!venueId || !artistId || !date) {
+    res.status(400).json({
+      error: 'venueId, artistId, and date are required fields'
+    });
+    return;
+  }
+  const sql = `
+  insert into "shows" ("venueId", "artistId", "date")
+  values      ($1, $2, $3)
+  `;
+
+  const params = [venueId, artistId, date];
+  db.query(sql, params)
+    .then(result => {
+      const [newDate] = result.rows;
+      res.status(201).json(newDate);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
