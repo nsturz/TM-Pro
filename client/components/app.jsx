@@ -6,12 +6,14 @@ import Dashboard from '../pages/dashboard';
 import NavBar from './navbar';
 import parseRoute from '../lib/parse-route';
 import NotFound from '../pages/not-found';
+import ClipBoard from '../pages/clipboard';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       artists: [],
+      // addresses: [],
       route: parseRoute(window.location.hash)
     };
     this.addName = this.addName.bind(this);
@@ -33,6 +35,9 @@ export default class App extends React.Component {
     if (route.path === 'form') {
       return <NewArtistForm onSubmit={ this.addName }/>;
     }
+    if (route.path === 'clipboard') {
+      return <ClipBoard />;
+    }
     return <NotFound />;
   }
 
@@ -53,6 +58,23 @@ export default class App extends React.Component {
       })
       .catch(console.error);
   }
+  // need to finish this function after we create the NewTourDate form 👇🏼
+  // addTourDate(newTourDate){
+  //   fetch('/api/addresses', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(newArtist)
+  //   })
+  //     .then(response => response.json())
+  //     .then(name => {
+  //       this.setState({
+  //         name: this.state.name.concat(name)
+  //       });
+  //     })
+  //     .catch(console.error);
+  // }
 
   render() {
     return (
