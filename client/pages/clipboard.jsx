@@ -3,11 +3,11 @@ import React from 'react';
 export default class ClipBoard extends React.Component {
   render() {
     return (
-      <div className="clipboard-container col-12">
-        <a>NEW ARTIST</a>
-        <a>NEW TOUR</a>
-        <a>NEW TOUR DATE</a>
-        <a>EDIT A DATE</a>
+      <div className="h-100 clipboard-container col-12 ">
+        <a className="d-block text-center clipboard-links">NEW ARTIST</a>
+        <a className="d-block text-center clipboard-links">NEW TOUR</a>
+        <a className="d-block text-center clipboard-links">NEW TOUR DATE</a>
+        <a className="d-block text-center clipboard-links">EDIT A DATE</a>
       </div>
     );
   }
