@@ -32,7 +32,7 @@ export default class App extends React.Component {
     if (route.path === '') {
       return <Dashboard />;
     }
-    if (route.path === 'form') {
+    if (route.path === 'new-artist-form') {
       return <NewArtistForm onSubmit={ this.addName }/>;
     }
     if (route.path === 'clipboard') {
