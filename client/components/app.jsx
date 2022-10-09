@@ -7,6 +7,7 @@ import NavBar from './navbar';
 import parseRoute from '../lib/parse-route';
 import NotFound from '../pages/not-found';
 import ClipBoard from '../pages/clipboard';
+import TourDates from '../pages/tourdates';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'clipboard') {
       return <ClipBoard />;
+    }
+    if (route.path === 'calendar') {
+      return <TourDates />;
     }
     return <NotFound />;
   }

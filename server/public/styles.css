@@ -12,6 +12,14 @@ body {
   background-repeat: no-repeat;
 }
 
+.calendar-container {
+  border: 2px solid #808080;
+}
+
+.calendar-date {
+  background-color: #cfcfcf;
+}
+
 .clipboard-container {
   border: 2px solid #808080;
 }
@@ -58,6 +66,10 @@ body {
 
 .fa-clipboard-list {
   margin-right: 10%;
+}
+
+.fa-plus {
+  font-size: 1.5rem;
 }
 
 form {
@@ -162,6 +174,10 @@ pre {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
   padding: 0;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .venues {
