@@ -25,10 +25,6 @@ body {
   font-size: 1rem;
 }
 
-.calendar-list-item {
-  border-radius: 5px;
-}
-
 .calendar-list-item:hover {
   cursor: pointer;
   background-color: rgb(247, 52, 63, 0.4);
@@ -218,6 +214,10 @@ ul {
 }
 
 @media screen and (max-width: 575px) {
+  .calendar-container {
+    border: none;
+  }
+
   .contacts {
     margin-top: 10%;
   }

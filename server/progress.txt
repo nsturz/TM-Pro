@@ -1,0 +1,3 @@
+10/10/22
+- styled the TourDates component to look good on mobile, had some bootstrap kinks
+i needed to work out.
