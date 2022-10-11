@@ -1,3 +1,17 @@
 10/10/22
-- styled the TourDates component to look good on mobile, had some bootstrap kinks
+- styled the <TourDates /> page to look good on mobile, had some bootstrap kinks
 i needed to work out.
+- built the <NewTourDate /> component, and styled the form to look pretty much how i
+want it to look. this took a good while.
+- outside of coding, I was busier than i thought i would be today. got a haircut,
+got lunch with sahara, and had to take her to /from the car dealership. also went
+grocery shopping.
+
+
+- tomorrow:
+  - would like to add the "schedules" portion of the form, and make it do the
+  "plus sign" thing that i thought of.
+  - finish issue 3, and hopefully be able to successfully add new tour dates to
+  the database. this will complete a big chunk of my project
+
+  ++++++++++++++++++++++++++++++++++++++++++++++++++

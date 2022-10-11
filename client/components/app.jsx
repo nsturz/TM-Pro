@@ -8,6 +8,7 @@ import parseRoute from '../lib/parse-route';
 import NotFound from '../pages/not-found';
 import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
+import NewTourDate from './new-tour-date';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -41,6 +42,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'calendar') {
       return <TourDates />;
+    }
+    if (route.path === 'new-tour-date') {
+      return <NewTourDate />;
     }
     return <NotFound />;
   }

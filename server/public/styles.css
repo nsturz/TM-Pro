@@ -83,11 +83,9 @@ body {
 }
 
 form {
-  margin-top: 2rem;
   min-height: 500px;
   width: 80%;
   border: 2px solid #808080;
-  background: transparent;
 }
 
 .form-wrapper {
@@ -125,13 +123,16 @@ h6 {
   color: whitesmoke;
 }
 
-input {
+input,
+select,
+textarea {
   background-color: white;
   opacity: 0.5;
 }
 
 label {
   color: white;
+  font-weight: bolder;
 }
 
 li {
@@ -163,6 +164,10 @@ nav {
 .navigation {
   color: white;
   font-size: 60px;
+}
+
+.new-tour-date-form {
+  overflow-y: scroll;
 }
 
 .new-artist-submit {
@@ -197,12 +202,8 @@ ul {
 }
 
 @media screen and (min-width: 1000px) {
-  form {
-    margin-top: 10%;
-  }
-
   .dashboard-container {
-    margin-top: 5%;
+    margin-top: 2%;
   }
 }
 
@@ -244,6 +245,10 @@ ul {
 
   .navbar-top {
     height: 70px;
+  }
+
+  .new-tour-date-form {
+    border: none;
   }
 
   .venues-notes-wrapper {
