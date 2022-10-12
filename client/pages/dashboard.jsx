@@ -47,8 +47,8 @@ export default class Dashboard extends React.Component {
         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
         <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">
           <div className="venues col-12 h-50 info" id="venue">
-            <h6>VENUE</h6>
-            <i className="fa-solid fa-location-dot" />
+            <h6 className="d-inline">VENUE</h6>
+            <i className="fa-solid fa-location-dot mt-1" />
             <div className="row d-block">
               <hr className="w-100" />
               <p className="text-center lead">{venueName}</p>
@@ -58,8 +58,8 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
           <div className="notes col-12 h-50 info" id="notes">
-            <h6>NOTES</h6>
-            <i className="fa-solid fa-clipboard-list" />
+            <h6 className="d-inline">NOTES</h6>
+            <i className="fa-solid fa-clipboard-list mt-1" />
             <div className="row">
               <hr className="w-100" />
               <pre className="pl-3">{details}</pre>
@@ -68,7 +68,7 @@ export default class Dashboard extends React.Component {
         </div>
         <div className="schedule-wrapper col-lg-3 col-12 mh-100 " id="schedule">
           <div className=" schedules col-12 h-100 info">
-            <h6 className="pl-2">SCHEDULE</h6>
+            <h6 className="pl-2 d-inline">SCHEDULE</h6>
             <i className="fa-solid fa-clock" />
             <hr className="w-100" />
             <ul className="pl-2">
@@ -87,7 +87,7 @@ export default class Dashboard extends React.Component {
         </div>
         <div className="contacts-wrapper col-lg-3 col-12" id="contacts">
           <div className="contacts col-12 h-50 info">
-            <h6 className="pl-2">CONTACTS</h6>
+            <h6 className="pl-2 d-inline">CONTACTS</h6>
             <i className="fa-solid fa-phone" />
             <hr className="w-100" />
             <p className="pl-2">{ email } </p>
@@ -97,7 +97,7 @@ export default class Dashboard extends React.Component {
         </div>
         <div className="dates-wrapper col-lg-3 col-12" id="dates">
           <div className=" dates col-12 mh-100 info m-0">
-            <h6>DATES</h6>
+            <h6 className='d-inline'>DATES</h6>
             <i className="fa-solid fa-calendar-days" />
             <ul className="dates-list">
               {

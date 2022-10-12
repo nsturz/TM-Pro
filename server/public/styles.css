@@ -7,6 +7,10 @@ a:hover {
   color: #f7343e;
 }
 
+.add-schedule-event-btn:focus {
+  outline: 0;
+}
+
 body {
   background-image: url("/images/live-shot.png");
   background-repeat: no-repeat;
@@ -15,11 +19,6 @@ body {
 .calendar-container {
   border: 2px solid #808080;
 }
-
-/* .calendar-date{
-  border: 2px solid white;
-  border-radius: 5%;
-} */
 
 .calendar-date-text {
   font-size: 1rem;
@@ -110,13 +109,16 @@ h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  display: inline;
   margin-right: 0.5rem;
 }
 
-/* html{
-  min-height: 100%;
-} */
+i {
+  text-decoration: none;
+}
+
+i:hover {
+  cursor: pointer;
+}
 
 .info {
   border: 2px solid #808080;
@@ -167,6 +169,7 @@ nav {
 }
 
 .new-tour-date-form {
+  max-height: 500px;
   overflow-y: scroll;
 }
 
@@ -249,6 +252,7 @@ ul {
 
   .new-tour-date-form {
     border: none;
+    max-height: 700px;
   }
 
   .venues-notes-wrapper {

@@ -15,3 +15,10 @@ grocery shopping.
   the database. this will complete a big chunk of my project
 
   ++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  10/11/22
+  - all day, pretty much worked on styling the "schedule" portion of the form. it was kind
+  of a pain.
+  - began working on the "plus sign" functionality, but am hitting some walls.
+  right now, if i click the plus sign, all of the avaliable options show. need to step
+  away and think about this for a bit.
