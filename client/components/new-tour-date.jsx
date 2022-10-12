@@ -5,20 +5,21 @@ export default class NewTourDate extends React.Component {
     super(props);
     this.state = {
       click: 0,
-      scheduleEvent: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent1: false
+      scheduleEvent1: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent2: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent3: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent4: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent5: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent6: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent7: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent8: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent9: 'row justify-content-center mt-3 mb-3 d-none',
+      scheduleEvent10: 'row justify-content-center mt-3 mb-3 d-none'
     };
-    // this.increment = this.increment.bind(this);
+
     this.decrement = this.decrement.bind(this);
     this.addScheduleEvent = this.addScheduleEvent.bind(this);
   }
-
-  // increment(){
-  //   this.setState({
-  //     click: this.state.click +1
-  //   });
-  //   console.log('click', this.state.click)
-  // }
 
   decrement() {
     this.setState({
@@ -28,21 +29,58 @@ export default class NewTourDate extends React.Component {
 
   // see progress.txt 10/11 👇🏼
   addScheduleEvent() {
-    // console.log('click', this.state.click)
     const click = this.state.click;
-    const scheduleEvent1 = this.state.scheduleEvent1;
     const active = 'row justify-content-center mt-3 mb-3';
-    const activeId = true;
     this.setState({
-      click: this.state.click + 1,
-      scheduleEvent1: activeId
+      click: this.state.click + 1
     });
-    if (click === 1 && scheduleEvent1 === activeId) {
+    if (click === 1) {
       this.setState({
-        scheduleEvent: active
+        scheduleEvent1: active
+      });
+    } if (click === 2) {
+      this.setState({
+        scheduleEvent2: active
+      });
+    } if (click === 3) {
+      this.setState({
+        scheduleEvent3: active
+      });
+    } if (click === 4) {
+      this.setState({
+        scheduleEvent4: active
+      });
+    } if (click === 5) {
+      this.setState({
+        scheduleEvent5: active
+      });
+    } if (click === 6) {
+      this.setState({
+        scheduleEvent6: active
+      });
+    } if (click === 7) {
+      this.setState({
+        scheduleEvent7: active
+      });
+    } if (click === 8) {
+      this.setState({
+        scheduleEvent8: active
+      });
+    } if (click === 9) {
+      this.setState({
+        scheduleEvent9: active
+      });
+    } if (click === 10) {
+      this.setState({
+        scheduleEvent10: active
       });
     }
   }
+
+  // removeScheduleEvent(event){
+  //   const inactive = 'row justify-content-center mt-3 mb-3 d-none';
+
+  // }
 
   render() {
     return (
@@ -68,7 +106,7 @@ export default class NewTourDate extends React.Component {
               <input name="address" type="text" className="form-control col-6" />
             </div>
             <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
-            <div className={this.state.scheduleEvent} id={ this.state.scheduleEvent1 }>
+            <div className={this.state.scheduleEvent1} id="schedule-event-1">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -87,7 +125,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-2">
+            <div className={this.state.scheduleEvent2} id="schedule-event-2">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -106,7 +144,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-3">
+            <div className={this.state.scheduleEvent3} id="schedule-event-3">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -125,7 +163,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-4">
+            <div className={this.state.scheduleEvent4} id="schedule-event-4">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -144,7 +182,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-5">
+            <div className={this.state.scheduleEvent5} id="schedule-event-5">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -163,7 +201,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-6">
+            <div className={this.state.scheduleEvent6} id="schedule-event-6">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -182,7 +220,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-7">
+            <div className={this.state.scheduleEvent7} id="schedule-event-7">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -201,7 +239,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-8">
+            <div className={this.state.scheduleEvent8} id="schedule-event-8">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -220,7 +258,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-9">
+            <div className={this.state.scheduleEvent9} id="schedule-event-9">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
@@ -239,7 +277,7 @@ export default class NewTourDate extends React.Component {
                 </div>
               </div>
             </div>
-            <div className={this.state.scheduleEvent} id="schedule-event-10">
+            <div className={this.state.scheduleEvent10} id="schedule-event-10">
               <div className="col-5">
                 <label htmlFor="start-time" className="text-center col-12">Start Time</label>
                 <input type="time" className="form-control h-50" />
