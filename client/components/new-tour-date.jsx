@@ -4,7 +4,7 @@ export default class NewTourDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      click: 0,
+      click: 1,
       scheduleEvent1: 'row justify-content-center mt-3 mb-3 d-none',
       scheduleEvent2: 'row justify-content-center mt-3 mb-3 d-none',
       scheduleEvent3: 'row justify-content-center mt-3 mb-3 d-none',
@@ -19,6 +19,7 @@ export default class NewTourDate extends React.Component {
 
     this.decrement = this.decrement.bind(this);
     this.addScheduleEvent = this.addScheduleEvent.bind(this);
+    this.removeScheduleEvent = this.removeScheduleEvent.bind(this);
   }
 
   decrement() {
@@ -27,8 +28,8 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  // see progress.txt 10/11 👇🏼
   addScheduleEvent() {
+    // console.log('click:', this.state.click)
     const click = this.state.click;
     const active = 'row justify-content-center mt-3 mb-3';
     this.setState({
@@ -77,10 +78,18 @@ export default class NewTourDate extends React.Component {
     }
   }
 
-  // removeScheduleEvent(event){
-  //   const inactive = 'row justify-content-center mt-3 mb-3 d-none';
+  removeScheduleEvent(event) {
+    // console.log('click:', this.state.click)
+    const inactive = 'row justify-content-center mt-3 mb-3 d-none';
+    const x1 = document.getElementById('x-1');
 
-  // }
+    if (event.target === x1) {
+      this.setState({
+        scheduleEvent1: inactive
+      });
+    }
+
+  }
 
   render() {
     return (
@@ -115,9 +124,9 @@ export default class NewTourDate extends React.Component {
                 <label htmlFor="end-time" className="text-center col-12">End Time</label>
                 <input type="time" className="form-control h-50" />
               </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
+              <button className=" add-schedule-event-btn col-2 d-flex align-items-center mt-3 bg-transparent border-0">
+                <i className="fa-solid fa-x text-white" id="x-1" onClick={this.removeScheduleEvent} />
+              </button>
               <div className="col-12 mt-3">
                 <div className="row d-flex justify-content-center">
                   <label htmlFor="details" className="text-center col-12">Details</label>
