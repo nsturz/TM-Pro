@@ -5,16 +5,18 @@ export default class NewTourDate extends React.Component {
     super(props);
     this.state = {
       click: 1,
-      scheduleEvent1: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent2: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent3: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent4: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent5: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent6: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent7: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent8: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent9: 'row justify-content-center mt-3 mb-3 d-none',
-      scheduleEvent10: 'row justify-content-center mt-3 mb-3 d-none'
+      scheduleEvents: [],
+      id: 1
+      // scheduleEvent1: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent2: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent3: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent4: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent5: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent6: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent7: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent8: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent9: 'row justify-content-center mt-3 mb-3 d-none',
+      // scheduleEvent10: 'row justify-content-center mt-3 mb-3 d-none'
     };
 
     this.decrement = this.decrement.bind(this);
@@ -28,68 +30,38 @@ export default class NewTourDate extends React.Component {
     });
   }
 
+  // addScheduleEvent() {
+  //   const scheduleEventDetails = {
+  //     class: 'row justify-content-center mt-3 mb-3',
+  //     id: this.state.id
+  //   }
+  //   this.setState({
+  //     click: this.state.click + 1,
+  //     scheduleEvents: this.state.scheduleEvents.push(scheduleEventDetails),
+  //     id: this.state.id + 1
+  //   });
+  // }
+
   addScheduleEvent() {
-    // console.log('click:', this.state.click)
-    const click = this.state.click;
-    const active = 'row justify-content-center mt-3 mb-3';
+    const scheduleEventDetails = {
+      class: 'row justify-content-center mt-3 mb-3',
+      id: this.state.id
+    };
     this.setState({
-      click: this.state.click + 1
+      click: this.state.click + 1,
+      scheduleEvents: [...this.state.scheduleEvents, scheduleEventDetails],
+      id: this.state.id + 1
     });
-    if (click === 1) {
-      this.setState({
-        scheduleEvent1: active
-      });
-    } if (click === 2) {
-      this.setState({
-        scheduleEvent2: active
-      });
-    } if (click === 3) {
-      this.setState({
-        scheduleEvent3: active
-      });
-    } if (click === 4) {
-      this.setState({
-        scheduleEvent4: active
-      });
-    } if (click === 5) {
-      this.setState({
-        scheduleEvent5: active
-      });
-    } if (click === 6) {
-      this.setState({
-        scheduleEvent6: active
-      });
-    } if (click === 7) {
-      this.setState({
-        scheduleEvent7: active
-      });
-    } if (click === 8) {
-      this.setState({
-        scheduleEvent8: active
-      });
-    } if (click === 9) {
-      this.setState({
-        scheduleEvent9: active
-      });
-    } if (click === 10) {
-      this.setState({
-        scheduleEvent10: active
-      });
-    }
   }
 
-  removeScheduleEvent(event) {
-    // console.log('click:', this.state.click)
-    const inactive = 'row justify-content-center mt-3 mb-3 d-none';
-    const x1 = document.getElementById('x-1');
-
-    if (event.target === x1) {
-      this.setState({
-        scheduleEvent1: inactive
-      });
-    }
-
-  }
+  // removeScheduleEvent(eventId) {
+  //   for(let i = 0; i < this.state.scheduleEvents.length; i++){
+  //     if(eventId === this.state.scheduleEvents[i].id){
+  //       console.log('the function works lelelel')
+  //     }
+  //   }
+  //   console.log('the function works lelelel')
+  // }
 
   render() {
     return (
@@ -115,197 +87,37 @@ export default class NewTourDate extends React.Component {
               <input name="address" type="text" className="form-control col-6" />
             </div>
             <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
-            <div className={this.state.scheduleEvent1} id="schedule-event-1">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <button className=" add-schedule-event-btn col-2 d-flex align-items-center mt-3 bg-transparent border-0">
-                <i className="fa-solid fa-x text-white" id="x-1" onClick={this.removeScheduleEvent} />
-              </button>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent2} id="schedule-event-2">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent3} id="schedule-event-3">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent4} id="schedule-event-4">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent5} id="schedule-event-5">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent6} id="schedule-event-6">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent7} id="schedule-event-7">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent8} id="schedule-event-8">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent9} id="schedule-event-9">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <div className={this.state.scheduleEvent10} id="schedule-event-10">
-              <div className="col-5">
-                <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <div className="col-5">
-                <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                <input type="time" className="form-control h-50" />
-              </div>
-              <a href="" className="col-1 d-flex align-items-center">
-                <i className="fa-solid fa-x" />
-              </a>
-              <div className="col-12 mt-3">
-                <div className="row d-flex justify-content-center">
-                  <label htmlFor="details" className="text-center col-12">Details</label>
-                  <input type="text" className="form-control col-8 h-50" />
-                </div>
-              </div>
-            </div>
-            <button className=" add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+            <ul>
+              {
+                this.state.scheduleEvents.map(event => {
+                  return (
+                    <li className={event.class} id={event.id} key={event.id}>
+                      <div className="col-5">
+                        <label htmlFor="start-time" className="text-center col-12">Start Time</label>
+                        <input type="time" className="form-control h-50" />
+                      </div>
+                      <div className="col-5">
+                        <label htmlFor="end-time" className="text-center col-12">End Time</label>
+                        <input type="time" className="form-control h-50" />
+                      </div>
+                      <button
+                      type="button"
+                      className=" add-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0"
+                      >
+                        <i className="fa-solid fa-x text-white" id={event.id}/>
+                      </button>
+                      <div className="col-12 mt-3">
+                        <div className="row d-flex justify-content-center">
+                          <label htmlFor="details" className="text-center col-12">Details</label>
+                          <input type="text" className="form-control col-8 h-50" />
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })
+              }
+            </ul>
+            <button type="button" className=" add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
               <i className="fa-solid fa-plus text-white" onClick={ this.addScheduleEvent } />
             </button>
           </div>
