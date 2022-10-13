@@ -4,48 +4,20 @@ export default class NewTourDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      click: 1,
+      click: 0,
       scheduleEvents: [],
-      id: 1
-      // scheduleEvent1: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent2: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent3: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent4: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent5: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent6: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent7: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent8: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent9: 'row justify-content-center mt-3 mb-3 d-none',
-      // scheduleEvent10: 'row justify-content-center mt-3 mb-3 d-none'
+      id: 0
     };
 
-    this.decrement = this.decrement.bind(this);
     this.addScheduleEvent = this.addScheduleEvent.bind(this);
-    this.removeScheduleEvent = this.removeScheduleEvent.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  decrement() {
-    this.setState({
-      click: this.state.click - 1
-    });
-  }
-
-  // addScheduleEvent() {
-  //   const scheduleEventDetails = {
-  //     class: 'row justify-content-center mt-3 mb-3',
-  //     id: this.state.id
-  //   }
-  //   this.setState({
-  //     click: this.state.click + 1,
-  //     scheduleEvents: this.state.scheduleEvents.push(scheduleEventDetails),
-  //     id: this.state.id + 1
-  //   });
-  // }
-
-  addScheduleEvent() {
+  addScheduleEvent(props) {
     const scheduleEventDetails = {
       class: 'row justify-content-center mt-3 mb-3',
-      id: this.state.id
+      id: this.state.id,
+      click: this.state.click
     };
     this.setState({
       click: this.state.click + 1,
@@ -54,12 +26,15 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  // removeScheduleEvent(eventId) {
-  //   for(let i = 0; i < this.state.scheduleEvents.length; i++){
-  //     if(eventId === this.state.scheduleEvents[i].id){
-  //     }
-  //   }
-  // }
+  handleClick(event) {
+    const array = [...this.state.scheduleEvents];
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].id === Number(event.target.id)) {
+        array.splice(i, 1);
+        this.setState({ scheduleEvents: array });
+      }
+    }
+  }
 
   render() {
     return (
@@ -98,10 +73,7 @@ export default class NewTourDate extends React.Component {
                         <label htmlFor="end-time" className="text-center col-12">End Time</label>
                         <input type="time" className="form-control h-50" />
                       </div>
-                      <button
-                      type="button"
-                      className=" add-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0"
-                      >
+                      <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
                         <i className="fa-solid fa-x text-white" id={event.id}/>
                       </button>
                       <div className="col-12 mt-3">

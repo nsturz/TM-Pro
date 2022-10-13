@@ -188,6 +188,10 @@ pre {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.remove-schedule-event-btn:focus {
+  outline: 0;
+}
+
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
