@@ -57,10 +57,8 @@ export default class NewTourDate extends React.Component {
   // removeScheduleEvent(eventId) {
   //   for(let i = 0; i < this.state.scheduleEvents.length; i++){
   //     if(eventId === this.state.scheduleEvents[i].id){
-  //       console.log('the function works lelelel')
   //     }
   //   }
-  //   console.log('the function works lelelel')
   // }
 
   render() {
