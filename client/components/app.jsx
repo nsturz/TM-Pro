@@ -44,7 +44,9 @@ export default class App extends React.Component {
       return <TourDates />;
     }
     if (route.path === 'new-tour-date') {
-      return <NewTourDate />;
+      return <NewTourDate
+      // onSubmit={ this.addTourDate}
+      />;
     }
     return <NotFound />;
   }
