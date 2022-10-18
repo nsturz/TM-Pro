@@ -258,14 +258,14 @@ app.post('/api/addresses', (req, res) => {
 
 // POST new CONTACTS to the database 👇🏼
 app.post('/api/contacts', (req, res) => {
-  let { email, name, phone, showId } = req.body;
-  phone = Number(phone);
-  if (!email || !name || !showId || !phone) {
+  let { email, contactName, contactPhone, showId } = req.body;
+  contactPhone = Number(contactPhone);
+  if (!email || !contactName || !showId || !contactPhone) {
     res.status(400).json({
-      error: 'email, name, showId, and phone are required fields'
+      error: 'email, contactName, showId, and contactPhone are required fields'
     });
     return;
-  } else if (typeof phone !== 'number') {
+  } else if (typeof contactPhone !== 'number') {
     res.status(400).json({
       error: 'phone number must be a number'
     });
@@ -276,7 +276,7 @@ app.post('/api/contacts', (req, res) => {
   values      ($1, $2, $3, $4)
   `;
 
-  const params = [email, name, phone, showId];
+  const params = [email, contactName, contactPhone, showId];
   db.query(sql, params)
     .then(result => {
       const [newContact] = result.rows;
@@ -402,6 +402,116 @@ app.post('/api/shows', (req, res) => {
     .then(result => {
       const [newDate] = result.rows;
       res.status(201).json(newDate);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
+// POST ALL THE THINGS!!! (except new Artists)
+
+app.post('/api/new-tour-date', (req, res) => {
+  const {
+    line1,
+    city,
+    state,
+    country,
+    email,
+    contactName,
+    contactPhone,
+    showId,
+    venueName,
+    venuePhone,
+    addressId,
+    notesDetails,
+    startTime,
+    endTime,
+    scheduleDetails,
+    date,
+    venueId,
+    artistId
+  } = req.body;
+
+  if (!req.body) {
+    res.status(400).json({
+      error: 'Make sure you have entered all required fields'
+    });
+    return;
+  }
+  const insertAddressSql = `
+  insert into "addresses" ("line1", "city", "state", "country")
+  values      ($1, $2, $3, $4);
+  `;
+
+  const insertAddressParams = [line1, city, state, country];
+  db.query(insertAddressSql, insertAddressParams)
+    .then(addressResult => {
+      const [newAddress] = addressResult.rows;
+
+      const insertVenueSql = `
+      insert into "venues" ("name", "addressId", "phone")
+      values ($1, $2, $3)
+      `;
+      const insertVenueParams = [venueName, addressId, venuePhone];
+      db.query(insertVenueSql, insertVenueParams)
+        .then(venueResult => {
+          const [newVenue] = venueResult.rows;
+
+          const insertShowSql = `
+        insert into "shows" ("venueId", "artistId", "date")
+        values ($1, $2, $3)
+        `;
+          const insertShowParams = [venueId, artistId, date];
+          db.query(insertShowSql, insertShowParams)
+            .then(showResult => {
+              const [newShow] = showResult.rows;
+
+              const insertContactSql = `
+          insert into "contacts" ("email", "name", "phone", "showId")
+          values ($1, $2, $3, $4)
+          `;
+              const insertContactParams = [email, contactName, contactPhone, showId];
+              db.query(insertContactSql, insertContactParams)
+                .then(contactResult => {
+                  const [newContact] = contactResult.rows;
+
+                  const insertNoteSql = `
+            insert into "notes" ("details", "showId")
+            values($1, $2)
+            `;
+
+                  const insertNoteParams = [notesDetails, showId];
+                  db.query(insertNoteSql, insertNoteParams)
+                    .then(noteResult => {
+                      const [newNote] = noteResult.rows;
+
+                      const insertScheduleSql = `
+              insert into "schedules" ("startTime", "endTime", "details", "showId")
+              values ($1, $2, $3, $4)
+              `;
+
+                      const insertScheduleParams = [startTime, endTime, scheduleDetails, showId];
+                      db.query(insertScheduleSql, insertScheduleParams)
+                        .then(scheduleResult => {
+                          const [newSchedule] = scheduleResult.rows;
+
+                          const newTourDate = {
+                            newAddress,
+                            newVenue,
+                            newShow,
+                            newContact,
+                            newNote,
+                            newSchedule
+                          };
+                          res.status(201).json(newTourDate);
+                        });
+                    });
+                });
+            });
+        });
     })
     .catch(err => {
       console.error(err);

@@ -1,6 +1,8 @@
 import React from 'react';
-// SEE LINES 254 AND 253 10/14/22
-// finish addTourDate( ) in app.jsx
+// Add inputs for VENUES and CONTACTS // SEE LINES 254 AND 253 10/14/22
+// finish POST fetch requests in app.jsx
+// finish addTourDate( ) in app.jsx, and put all of the POST methods inside its
+// code block.
 export default class NewTourDate extends React.Component {
   constructor(props) {
     super(props);
@@ -181,7 +183,7 @@ export default class NewTourDate extends React.Component {
     document.getElementById('new-tour-date-form').reset();
   }
 
-  render() {
+  render(props) {
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form
@@ -193,6 +195,15 @@ export default class NewTourDate extends React.Component {
               <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
               <select name="artist-select-form" id="" className="form-control col-6">
                 <option value="">Select an artist</option>
+                {/* <ul>
+                  {
+                    this.props.artists.map(event =>{
+                      return(
+                        <li>{event.name}</li>
+                      )
+                    })
+                  }
+                </ul> */}
               </select>
               <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
               <input name="date" type="date" className="form-control col-6" onChange={ this.handleDateChange } />

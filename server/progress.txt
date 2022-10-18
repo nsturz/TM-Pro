@@ -22,3 +22,22 @@ grocery shopping.
   - began working on the "plus sign" functionality, but am hitting some walls.
   right now, if i click the plus sign, all of the avaliable options show. need to step
   away and think about this for a bit.
+
+
+  http POST :3000/api/new-tour-date line1="3347 Brayton Ave"
+   city="signal hill"
+   state="CA"
+   country="USA"
+   venueName="Your Mom's House"
+   addressId=10 venuePhone=5629899977
+   venueId=12 artistId=1 date=2023-01-13
+   email="yourmom@yourmomshouse.com"
+   contactName="Tom Delonge"
+   contactPhone=2136647758
+   showId=10
+   notesDetails="Try again"
+   showId=10
+   startTime=9:00
+   endTime=10:00
+   scheduleDetails="lol"
+   showId=10

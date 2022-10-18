@@ -52,7 +52,6 @@ export default class App extends React.Component {
   }
 
   addName(newArtist) {
-
     fetch('/api/artists', {
       method: 'POST',
       headers: {
@@ -69,18 +68,41 @@ export default class App extends React.Component {
       .catch(console.error);
   }
   // need to finish this function after we create the NewTourDate form 👇🏼
-  // addTourDate(newTourDate){
+  // addAddress(newAddress){
   //   fetch('/api/addresses', {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json'
   //     },
-  //     body: JSON.stringify(newArtist)
+  //     body: JSON.stringify(newAddress)
   //   })
   //     .then(response => response.json())
   //     .then(name => {
   //       this.setState({
-  //         name: this.state.name.concat(name)
+  //         line1: this.state.name.concat(line1),
+  //         city: this.state.city.concat(city),
+  //         state: this.state.state.concat(state),
+  //         country: this.state.country.concat(country)
+  //       });
+  //     })
+  //     .catch(console.error);
+  // }
+
+  // addContact(newContact){
+  //   fetch('/api/contacts', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(newContact)
+  //   })
+  //     .then(response => response.json())
+  //     .then(name => {
+  //       this.setState({
+  //         contactEmail: this.state.contactEmail.concat(email),
+  //         contactName: this.state.contactName.concat(name),
+  //         contactPhone: this.state.contactPhone.concat(phone),
+  //         showId: this.state.showId.concat(showId)
   //       });
   //     })
   //     .catch(console.error);
