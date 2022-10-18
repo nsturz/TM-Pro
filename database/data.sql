@@ -9,11 +9,11 @@ values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA'),
             ('2935 W 7th Ave', 'Denver', 'CO', 'USA');
 
 insert into "venues" ("name", "addressId", "phone")
-values      ('Chain Reaction', 1, 7146356067),
-            ('Rebel Lounge', 2, 6022967013),
-            ('Eagles Aerie Hall', 3, 7025652672),
-            ('Loading Dock', 4, 7777777),
-            ('7th Circle', 5, 7205423286);
+values      ('Chain Reaction', 1, '7146356067'),
+            ('Rebel Lounge', 2, '6022967013'),
+            ('Eagles Aerie Hall', 3, '7025652672'),
+            ('Loading Dock', 4, '7777777'),
+            ('7th Circle', 5, '7205423286');
 
 insert into "shows" ("venueId", "artistId", "date")
 values      (1, 1, DATE '2023-1-5'),
@@ -39,7 +39,7 @@ values      (
 );
 
 insert into "contacts" ("email", "name", "phone","showId")
-values      ('booker@booking.com', 'Edgy Promoter Dude',7777777, 1);
+values      ('booker@booking.com', 'Edgy Promoter Dude','7777777', 1);
 
 insert into "schedules" ("startTime", "endTime", "details", "showId")
 values

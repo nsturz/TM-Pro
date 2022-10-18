@@ -32,6 +32,10 @@ export default class NewTourDate extends React.Component {
     this.handleAddressChange = this.handleAddressChange.bind(this);
   }
 
+  componentDidMount() {
+
+  }
+
   handleAddressChange(event) {
     this.setState({
       line1: event.target.value
@@ -183,7 +187,8 @@ export default class NewTourDate extends React.Component {
     document.getElementById('new-tour-date-form').reset();
   }
 
-  render(props) {
+  render() {
+    // console.log('props.artists:', this.props.artists)
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form
@@ -195,15 +200,15 @@ export default class NewTourDate extends React.Component {
               <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
               <select name="artist-select-form" id="" className="form-control col-6">
                 <option value="">Select an artist</option>
-                {/* <ul>
+                {/*
                   {
                     this.props.artists.map(event =>{
                       return(
                         <li>{event.name}</li>
                       )
                     })
-                  }
-                </ul> */}
+                  } */}
+
               </select>
               <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
               <input name="date" type="date" className="form-control col-6" onChange={ this.handleDateChange } />

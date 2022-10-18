@@ -44,7 +44,7 @@ export default class App extends React.Component {
       return <TourDates />;
     }
     if (route.path === 'new-tour-date') {
-      return <NewTourDate
+      return <NewTourDate artists={this.state.artists}
       // onSubmit={ this.addTourDate}
       />;
     }
@@ -109,6 +109,7 @@ export default class App extends React.Component {
   // }
 
   render() {
+
     return (
       <div>
         <NavBar artists={this.state.artists} />

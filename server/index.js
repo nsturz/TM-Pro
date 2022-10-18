@@ -15,6 +15,21 @@ app.get('/api/hello', (req, res) => {
   res.json({ hello: 'world' });
 });
 
+// GET all artists 👇🏼
+// app.get('/api/artists', (req, res, next) => {
+//   const sql = `
+//   select "name"
+//   from   "artists"
+//   `;
+
+//   const params = [artistName];
+//   db.query(sql, params)
+//     .then(result => {
+//       res.json(result.rows);
+//     })
+//     .catch(err => next(err));
+// });
+
 // Get specific ARTIST info 👇🏼
 app.get('/api/artists/:artistId', (req, res, next) => {
   const artistId = Number(req.params.artistId);
@@ -422,28 +437,60 @@ app.post('/api/new-tour-date', (req, res) => {
     email,
     contactName,
     contactPhone,
-    showId,
+    // showId,
     venueName,
     venuePhone,
-    addressId,
+    // addressId,
     notesDetails,
     startTime,
     endTime,
     scheduleDetails,
     date,
-    venueId,
+    // venueId,
     artistId
   } = req.body;
 
-  if (!req.body) {
+  if (!line1 ||
+    !city ||
+    !state ||
+    !country ||
+    !email ||
+    !contactName ||
+    !contactPhone ||
+    // || !showId
+    !venueName ||
+    !venuePhone ||
+    // || !addressId
+    !notesDetails ||
+    !startTime ||
+    !endTime ||
+    !scheduleDetails ||
+    !date ||
+    // || !venueId
+    !artistId
+  ) {
     res.status(400).json({
       error: 'Make sure you have entered all required fields'
     });
     return;
   }
+  // was working on this 10/18 👇🏼
+  // const getArtistSql = `
+  // select ("artistId", "name")
+  // from "artists"
+  // where "artistId" = $1;
+  // `;
+
+  // const getArtistParams = [artistId, name];
+  // db.query(getArtistSql, getArtistParams)
+  // .then(artistResult => {
+  //   const [ artist ] = artistResult.rows;
+  // })
+
   const insertAddressSql = `
   insert into "addresses" ("line1", "city", "state", "country")
-  values      ($1, $2, $3, $4);
+  values      ($1, $2, $3, $4)
+  returning *;
   `;
 
   const insertAddressParams = [line1, city, state, country];
@@ -454,8 +501,9 @@ app.post('/api/new-tour-date', (req, res) => {
       const insertVenueSql = `
       insert into "venues" ("name", "addressId", "phone")
       values ($1, $2, $3)
+      returning *;
       `;
-      const insertVenueParams = [venueName, addressId, venuePhone];
+      const insertVenueParams = [venueName, newAddress.addressId, venuePhone];
       db.query(insertVenueSql, insertVenueParams)
         .then(venueResult => {
           const [newVenue] = venueResult.rows;
@@ -463,8 +511,9 @@ app.post('/api/new-tour-date', (req, res) => {
           const insertShowSql = `
         insert into "shows" ("venueId", "artistId", "date")
         values ($1, $2, $3)
+        returning *;
         `;
-          const insertShowParams = [venueId, artistId, date];
+          const insertShowParams = [newVenue.venueId, artistId, date];
           db.query(insertShowSql, insertShowParams)
             .then(showResult => {
               const [newShow] = showResult.rows;
@@ -473,7 +522,7 @@ app.post('/api/new-tour-date', (req, res) => {
           insert into "contacts" ("email", "name", "phone", "showId")
           values ($1, $2, $3, $4)
           `;
-              const insertContactParams = [email, contactName, contactPhone, showId];
+              const insertContactParams = [email, contactName, contactPhone, newShow.showId];
               db.query(insertContactSql, insertContactParams)
                 .then(contactResult => {
                   const [newContact] = contactResult.rows;
@@ -483,7 +532,7 @@ app.post('/api/new-tour-date', (req, res) => {
             values($1, $2)
             `;
 
-                  const insertNoteParams = [notesDetails, showId];
+                  const insertNoteParams = [notesDetails, newShow.showId];
                   db.query(insertNoteSql, insertNoteParams)
                     .then(noteResult => {
                       const [newNote] = noteResult.rows;
@@ -493,7 +542,7 @@ app.post('/api/new-tour-date', (req, res) => {
               values ($1, $2, $3, $4)
               `;
 
-                      const insertScheduleParams = [startTime, endTime, scheduleDetails, showId];
+                      const insertScheduleParams = [startTime, endTime, scheduleDetails, newShow.showId];
                       db.query(insertScheduleSql, insertScheduleParams)
                         .then(scheduleResult => {
                           const [newSchedule] = scheduleResult.rows;
