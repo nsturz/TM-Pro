@@ -1,6 +1,7 @@
 import React from 'react';
+// 10/18/22 You arer working on handleNameChange line 38!!!
+// remove the commented out code in app.jsx componentDidMount method!!!!
 // Add inputs for VENUES and CONTACTS // SEE LINES 254 AND 253 10/14/22
-// finish POST fetch requests in app.jsx
 // finish addTourDate( ) in app.jsx, and put all of the POST methods inside its
 // code block.
 export default class NewTourDate extends React.Component {
@@ -9,6 +10,8 @@ export default class NewTourDate extends React.Component {
     this.state = {
       click: 0,
       scheduleEvents: [],
+      artistName: '',
+      artistId: null,
       id: 0,
       line1: '',
       city: '',
@@ -30,10 +33,22 @@ export default class NewTourDate extends React.Component {
     this.addScheduleEvent = this.addScheduleEvent.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
   }
 
-  componentDidMount() {
-
+  handleNameChange(event) {
+    // console.log('event.target.value',  event.target.value)
+    // console.log('this.props.artists', this.props.artists)
+    for (let i = 0; i < this.props.artists.length; i++) {
+      if (event.target.value === this.props.artists[i].name) {
+        // console.log('name:', this.props.artists[i].name, 'artistId:', this.props.artists[i].artistId)
+        this.setState({
+          artistName: this.props.artists[i].name,
+          artistId: this.props.artists[i].artistId
+        });
+        // console.log('official artistId:', this.state.artistId, 'official artistName:', this.state.artistName)
+      }
+    }
   }
 
   handleAddressChange(event) {
@@ -194,21 +209,19 @@ export default class NewTourDate extends React.Component {
         <form
         className="row"
         id="new-tour-date-form"
-        onSubmit={ this.onSubmit }>
+        onSubmit={ this.handleSubmit }>
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
-              <select name="artist-select-form" id="" className="form-control col-6">
+              <select name="artist-select-form" id="" className="form-control col-6" onChange={this.handleNameChange}>
                 <option value="">Select an artist</option>
-                {/*
-                  {
-                    this.props.artists.map(event =>{
-                      return(
-                        <li>{event.name}</li>
-                      )
+                {
+                    this.props.artists.map(event => {
+                      return (
+                        <option id={event.artistId} key={event.artistId}>{event.name}</option>
+                      );
                     })
-                  } */}
-
+                  }
               </select>
               <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
               <input name="date" type="date" className="form-control col-6" onChange={ this.handleDateChange } />

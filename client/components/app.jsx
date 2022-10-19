@@ -21,13 +21,21 @@ export default class App extends React.Component {
     this.addName = this.addName.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener('hashchange', event => {
-      this.setState({
-        route: parseRoute(window.location.hash)
-      });
-    });
-  }
+  // componentDidMount() {
+  //   window.addEventListener('hashchange', event => {
+  //     this.setState({
+  //       route: parseRoute(window.location.hash)
+  //     });
+  //   });
+
+  //   fetch('/api/artists')
+  //     .then(res => res.json())
+  //     .then(artists => artists.map(artist => {
+  //       this.setState({
+  //         artists: artists
+  //       })
+  //     }))
+  // }
 
   renderPage() {
     const { route } = this.state;
@@ -83,26 +91,6 @@ export default class App extends React.Component {
   //         city: this.state.city.concat(city),
   //         state: this.state.state.concat(state),
   //         country: this.state.country.concat(country)
-  //       });
-  //     })
-  //     .catch(console.error);
-  // }
-
-  // addContact(newContact){
-  //   fetch('/api/contacts', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(newContact)
-  //   })
-  //     .then(response => response.json())
-  //     .then(name => {
-  //       this.setState({
-  //         contactEmail: this.state.contactEmail.concat(email),
-  //         contactName: this.state.contactName.concat(name),
-  //         contactPhone: this.state.contactPhone.concat(phone),
-  //         showId: this.state.showId.concat(showId)
   //       });
   //     })
   //     .catch(console.error);

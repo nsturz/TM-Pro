@@ -16,19 +16,18 @@ app.get('/api/hello', (req, res) => {
 });
 
 // GET all artists 👇🏼
-// app.get('/api/artists', (req, res, next) => {
-//   const sql = `
-//   select "name"
-//   from   "artists"
-//   `;
-
-//   const params = [artistName];
-//   db.query(sql, params)
-//     .then(result => {
-//       res.json(result.rows);
-//     })
-//     .catch(err => next(err));
-// });
+app.get('/api/artists', (req, res, next) => {
+  const sql = `
+  select "artistId",
+         "name"
+  from   "artists"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 
 // Get specific ARTIST info 👇🏼
 app.get('/api/artists/:artistId', (req, res, next) => {
