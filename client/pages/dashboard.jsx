@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    const { city, date, line1, state, venueName, phone } = this.state.show;
+    const { city, date, line1, state, venueName } = this.state.show;
     const { details } = this.state.notes;
     // may need to change these destructured variable names for contacts,
     // and in the server code:👇🏼👇🏼👇🏼
@@ -54,7 +54,6 @@ export default class Dashboard extends React.Component {
               <p className="text-center lead">{venueName}</p>
               <p className="text-center lead">{line1}</p>
               <p className="text-center lead">{city}, {state}</p>
-              <p className="text-center lead ">{phone}</p>
             </div>
           </div>
           <div className="notes col-12 h-50 info" id="notes">

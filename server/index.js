@@ -59,8 +59,7 @@ app.get('/api/venues/:venueId', (req, res, next) => {
   }
   const sql = `
   select "name",
-         "addressId",
-         "phone"
+         "addressId"
   from   "venues"
   where "venueId" = $1`;
 
@@ -169,8 +168,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select "phone",
-         to_char("date",'MM/DD/YYYY') as "date",
+  select to_char("date",'MM/DD/YYYY') as "date",
          "venues"."name" as "venueName",
          "venueId",
          "showId",
@@ -195,8 +193,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
 // GET DATE info for DATES section 👇🏼
 app.get('/api/shows', (req, res, next) => {
   const sql = `
-  select "phone",
-         to_char("date",'MM/DD/YYYY') as "showDate",
+  select to_char("date",'MM/DD/YYYY') as "showDate",
          "venues"."name" as "dateVenue",
          "addresses"."city" as "dateCity",
          "addresses"."state" as "dateState",

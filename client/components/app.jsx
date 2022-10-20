@@ -21,21 +21,17 @@ export default class App extends React.Component {
     this.addName = this.addName.bind(this);
   }
 
-  // componentDidMount() {
-  //   window.addEventListener('hashchange', event => {
-  //     this.setState({
-  //       route: parseRoute(window.location.hash)
-  //     });
-  //   });
+  componentDidMount() {
+    window.addEventListener('hashchange', event => {
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
+    });
 
-  //   fetch('/api/artists')
-  //     .then(res => res.json())
-  //     .then(artists => artists.map(artist => {
-  //       this.setState({
-  //         artists: artists
-  //       })
-  //     }))
-  // }
+    fetch('/api/artists')
+      .then(res => res.json())
+      .then(artists => artists.map(artist => this.setState({ artists })));
+  }
 
   renderPage() {
     const { route } = this.state;
@@ -76,24 +72,8 @@ export default class App extends React.Component {
       .catch(console.error);
   }
   // need to finish this function after we create the NewTourDate form 👇🏼
-  // addAddress(newAddress){
-  //   fetch('/api/addresses', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(newAddress)
-  //   })
-  //     .then(response => response.json())
-  //     .then(name => {
-  //       this.setState({
-  //         line1: this.state.name.concat(line1),
-  //         city: this.state.city.concat(city),
-  //         state: this.state.state.concat(state),
-  //         country: this.state.country.concat(country)
-  //       });
-  //     })
-  //     .catch(console.error);
+  // addTourDate(){
+
   // }
 
   render() {

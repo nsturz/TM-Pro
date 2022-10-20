@@ -15,7 +15,6 @@ CREATE TABLE "public"."venues" (
     "venueId" serial NOT NULL,
     "name" TEXT NOT NULL,
     "addressId" integer NOT NULL,
-    "phone" TEXT NOT NULL,
     CONSTRAINT "venues_pk" PRIMARY KEY ("venueId")
 ) WITH (
   OIDS=FALSE

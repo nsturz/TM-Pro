@@ -1,6 +1,4 @@
 import React from 'react';
-// 10/18/22 You arer working on handleNameChange line 38!!!
-// remove the commented out code in app.jsx componentDidMount method!!!!
 // Add inputs for VENUES and CONTACTS // SEE LINES 254 AND 253 10/14/22
 // finish addTourDate( ) in app.jsx, and put all of the POST methods inside its
 // code block.
@@ -10,7 +8,7 @@ export default class NewTourDate extends React.Component {
     this.state = {
       click: 0,
       scheduleEvents: [],
-      artistName: '',
+      // artistName: '',
       artistId: null,
       id: 0,
       line1: '',
@@ -43,10 +41,9 @@ export default class NewTourDate extends React.Component {
       if (event.target.value === this.props.artists[i].name) {
         // console.log('name:', this.props.artists[i].name, 'artistId:', this.props.artists[i].artistId)
         this.setState({
-          artistName: this.props.artists[i].name,
+          // artistName: this.props.artists[i].name,
           artistId: this.props.artists[i].artistId
         });
-        // console.log('official artistId:', this.state.artistId, 'official artistName:', this.state.artistName)
       }
     }
   }
@@ -141,7 +138,7 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  addScheduleEvent(props) {
+  addScheduleEvent() {
     const scheduleEventDetails = {
       class: 'row justify-content-center mt-3 mb-3',
       id: this.state.id,
@@ -167,6 +164,7 @@ export default class NewTourDate extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     const newTourDate = {
+      artistId: this.state.artistId,
       line1: this.state.line1,
       city: this.state.city,
       state: this.state.state,
@@ -204,6 +202,8 @@ export default class NewTourDate extends React.Component {
 
   render() {
     // console.log('props.artists:', this.props.artists)
+    // console.log('official artistId:', this.state.artistId, 'official artistName:', this.state.artistName)
+
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form
@@ -275,9 +275,7 @@ export default class NewTourDate extends React.Component {
               name="venue"
               type="text"
               className="form-control col-6"
-              onClick={ this.handleVenueNameChange }
-              // NEED TO ADD CODE HERE FOR VENUE PHONE NUMBER 👇🏼, AND MODIFY INPUT ABOVE 👆🏼
-              />
+              onClick={ this.handleVenueNameChange } />
 
             </div>
             <div className="row d-flex justify-content-center mt-5">
@@ -289,9 +287,12 @@ export default class NewTourDate extends React.Component {
               htmlFor="contacts"
               className="col-12 text-center"
               // NEED TO MODIFY INPUT BELOW, AND ADD CONTACT NAME / PHONE NUMBER / EMAIL 👇🏼👇🏼👇🏼
-              >CONTACTS</label>
+              >CONTACT</label>
 
-              <textarea name="contacts" id="" className="form-control col-8" />
+              <input type="text" className="form-control col-8 m-1" placeholder='Name' onChange={this.handleContactNameChange} />
+              <input type="text" className='form-control col-8 m-1' placeholder='Phone' onChange={this.handleContactPhoneChange} />
+              <input type="text" className='form-control col-8 m-1' placeholder='Email' onChange={this.handleContactEmailChange} />
+
             </div>
           </div>
           <div className="col-12 mt-3 mb-3">
