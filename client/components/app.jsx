@@ -15,7 +15,7 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       artists: [],
-      // addresses: [],
+      tourDates: [],
       route: parseRoute(window.location.hash)
     };
     this.addName = this.addName.bind(this);
@@ -71,9 +71,23 @@ export default class App extends React.Component {
       })
       .catch(console.error);
   }
-  // need to finish this function after we create the NewTourDate form 👇🏼
-  // addTourDate(){
 
+  // addTourDate(newTourDate){
+  //   fetch('/api/new-tour-date', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(newTourDate)
+  //   })
+  //   .then(response => response.json())
+  //   .then(newTourDate => {
+  //     let tourDatesCopy = [...this.state.tourDates];
+  //     tourDatesCopy.push(newTourDate)
+  //     this.setState({
+  //       tourDates: tourDatesCopy
+  //     })
+  //   })
   // }
 
   render() {
