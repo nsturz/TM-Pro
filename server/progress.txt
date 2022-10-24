@@ -27,4 +27,4 @@ grocery shopping.
   http POST :3000/api/new-tour-date line1="945 Heron Cir" city="Seal Beach" state="CA" country="USA" venueName="Taco Shack" addressId=6 venuePhone="5629899977" venueId=6 artistId=1 date=2023-01-10 email="mike@roadrunner.com" contactName="Mike Black" contactPhone="2136647758" showId=6 notesDetails="No buyout. Venue has tacos." showId=6 startTime=9:00 endTime=10:00 scheduleDetails="load in" showId=6
 
 
-  http POST :3000/api/new-tour-date line1="431 E Congress St" city="Detroit" state="MI" country="USA" venueName="The Shelter" venuePhone="8817676654" artistId=1 date=2023-01-15 email="bob@toothandnail.com" contactName="Bob Streiss" contactPhone="7787162552" notesDetails="Green room backstage. All bands must share." startTime=16:00 endTime=17:00 scheduleDetails="WILDER"
+  http POST :3000/api/new-tour-date line1="7065 Sunset Blvd" city="Los Angeles" state="CA" country="USA" venueName="A Only" artistId=1 date=2022-12-07 email="courtney@website.com" contactName="Courtney D" contactPhone="3236656454" notesDetails="30 person minimum draw." startTime=16:00 endTime=17:00 scheduleDetails="WILDER Set Time"

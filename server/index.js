@@ -424,147 +424,135 @@ app.post('/api/shows', (req, res) => {
 
 // POST ALL THE THINGS!!! (except new Artists)
 
-app.post('/api/new-tour-date', (req, res) => {
-  const {
-    line1,
-    city,
-    state,
-    country,
-    email,
-    contactName,
-    contactPhone,
-    // showId,
-    venueName,
-    venuePhone,
-    // addressId,
-    notesDetails,
-    startTime,
-    endTime,
-    scheduleDetails,
-    date,
-    // venueId,
-    artistId
-  } = req.body;
+// app.post('/api/new-date', (req, res) => {
+//   const {
+//     line1,
+//     city,
+//     state,
+//     country,
+//     contactName,
+//     contactPhone,
+//     contactEmail,
+//     venueName,
+//     notesDetails,
+//     startTime,
+//     endTime,
+//     scheduleDetails,
+//     scheduleEvents,
+//     date,
+//     artistId,
+//     showId
+//   } = req.body;
 
-  if (!line1 ||
-    !city ||
-    !state ||
-    !country ||
-    !email ||
-    !contactName ||
-    !contactPhone ||
-    // || !showId
-    !venueName ||
-    !venuePhone ||
-    // || !addressId
-    !notesDetails ||
-    !startTime ||
-    !endTime ||
-    !scheduleDetails ||
-    !date ||
-    // || !venueId
-    !artistId
-  ) {
-    res.status(400).json({
-      error: 'Make sure you have entered all required fields'
-    });
-    return;
-  }
-  // was working on this 10/18 👇🏼
-  // const getArtistSql = `
-  // select ("artistId", "name")
-  // from "artists"
-  // where "artistId" = $1;
-  // `;
+//   if (
+//      !artistId
+//     || !scheduleEvents
+//     || !line1
+//     || !city
+//     || !state
+//     || !country
+//     || !contactEmail
+//     || !contactName
+//     || !contactPhone
+//     || !notesDetails
+//     || !showId
+//     || !date
+//     || !venueName
+//     || !venuePhone
+//   ) {
+//     res.status(400).json({
+//       error: 'Make sure you have entered all required fields'
+//     });
+//     return;
+//   }
 
-  // const getArtistParams = [artistId, name];
-  // db.query(getArtistSql, getArtistParams)
-  // .then(artistResult => {
-  //   const [ artist ] = artistResult.rows;
-  // })
+//   const insertAddressSql = `
+//   insert into "addresses" ("line1", "city", "state", "country")
+//   values      ($1, $2, $3, $4)
+//   returning *;
+//   `;
 
-  const insertAddressSql = `
-  insert into "addresses" ("line1", "city", "state", "country")
-  values      ($1, $2, $3, $4)
-  returning *;
-  `;
+//   const insertAddressParams = [line1, city, state, country];
+//   db.query(insertAddressSql, insertAddressParams)
+//     .then(addressResult => {
+//       const [newAddress] = addressResult.rows;
 
-  const insertAddressParams = [line1, city, state, country];
-  db.query(insertAddressSql, insertAddressParams)
-    .then(addressResult => {
-      const [newAddress] = addressResult.rows;
+//       const insertVenueSql = `
+//       insert into "venues" ("name", "addressId")
+//       values ($1, $2)
+//       returning *;
+//       `;
+//       const insertVenueParams = [venueName, newAddress.addressId];
+//       db.query(insertVenueSql, insertVenueParams)
+//         .then(venueResult => {
+//           const [newVenue] = venueResult.rows;
 
-      const insertVenueSql = `
-      insert into "venues" ("name", "addressId", "phone")
-      values ($1, $2, $3)
-      returning *;
-      `;
-      const insertVenueParams = [venueName, newAddress.addressId, venuePhone];
-      db.query(insertVenueSql, insertVenueParams)
-        .then(venueResult => {
-          const [newVenue] = venueResult.rows;
+//           const insertShowSql = `
+//         insert into "shows" ("venueId", "artistId", "date")
+//         values ($1, $2, $3)
+//         returning *;
+//         `;
+//           const insertShowParams = [newVenue.venueId, artistId, date];
+//           db.query(insertShowSql, insertShowParams)
+//             .then(showResult => {
+//               const [newShow] = showResult.rows;
 
-          const insertShowSql = `
-        insert into "shows" ("venueId", "artistId", "date")
-        values ($1, $2, $3)
-        returning *;
-        `;
-          const insertShowParams = [newVenue.venueId, artistId, date];
-          db.query(insertShowSql, insertShowParams)
-            .then(showResult => {
-              const [newShow] = showResult.rows;
+//               const insertContactSql = `
+//           insert into "contacts" ("email", "name", "phone", "showId")
+//           values ($1, $2, $3, $4)
+//           `;
+//               const insertContactParams = [contactEmail, contactName, contactPhone, newShow.showId];
+//               db.query(insertContactSql, insertContactParams)
+//                 .then(contactResult => {
+//                   const [newContact] = contactResult.rows;
 
-              const insertContactSql = `
-          insert into "contacts" ("email", "name", "phone", "showId")
-          values ($1, $2, $3, $4)
-          `;
-              const insertContactParams = [email, contactName, contactPhone, newShow.showId];
-              db.query(insertContactSql, insertContactParams)
-                .then(contactResult => {
-                  const [newContact] = contactResult.rows;
+//                   const insertNoteSql = `
+//             insert into "notes" ("details", "showId")
+//             values($1, $2)
+//             `;
 
-                  const insertNoteSql = `
-            insert into "notes" ("details", "showId")
-            values($1, $2)
-            `;
+//                   const insertNoteParams = [notesDetails, newShow.showId];
+//                   db.query(insertNoteSql, insertNoteParams)
+//                     .then(noteResult => {
+//                       const [newNote] = noteResult.rows;
 
-                  const insertNoteParams = [notesDetails, newShow.showId];
-                  db.query(insertNoteSql, insertNoteParams)
-                    .then(noteResult => {
-                      const [newNote] = noteResult.rows;
-
-                      const insertScheduleSql = `
-              insert into "schedules" ("startTime", "endTime", "details", "showId")
-              values ($1, $2, $3, $4)
-              `;
-
-                      const insertScheduleParams = [startTime, endTime, scheduleDetails, newShow.showId];
-                      db.query(insertScheduleSql, insertScheduleParams)
-                        .then(scheduleResult => {
-                          const [newSchedule] = scheduleResult.rows;
-
-                          const newTourDate = {
-                            newAddress,
-                            newVenue,
-                            newShow,
-                            newContact,
-                            newNote,
-                            newSchedule
-                          };
-                          res.status(201).json(newTourDate);
-                        });
-                    });
-                });
-            });
-        });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        error: 'an unexpected error occured'
-      });
-    });
-});
+//                       scheduleEvents.map(event => (
+//                         const insertScheduleSql = `
+//                         insert into "schedules" ("startTime", "endTime", "details", "showId")
+//                         values ($1, $2, $3, $4)
+//                         `;
+//                         const insertScheduleParams = [
+//                           event.startTime,
+//                           event.endTime,
+//                           event.scheduleDetails,
+//                           newShow.showId
+//                         ];
+//                         db.query(insertScheduleSql, insertScheduleParams)
+//                           .then(scheduleResult => {
+//                             const [newSchedule] = scheduleResult.rows;
+//                       ))
+//                           const newTourDate = {
+//                             newAddress,
+//                             newVenue,
+//                             newShow,
+//                             newContact,
+//                             newNote,
+//                             newSchedule
+//                           };
+//                           res.status(201).json(newTourDate);
+//                         });
+//                     });
+//                 });
+//             });
+//         });
+//     })
+//     .catch(err => {
+//       console.error(err);
+//       res.status(500).json({
+//         error: 'an unexpected error occured'
+//       });
+//     });
+// });
 
 app.use(errorMiddleware);
 

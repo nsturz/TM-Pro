@@ -1,14 +1,11 @@
 import React from 'react';
-// need to fix handleDateChange!!!
-// finish addTourDate( ) in app.jsx, and put all of the POST methods inside its
-// code block.
+// working on POST request for new-date in index.js!!! 10/24/22
 export default class NewTourDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       click: 0,
       scheduleEvents: [],
-      // artistName: '',
       artistId: null,
       id: 0,
       line1: '',
@@ -22,13 +19,28 @@ export default class NewTourDate extends React.Component {
       date: null,
       venueName: '',
       venuePhone: '',
-      notes: ''
+      notesDetails: ''
     };
 
     this.addScheduleEvent = this.addScheduleEvent.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.handleCityChange = this.handleCityChange.bind(this);
+    this.handleStateChange = this.handleStateChange.bind(this);
+    this.handleCountryChange = this.handleCountryChange.bind(this);
+    this.handleContactEmailChange = this.handleContactEmailChange.bind(this);
+    this.handleContactNameChange = this.handleContactNameChange.bind(this);
+    this.handleContactPhoneChange = this.handleContactPhoneChange.bind(this);
+    this.handleShowIdChange = this.handleShowIdChange.bind(this);
+    this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
+    this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
+    this.handleScheduleDetailsChange = this.handleScheduleDetailsChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleVenueNameChange = this.handleVenueNameChange.bind(this);
+    this.handleVenuePhoneChange = this.handleVenuePhoneChange.bind(this);
+    this.handleNotesChange = this.handleNotesChange.bind(this);
   }
 
   handleNameChange(event) {
@@ -51,6 +63,7 @@ export default class NewTourDate extends React.Component {
     this.setState({
       city: event.target.value
     });
+    // console.log('city:', event.target.value)
   }
 
   handleStateChange(event) {
@@ -89,7 +102,7 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  handleStartTimeChange(index, event) {
+  handleStartTimeChange(event, index) {
     const newArray = [...this.state.scheduleEvents];
     newArray[index].startTime = event.target.value;
     this.setState({
@@ -97,7 +110,7 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  handleEndTimeChange(index, event) {
+  handleEndTimeChange(event, index) {
     const newArray = [...this.state.scheduleEvents];
     newArray[index].endTime = event.target.value;
     this.setState({
@@ -105,7 +118,7 @@ export default class NewTourDate extends React.Component {
     });
   }
 
-  handleScheduleDetailsChange(index, event) {
+  handleScheduleDetailsChange(event, index) {
     const newArray = [...this.state.scheduleEvents];
     newArray[index].scheduleDetails = event.target.value;
     this.setState({
@@ -137,7 +150,7 @@ export default class NewTourDate extends React.Component {
 
   handleNotesChange(event) {
     this.setState({
-      notes: event.target.value
+      notesDetails: event.target.value
     });
   }
 
@@ -179,6 +192,7 @@ export default class NewTourDate extends React.Component {
       contactEmail: this.state.contactEmail,
       contactName: this.state.contactName,
       contactPhone: this.state.contactPhone,
+      notesDetails: this.state.notes,
       showId: this.state.showId,
       date: this.state.date,
       venueName: this.state.venueName,
@@ -186,8 +200,10 @@ export default class NewTourDate extends React.Component {
     };
     this.props.onSubmit(newTourDate);
     this.setState({
-      artistId: null,
+      click: 0,
       scheduleEvents: [],
+      artistId: null,
+      id: 0,
       line1: '',
       city: '',
       state: '',
@@ -198,7 +214,8 @@ export default class NewTourDate extends React.Component {
       showId: '',
       date: null,
       venueName: '',
-      venuePhone: ''
+      venuePhone: '',
+      notes: ''
     });
     document.getElementById('new-tour-date-form').reset();
   }
@@ -246,11 +263,11 @@ export default class NewTourDate extends React.Component {
                     <li className={event.class} id={event.id} key={event.id}>
                       <div className="col-5">
                         <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                        <input type="time" className="form-control h-50" onChange={ () => this.handleStartTimeChange(index) }/>
+                        <input type="time" className="form-control h-50" onChange={ event => this.handleStartTimeChange(event, index) }/>
                       </div>
                       <div className="col-5">
                         <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                        <input type="time" className="form-control h-50" onChange={ () => this.handleEndTimeChange(index) } />
+                        <input type="time" className="form-control h-50" onChange={ event => this.handleEndTimeChange(event, index) } />
                       </div>
                       <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
                         <i className="fa-solid fa-x text-white" id={event.id}/>
@@ -258,7 +275,7 @@ export default class NewTourDate extends React.Component {
                       <div className="col-12 mt-3">
                         <div className="row d-flex justify-content-center">
                           <label htmlFor="details" className="text-center col-12">Details</label>
-                          <input type="text" className="form-control col-8 h-50" onChange={() => this.handleScheduleDetailsChange(index) } />
+                          <input type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index) } />
                         </div>
                       </div>
                     </li>

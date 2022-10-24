@@ -19,6 +19,7 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.addName = this.addName.bind(this);
+    this.addTourDate = this.addTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -47,9 +48,9 @@ export default class App extends React.Component {
     if (route.path === 'calendar') {
       return <TourDates />;
     }
-    if (route.path === 'new-tour-date') {
+    if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
-      // onSubmit={ this.addTourDate}
+      onSubmit={ this.addTourDate}
       />;
     }
     return <NotFound />;
@@ -72,23 +73,24 @@ export default class App extends React.Component {
       .catch(console.error);
   }
 
-  // addTourDate(newTourDate){
-  //   fetch('/api/new-tour-date', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(newTourDate)
-  //   })
-  //   .then(response => response.json())
-  //   .then(newTourDate => {
-  //     let tourDatesCopy = [...this.state.tourDates];
-  //     tourDatesCopy.push(newTourDate)
-  //     this.setState({
-  //       tourDates: tourDatesCopy
-  //     })
-  //   })
-  // }
+  addTourDate(newTourDate) {
+    fetch('/api/new-date', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newTourDate)
+    })
+      .then(response => response.json())
+      .then(newTourDate => {
+        const tourDatesCopy = [...this.state.tourDates];
+        tourDatesCopy.push(newTourDate);
+        this.setState({
+          tourDates: tourDatesCopy
+        });
+      })
+      .catch(console.error);
+  }
 
   render() {
 
