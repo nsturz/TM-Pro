@@ -18,7 +18,6 @@ export default class NewTourDate extends React.Component {
       showId: '',
       date: null,
       venueName: '',
-      venuePhone: '',
       notesDetails: ''
     };
 
@@ -127,7 +126,7 @@ export default class NewTourDate extends React.Component {
     // console.log('this.scheduleEvents[index].startTime:', this.state.scheduleEvents[index].startTime)
     // console.log('this.scheduleEvents[index].endTime:', this.state.scheduleEvents[index].endTime)
     // console.log('this.scheduleEvents[index].scheduleDetails:', this.state.scheduleEvents[index].scheduleDetails)
-
+    // console.log('schedule events:', this.state.scheduleEvents)
   }
 
   handleDateChange(event) {
@@ -193,7 +192,7 @@ export default class NewTourDate extends React.Component {
       contactName: this.state.contactName,
       contactPhone: this.state.contactPhone,
       notesDetails: this.state.notes,
-      showId: this.state.showId,
+      // showId: this.state.showId,
       date: this.state.date,
       venueName: this.state.venueName,
       venuePhone: this.state.venuePhone
@@ -215,14 +214,25 @@ export default class NewTourDate extends React.Component {
       date: null,
       venueName: '',
       venuePhone: '',
-      notes: ''
+      notesDetails: ''
     });
     document.getElementById('new-tour-date-form').reset();
   }
 
   render() {
-    // console.log('props.artists:', this.props.artists)
-    // console.log('official artistId:', this.state.artistId, 'official artistName:', this.state.artistName)
+    // console.log('artistId:', this.state.artistId)
+    // console.log('scheduleEvents:', this.state.scheduleEvents )
+    // console.log('artistId:', this.state.artistId )
+    // console.log('line1:', this.state.line1)
+    // console.log('city:', this.state.city )
+    // console.log('state:', this.state.state )
+    // console.log('country:', this.state.country )
+    // console.log('contactEmail:',  this.state.contactEmail)
+    // console.log('contactName:', this.state.contactName )
+    // console.log('contactPhone:', this.state.contactPhone)
+    // console.log('date:', this.state.date)
+    // console.log('venueName:', this.state.venueName )
+    // console.log('notesDetails:',  this.state.notesDetails)
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form

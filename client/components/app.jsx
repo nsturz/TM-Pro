@@ -50,8 +50,7 @@ export default class App extends React.Component {
     }
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
-      onSubmit={ this.addTourDate}
-      />;
+      onSubmit={ this.addTourDate }/>;
     }
     return <NotFound />;
   }

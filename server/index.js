@@ -435,18 +435,18 @@ app.post('/api/shows', (req, res) => {
 //     contactEmail,
 //     venueName,
 //     notesDetails,
-//     startTime,
-//     endTime,
-//     scheduleDetails,
+//     //startTime,
+//     //endTime,
+//    // scheduleDetails,
 //     scheduleEvents,
 //     date,
 //     artistId,
-//     showId
+//     //showId
 //   } = req.body;
 
 //   if (
 //      !artistId
-//     || !scheduleEvents
+//     //|| !scheduleEvents
 //     || !line1
 //     || !city
 //     || !state
@@ -455,10 +455,9 @@ app.post('/api/shows', (req, res) => {
 //     || !contactName
 //     || !contactPhone
 //     || !notesDetails
-//     || !showId
+//     //|| !showId
 //     || !date
 //     || !venueName
-//     || !venuePhone
 //   ) {
 //     res.status(400).json({
 //       error: 'Make sure you have entered all required fields'
@@ -516,31 +515,32 @@ app.post('/api/shows', (req, res) => {
 //                     .then(noteResult => {
 //                       const [newNote] = noteResult.rows;
 
-//                       scheduleEvents.map(event => (
-//                         const insertScheduleSql = `
+//                       let paramNum = 2;
+//                       const eventsParams = [newShow.showId];
+//                       const eventValues = [];
+
+//                       scheduleEvents.forEach(event => {
+//                         const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+
+//                         eventValues.push(value);
+//                         eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+//                       });
+
+//                       const insertSchedulesSql = `
 //                         insert into "schedules" ("startTime", "endTime", "details", "showId")
-//                         values ($1, $2, $3, $4)
-//                         `;
-//                         const insertScheduleParams = [
-//                           event.startTime,
-//                           event.endTime,
-//                           event.scheduleDetails,
-//                           newShow.showId
-//                         ];
-//                         db.query(insertScheduleSql, insertScheduleParams)
-//                           .then(scheduleResult => {
-//                             const [newSchedule] = scheduleResult.rows;
-//                       ))
-//                           const newTourDate = {
-//                             newAddress,
-//                             newVenue,
-//                             newShow,
-//                             newContact,
-//                             newNote,
-//                             newSchedule
-//                           };
-//                           res.status(201).json(newTourDate);
-//                         });
+//                         values ${eventValues.join(', ')}
+//                        `;
+
+//                       // Check to see if it looks okay
+//                       console.log('Schedule SQL:', insertSchedulesSql);
+//                       console.log('Schedule Params:', eventsParams);
+
+//                       db.query(insertSchedulesSql, eventsParams)
+
+//                       const newTourDate = {
+//                         newShow
+//                       };
+//                       res.status(201).json(newTourDate);
 //                     });
 //                 });
 //             });
