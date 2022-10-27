@@ -62,9 +62,14 @@ body {
 
 .dates-list {
   padding: 0;
+  list-style-type: none;
 }
 
-.date-wrapper:hover {
+.dates-wrapper {
+  max-height: 500px;
+}
+
+.dates-wrapper:hover {
   color: #f7343e;
   cursor: pointer;
 }
@@ -169,7 +174,7 @@ nav {
 }
 
 .new-tour-date-form {
-  max-height: 500px;
+  max-height: 600px;
   overflow-y: scroll;
 }
 

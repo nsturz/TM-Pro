@@ -1,5 +1,4 @@
 import React from 'react';
-// working on POST request for new-date in index.js!!! 10/24/22
 export default class NewTourDate extends React.Component {
   constructor(props) {
     super(props);
@@ -61,7 +60,6 @@ export default class NewTourDate extends React.Component {
     this.setState({
       city: event.target.value
     });
-    // console.log('city:', event.target.value)
   }
 
   handleStateChange(event) {
@@ -181,7 +179,6 @@ export default class NewTourDate extends React.Component {
       contactName: this.state.contactName,
       contactPhone: this.state.contactPhone,
       notesDetails: this.state.notesDetails,
-      // showId: this.state.showId,
       date: this.state.date,
       venueName: this.state.venueName
     };
@@ -208,19 +205,6 @@ export default class NewTourDate extends React.Component {
   }
 
   render() {
-    // console.log('artistId:', this.state.artistId)
-    // console.log('scheduleEvents:', this.state.scheduleEvents )
-    // console.log('artistId:', this.state.artistId )
-    // console.log('line1:', this.state.line1)
-    // console.log('city:', this.state.city )
-    // console.log('state:', this.state.state )
-    // console.log('country:', this.state.country )
-    // console.log('contactEmail:',  this.state.contactEmail)
-    // console.log('contactName:', this.state.contactName )
-    // console.log('contactPhone:', this.state.contactPhone)
-    // console.log('date:', this.state.date, 'data type:', typeof this.state.date)
-    // console.log('venueName:', this.state.venueName )
-    // console.log('notesDetails:',  this.state.notesDetails)
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form

@@ -1,5 +1,4 @@
 import React from 'react';
-// import Home from '../pages/home';
 import NewArtistForm from './new-artist-form';
 import Footer from './footer';
 import Dashboard from '../pages/dashboard';
