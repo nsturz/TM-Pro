@@ -24,15 +24,13 @@ export default class NavBar extends React.Component {
             Artist
           </a>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown" />
-          {/* <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Artist
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <div className="dropdown-divider" />
-              <a className="dropdown-item" href="#">Something else here</a>
-            </div> */}
+          {/* {
+            this.props.artists.map(event => {
+              return (
+                <a key={event.artistId}>{event.name}</a>
+              )
+            })
+          } */}
         </ul>
       </nav>
     );

@@ -15,7 +15,6 @@ CREATE TABLE "public"."venues" (
     "venueId" serial NOT NULL,
     "name" TEXT NOT NULL,
     "addressId" integer NOT NULL,
-    "phone" bigint NOT NULL,
     CONSTRAINT "venues_pk" PRIMARY KEY ("venueId")
 ) WITH (
   OIDS=FALSE
@@ -43,7 +42,7 @@ CREATE TABLE "public"."contacts" (
     "contactId" serial not null,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "phone" bigint NOT NULL,
+    "phone" TEXT NOT NULL,
     "showId" integer NOT NULL,
     CONSTRAINT "contacts_pk" PRIMARY KEY ("contactId")
 ) WITH (

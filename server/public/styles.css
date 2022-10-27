@@ -7,12 +7,36 @@ a:hover {
   color: #f7343e;
 }
 
+.add-schedule-event-btn:focus {
+  outline: 0;
+}
+
 body {
-  /* min-height: 100%; */
   background-image: url("/images/live-shot.png");
   background-repeat: no-repeat;
+}
 
-  /* background-size: 200vh; */
+.calendar-container {
+  border: 2px solid #808080;
+}
+
+.calendar-date-text {
+  font-size: 1rem;
+}
+
+.calendar-list-item:hover {
+  cursor: pointer;
+  background-color: rgb(247, 52, 63, 0.4);
+}
+
+.clipboard-container {
+  border: 2px solid #808080;
+}
+
+.clipboard-links {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
 }
 
 .contacts {
@@ -38,9 +62,14 @@ body {
 
 .dates-list {
   padding: 0;
+  list-style-type: none;
 }
 
-.date-wrapper:hover {
+.dates-wrapper {
+  max-height: 500px;
+}
+
+.dates-wrapper:hover {
   color: #f7343e;
   cursor: pointer;
 }
@@ -53,12 +82,14 @@ body {
   margin-right: 10%;
 }
 
+.fa-plus {
+  font-size: 1.5rem;
+}
+
 form {
-  margin-top: 2rem;
   min-height: 500px;
   width: 80%;
   border: 2px solid #808080;
-  background: transparent;
 }
 
 .form-wrapper {
@@ -83,26 +114,32 @@ h6 {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  display: inline;
   margin-right: 0.5rem;
 }
 
-/* html{
-  min-height: 100%;
-} */
+i {
+  text-decoration: none;
+}
+
+i:hover {
+  cursor: pointer;
+}
 
 .info {
   border: 2px solid #808080;
   color: whitesmoke;
 }
 
-input {
+input,
+select,
+textarea {
   background-color: white;
   opacity: 0.5;
 }
 
 label {
   color: white;
+  font-weight: bolder;
 }
 
 li {
@@ -136,6 +173,11 @@ nav {
   font-size: 60px;
 }
 
+.new-tour-date-form {
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
 .new-artist-submit {
   background-color: #f7343e;
   color: white;
@@ -151,10 +193,19 @@ pre {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.remove-schedule-event-btn:focus {
+  outline: 0;
+}
+
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
   padding: 0;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
 }
 
 .venues {
@@ -163,12 +214,8 @@ pre {
 }
 
 @media screen and (min-width: 1000px) {
-  form {
-    margin-top: 10%;
-  }
-
   .dashboard-container {
-    margin-top: 5%;
+    margin-top: 2%;
   }
 }
 
@@ -180,6 +227,10 @@ pre {
 }
 
 @media screen and (max-width: 575px) {
+  .calendar-container {
+    border: none;
+  }
+
   .contacts {
     margin-top: 10%;
   }
@@ -206,6 +257,11 @@ pre {
 
   .navbar-top {
     height: 70px;
+  }
+
+  .new-tour-date-form {
+    border: none;
+    max-height: 700px;
   }
 
   .venues-notes-wrapper {
