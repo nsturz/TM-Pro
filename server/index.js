@@ -4,6 +4,8 @@ const ClientError = require('./client-error');
 const staticMiddleware = require('./static-middleware');
 const errorMiddleware = require('./error-middleware');
 const db = require('./db');
+// const { dbFormat, toUTC } = require('./dates')
+// see line 530 👆🏼
 
 const app = express();
 
@@ -425,6 +427,7 @@ app.post('/api/shows', (req, res) => {
 // POST ALL THE THINGS!!! (except new Artists)
 
 // app.post('/api/new-date', (req, res) => {
+//   //console.log('POST to /api/new-date at least fired off')
 //   const {
 //     line1,
 //     city,
@@ -435,36 +438,20 @@ app.post('/api/shows', (req, res) => {
 //     contactEmail,
 //     venueName,
 //     notesDetails,
-//     //startTime,
-//     //endTime,
-//    // scheduleDetails,
 //     scheduleEvents,
 //     date,
 //     artistId,
 //     //showId
 //   } = req.body;
-
-//   if (
-//      !artistId
-//     //|| !scheduleEvents
-//     || !line1
-//     || !city
-//     || !state
-//     || !country
-//     || !contactEmail
-//     || !contactName
-//     || !contactPhone
-//     || !notesDetails
-//     //|| !showId
-//     || !date
-//     || !venueName
-//   ) {
+// //console.log('made it past the req.body stuff')
+//   if (!line1 || !city || !state || !country || !contactName || !contactPhone || !contactEmail
+//     || !venueName || !notesDetails || !date) {
 //     res.status(400).json({
 //       error: 'Make sure you have entered all required fields'
 //     });
 //     return;
 //   }
-
+//   //console.log('we got to the address section!')
 //   const insertAddressSql = `
 //   insert into "addresses" ("line1", "city", "state", "country")
 //   values      ($1, $2, $3, $4)
@@ -476,6 +463,7 @@ app.post('/api/shows', (req, res) => {
 //     .then(addressResult => {
 //       const [newAddress] = addressResult.rows;
 
+//       //console.log('we got to the venue section!')
 //       const insertVenueSql = `
 //       insert into "venues" ("name", "addressId")
 //       values ($1, $2)
@@ -486,16 +474,20 @@ app.post('/api/shows', (req, res) => {
 //         .then(venueResult => {
 //           const [newVenue] = venueResult.rows;
 
+//           //console.log('we got to the shows section!')
 //           const insertShowSql = `
 //         insert into "shows" ("venueId", "artistId", "date")
 //         values ($1, $2, $3)
 //         returning *;
 //         `;
+//           //console.log('we got to the date section!')
+//           //dbFormat(date, delimiter = '/')
 //           const insertShowParams = [newVenue.venueId, artistId, date];
 //           db.query(insertShowSql, insertShowParams)
 //             .then(showResult => {
 //               const [newShow] = showResult.rows;
 
+//               //console.log('we got to the contacts section!')
 //               const insertContactSql = `
 //           insert into "contacts" ("email", "name", "phone", "showId")
 //           values ($1, $2, $3, $4)
@@ -505,6 +497,7 @@ app.post('/api/shows', (req, res) => {
 //                 .then(contactResult => {
 //                   const [newContact] = contactResult.rows;
 
+//                   //console.log('we got to the notes section!')
 //                   const insertNoteSql = `
 //             insert into "notes" ("details", "showId")
 //             values($1, $2)
@@ -532,15 +525,18 @@ app.post('/api/shows', (req, res) => {
 //                        `;
 
 //                       // Check to see if it looks okay
-//                       console.log('Schedule SQL:', insertSchedulesSql);
-//                       console.log('Schedule Params:', eventsParams);
+//                       //console.log('Schedule SQL:', insertSchedulesSql);
+//                       //console.log('Schedule Params:', eventsParams);
 
-//                       db.query(insertSchedulesSql, eventsParams)
-
+//                       //db.query(insertSchedulesSql, eventsParams)
+//                       //console.log('we got past the schedules section!')
 //                       const newTourDate = {
-//                         newShow
+//                         newShow,
+//                         newcontact,
+//                         newNotes
 //                       };
 //                       res.status(201).json(newTourDate);
+//                       //console.log('we made it!!!')
 //                     });
 //                 });
 //             });

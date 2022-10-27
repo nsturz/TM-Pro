@@ -38,7 +38,6 @@ export default class NewTourDate extends React.Component {
     this.handleScheduleDetailsChange = this.handleScheduleDetailsChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleVenueNameChange = this.handleVenueNameChange.bind(this);
-    this.handleVenuePhoneChange = this.handleVenuePhoneChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
   }
 
@@ -123,10 +122,6 @@ export default class NewTourDate extends React.Component {
     this.setState({
       scheduleEvents: newArray
     });
-    // console.log('this.scheduleEvents[index].startTime:', this.state.scheduleEvents[index].startTime)
-    // console.log('this.scheduleEvents[index].endTime:', this.state.scheduleEvents[index].endTime)
-    // console.log('this.scheduleEvents[index].scheduleDetails:', this.state.scheduleEvents[index].scheduleDetails)
-    // console.log('schedule events:', this.state.scheduleEvents)
   }
 
   handleDateChange(event) {
@@ -138,12 +133,6 @@ export default class NewTourDate extends React.Component {
   handleVenueNameChange(event) {
     this.setState({
       venueName: event.target.value
-    });
-  }
-
-  handleVenuePhoneChange(event) {
-    this.setState({
-      venuePhone: event.target.value
     });
   }
 
@@ -191,11 +180,10 @@ export default class NewTourDate extends React.Component {
       contactEmail: this.state.contactEmail,
       contactName: this.state.contactName,
       contactPhone: this.state.contactPhone,
-      notesDetails: this.state.notes,
+      notesDetails: this.state.notesDetails,
       // showId: this.state.showId,
       date: this.state.date,
-      venueName: this.state.venueName,
-      venuePhone: this.state.venuePhone
+      venueName: this.state.venueName
     };
     this.props.onSubmit(newTourDate);
     this.setState({
@@ -230,7 +218,7 @@ export default class NewTourDate extends React.Component {
     // console.log('contactEmail:',  this.state.contactEmail)
     // console.log('contactName:', this.state.contactName )
     // console.log('contactPhone:', this.state.contactPhone)
-    // console.log('date:', this.state.date)
+    // console.log('date:', this.state.date, 'data type:', typeof this.state.date)
     // console.log('venueName:', this.state.venueName )
     // console.log('notesDetails:',  this.state.notesDetails)
     return (
@@ -304,7 +292,7 @@ export default class NewTourDate extends React.Component {
               name="venue"
               type="text"
               className="form-control col-6"
-              onClick={ this.handleVenueNameChange } />
+              onChange={ this.handleVenueNameChange } />
 
             </div>
             <div className="row d-flex justify-content-center mt-5">
