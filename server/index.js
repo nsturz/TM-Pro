@@ -527,6 +527,38 @@ app.post('/api/new-date', (req, res) => {
     });
 });
 
+// DELETE a date 👇🏼
+app.delete('/api/delete-date', (req, res) => {
+  const {
+    // contactName,
+    // contactPhone,
+    // contactEmail,
+    showId
+    // date,
+    // noteId,
+    // notesDetails,
+    // scheduleDetails,
+    // startTime,
+    // endTime
+  } = req.body;
+
+  const deleteContactSql = `
+  delete from "contacts"
+  where "showId" = $1
+  `;
+  const deleteContactsParams = [showId];
+
+  db.query(deleteContactSql, deleteContactsParams)
+    .then(res.status(204).json('Row deleted!'))
+
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured.'
+      });
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

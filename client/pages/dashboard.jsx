@@ -32,6 +32,8 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
+
+    // console.log('this.props.tourDates:', this.props.tourDates)
     const { city, date, line1, state, venueName } = this.state.show;
     const { details } = this.state.notes;
     const { email, name, contactPhone } = this.state.contacts;
