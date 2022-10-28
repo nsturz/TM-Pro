@@ -31,12 +31,16 @@ export default class App extends React.Component {
     fetch('/api/artists')
       .then(res => res.json())
       .then(artists => artists.map(artist => this.setState({ artists })));
+
+    fetch('api/shows')
+      .then(res => res.json())
+      .then(tourDates => this.setState({ tourDates }));
   }
 
   renderPage() {
     const { route } = this.state;
     if (route.path === '') {
-      return <Dashboard />;
+      return <Dashboard tourDates={ this.state.tourDates } />;
     }
     if (route.path === 'new-artist-form') {
       return <NewArtistForm onSubmit={ this.addName }/>;
@@ -45,7 +49,7 @@ export default class App extends React.Component {
       return <ClipBoard />;
     }
     if (route.path === 'calendar') {
-      return <TourDates />;
+      return <TourDates tourDates={ this.state.tourDates } />;
     }
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
@@ -91,7 +95,6 @@ export default class App extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         <NavBar artists={this.state.artists} />
