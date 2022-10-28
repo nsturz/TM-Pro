@@ -528,34 +528,55 @@ app.post('/api/new-date', (req, res) => {
 });
 
 // DELETE a date 👇🏼
+// may need more conditional logic later just in case
 app.delete('/api/delete-date', (req, res) => {
   const {
-    // contactName,
-    // contactPhone,
-    // contactEmail,
     showId
-    // date,
-    // noteId,
-    // notesDetails,
-    // scheduleDetails,
-    // startTime,
-    // endTime
   } = req.body;
 
+  if (!showId) {
+    res.status(400).json({
+      error: 'showId is required.'
+    });
+  }
+
   const deleteContactSql = `
-  delete from "contacts"
-  where "showId" = $1
-  `;
+    delete from "contacts"
+    where "showId" = $1
+    `;
   const deleteContactsParams = [showId];
 
   db.query(deleteContactSql, deleteContactsParams)
-    .then(res.status(204).json('Row deleted!'))
-
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        error: 'an unexpected error occured.'
-      });
+    .then(() => {
+      const deleteNoteSql = `
+      delete from "notes"
+      where "showId" = $1
+      `;
+      const deleteNoteParams = [showId];
+      db.query(deleteNoteSql, deleteNoteParams)
+        .then(() => {
+          const deleteScheduleSql = `
+        delete from "schedules"
+        where "showId" = $1
+        `;
+          const deleteScheduleParams = [showId];
+          db.query(deleteScheduleSql, deleteScheduleParams)
+            .then(() => {
+              const deleteShowSql = `
+          delete from "shows"
+          where "showId" = $1
+         `;
+              const deleteShowParams = [showId];
+              db.query(deleteShowSql, deleteShowParams)
+                .then(res.status(204).json())
+                .catch(err => {
+                  console.error(err);
+                  res.status(500).json({
+                    error: 'an unexpected error occured.'
+                  });
+                });
+            });
+        });
     });
 });
 
