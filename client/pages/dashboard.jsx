@@ -7,8 +7,7 @@ export default class Dashboard extends React.Component {
       show: '',
       notes: '',
       contacts: '',
-      schedules: [],
-      dates: []
+      schedules: []
     };
 
   }
@@ -17,10 +16,6 @@ export default class Dashboard extends React.Component {
     fetch('/api/shows/1')
       .then(res => res.json())
       .then(show => this.setState({ show }));
-
-    fetch('api/shows')
-      .then(res => res.json())
-      .then(dates => this.setState({ dates }));
 
     fetch('api/notes/1')
       .then(res => res.json())
@@ -98,7 +93,7 @@ export default class Dashboard extends React.Component {
             <i className="fa-solid fa-calendar-days" />
             <ul className="dates-list">
               {
-                this.state.dates.map(event => {
+                this.props.tourDates.map(event => {
                   return (
                     <li className="row date-wrapper" key={event.showId}>
                       <a href="#" className="date col-6">{event.showDate}</a>
