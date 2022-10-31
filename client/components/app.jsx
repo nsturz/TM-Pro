@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '') {
+    if (route.path === 'dashboard') {
       return <Dashboard tourDates={ this.state.tourDates } />;
     }
     if (route.path === 'new-artist-form') {

@@ -8,27 +8,45 @@ export default class TourDates extends React.Component {
     super(props);
     this.state = {
       showId: null,
-      trashClass: 'fa-solid fa-trash m-2 d-none',
-      penClass: 'fa-solid fa-pen-to-square m-2 d-none'
+      trashClass: 'btn btn-link m-2 d-none',
+      penClass: 'btn btn-link m-2 d-none',
+      overlay: 'overlay d-none',
+      modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none'
     };
 
     this.showIcons = this.showIcons.bind(this);
     this.hideIcons = this.hideIcons.bind(this);
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
 
   showIcons(event) {
     this.setState({
-      trashClass: 'fa-solid fa-trash m-2',
-      penClass: 'fa-solid fa-pen-to-square m-2'
+      trashClass: 'btn btn-link m-2',
+      penClass: 'btn btn-link m-2'
     });
 
     // console.log('event.target.id:', event.id)
+  }
+
+  showModal() {
+    this.setState({
+      overlay: 'overlay',
+      modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute'
+    });
   }
 
   hideIcons(event) {
     this.setState({
       trashClass: 'fa-solid fa-trash m-2 d-none',
       penClass: 'fa-solid fa-pen-to-square m-2 d-none'
+    });
+  }
+
+  hideModal() {
+    this.setState({
+      overlay: 'overlay d-none',
+      modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none'
     });
   }
 
@@ -61,8 +79,8 @@ export default class TourDates extends React.Component {
                       <pre className="text-white font-weight-light font-italic m-0">{event.dateVenue}</pre>
                     </div>
                     <div className="col-2 col-lg-2 ml-5">
-                      <a href=""><i className={this.state.penClass}/></a>
-                      <a href=""><i className={this.state.trashClass} /></a>
+                      <button className={this.state.penClass} onClick={this.showModal}><i className='fa-solid fa-trash text-white' /></button>
+                      <button className={this.state.trashClass}><i className='fa-solid fa-pen-to-square text-white' /></button>
                     </div>
                   </li>
                 );
@@ -70,7 +88,14 @@ export default class TourDates extends React.Component {
             }
           </ul>
         </div>
+        <div className={this.state.overlay} />
+        <div className={this.state.modal}>
+          <h3 className="font-weight-bold m-3">DELETE THIS DATE?</h3>
+          <button className="btn confirm-button font-weight-bold text-white m-3">CONFIRM</button>
+          <button className="btn font-weight-bold m-3" onClick={this.hideModal}>CANCEL</button>
+        </div>
       </div>
+
     );
   }
 }

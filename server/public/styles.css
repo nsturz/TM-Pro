@@ -45,6 +45,10 @@ body {
   padding: 0;
 }
 
+.confirm-button {
+  background-color: black;
+}
+
 .dashboard-container {
   height: 50vh;
   margin-top: 15%;
@@ -72,6 +76,12 @@ body {
 .dates-wrapper:hover {
   color: #f7343e;
   cursor: pointer;
+}
+
+.delete-modal-wrapper {
+  background-color: #e03039;
+  bottom: 45%;
+  left: 30%;
 }
 
 .fa-house {
@@ -183,6 +193,15 @@ nav {
   color: white;
 }
 
+.overlay {
+  background-color: rgb(0, 0, 0, 0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+}
+
 p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
@@ -241,6 +260,10 @@ ul {
 
   .dates {
     margin-top: 5%;
+  }
+
+  .delete-modal-wrapper {
+    left: 8%;
   }
 
   .fa-house {
