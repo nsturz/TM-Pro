@@ -1,5 +1,7 @@
 import React from 'react';
 
+// working on handleSubmit functionality, and ensuring the proper object from
+// this.props.tourDates gets selected.
 // trying to figure out how to get the trash and pen icons to only appear if their
 // parent <li /> is being hovered over / clicked.
 
@@ -18,6 +20,7 @@ export default class TourDates extends React.Component {
     this.hideIcons = this.hideIcons.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   showIcons(event) {
@@ -34,6 +37,8 @@ export default class TourDates extends React.Component {
       overlay: 'overlay',
       modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute'
     });
+
+    // console.log('event.showId:'. event.target.id)
   }
 
   hideIcons(event) {
@@ -47,6 +52,19 @@ export default class TourDates extends React.Component {
     this.setState({
       overlay: 'overlay d-none',
       modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none'
+    });
+  }
+
+  handleSubmit(event) {
+    this.setState({
+      showId: event.target.showId
+    });
+    const selectedDate = {
+      showId: this.state.showId
+    };
+    this.props.onSubmit(selectedDate);
+    this.setState({
+      showId: null
     });
   }
 
@@ -79,7 +97,12 @@ export default class TourDates extends React.Component {
                       <pre className="text-white font-weight-light font-italic m-0">{event.dateVenue}</pre>
                     </div>
                     <div className="col-2 col-lg-2 ml-5">
-                      <button className={this.state.penClass} onClick={this.showModal}><i className='fa-solid fa-trash text-white' /></button>
+                      <button
+                      className={this.state.penClass}
+                      onClick={this.showModal}><i
+                      className='fa-solid fa-trash text-white'
+                      id={event.showId} />
+                      </button>
                       <button className={this.state.trashClass}><i className='fa-solid fa-pen-to-square text-white' /></button>
                     </div>
                   </li>
@@ -91,7 +114,11 @@ export default class TourDates extends React.Component {
         <div className={this.state.overlay} />
         <div className={this.state.modal}>
           <h3 className="font-weight-bold m-3">DELETE THIS DATE?</h3>
-          <button className="btn confirm-button font-weight-bold text-white m-3">CONFIRM</button>
+          <button
+          type="submit"
+          className="btn confirm-button font-weight-bold text-white m-3"
+          onClick={this.handleSubmit}
+          >CONFIRM</button>
           <button className="btn font-weight-bold m-3" onClick={this.hideModal}>CANCEL</button>
         </div>
       </div>
