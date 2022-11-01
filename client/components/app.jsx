@@ -19,6 +19,7 @@ export default class App extends React.Component {
     };
     this.addName = this.addName.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
+    this.deleteTourDate = this.deleteTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -49,7 +50,7 @@ export default class App extends React.Component {
       return <ClipBoard />;
     }
     if (route.path === 'calendar') {
-      return <TourDates tourDates={ this.state.tourDates } />;
+      return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
     }
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
@@ -94,16 +95,21 @@ export default class App extends React.Component {
       .catch(console.error);
   }
 
-  // deleteTourDate(selectedDate){
-  //   fetch('/api/delete-date', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(selectedDate)
-  //   })
-
-  // }
+  deleteTourDate(selectedDate, tourDates) {
+    fetch('/api/delete-date', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(selectedDate)
+    })
+      .then(response => response.json())
+      .then(() => {
+        this.setState({
+          tourDates
+        });
+      });
+  }
 
   render() {
     return (

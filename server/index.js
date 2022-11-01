@@ -538,6 +538,7 @@ app.delete('/api/delete-date', (req, res) => {
     res.status(400).json({
       error: 'showId is required.'
     });
+    return;
   }
 
   const deleteContactSql = `
