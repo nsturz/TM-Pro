@@ -2,7 +2,7 @@ import React from 'react';
 
 // almost done, just need to figure out this 👇🏼
 // trying to figure out how to get the trash and pen icons to only appear if their
-// parent <li /> is being hovered over / clicked.
+// parent <li /> is being hovered over / clicked. one at a time.
 
 export default class TourDates extends React.Component {
   constructor(props) {
@@ -23,10 +23,18 @@ export default class TourDates extends React.Component {
   }
 
   showIcons(event) {
-    this.setState({
-      trashClass: 'btn btn-link m-2',
-      penClass: 'btn btn-link m-2'
-    });
+
+    // for(let i = 0; i < this.props.tourDates.length; i++){
+    //   if(this.props.tourDates[i].showId === Number(event.target.id)){
+    //     this.setState({
+    //       trashClass: 'btn btn-link m-2',
+    //       penClass: 'btn btn-link m-2'
+    //     });
+    //   }
+    // }
+
+    // console.log('event.target.id:', Number(event.target.id))
+
   }
 
   showModal(event) {
@@ -97,8 +105,8 @@ export default class TourDates extends React.Component {
                       </p>
                     </div>
                     <div className="col-5 col-lg-8 ">
-                      <p className="text-white font-weight-bold">{event.dateCity}</p>
-                      <pre className="text-white font-weight-light font-italic m-0">{event.dateVenue}</pre>
+                      <p className="text-white font-weight-bold" id={event.showId}>{event.dateCity}</p>
+                      <pre className="text-white font-weight-light font-italic m-0" id={event.showId}>{event.dateVenue}</pre>
                     </div>
                     <div className="col-2 col-lg-2 ml-5">
                       <button
