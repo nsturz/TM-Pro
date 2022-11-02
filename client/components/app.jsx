@@ -111,6 +111,7 @@ export default class App extends React.Component {
   }
 
   render() {
+    // console.log('this.state.tourDates:', this.state.tourDates)
     return (
       <div>
         <NavBar artists={this.state.artists} />

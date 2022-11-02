@@ -9,8 +9,8 @@ export default class TourDates extends React.Component {
     super(props);
     this.state = {
       showId: null,
-      trashClass: 'btn btn-link m-2 d-none',
-      penClass: 'btn btn-link m-2 d-none',
+      trashClass: 'btn btn-link m-2',
+      penClass: 'btn btn-link m-2',
       overlay: 'overlay d-none',
       modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none'
     };
@@ -25,12 +25,12 @@ export default class TourDates extends React.Component {
   showIcons(event) {
 
     // for(let i = 0; i < this.props.tourDates.length; i++){
-    //   if(this.props.tourDates[i].showId === Number(event.target.id)){
-    //     this.setState({
-    //       trashClass: 'btn btn-link m-2',
-    //       penClass: 'btn btn-link m-2'
-    //     });
-    //   }
+    // if(this.props.tourDates[i].showId === Number(event.target.id)){
+    this.setState({
+      trashClass: 'btn btn-link m-2',
+      penClass: 'btn btn-link m-2'
+    });
+    // }
     // }
 
     // console.log('event.target.id:', Number(event.target.id))
@@ -70,7 +70,6 @@ export default class TourDates extends React.Component {
         tourDates.splice(i, 1);
       }
     }
-
     this.props.onSubmit(selectedDate, tourDates);
     this.setState({
       showId: null,
@@ -97,8 +96,8 @@ export default class TourDates extends React.Component {
                   id={event.showId}
                   className="row calendar-list-item"
                   key={event.showId}
-                  onClick={this.showIcons}
-                  onMouseLeave={this.hideIcons}>
+
+                  >
                     <div className="col-3 col-lg-1 mr-3 calendar-date">
                       <p className="calendar-date-text text-center font-weight-bold d-block text-white">
                         {event.showDate}
@@ -113,12 +112,12 @@ export default class TourDates extends React.Component {
                       className={this.state.penClass}
                       onClick={this.showModal}>
                         <i
-                        className='fa-solid fa-trash text-white'
+                        className='fa-solid fa-trash text-white text-sm'
                         id={event.showId} />
                       </button>
                       <button className={this.state.trashClass}>
                         <i
-                        className='fa-solid fa-pen-to-square text-white'
+                        className='fa-solid fa-pen-to-square text-white text-sm'
                         id={event.showId} />
                       </button>
                     </div>
