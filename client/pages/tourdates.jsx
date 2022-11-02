@@ -1,7 +1,6 @@
 import React from 'react';
 
-// working on handleSubmit functionality, and ensuring the proper object from
-// this.props.tourDates gets selected.
+// almost done, just need to figure out this 👇🏼
 // trying to figure out how to get the trash and pen icons to only appear if their
 // parent <li /> is being hovered over / clicked.
 
@@ -37,9 +36,6 @@ export default class TourDates extends React.Component {
       overlay: 'overlay',
       modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute'
     });
-
-    // console.log('event.target.id', Number(event.target.id))
-    // console.log('idValue:', idValue)
   }
 
   hideIcons(event) {
@@ -69,7 +65,9 @@ export default class TourDates extends React.Component {
 
     this.props.onSubmit(selectedDate, tourDates);
     this.setState({
-      showId: null
+      showId: null,
+      modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none',
+      overlay: 'overlay d-none'
     });
   }
 

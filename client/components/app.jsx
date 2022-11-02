@@ -103,7 +103,6 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(selectedDate)
     })
-      .then(response => response.json())
       .then(() => {
         this.setState({
           tourDates
