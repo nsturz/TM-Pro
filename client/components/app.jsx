@@ -1,3 +1,7 @@
+// it looks like the correct items are being taken out of this.state.tourDates,
+// but we may need to rethink some of the logic. for instance, "event"
+// was valid in tourdates.jsx, but now that "event" doesnt exist in app.jsx.
+
 import React from 'react';
 import NewArtistForm from './new-artist-form';
 import Footer from './footer';
@@ -95,7 +99,7 @@ export default class App extends React.Component {
       .catch(console.error);
   }
 
-  deleteTourDate(selectedDate, tourDates) {
+  deleteTourDate(selectedDate) {
     fetch('/api/delete-date', {
       method: 'DELETE',
       headers: {
@@ -103,11 +107,19 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(selectedDate)
     })
-      .then(() => {
-        this.setState({
-          tourDates
-        });
-      });
+
+      .then(event => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === Number(event.target.id)) {
+            newTourDates.splice(i, 1);
+          }
+        }
+        // console.log('newTourDates:', newtourDates)
+        this.setState({ tourDates: newTourDates });
+      })
+      .catch(console.error);
+
   }
 
   render() {

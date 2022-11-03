@@ -1,6 +1,7 @@
 import React from 'react';
 
 // almost done, just need to figure out this 👇🏼
+// see app.jsx
 // trying to figure out how to get the trash and pen icons to only appear if their
 // parent <li /> is being hovered over / clicked. one at a time.
 
@@ -23,17 +24,10 @@ export default class TourDates extends React.Component {
   }
 
   showIcons(event) {
-
-    // for(let i = 0; i < this.props.tourDates.length; i++){
-    // if(this.props.tourDates[i].showId === Number(event.target.id)){
     this.setState({
       trashClass: 'btn btn-link m-2',
       penClass: 'btn btn-link m-2'
     });
-    // }
-    // }
-
-    // console.log('event.target.id:', Number(event.target.id))
 
   }
 
@@ -61,31 +55,29 @@ export default class TourDates extends React.Component {
   }
 
   handleSubmit(event) {
+    const showIdDefault = null;
+    const modalClass = 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none';
+    const overayclass = 'overlay d-none';
     const selectedDate = {
       showId: this.state.showId
     };
-    const tourDates = [...this.props.tourDates];
-    for (let i = 0; i < tourDates.length; i++) {
-      if (tourDates[i].showId === Number(event.target.id)) {
-        tourDates.splice(i, 1);
-      }
-    }
-    this.props.onSubmit(selectedDate, tourDates);
     this.setState({
-      showId: null,
-      modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none',
-      overlay: 'overlay d-none'
+      showId: showIdDefault,
+      modal: modalClass,
+      overlay: overayclass
     });
+    this.props.onSubmit(selectedDate, event);
   }
 
   render() {
     // console.log('this.props.tourDates:', this.props.tourDates)
     // console.log('this.state.showId:', this.state.showId)
+
     return (
       <div className="container calendar-container">
         <div className="d-flex justify-content-lg-between row p-2">
           <h3 className="m-3 col-9">North American Tour 2023</h3>
-          <a href="#"><i className="fa-solid fa-plus pt-1 m-3" /></a>
+          <a href="#new-date"><i className="fa-solid fa-plus pt-1 m-3" /></a>
         </div>
         <div className="row dates dates-wrapper">
           <ul className="col-12">
