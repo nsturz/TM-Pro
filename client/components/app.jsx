@@ -1,3 +1,7 @@
+// it looks like the correct items are being taken out of this.state.tourDates,
+// but we may need to rethink some of the logic. for instance, "event"
+// was valid in tourdates.jsx, but now that "event" doesnt exist in app.jsx.
+
 import React from 'react';
 import NewArtistForm from './new-artist-form';
 import Footer from './footer';
@@ -19,6 +23,7 @@ export default class App extends React.Component {
     };
     this.addName = this.addName.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
+    this.deleteTourDate = this.deleteTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -39,7 +44,7 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === '') {
+    if (route.path === 'dashboard') {
       return <Dashboard tourDates={ this.state.tourDates } />;
     }
     if (route.path === 'new-artist-form') {
@@ -49,7 +54,7 @@ export default class App extends React.Component {
       return <ClipBoard />;
     }
     if (route.path === 'calendar') {
-      return <TourDates tourDates={ this.state.tourDates } />;
+      return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
     }
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
@@ -90,6 +95,25 @@ export default class App extends React.Component {
         this.setState({
           tourDates: tourDatesCopy
         });
+      })
+      .catch(console.error);
+  }
+
+  deleteTourDate(selectedDate) {
+    fetch('/api/delete-date', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(selectedDate)
+    })
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === selectedDate.showId) {
+            newTourDates.splice(i, 1);
+          }
+        } this.setState({ tourDates: newTourDates });
       })
       .catch(console.error);
   }
