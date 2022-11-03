@@ -107,23 +107,18 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(selectedDate)
     })
-
-      .then(event => {
+      .then(() => {
         const newTourDates = [...this.state.tourDates];
         for (let i = 0; i < newTourDates.length; i++) {
-          if (newTourDates[i].showId === Number(event.target.id)) {
+          if (newTourDates[i].showId === selectedDate.showId) {
             newTourDates.splice(i, 1);
           }
-        }
-        // console.log('newTourDates:', newtourDates)
-        this.setState({ tourDates: newTourDates });
+        } this.setState({ tourDates: newTourDates });
       })
       .catch(console.error);
-
   }
 
   render() {
-    // console.log('this.state.tourDates:', this.state.tourDates)
     return (
       <div>
         <NavBar artists={this.state.artists} />

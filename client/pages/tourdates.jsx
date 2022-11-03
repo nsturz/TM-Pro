@@ -1,10 +1,5 @@
 import React from 'react';
 
-// almost done, just need to figure out this 👇🏼
-// see app.jsx
-// trying to figure out how to get the trash and pen icons to only appear if their
-// parent <li /> is being hovered over / clicked. one at a time.
-
 export default class TourDates extends React.Component {
   constructor(props) {
     super(props);
@@ -54,7 +49,7 @@ export default class TourDates extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit() {
     const showIdDefault = null;
     const modalClass = 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none';
     const overayclass = 'overlay d-none';
@@ -66,13 +61,10 @@ export default class TourDates extends React.Component {
       modal: modalClass,
       overlay: overayclass
     });
-    this.props.onSubmit(selectedDate, event);
+    this.props.onSubmit(selectedDate);
   }
 
   render() {
-    // console.log('this.props.tourDates:', this.props.tourDates)
-    // console.log('this.state.showId:', this.state.showId)
-
     return (
       <div className="container calendar-container">
         <div className="d-flex justify-content-lg-between row p-2">
@@ -87,9 +79,7 @@ export default class TourDates extends React.Component {
                   <li
                   id={event.showId}
                   className="row calendar-list-item"
-                  key={event.showId}
-
-                  >
+                  key={event.showId}>
                     <div className="col-3 col-lg-1 mr-3 calendar-date">
                       <p className="calendar-date-text text-center font-weight-bold d-block text-white">
                         {event.showDate}
@@ -123,14 +113,18 @@ export default class TourDates extends React.Component {
         <div className={this.state.modal}>
           <h3 className="font-weight-bold m-3">DELETE THIS DATE?</h3>
           <button
-          type="submit"
-          className="btn confirm-button font-weight-bold text-white m-3"
-          onClick={this.handleSubmit}
-          >CONFIRM</button>
-          <button className="btn font-weight-bold m-3" onClick={this.hideModal}>CANCEL</button>
+            type="submit"
+            className="btn confirm-button font-weight-bold text-white m-3"
+            onClick={this.handleSubmit}>
+            CONFIRM
+          </button>
+          <button
+            className="btn font-weight-bold m-3"
+            onClick={this.hideModal}>
+            CANCEL
+          </button>
         </div>
       </div>
-
     );
   }
 }

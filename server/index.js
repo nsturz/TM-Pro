@@ -528,19 +528,16 @@ app.post('/api/new-date', (req, res) => {
 });
 
 // DELETE a date 👇🏼
-// may need more conditional logic later just in case
 app.delete('/api/delete-date', (req, res) => {
   const {
     showId
   } = req.body;
-
   if (!showId) {
     res.status(400).json({
       error: 'showId is required.'
     });
     return;
   }
-
   const deleteContactSql = `
     delete from "contacts"
     where "showId" = $1
