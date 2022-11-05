@@ -145,8 +145,7 @@ i:hover {
 input,
 select,
 textarea {
-  background-color: white;
-  opacity: 0.5;
+  background-color: whitesmoke;
 }
 
 label {

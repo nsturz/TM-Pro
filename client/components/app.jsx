@@ -1,6 +1,8 @@
-// it looks like the correct items are being taken out of this.state.tourDates,
-// but we may need to rethink some of the logic. for instance, "event"
-// was valid in tourdates.jsx, but now that "event" doesnt exist in app.jsx.
+// 11/4/2022
+// you are working on your planmning for issue 5.
+// the main thing to figure out is how to get the correct number of
+// schedule events to populate on the page based on how many are stored
+// in the database
 
 import React from 'react';
 import NewArtistForm from './new-artist-form';
@@ -119,6 +121,8 @@ export default class App extends React.Component {
   }
 
   render() {
+
+    // console.log('this.state.tourDates:', this.state.tourDates)
     return (
       <div>
         <NavBar artists={this.state.artists} />
