@@ -170,14 +170,28 @@ app.get('/api/shows/:showId', (req, res, next) => {
   const sql = `
   select to_char("date",'MM/DD/YYYY') as "date",
          "venues"."name" as "venueName",
+         "artistId",
+         "addressId",
          "venueId",
          "showId",
          "line1",
          "city",
-         "state"
+         "state",
+         "country",
+         "startTime",
+         "endTime",
+         "schedules"."details" as "scheduleDetails",
+         "contacts"."email" as "contactEmail",
+         "contacts"."name" as "contactName",
+         "contacts"."phone" as "contactPhone",
+         "notes"."details" as "notesDetails"
   from   "shows"
   join "venues" using ("venueId")
   join "addresses" using ("addressId")
+  join "artists" using ("artistId")
+  join "contacts" using ("showId")
+  join "notes" using ("showId")
+  join "schedules" using ("showId")
   where "showId" = $1`;
 
   const params = [showId];
