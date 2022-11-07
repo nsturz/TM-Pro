@@ -592,6 +592,55 @@ app.delete('/api/delete-date', (req, res) => {
     });
 });
 
+// EDIT / PATCH shows in the database 👇🏼
+app.patch('/api/shows/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  if (!Number.isInteger(showId) || showId < 1) {
+    res.status(400).json({
+      error: 'showId must be a positive integer'
+    });
+    return;
+  }
+  const
+    {
+    // artistId,
+    // date,
+    // venueName,
+    // startTime,
+    // endTime,
+    // scheduleDetails,
+    // notesDetails,
+      contactEmail,
+      contactPhone,
+      contactName
+    // line1,
+    // state,
+    // city,
+    // country
+    } = req.body;
+
+  const sql = `
+  update "contacts"
+  set "email" = $1,
+      "name" = $2,
+      "phone" = $3
+  where "showId" = $4
+  returning *
+  `;
+  const params = [contactEmail, contactName, contactPhone, showId];
+  db.query(sql, params)
+    .then(result => {
+      const [editedDate] = result.rows;
+      res.json(editedDate);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

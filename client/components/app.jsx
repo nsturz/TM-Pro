@@ -1,4 +1,6 @@
-// 11/4/2022
+// 11/7/2022
+// you are working on PATCH request functionality in index.js
+// contacts can successfully be updated, now it's time to get all the queries in order.
 // you are working on your planmning for issue 5.
 // the main thing to figure out is how to get the correct number of
 // schedule events to populate on the page based on how many are stored
