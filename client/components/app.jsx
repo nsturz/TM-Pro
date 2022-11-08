@@ -1,7 +1,7 @@
 // 11/7/2022
 // you are working on PATCH request functionality in index.js
-// contacts can successfully be updated, now it's time to get all the queries in order.
-// you are working on your planmning for issue 5.
+// contacts, notes, and address info updates successfully. working on venues
+// schedules last
 // the main thing to figure out is how to get the correct number of
 // schedule events to populate on the page based on how many are stored
 // in the database

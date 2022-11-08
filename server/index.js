@@ -568,16 +568,16 @@ app.delete('/api/delete-date', (req, res) => {
       db.query(deleteNoteSql, deleteNoteParams)
         .then(() => {
           const deleteScheduleSql = `
-        delete from "schedules"
-        where "showId" = $1
-        `;
+          delete from "schedules"
+          where "showId" = $1
+          `;
           const deleteScheduleParams = [showId];
           db.query(deleteScheduleSql, deleteScheduleParams)
             .then(() => {
               const deleteShowSql = `
-          delete from "shows"
-          where "showId" = $1
-         `;
+                delete from "shows"
+                where "showId" = $1
+              `;
               const deleteShowParams = [showId];
               db.query(deleteShowSql, deleteShowParams)
                 .then(res.status(204).json())
@@ -604,40 +604,73 @@ app.patch('/api/shows/:showId', (req, res) => {
   const
     {
     // artistId,
-    // date,
-    // venueName,
-    // startTime,
-    // endTime,
-    // scheduleDetails,
-    // notesDetails,
+      addressId,
+      // date,
+      venueName,
+      // startTime,
+      // endTime,
+      // scheduleDetails,
+      notesDetails,
       contactEmail,
       contactPhone,
-      contactName
-    // line1,
-    // state,
-    // city,
-    // country
+      contactName,
+      line1,
+      state,
+      city,
+      country
     } = req.body;
 
-  const sql = `
-  update "contacts"
-  set "email" = $1,
-      "name" = $2,
-      "phone" = $3
-  where "showId" = $4
-  returning *
-  `;
-  const params = [contactEmail, contactName, contactPhone, showId];
-  db.query(sql, params)
+  const updateAddressSql = `
+      update "addresses"
+      set "line1" = $1,
+          "city" = $2,
+          "state" = $3,
+          "country" =$4
+      where "addressId" = $5
+      returning *
+      `;
+  const updateAddressParams = [line1, city, state, country, addressId];
+  db.query(updateAddressSql, updateAddressParams)
     .then(result => {
-      const [editedDate] = result.rows;
-      res.json(editedDate);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({
-        error: 'an unexpected error occured'
-      });
+      const updatedAddress = [result.rows];
+      const updateVenuesSql = `
+    update "venues"
+    set    "name" = $1
+    where  "addressId" = $2
+    returning *
+    `;
+      const updateVenuesParams = [venueName, updatedAddress.addressId];
+      db.query(updateVenuesSql, updateVenuesParams)
+        .then(() => {
+          const updateContactSql = `
+          update "contacts"
+          set "email" = $1,
+              "name" = $2,
+              "phone" = $3
+          where "showId" = $4
+          returning *
+          `;
+          const updateContactParams = [contactEmail, contactName, contactPhone, showId];
+          db.query(updateContactSql, updateContactParams)
+            .then(() => {
+              const updateNotesSql = `
+                update "notes"
+                set "createdAt" = now(),
+                    "details" = $1
+                where "showId" = $2
+                returning *
+                `;
+              const updateNotesParams = [notesDetails, showId];
+              db.query(updateNotesSql, updateNotesParams)
+                .then(res.status(204).json())
+                .catch(err => {
+                  console.error(err);
+                  res.status(500).json({
+                    error: 'an unexpected error occured'
+                  });
+                });
+            });
+        });
     });
 });
 
