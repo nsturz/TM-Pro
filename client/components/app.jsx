@@ -1,8 +1,8 @@
 // 11/7/2022
 // you are working on PATCH request functionality in index.js
-// contacts, notes, and address info updates successfully. working on venues
-// schedules last
-// the main thing to figure out is how to get the correct number of
+// contacts, notes, address, and venue info updates successfully. working on schedules
+
+// after server code, the main thing to figure out is how to get the correct number of
 // schedule events to populate on the page based on how many are stored
 // in the database
 

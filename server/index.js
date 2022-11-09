@@ -478,12 +478,11 @@ app.post('/api/new-date', (req, res) => {
       db.query(insertVenueSql, insertVenueParams)
         .then(venueResult => {
           const [newVenue] = venueResult.rows;
-
           const insertShowSql = `
-        insert into "shows" ("venueId", "artistId", "date")
-        values ($1, $2, $3)
-        returning *;
-        `;
+          insert into "shows" ("venueId", "artistId", "date")
+          values ($1, $2, $3)
+          returning *;
+          `;
 
           const insertShowParams = [newVenue.venueId, artistId, date];
           db.query(insertShowSql, insertShowParams)
@@ -491,9 +490,9 @@ app.post('/api/new-date', (req, res) => {
               const [newShow] = showResult.rows;
 
               const insertContactSql = `
-          insert into "contacts" ("email", "name", "phone", "showId")
-          values ($1, $2, $3, $4)
-          `;
+              insert into "contacts" ("email", "name", "phone", "showId")
+              values ($1, $2, $3, $4)
+              `;
               const insertContactParams = [contactEmail, contactName, contactPhone, newShow.showId];
               db.query(insertContactSql, insertContactParams)
                 .then(contactResult => {
@@ -523,6 +522,7 @@ app.post('/api/new-date', (req, res) => {
                         values ${eventValues.join(', ')}
                        `;
                       db.query(insertSchedulesSql, eventsParams);
+                      // console.log('scheduleEvents:', scheduleEvents)
 
                       const newTourDate = {
                         newShow
@@ -605,7 +605,7 @@ app.patch('/api/shows/:showId', (req, res) => {
     {
     // artistId,
       addressId,
-      // date,
+      date,
       venueName,
       // startTime,
       // endTime,
@@ -632,17 +632,26 @@ app.patch('/api/shows/:showId', (req, res) => {
   const updateAddressParams = [line1, city, state, country, addressId];
   db.query(updateAddressSql, updateAddressParams)
     .then(result => {
-      const updatedAddress = [result.rows];
+      const [updatedAddress] = result.rows;
       const updateVenuesSql = `
-    update "venues"
-    set    "name" = $1
-    where  "addressId" = $2
-    returning *
-    `;
+      update "venues"
+      set    "name" = $1
+      where  "addressId" = $2
+      returning *
+      `;
       const updateVenuesParams = [venueName, updatedAddress.addressId];
       db.query(updateVenuesSql, updateVenuesParams)
         .then(() => {
-          const updateContactSql = `
+          const updateShowSql = `
+        update "shows"
+        set "date" = $1
+        where "showId" = $2
+        returning *
+        `;
+          const updateShowParams = [date, showId];
+          db.query(updateShowSql, updateShowParams)
+            .then(() => {
+              const updateContactSql = `
           update "contacts"
           set "email" = $1,
               "name" = $2,
@@ -650,24 +659,25 @@ app.patch('/api/shows/:showId', (req, res) => {
           where "showId" = $4
           returning *
           `;
-          const updateContactParams = [contactEmail, contactName, contactPhone, showId];
-          db.query(updateContactSql, updateContactParams)
-            .then(() => {
-              const updateNotesSql = `
+              const updateContactParams = [contactEmail, contactName, contactPhone, showId];
+              db.query(updateContactSql, updateContactParams)
+                .then(() => {
+                  const updateNotesSql = `
                 update "notes"
                 set "createdAt" = now(),
                     "details" = $1
                 where "showId" = $2
                 returning *
                 `;
-              const updateNotesParams = [notesDetails, showId];
-              db.query(updateNotesSql, updateNotesParams)
-                .then(res.status(204).json())
-                .catch(err => {
-                  console.error(err);
-                  res.status(500).json({
-                    error: 'an unexpected error occured'
-                  });
+                  const updateNotesParams = [notesDetails, showId];
+                  db.query(updateNotesSql, updateNotesParams)
+                    .then(res.status(204).json())
+                    .catch(err => {
+                      console.error(err);
+                      res.status(500).json({
+                        error: 'an unexpected error occured'
+                      });
+                    });
                 });
             });
         });
