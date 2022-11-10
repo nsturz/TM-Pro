@@ -516,11 +516,11 @@ app.post('/api/new-date', (req, res) => {
                         eventValues.push(value);
                         eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
                       });
-
                       const insertSchedulesSql = `
                         insert into "schedules" ("startTime", "endTime", "details", "showId")
                         values ${eventValues.join(', ')}
                        `;
+                      // console.log('eventValues:', eventValues)
                       db.query(insertSchedulesSql, eventsParams);
                       // console.log('scheduleEvents:', scheduleEvents)
 
@@ -643,40 +643,61 @@ app.patch('/api/shows/:showId', (req, res) => {
       db.query(updateVenuesSql, updateVenuesParams)
         .then(() => {
           const updateShowSql = `
-        update "shows"
-        set "date" = $1
-        where "showId" = $2
-        returning *
-        `;
+            update "shows"
+            set "date" = $1
+            where "showId" = $2
+            returning *
+            `;
           const updateShowParams = [date, showId];
           db.query(updateShowSql, updateShowParams)
             .then(() => {
               const updateContactSql = `
-          update "contacts"
-          set "email" = $1,
-              "name" = $2,
-              "phone" = $3
-          where "showId" = $4
-          returning *
-          `;
+              update "contacts"
+              set "email" = $1,
+                  "name" = $2,
+                  "phone" = $3
+              where "showId" = $4
+              returning *
+              `;
               const updateContactParams = [contactEmail, contactName, contactPhone, showId];
               db.query(updateContactSql, updateContactParams)
                 .then(() => {
                   const updateNotesSql = `
-                update "notes"
-                set "createdAt" = now(),
-                    "details" = $1
-                where "showId" = $2
-                returning *
-                `;
+                  update "notes"
+                  set "createdAt" = now(),
+                      "details" = $1
+                  where "showId" = $2
+                  returning *
+                  `;
                   const updateNotesParams = [notesDetails, showId];
                   db.query(updateNotesSql, updateNotesParams)
-                    .then(res.status(204).json())
-                    .catch(err => {
-                      console.error(err);
-                      res.status(500).json({
-                        error: 'an unexpected error occured'
-                      });
+                    .then(() => {
+                    // let paramNum = 2;
+                    // const eventsParams = [showId];
+                    // const eventValues = [];
+
+                      // scheduleEvents.forEach(event => {
+                      //   const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+
+                      //   eventValues.push(value);
+                      //   eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+                      // });
+
+                    //  const updateSchedulesSql = `
+                    //      update "schedules"
+                    //      set    "startTime" = ${eventValues[0]},
+                    //             "endTime" = ${eventValues[1]},
+                    //             "details" = ${eventValues[2]}
+                    //      where "showId" = ${eventValues[3]}
+                    //     `;
+                    // db.query(insertSchedulesSql, eventsParams)
+                    // .then(res.status(204).json())
+                    //   .catch(err => {
+                    //     console.error(err);
+                    //     res.status(500).json({
+                    //       error: 'an unexpected error occured'
+                    //     });
+                    //   });
                     });
                 });
             });
