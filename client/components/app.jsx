@@ -1,8 +1,11 @@
-// 11/7/2022
-// you are working on PATCH request functionality in index.js
-// contacts, notes, address, and venue info updates successfully. working on schedules
+// 11/10/2022
 
-// after server code, the main thing to figure out is how to get the correct number of
+// you are NOW working on re-planning for this feature on github. see "user can edit
+// tour date" on github to see your progress.
+
+// waiting to see if we can get asome help with the PATCH request.
+
+// another thing to figure out is how to get the correct number of
 // schedule events to populate on the page based on how many are stored
 // in the database
 
