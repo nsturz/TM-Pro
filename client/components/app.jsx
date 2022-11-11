@@ -19,6 +19,7 @@ import NotFound from '../pages/not-found';
 import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
+import EditTourDate from './edit-tour-date';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,9 @@ export default class App extends React.Component {
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
       onSubmit={ this.addTourDate }/>;
+    }
+    if (route.path === 'edit-date') {
+      return <EditTourDate tourDates={this.state.tourDates} />;
     }
     return <NotFound />;
   }

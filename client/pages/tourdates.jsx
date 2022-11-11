@@ -16,7 +16,7 @@ export default class TourDates extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
   showIcons(event) {
@@ -70,7 +70,6 @@ export default class TourDates extends React.Component {
   }
 
   render() {
-    // console.log('this.props.tourDates', this.props.tourDates)
     return (
       <div className="container calendar-container">
         <div className="d-flex justify-content-lg-between row p-2">
