@@ -168,7 +168,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select to_char("date",'MM/DD/YYYY') as "date",
+  select to_char("date",'yyyy-MM-dd') as "date",
          "venues"."name" as "venueName",
          "artistId",
          "addressId",

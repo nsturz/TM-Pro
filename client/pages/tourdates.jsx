@@ -98,15 +98,10 @@ export default class TourDates extends React.Component {
                     </div>
                     <div className="col-2 col-lg-2 ml-5">
                       <button
-                      className={this.state.penClass}
-                      onClick={this.showModal}>
+                        className={this.state.trashClass}
+                        onClick={this.showModal}>
                         <i
                         className='fa-solid fa-trash text-white text-sm'
-                        id={event.showId} />
-                      </button>
-                      <button className={this.state.trashClass}>
-                        <i
-                        className='fa-solid fa-pen-to-square text-white text-sm'
                         id={event.showId} />
                       </button>
                     </div>
