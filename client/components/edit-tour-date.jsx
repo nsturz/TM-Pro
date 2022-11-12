@@ -5,7 +5,7 @@ export default class EditTourDate extends React.Component {
     super(props);
     this.state = {
       show: {
-        id: null,
+        id: 0,
         date: '',
         line1: '',
         city: '',
@@ -21,10 +21,6 @@ export default class EditTourDate extends React.Component {
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
   }
-
-  // componentDidMount() {
-
-  // }
 
   handleDateChange(event) {
     this.setState({
@@ -108,30 +104,29 @@ export default class EditTourDate extends React.Component {
 
   selectDate(event) {
     // console.log('event.target.value:', event.target.value)
-    // console.log('event.target.id:', Number(event.target.id))
-    // const tourDates = this.props.tourDates;
-    // for(let i = 0; i < tourDates.length; i++){
-    //   if(event.target.id === tourDates[i].showId){
-    //     fetch(`/api/shows/${tourDates[i].showId}`)
-    //       .then(response => response.json())
-    //       .then(show => {
-    //         this.setState({
-    //           show: {
-    //             date: show.date,
-    //             line1: show.line1,
-    //             city: show.city,
-    //             state: show.state,
-    //             country: show.country,
-    //             venueName: show.venueName,
-    //             notesDetails: show.notesDetails,
-    //             contactName: show.contactName,
-    //             contactPhone: show.contactPhone,
-    //             contactEmail: show.contactEmail
-    //           }
-    //         });
-    //       });
-    //   }
-    // }
+    const tourDates = this.props.tourDates;
+    for (let i = 0; i < tourDates.length; i++) {
+      if (event.target.value === tourDates[i].showDate) {
+        fetch(`/api/shows/${tourDates[i].showId}`)
+          .then(response => response.json())
+          .then(show => {
+            this.setState({
+              show: {
+                date: show.date,
+                line1: show.line1,
+                city: show.city,
+                state: show.state,
+                country: show.country,
+                venueName: show.venueName,
+                notesDetails: show.notesDetails,
+                contactName: show.contactName,
+                contactPhone: show.contactPhone,
+                contactEmail: show.contactEmail
+              }
+            });
+          });
+      }
+    }
   }
 
   render() {
@@ -146,7 +141,7 @@ export default class EditTourDate extends React.Component {
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center" />
-              <select name="artist-select-form" className="form-control col-6" onChange={this.selectDate} >
+              <select name="artist-select-form" className="form-control col-6" onChange={this.selectDate}>
                 <option value="">Select a tour date.</option>
                 {
                   this.props.tourDates.map(event => {
@@ -154,7 +149,7 @@ export default class EditTourDate extends React.Component {
                       <option
                         id={event.showId}
                         key={event.showId}>
-                        {/* {event.showDate} {event.dateCity} {','} {event.dateState} {'@'} {event.dateVenue} {'//'} {event.showId} */}
+                        {event.showDate}
                       </option>
                     );
                   })

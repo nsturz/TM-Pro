@@ -1,7 +1,8 @@
 // 11/10/2022
 
-// you are NOW working on re-planning for this feature on github. see "user can edit
-// tour date" on github to see your progress.
+//  selecting a date now works, butnonyl for the first show on 1/5/2023
+// in "network" tab - see the error response. we may need to re think server code
+// index.js line 201
 
 // waiting to see if we can get asome help with the PATCH request.
 

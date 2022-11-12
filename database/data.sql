@@ -26,20 +26,35 @@ insert into "notes" ("details", "showId")
 values      (
   'Showers: Yes
    Laundry: No
-   ++++++++++
-
    Catering: Albertos
-   ++++++++++
-
    Drinks: 2 tix per band member
-   ++++++++++
    Wifi: genericWifiName
    Password: lfzFinalProject',
    1
+),
+(
+  'Gonna be HOT today. Stay hydrated',
+  2
+),
+(
+  'Show ends early - early bus call so we can hit the strip.',
+  3
+),
+(
+  '12 hour drive next day. Sleep up.',
+  4
+),
+(
+  'coffee beforehand @ HuckleBerry.',
+  5
 );
 
 insert into "contacts" ("email", "name", "phone","showId")
-values      ('booker@booking.com', 'Edgy Promoter Dude','7777777', 1);
+values      ('booker@booking.com', 'Edgy Promoter Dude','7777777', 1),
+            ('jon@theagency.com', 'Jon V.', '6267726524', 2),
+            ('bane@theagency.com', 'Jim Bane', '5624425672', 3),
+            ('tomingo@theagency.com', 'Vlad T.', '6765526726', 4),
+            ('vilash@theagency.com', 'Perdeep V.', '7876252442', 5);
 
 insert into "schedules" ("startTime", "endTime", "details", "showId")
 values
