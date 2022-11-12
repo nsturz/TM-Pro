@@ -144,17 +144,24 @@ export default class EditTourDate extends React.Component {
           onSubmit={this.handleSubmit}>
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
-              {/* <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
+              <label htmlFor="artist-select-form" className="col-12 text-center" />
               <select name="artist-select-form" id="" className="form-control col-6" onChange={this.handleNameChange}>
-                <option value="">Select an artist</option>
+                <option value="">Select a tour date.</option>
                 {
-                  this.props.artists.map(event => {
+                  this.props.tourDates.map(event => {
                     return (
-                      <option id={event.artistId} key={event.artistId}>{event.name}</option>
+                      <option
+                      id={event.showId}
+                      key={event.showId}>
+                        {event.showDate}
+                        {event.dateCity}
+                        {event.dateState}
+                        {event.dateVenue}
+                      </option>
                     );
                   })
                 }
-              </select> */}
+              </select>
               <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
               <input
               name="date"
