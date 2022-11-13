@@ -1,14 +1,9 @@
-// 11/10/2022
+// 11/13/2022
 
-//  selecting a date now works, but only for the first show on 1/5/2023
-// in "network" tab - see the error response. we may need to re think server code
-// index.js line 201
+// fetch GET requests now work in deit-date-jsx. Schedule events populate correctly.
+// NOW it is time to figure out how to submit update SQL syntax for the schedule events.
 
 // waiting to see if we can get asome help with the PATCH request.
-
-// another thing to figure out is how to get the correct number of
-// schedule events to populate on the page based on how many are stored
-// in the database
 
 import React from 'react';
 import NewArtistForm from './new-artist-form';

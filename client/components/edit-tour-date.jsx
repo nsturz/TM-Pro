@@ -4,8 +4,8 @@ export default class EditTourDate extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: 0,
       show: {
-        id: 0,
         date: '',
         line1: '',
         city: '',
@@ -16,7 +16,8 @@ export default class EditTourDate extends React.Component {
         contactName: '',
         contactPhone: '',
         contactEmail: ''
-      }
+      },
+      scheduleEvents: []
     };
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
@@ -102,6 +103,30 @@ export default class EditTourDate extends React.Component {
     });
   }
 
+  handleStartTimeChange(event, index) {
+    const newArray = [...this.state.scheduleEvents];
+    newArray[index].startTime = event.target.value;
+    this.setState({
+      scheduleEvents: newArray
+    });
+  }
+
+  handleEndTimeChange(event, index) {
+    const newArray = [...this.state.scheduleEvents];
+    newArray[index].endTime = event.target.value;
+    this.setState({
+      scheduleEvents: newArray
+    });
+  }
+
+  handleScheduleDetailsChange(event, index) {
+    const newArray = [...this.state.scheduleEvents];
+    newArray[index].scheduleDetails = event.target.value;
+    this.setState({
+      scheduleEvents: newArray
+    });
+  }
+
   selectDate(event) {
     // console.log('event.target.value:', event.target.value)
     const tourDates = this.props.tourDates;
@@ -124,6 +149,13 @@ export default class EditTourDate extends React.Component {
                 contactEmail: show.contactEmail
               }
             });
+            fetch(`/api/schedules/${tourDates[i].showId}`)
+              .then(response => response.json())
+              .then(scheduleEvents => {
+                this.setState({
+                  scheduleEvents
+                });
+              });
           });
       }
     }
@@ -132,6 +164,7 @@ export default class EditTourDate extends React.Component {
   render() {
     // console.log('this.props.tourDates', this.props.tourDates)
     // console.log('this.state.show:', this.state.show)
+    // console.log('this.state.scheduleEvents:', this.state.scheduleEvents)
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form
@@ -198,18 +231,20 @@ export default class EditTourDate extends React.Component {
               />
             </div>
             <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
-            {/* <ul>
+            <ul>
               {
                 this.state.scheduleEvents.map((event, index) => {
                   return (
-                    <li className={event.class} id={event.id} key={event.id}>
+                    <li className='row justify-content-center mt-3 mb-3'
+                    id={this.state.id + 1}
+                    key={event.scheduleId}>
                       <div className="col-5">
                         <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                        <input type="time" className="form-control h-50" onChange={event => this.handleStartTimeChange(event, index)} />
+                        <input value={ event.startTime } type="time" className="form-control h-50" onChange={event => this.handleStartTimeChange(event, index)} />
                       </div>
                       <div className="col-5">
                         <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                        <input type="time" className="form-control h-50" onChange={event => this.handleEndTimeChange(event, index)} />
+                        <input value={ event.endTime }type="time" className="form-control h-50" onChange={event => this.handleEndTimeChange(event, index)} />
                       </div>
                       <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
                         <i className="fa-solid fa-x text-white" id={event.id} />
@@ -217,14 +252,14 @@ export default class EditTourDate extends React.Component {
                       <div className="col-12 mt-3">
                         <div className="row d-flex justify-content-center">
                           <label htmlFor="details" className="text-center col-12">Details</label>
-                          <input type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index)} />
+                          <input value={ event.details }type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index)} />
                         </div>
                       </div>
                     </li>
                   );
                 })
               }
-            </ul> */}
+            </ul>
             <button type="button" className=" add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
               <i className="fa-solid fa-plus text-white" onClick={this.addScheduleEvent} />
             </button>

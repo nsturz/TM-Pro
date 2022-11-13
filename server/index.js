@@ -97,28 +97,29 @@ app.get('/api/notes/:noteId', (req, res, next) => {
 });
 
 // GET specific SCHEDULE information DO NOT DELETE YET!!! 👇🏼
-// app.get('/api/schedules/:scheduleId', (req, res, next) => {
-//   const scheduleId = Number(req.params.scheduleId);
-//   if (!scheduleId) {
-//     throw new ClientError(400, 'scheduleId must be a positive integer')
-//   }
-//   const sql = `
-//   select "startTime",
-//          "endTime",
-//          "details"
-//   from   "schedules"
-//   where "scheduleId" = $1 `;
+app.get('/api/schedules/:showId', (req, res, next) => {
+  const showId = Number(req.params.showId);
+  if (!showId) {
+    throw new ClientError(400, 'scheduleId must be a positive integer');
+  }
+  const sql = `
+  select "startTime",
+         "endTime",
+         "details",
+         "scheduleId"
+  from   "schedules"
+  where "showId" = $1 `;
 
-//   const params = [scheduleId];
-//   db.query(sql, params)
-//     .then(result => {
-//       if (!result.rows[0]) {
-//         throw new ClientError(404, `cannot find schedule with showId ${scheduleId}`);
-//       }
-//       res.json(result.rows[0]);
-//     })
-//     .catch(err => next(err))
-// })
+  const params = [showId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows) {
+        throw new ClientError(404, `cannot find schedule with showId ${showId}`);
+      }
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 
 // GET specific SCHEDULE information (using showId?) 👇🏼
 app.get('/api/schedules', (req, res, next) => {
@@ -197,6 +198,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
   const params = [showId];
   db.query(sql, params)
     .then(result => {
+
       if (!result.rows[0]) {
         throw new ClientError(404, `cannot find show with showId ${showId}`);
       }
