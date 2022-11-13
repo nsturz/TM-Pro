@@ -198,7 +198,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        throw new ClientError(404, `cannot find note with showId ${showId}`);
+        throw new ClientError(404, `cannot find show with showId ${showId}`);
       }
       res.json(result.rows[0]);
     })

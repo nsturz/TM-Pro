@@ -1,6 +1,6 @@
 // 11/10/2022
 
-//  selecting a date now works, butnonyl for the first show on 1/5/2023
+//  selecting a date now works, but only for the first show on 1/5/2023
 // in "network" tab - see the error response. we may need to re think server code
 // index.js line 201
 
