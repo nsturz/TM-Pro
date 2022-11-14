@@ -465,12 +465,10 @@ app.post('/api/new-date', (req, res) => {
   values      ($1, $2, $3, $4)
   returning *;
   `;
-
   const insertAddressParams = [line1, city, state, country];
   db.query(insertAddressSql, insertAddressParams)
     .then(addressResult => {
       const [newAddress] = addressResult.rows;
-
       const insertVenueSql = `
       insert into "venues" ("name", "addressId")
       values ($1, $2)
@@ -485,12 +483,10 @@ app.post('/api/new-date', (req, res) => {
           values ($1, $2, $3)
           returning *;
           `;
-
           const insertShowParams = [newVenue.venueId, artistId, date];
           db.query(insertShowSql, insertShowParams)
             .then(showResult => {
               const [newShow] = showResult.rows;
-
               const insertContactSql = `
               insert into "contacts" ("email", "name", "phone", "showId")
               values ($1, $2, $3, $4)
@@ -498,23 +494,18 @@ app.post('/api/new-date', (req, res) => {
               const insertContactParams = [contactEmail, contactName, contactPhone, newShow.showId];
               db.query(insertContactSql, insertContactParams)
                 .then(contactResult => {
-
                   const insertNoteSql = `
                    insert into "notes" ("details", "showId")
                    values($1, $2)
                   `;
-
                   const insertNoteParams = [notesDetails, newShow.showId];
                   db.query(insertNoteSql, insertNoteParams)
                     .then(noteResult => {
-
                       let paramNum = 2;
                       const eventsParams = [newShow.showId];
                       const eventValues = [];
-
                       scheduleEvents.forEach(event => {
                         const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
-
                         eventValues.push(value);
                         eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
                       });
@@ -522,11 +513,10 @@ app.post('/api/new-date', (req, res) => {
                         insert into "schedules" ("startTime", "endTime", "details", "showId")
                         values ${eventValues.join(', ')}
                        `;
-                      // console.log('eventValues:', eventValues)
-                      // console.log('eventsParams', eventsParams)
-                      db.query(insertSchedulesSql, eventsParams);
-                      // console.log('scheduleEvents:', scheduleEvents)
 
+                      //  console.log('eventValues:', eventValues),
+                      //  console.log('eventsParams:', eventsParams)
+                      db.query(insertSchedulesSql, eventsParams);
                       const newTourDate = {
                         newShow
                       };
@@ -596,7 +586,7 @@ app.delete('/api/delete-date', (req, res) => {
 });
 
 // EDIT / PATCH shows in the database 👇🏼
-app.patch('/api/shows/:showId', (req, res) => {
+app.patch('/api/edit-date/:showId', (req, res) => {
   const showId = Number(req.params.showId);
   if (!Number.isInteger(showId) || showId < 1) {
     res.status(400).json({
@@ -606,14 +596,14 @@ app.patch('/api/shows/:showId', (req, res) => {
   }
   const
     {
-    // artistId,
+      // artistId,
       addressId,
       date,
       venueName,
       // startTime,
       // endTime,
       // scheduleDetails,
-      scheduleEvents,
+      // scheduleEvents,
       notesDetails,
       contactEmail,
       contactPhone,
@@ -675,42 +665,73 @@ app.patch('/api/shows/:showId', (req, res) => {
                   `;
                   const updateNotesParams = [notesDetails, showId];
                   db.query(updateNotesSql, updateNotesParams)
-                    .then(() => {
-                      let paramNum = 2;
-                      const eventsParams = [showId];
-                      const eventValues = [];
+                  // .then(() => {
+                  //   let paramNum = 2;
+                  //   const eventsParams = [newShow.showId];
+                  //   const eventValues = [];
+                  //   scheduleEvents.forEach(event => {
+                  //     const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+                  //     eventValues.push(value);
+                  //     eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+                  //   });
+                  //   const insertSchedulesSql = `
+                  //     insert into "schedules" ("startTime", "endTime", "details", "showId")
+                  //     values ${eventValues.join(', ')}
+                  //    `;
 
-                      scheduleEvents.forEach(event => {
-                        const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
-
-                        eventValues.push(value);
-                        eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+                    //   console.log('eventValues:', eventValues),
+                    //   console.log('eventsParams:', eventsParams)
+                    //   db.query(insertSchedulesSql, eventsParams)
+                    .then(res.status(204).json())
+                    .catch(err => {
+                      console.error(err);
+                      res.status(500).json({
+                        error: 'an unexpected error occured'
                       });
-
-                      const updateSchedulesSql = `
-                         update "schedules"
-                         set    "startTime" = ${eventValues[0]},
-                                "endTime" = ${eventValues[1]},
-                                "details" = ${eventValues[2]}
-                         where "showId" = ${eventValues[3]}
-                        `;
-                      db.query(updateSchedulesSql, eventsParams)
-                        .then(res.status(204).json())
-                        .catch(err => {
-                          console.error(err);
-                          res.status(500).json({
-                            error: 'an unexpected error occured'
-                          });
-                        });
                     });
                 });
+
             });
         });
     });
 });
 
+// TESTING PATCH FOR SCHEUDLES 👇🏼
+
+app.patch('/api/edit-schedule/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  const { scheduleEvents } = req.body;
+  let paramNum = 2;
+  const eventsParams = [showId];
+  const eventValues = [];
+  scheduleEvents.forEach(event => {
+    const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+    eventValues.push(value);
+    eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+    // console.log('eventValues:', eventValues)
+    // console.log('eventsParams:', eventsParams)
+  //   const updateSchedulesSql = `
+  //   update "schedules"
+  //   set    "startTime" = $1
+  //          "endTime" =$2
+  //          "details" = $3
+  //   where "showId" = $4
+  // `;
+  //   db.query(updateSchedulesSql, eventsParams)
+  })
+    .then(res.status(204).json())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occured'
+      });
+    });
+
+});
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
   process.stdout.write(`\n\napp listening on port ${process.env.PORT}\n\n`);
 });
+
+// http PATCH: 3000/api/edit-date/6 line1=“434 Main St.” city=“Philadelphia” state=“Pennsylvania” country=“USA” addressId=6 artistId=1 date=02-11-2023 contactEmail=“foo@global.com” contactName="Foo M." contactPhone="7765244233" notesDetails=“Do not” scheduleEvents:='[{"startTime":"16:00", "endTime": "17:00", "scheduleDetails”:”dinner”}, {"startTime": "18:00", "endTime": "19:00", "scheduleDetails”:”panic”}, {"startTime": "20:00", "endTime": "21:00", "scheduleDetails”:"PERFORM”}]’

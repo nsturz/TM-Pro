@@ -1,5 +1,6 @@
 // 11/13/2022
 
+// working on server code for app.patch. HTTPie is not working and i give up for the night.
 // fetch GET requests now work in deit-date-jsx. Schedule events populate correctly.
 // NOW it is time to figure out how to submit update SQL syntax for the schedule events.
 
