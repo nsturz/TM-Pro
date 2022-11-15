@@ -96,7 +96,7 @@ app.get('/api/notes/:noteId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET specific SCHEDULE information DO NOT DELETE YET!!! 👇🏼
+// GET specific SCHEDULE information 👇🏼
 app.get('/api/schedules/:showId', (req, res, next) => {
   const showId = Number(req.params.showId);
   if (!showId) {
@@ -603,7 +603,7 @@ app.patch('/api/edit-date/:showId', (req, res) => {
       // startTime,
       // endTime,
       // scheduleDetails,
-      // scheduleEvents,
+      scheduleEvents,
       notesDetails,
       contactEmail,
       contactPhone,
@@ -626,14 +626,13 @@ app.patch('/api/edit-date/:showId', (req, res) => {
   const updateAddressParams = [line1, city, state, country, addressId];
   db.query(updateAddressSql, updateAddressParams)
     .then(result => {
-      const [updatedAddress] = result.rows;
       const updateVenuesSql = `
       update "venues"
       set    "name" = $1
       where  "addressId" = $2
       returning *
       `;
-      const updateVenuesParams = [venueName, updatedAddress.addressId];
+      const updateVenuesParams = [venueName, addressId];
       db.query(updateVenuesSql, updateVenuesParams)
         .then(() => {
           const updateShowSql = `
@@ -665,32 +664,45 @@ app.patch('/api/edit-date/:showId', (req, res) => {
                   `;
                   const updateNotesParams = [notesDetails, showId];
                   db.query(updateNotesSql, updateNotesParams)
-                  // .then(() => {
-                  //   let paramNum = 2;
-                  //   const eventsParams = [newShow.showId];
-                  //   const eventValues = [];
-                  //   scheduleEvents.forEach(event => {
-                  //     const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
-                  //     eventValues.push(value);
-                  //     eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
-                  //   });
-                  //   const insertSchedulesSql = `
-                  //     insert into "schedules" ("startTime", "endTime", "details", "showId")
-                  //     values ${eventValues.join(', ')}
-                  //    `;
-
-                    //   console.log('eventValues:', eventValues),
-                    //   console.log('eventsParams:', eventsParams)
-                    //   db.query(insertSchedulesSql, eventsParams)
-                    .then(res.status(204).json())
-                    .catch(err => {
-                      console.error(err);
-                      res.status(500).json({
-                        error: 'an unexpected error occured'
-                      });
+                    .then(() => {
+                      const deleteScheduleSql = `
+                      delete from "schedules"
+                      where "showId" = $1
+                      `;
+                      const deleteScheduleParams = [showId];
+                      db.query(deleteScheduleSql, deleteScheduleParams)
+                        .then(() => {
+                          const deleteScheduleSql = `
+                          delete from "schedules"
+                          where "showId" = $1
+                        `;
+                          const deleteScheduleParams = [showId];
+                          db.query(deleteScheduleSql, deleteScheduleParams)
+                            .then(() => {
+                              let paramNum = 2;
+                              const eventsParams = [showId];
+                              const eventValues = [];
+                              scheduleEvents.forEach(event => {
+                                const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+                                eventValues.push(value);
+                                eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+                              });
+                              const insertSchedulesSql = `
+                              insert into "schedules" ("startTime", "endTime", "details", "showId")
+                              values ${eventValues.join(', ')}
+                              `;
+                              db.query(insertSchedulesSql, eventsParams)
+                                .then(res.status(204).json())
+                                .catch(err => {
+                                  console.error(err);
+                                  res.status(500).json({
+                                    error: 'an unexpected error occured'
+                                  });
+                                });
+                            });
+                        });
                     });
                 });
-
             });
         });
     });
@@ -734,4 +746,4 @@ app.listen(process.env.PORT, () => {
   process.stdout.write(`\n\napp listening on port ${process.env.PORT}\n\n`);
 });
 
-// http PATCH: 3000/api/edit-date/6 line1=“434 Main St.” city=“Philadelphia” state=“Pennsylvania” country=“USA” addressId=6 artistId=1 date=02-11-2023 contactEmail=“foo@global.com” contactName="Foo M." contactPhone="7765244233" notesDetails=“Do not” scheduleEvents:='[{"startTime":"16:00", "endTime": "17:00", "scheduleDetails”:”dinner”}, {"startTime": "18:00", "endTime": "19:00", "scheduleDetails”:”panic”}, {"startTime": "20:00", "endTime": "21:00", "scheduleDetails”:"PERFORM”}]’
+// http PATCH: 3000/api/edit-date/1 line1="545 Chamoy Ave" city="Lakewood" state="CA" country="USA" addressId=1 venueName="Brandons Grandmas House" date=01-04-2023 showId=1 contactEmail="dora@brandonius.com" contactName="Dora" contactPhone="5624235534" notesDetails="pay all respects" scheduleEvents:='[{"startTime":"16:00", "endTime":"17:00", "scheduleDetails":"presents"},{"startTime":"18:00", "endTime":"19:00", "scheduleDetails":"dessert"},{"startTime":"20:00", "endTime":"21:00", "scheduleDetails":"bedtime"}]'

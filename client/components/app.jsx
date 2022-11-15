@@ -1,8 +1,6 @@
-// 11/13/2022
+// 11/14/2022
 
-// working on server code for app.patch. HTTPie is not working and i give up for the night.
-// fetch GET requests now work in deit-date-jsx. Schedule events populate correctly.
-// NOW it is time to figure out how to submit update SQL syntax for the schedule events.
+// app.patch now works successfully! now it's time to finish editTourDate() on line 127
 
 // waiting to see if we can get asome help with the PATCH request.
 
@@ -126,8 +124,26 @@ export default class App extends React.Component {
       .catch(console.error);
   }
 
-  render() {
+  // editTourDate(editedTourDate) {
+  //   fetch('/api/edit-date', {
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(selectedDate)
+  //   })
+  //     .then(() => {
+  //       const newTourDates = [...this.state.tourDates];
+  //       for (let i = 0; i < newTourDates.length; i++) {
+  //         if (newTourDates[i].showId === selectedDate.showId) {
+  //           newTourDates.splice(i, 1);
+  //         }
+  //       } this.setState({ tourDates: newTourDates });
+  //     })
+  //     .catch(console.error);
+  // }
 
+  render() {
     // console.log('this.state.tourDates:', this.state.tourDates)
     return (
       <div>
