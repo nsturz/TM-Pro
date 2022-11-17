@@ -7,6 +7,7 @@ export default class EditTourDate extends React.Component {
       click: 0,
       newScheduleEventId: 1,
       show: {
+        showId: null,
         date: '',
         line1: '',
         city: '',
@@ -168,6 +169,7 @@ export default class EditTourDate extends React.Component {
           .then(show => {
             this.setState({
               show: {
+                showId: show.showId,
                 date: show.date,
                 addressId: show.addressId,
                 line1: show.line1,
@@ -195,7 +197,9 @@ export default class EditTourDate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    const showId = this.state.show.showId;
     const editedTourDate = {
+      showId: this.state.show.showId,
       scheduleEvents: this.state.scheduleEvents,
       line1: this.state.show.line1,
       city: this.state.show.city,
@@ -208,11 +212,13 @@ export default class EditTourDate extends React.Component {
       date: this.state.date,
       venueName: this.state.venueName
     };
-    this.props.onSubmit(editedTourDate);
+    // console.log('inside EditTourDate - editedTourDate.showId:', editedTourDate.showId)
+    this.props.onSubmit(editedTourDate, showId);
     this.setState({
       click: 0,
       newScheduleEventId: 1,
       show: {
+        showId: null,
         date: '',
         line1: '',
         city: '',
@@ -240,7 +246,7 @@ export default class EditTourDate extends React.Component {
         <form
           className="row"
           id="edit-tour-date-form"
-          onSubmit={this.handleSubmit}>
+          onSubmit={ this.handleSubmit }>
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center" />

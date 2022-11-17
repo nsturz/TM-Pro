@@ -27,6 +27,7 @@ export default class App extends React.Component {
     this.addName = this.addName.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
     this.deleteTourDate = this.deleteTourDate.bind(this);
+    this.editTourDate = this.editTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -64,7 +65,7 @@ export default class App extends React.Component {
       onSubmit={ this.addTourDate }/>;
     }
     if (route.path === 'edit-date') {
-      return <EditTourDate tourDates={this.state.tourDates} />;
+      return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
     }
     return <NotFound />;
   }
@@ -124,24 +125,26 @@ export default class App extends React.Component {
       .catch(console.error);
   }
 
-  // editTourDate(editedTourDate) {
-  //   fetch('/api/edit-date', {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(selectedDate)
-  //   })
-  //     .then(() => {
-  //       const newTourDates = [...this.state.tourDates];
-  //       for (let i = 0; i < newTourDates.length; i++) {
-  //         if (newTourDates[i].showId === selectedDate.showId) {
-  //           newTourDates.splice(i, 1);
-  //         }
-  //       } this.setState({ tourDates: newTourDates });
-  //     })
-  //     .catch(console.error);
-  // }
+  editTourDate(editedTourDate, showId) {
+
+    fetch(`/api/edit-date/${showId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedTourDate)
+    })
+      // console.log('inside editedTourDate - showId', showId)
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === showId) {
+            newTourDates.splice(i, 1, editedTourDate);
+          }
+        } this.setState({ tourDates: newTourDates });
+      })
+      .catch(console.error);
+  }
 
   render() {
     // console.log('this.state.tourDates:', this.state.tourDates)
