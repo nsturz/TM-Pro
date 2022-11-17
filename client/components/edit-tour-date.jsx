@@ -6,19 +6,19 @@ export default class EditTourDate extends React.Component {
     this.state = {
       click: 0,
       newScheduleEventId: 1,
-      show: {
-        showId: null,
-        date: '',
-        line1: '',
-        city: '',
-        state: '',
-        country: '',
-        venueName: '',
-        notesDetails: '',
-        contactName: '',
-        contactPhone: '',
-        contactEmail: ''
-      },
+      // show: {
+      showId: null,
+      date: '',
+      line1: '',
+      city: '',
+      state: '',
+      country: '',
+      venueName: '',
+      notesDetails: '',
+      contactName: '',
+      contactPhone: '',
+      contactEmail: '',
+      // },
       scheduleEvents: [],
       newScheduleEvents: []
     };
@@ -42,81 +42,81 @@ export default class EditTourDate extends React.Component {
 
   handleDateChange(event) {
     this.setState({
-      show: {
-        date: event.target.value
-      }
+      // show: {
+      date: event.target.value
+      // }
     });
   }
 
   handleAddressChange(event) {
     this.setState({
-      show: {
-        line1: event.target.value
-      }
+      // show: {
+      line1: event.target.value
+      // }
     });
   }
 
   handleCityChange(event) {
     this.setState({
-      show: {
-        city: event.target.value
-      }
+      // show: {
+      city: event.target.value
+      // }
     });
   }
 
   handleStateChange(event) {
     this.setState({
-      show: {
-        state: event.target.value
-      }
+      // show: {
+      state: event.target.value
+      // }
     });
   }
 
   handleCountryChange(event) {
     this.setState({
-      show: {
-        country: event.target.value
-      }
+      // show: {
+      country: event.target.value
+      // }
     });
   }
 
   handleVenueNameChange(event) {
     this.setState({
-      show: {
-        venueName: event.target.value
-      }
+      // show: {
+      venueName: event.target.value
+      // }
     });
   }
 
   handleNotesDetailsChange(event) {
     this.setState({
-      show: {
-        notesDetails: event.target.value
-      }
+      // show: {
+      notesDetails: event.target.value
+      // }
     });
   }
 
   handleContactNameChange(event) {
     this.setState({
-      show: {
-        contactName: event.target.value
-      }
+      // show: {
+      contactName: event.target.value
+      // }
     });
   }
 
   handleContactPhoneChange(event) {
     this.setState({
-      show: {
-        contactPhone: event.target.value
-      }
+      // show: {
+      contactPhone: event.target.value
+      // }
     });
   }
 
   handleContactEmailChange(event) {
     this.setState({
-      show: {
-        contactEmail: event.target.value
-      }
+      // show: {
+      contactEmail: event.target.value
+      // }
     });
   }
 
@@ -168,20 +168,20 @@ export default class EditTourDate extends React.Component {
           .then(response => response.json())
           .then(show => {
             this.setState({
-              show: {
-                showId: show.showId,
-                date: show.date,
-                addressId: show.addressId,
-                line1: show.line1,
-                city: show.city,
-                state: show.state,
-                country: show.country,
-                venueName: show.venueName,
-                notesDetails: show.notesDetails,
-                contactName: show.contactName,
-                contactPhone: show.contactPhone,
-                contactEmail: show.contactEmail
-              }
+              // show: {
+              showId: show.showId,
+              date: show.date,
+              addressId: show.addressId,
+              line1: show.line1,
+              city: show.city,
+              state: show.state,
+              country: show.country,
+              venueName: show.venueName,
+              notesDetails: show.notesDetails,
+              contactName: show.contactName,
+              contactPhone: show.contactPhone,
+              contactEmail: show.contactEmail
+              // }
             });
             fetch(`/api/schedules/${tourDates[i].showId}`)
               .then(response => response.json())
@@ -197,18 +197,18 @@ export default class EditTourDate extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const showId = this.state.show.showId;
+    const showId = this.state.showId;
     const editedTourDate = {
-      showId: this.state.show.showId,
+      showId: this.state.showId,
       scheduleEvents: this.state.scheduleEvents,
-      line1: this.state.show.line1,
-      city: this.state.show.city,
-      state: this.state.show.state,
-      country: this.state.show.country,
-      contactEmail: this.state.show.contactEmail,
-      contactName: this.state.show.contactName,
-      contactPhone: this.state.show.contactPhone,
-      notesDetails: this.state.show.notesDetails,
+      line1: this.state.line1,
+      city: this.state.city,
+      state: this.state.state,
+      country: this.state.country,
+      contactEmail: this.state.contactEmail,
+      contactName: this.state.contactName,
+      contactPhone: this.state.contactPhone,
+      notesDetails: this.state.notesDetails,
       date: this.state.date,
       venueName: this.state.venueName
     };
@@ -217,19 +217,19 @@ export default class EditTourDate extends React.Component {
     this.setState({
       click: 0,
       newScheduleEventId: 1,
-      show: {
-        showId: null,
-        date: '',
-        line1: '',
-        city: '',
-        state: '',
-        country: '',
-        venueName: '',
-        notesDetails: '',
-        contactName: '',
-        contactPhone: '',
-        contactEmail: ''
-      },
+      // show: {
+      showId: null,
+      date: '',
+      line1: '',
+      city: '',
+      state: '',
+      country: '',
+      venueName: '',
+      notesDetails: '',
+      contactName: '',
+      contactPhone: '',
+      contactEmail: '',
+      // },
       scheduleEvents: [],
       newScheduleEvents: []
     });
@@ -238,7 +238,8 @@ export default class EditTourDate extends React.Component {
 
   render() {
     // console.log('this.props.tourDates', this.props.tourDates)
-    // console.log('this.state.show:', this.state.show)
+    // console.log('this.state:', this.state)
+    // console.log('<EditTourDate /> this.state.showId:',this.state.showId)
     // console.log('this.state.scheduleEvents:', this.state.scheduleEvents)
     // console.log('this.state.newScheduleEvents:', this.state.newScheduleEvents)
     return (
@@ -270,27 +271,27 @@ export default class EditTourDate extends React.Component {
               type="date"
               className="form-control col-6"
               onChange={this.handleDateChange}
-              value={ this.state.show.date }/>
+              value={ this.state.date }/>
             </div>
             <div className="row justify-content-center mt-3">
               <label htmlFor="city" className="col-12 text-center">LOCATION</label>
               <input
               name="city"
-              value={ this.state.show.city }
+              value={ this.state.city }
               type="text"
               placeholder="City"
               className="m-1 form-control col-5"
               onChange={this.handleCityChange} />
               <input
               name="state"
-              value={ this.state.show.state }
+              value={ this.state.state }
               type="text"
               placeholder='State'
               className="m-1 form-control col-2"
               onChange={this.handleStateChange} />
               <input
               name="country"
-              value={ this.state.show.country }
+              value={ this.state.country }
               type="text"
               placeholder='USA'
               className="m-1 form-control col-2"
@@ -303,7 +304,7 @@ export default class EditTourDate extends React.Component {
               type="text"
               className="form-control col-6"
               onChange={this.handleAddressChange}
-              value={ this.state.show.line1 }
+              value={ this.state.line1 }
               />
             </div>
             <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
@@ -346,7 +347,7 @@ export default class EditTourDate extends React.Component {
                 type="text"
                 className="form-control col-6"
                 onChange={this.handleVenueNameChange}
-                value={ this.state.show.venueName }
+                value={ this.state.venueName }
                 />
             </div>
             <div className="row d-flex justify-content-center mt-5">
@@ -356,7 +357,7 @@ export default class EditTourDate extends React.Component {
               id=""
               className="form-control col-8"
               onChange={this.handleNotesDetailsChange}
-              value={ this.state.show.notesDetails }
+              value={ this.state.notesDetails }
               />
             </div>
             <div className="row d-flex justify-content-center mt-5">
@@ -367,19 +368,19 @@ export default class EditTourDate extends React.Component {
               </label>
               <input
               type="text"
-              value={ this.state.show.contactName }
+              value={ this.state.contactName }
               className="form-control col-8 m-1"
               placeholder='Name'
               onChange={this.handleContactNameChange} />
               <input
               type="text"
-              value={ this.state.show.contactPhone }
+              value={ this.state.contactPhone }
               className='form-control col-8 m-1'
               placeholder='Phone'
               onChange={this.handleContactPhoneChange} />
               <input
               type="text"
-              value={ this.state.show.contactEmail }
+              value={ this.state.contactEmail }
               className='form-control col-8 m-1'
               placeholder='Email'
               onChange={this.handleContactEmailChange} />

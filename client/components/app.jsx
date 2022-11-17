@@ -126,7 +126,6 @@ export default class App extends React.Component {
   }
 
   editTourDate(editedTourDate, showId) {
-
     fetch(`/api/edit-date/${showId}`, {
       method: 'PATCH',
       headers: {

@@ -679,6 +679,7 @@ app.patch('/api/edit-date/:showId', (req, res) => {
                           const deleteScheduleParams = [showId];
                           db.query(deleteScheduleSql, deleteScheduleParams)
                             .then(() => {
+                              // console.log('scheduleEvents:', scheduleEvents)
                               let paramNum = 2;
                               const eventsParams = [showId];
                               const eventValues = [];
