@@ -689,9 +689,12 @@ app.patch('/api/edit-date/:showId', (req, res) => {
                                 eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
                               });
                               const insertSchedulesSql = `
-                              insert into "schedules" ("startTime", "endTime", "details", "showId")
-                              values ${eventValues.join(', ')}
+                                insert into "schedules" ("startTime", "endTime", "details", "showId")
+                               values ${eventValues.join(', ')}
                               `;
+
+                              //  console.log('eventValues:', eventValues),
+                              //  console.log('eventsParams:', eventsParams)
                               db.query(insertSchedulesSql, eventsParams)
                                 .then(res.status(204).json())
                                 .catch(err => {

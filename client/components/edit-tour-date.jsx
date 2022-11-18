@@ -6,7 +6,6 @@ export default class EditTourDate extends React.Component {
     this.state = {
       click: 0,
       newScheduleEventId: 1,
-      // show: {
       showId: null,
       date: '',
       line1: '',
@@ -18,7 +17,6 @@ export default class EditTourDate extends React.Component {
       contactName: '',
       contactPhone: '',
       contactEmail: '',
-      // },
       scheduleEvents: [],
       newScheduleEvents: []
     };
@@ -42,81 +40,61 @@ export default class EditTourDate extends React.Component {
 
   handleDateChange(event) {
     this.setState({
-      // show: {
       date: event.target.value
-      // }
     });
   }
 
   handleAddressChange(event) {
     this.setState({
-      // show: {
       line1: event.target.value
-      // }
     });
   }
 
   handleCityChange(event) {
     this.setState({
-      // show: {
       city: event.target.value
-      // }
     });
   }
 
   handleStateChange(event) {
     this.setState({
-      // show: {
       state: event.target.value
-      // }
     });
   }
 
   handleCountryChange(event) {
     this.setState({
-      // show: {
       country: event.target.value
-      // }
     });
   }
 
   handleVenueNameChange(event) {
     this.setState({
-      // show: {
       venueName: event.target.value
-      // }
     });
   }
 
   handleNotesDetailsChange(event) {
     this.setState({
-      // show: {
       notesDetails: event.target.value
-      // }
     });
   }
 
   handleContactNameChange(event) {
     this.setState({
-      // show: {
       contactName: event.target.value
-      // }
     });
   }
 
   handleContactPhoneChange(event) {
     this.setState({
-      // show: {
       contactPhone: event.target.value
-      // }
     });
   }
 
   handleContactEmailChange(event) {
     this.setState({
-      // show: {
       contactEmail: event.target.value
-      // }
     });
   }
 
@@ -160,7 +138,6 @@ export default class EditTourDate extends React.Component {
   }
 
   selectDate(event) {
-    // console.log('event.target.value:', event.target.value)
     const tourDates = this.props.tourDates;
     for (let i = 0; i < tourDates.length; i++) {
       if (event.target.value === tourDates[i].showDate) {
@@ -168,7 +145,6 @@ export default class EditTourDate extends React.Component {
           .then(response => response.json())
           .then(show => {
             this.setState({
-              // show: {
               showId: show.showId,
               date: show.date,
               addressId: show.addressId,
@@ -181,7 +157,6 @@ export default class EditTourDate extends React.Component {
               contactName: show.contactName,
               contactPhone: show.contactPhone,
               contactEmail: show.contactEmail
-              // }
             });
             fetch(`/api/schedules/${tourDates[i].showId}`)
               .then(response => response.json())
@@ -217,7 +192,6 @@ export default class EditTourDate extends React.Component {
     this.setState({
       click: 0,
       newScheduleEventId: 1,
-      // show: {
       showId: null,
       date: '',
       line1: '',
@@ -229,7 +203,6 @@ export default class EditTourDate extends React.Component {
       contactName: '',
       contactPhone: '',
       contactEmail: '',
-      // },
       scheduleEvents: [],
       newScheduleEvents: []
     });
