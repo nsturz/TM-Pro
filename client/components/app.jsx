@@ -1,8 +1,8 @@
 // 11/14/2022
 
-// app.patch now works successfully! now it's time to finish editTourDate() on line 127
-
-// waiting to see if we can get asome help with the PATCH request.
+// app.patch now works successfully in index.js, but the corresponding fetch request in app.jsx does not :(
+// addresses, notes, contacts, and venues get updated in database, but for some reason,
+// the show also gets "deleted", but still shows up in the database?
 
 import React from 'react';
 import NewArtistForm from './new-artist-form';

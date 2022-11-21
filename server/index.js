@@ -198,7 +198,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
   const params = [showId];
   db.query(sql, params)
     .then(result => {
-
+      // console.log('result.rows[0]:', result.rows)
       if (!result.rows[0]) {
         throw new ClientError(404, `cannot find show with showId ${showId}`);
       }
@@ -672,37 +672,29 @@ app.patch('/api/edit-date/:showId', (req, res) => {
                       const deleteScheduleParams = [showId];
                       db.query(deleteScheduleSql, deleteScheduleParams)
                         .then(() => {
-                          const deleteScheduleSql = `
-                          delete from "schedules"
-                          where "showId" = $1
-                        `;
-                          const deleteScheduleParams = [showId];
-                          db.query(deleteScheduleSql, deleteScheduleParams)
-                            .then(() => {
-                              // console.log('scheduleEvents:', scheduleEvents)
-                              let paramNum = 2;
-                              const eventsParams = [showId];
-                              const eventValues = [];
-                              scheduleEvents.forEach(event => {
-                                const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
-                                eventValues.push(value);
-                                eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
-                              });
-                              const insertSchedulesSql = `
+                          // console.log('scheduleEvents:', scheduleEvents)
+                          let paramNum = 2;
+                          const eventsParams = [showId];
+                          const eventValues = [];
+                          scheduleEvents.forEach(event => {
+                            const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+                            eventValues.push(value);
+                            eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
+                          });
+                          const insertSchedulesSql = `
                                 insert into "schedules" ("startTime", "endTime", "details", "showId")
                                values ${eventValues.join(', ')}
                               `;
 
-                              //  console.log('eventValues:', eventValues),
-                              //  console.log('eventsParams:', eventsParams)
-                              db.query(insertSchedulesSql, eventsParams)
-                                .then(res.status(204).json())
-                                .catch(err => {
-                                  console.error(err);
-                                  res.status(500).json({
-                                    error: 'an unexpected error occured'
-                                  });
-                                });
+                          //  console.log('eventValues:', eventValues),
+                          //  console.log('eventsParams:', eventsParams)
+                          db.query(insertSchedulesSql, eventsParams)
+                            .then(res.status(204).json())
+                            .catch(err => {
+                              console.error(err);
+                              res.status(500).json({
+                                error: 'an unexpected error occured'
+                              });
                             });
                         });
                     });

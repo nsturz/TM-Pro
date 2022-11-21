@@ -7,6 +7,7 @@ export default class EditTourDate extends React.Component {
       click: 0,
       newScheduleEventId: 1,
       showId: null,
+      addressId: null,
       date: '',
       line1: '',
       city: '',
@@ -175,6 +176,7 @@ export default class EditTourDate extends React.Component {
     const showId = this.state.showId;
     const editedTourDate = {
       showId: this.state.showId,
+      addressId: this.state.addressId,
       scheduleEvents: this.state.scheduleEvents,
       line1: this.state.line1,
       city: this.state.city,
@@ -193,6 +195,7 @@ export default class EditTourDate extends React.Component {
       click: 0,
       newScheduleEventId: 1,
       showId: null,
+      addressId: null,
       date: '',
       line1: '',
       city: '',
