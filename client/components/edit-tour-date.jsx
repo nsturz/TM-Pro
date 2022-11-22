@@ -215,7 +215,7 @@ export default class EditTourDate extends React.Component {
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form
-          className="row"
+          className="row mb-5"
           id="edit-tour-date-form"
           onSubmit={ this.handleSubmit }>
           <div className="col-12 col-lg-6 form-group mt-3">
