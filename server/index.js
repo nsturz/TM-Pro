@@ -683,5 +683,3 @@ app.use(errorMiddleware);
 app.listen(process.env.PORT, () => {
   process.stdout.write(`\n\napp listening on port ${process.env.PORT}\n\n`);
 });
-
-// http PATCH: 3000/api/edit-date/1 line1="545 Chamoy Ave" city="Lakewood" state="CA" country="USA" addressId=1 venueName="Brandons Grandmas House" date=01-04-2023 showId=1 contactEmail="dora@brandonius.com" contactName="Dora" contactPhone="5624235534" notesDetails="pay all respects" scheduleEvents:='[{"startTime":"16:00", "endTime":"17:00", "scheduleDetails":"presents"},{"startTime":"18:00", "endTime":"19:00", "scheduleDetails":"dessert"},{"startTime":"20:00", "endTime":"21:00", "scheduleDetails":"bedtime"}]'
