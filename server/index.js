@@ -62,7 +62,6 @@ app.get('/api/venues/:venueId', (req, res, next) => {
          "addressId"
   from   "venues"
   where "venueId" = $1`;
-
   const params = [venueId];
   db.query(sql, params)
     .then(result => {
@@ -84,7 +83,6 @@ app.get('/api/notes/:noteId', (req, res, next) => {
   select "details"
   from   "notes"
   where "noteId" = $1`;
-
   const params = [noteId];
   db.query(sql, params)
     .then(result => {
@@ -96,29 +94,29 @@ app.get('/api/notes/:noteId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET specific SCHEDULE information DO NOT DELETE YET!!! 👇🏼
-// app.get('/api/schedules/:scheduleId', (req, res, next) => {
-//   const scheduleId = Number(req.params.scheduleId);
-//   if (!scheduleId) {
-//     throw new ClientError(400, 'scheduleId must be a positive integer')
-//   }
-//   const sql = `
-//   select "startTime",
-//          "endTime",
-//          "details"
-//   from   "schedules"
-//   where "scheduleId" = $1 `;
-
-//   const params = [scheduleId];
-//   db.query(sql, params)
-//     .then(result => {
-//       if (!result.rows[0]) {
-//         throw new ClientError(404, `cannot find schedule with showId ${scheduleId}`);
-//       }
-//       res.json(result.rows[0]);
-//     })
-//     .catch(err => next(err))
-// })
+// GET specific SCHEDULE information 👇🏼
+app.get('/api/schedules/:showId', (req, res, next) => {
+  const showId = Number(req.params.showId);
+  if (!showId) {
+    throw new ClientError(400, 'scheduleId must be a positive integer');
+  }
+  const sql = `
+  select "startTime",
+         "endTime",
+         "details",
+         "scheduleId"
+  from   "schedules"
+  where "showId" = $1 `;
+  const params = [showId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows) {
+        throw new ClientError(404, `cannot find schedule with showId ${showId}`);
+      }
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
 
 // GET specific SCHEDULE information (using showId?) 👇🏼
 app.get('/api/schedules', (req, res, next) => {
@@ -134,7 +132,6 @@ app.get('/api/schedules', (req, res, next) => {
   db.query(sql)
     .then(result => res.json(result.rows))
     .catch(err => next(err));
-
 });
 
 // GET specific CONTACT info 👇🏼
@@ -149,7 +146,6 @@ app.get('/api/contacts/:contactId', (req, res, next) => {
          "phone" as "contactPhone"
   from   "contacts"
   where "contactId" = $1`;
-
   const params = [contactId];
   db.query(sql, params)
     .then(result => {
@@ -168,28 +164,42 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select to_char("date",'MM/DD/YYYY') as "date",
+  select to_char("date",'yyyy-MM-dd') as "date",
          "venues"."name" as "venueName",
+         "artistId",
+         "addressId",
          "venueId",
          "showId",
          "line1",
          "city",
-         "state"
+         "state",
+         "country",
+         "startTime",
+         "endTime",
+         "schedules"."details" as "scheduleDetails",
+         "contacts"."email" as "contactEmail",
+         "contacts"."name" as "contactName",
+         "contacts"."phone" as "contactPhone",
+         "notes"."details" as "notesDetails"
   from   "shows"
   join "venues" using ("venueId")
   join "addresses" using ("addressId")
+  join "artists" using ("artistId")
+  join "contacts" using ("showId")
+  join "notes" using ("showId")
+  join "schedules" using ("showId")
   where "showId" = $1`;
-
   const params = [showId];
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        throw new ClientError(404, `cannot find note with showId ${showId}`);
+        throw new ClientError(404, `cannot find show with showId ${showId}`);
       }
       res.json(result.rows[0]);
     })
     .catch(err => next(err));
 });
+
 // GET DATE info for DATES section 👇🏼
 app.get('/api/shows', (req, res, next) => {
   const sql = `
@@ -203,7 +213,6 @@ app.get('/api/shows', (req, res, next) => {
   join "addresses" using ("addressId")
   order by "showDate" asc
   `;
-
   db.query(sql)
     .then(result => {
       res.json(result.rows);
@@ -223,7 +232,6 @@ app.post('/api/artists', (req, res) => {
   const sql = `
   insert into "artists" ("name")
   values      ($1)`;
-
   const params = [name];
   db.query(sql, params)
     .then(result => {
@@ -252,7 +260,6 @@ app.post('/api/addresses', (req, res) => {
   insert into "addresses" ("line1", "city", "state", "country")
   values      ($1, $2, $3, $4)
   `;
-
   const params = [line1, city, state, country];
   db.query(sql, params)
     .then(result => {
@@ -286,7 +293,6 @@ app.post('/api/contacts', (req, res) => {
   insert into "contacts" ("email", "name", "phone", "showId")
   values      ($1, $2, $3, $4)
   `;
-
   const params = [email, contactName, contactPhone, showId];
   db.query(sql, params)
     .then(result => {
@@ -320,7 +326,6 @@ app.post('/api/venues', (req, res) => {
   insert into "venues" ("name", "phone", "addressId")
   values      ($1, $2, $3)
   `;
-
   const params = [name, phone, addressId];
   db.query(sql, params)
     .then(result => {
@@ -348,7 +353,6 @@ app.post('/api/notes', (req, res) => {
   insert into "notes" ("details", "showId")
   values      ($1, $2)
   `;
-
   const params = [details, showId];
   db.query(sql, params)
     .then(result => {
@@ -405,7 +409,6 @@ app.post('/api/shows', (req, res) => {
   insert into "shows" ("venueId", "artistId", "date")
   values      ($1, $2, $3)
   `;
-
   const params = [venueId, artistId, date];
   db.query(sql, params)
     .then(result => {
@@ -449,12 +452,10 @@ app.post('/api/new-date', (req, res) => {
   values      ($1, $2, $3, $4)
   returning *;
   `;
-
   const insertAddressParams = [line1, city, state, country];
   db.query(insertAddressSql, insertAddressParams)
     .then(addressResult => {
       const [newAddress] = addressResult.rows;
-
       const insertVenueSql = `
       insert into "venues" ("name", "addressId")
       values ($1, $2)
@@ -464,52 +465,42 @@ app.post('/api/new-date', (req, res) => {
       db.query(insertVenueSql, insertVenueParams)
         .then(venueResult => {
           const [newVenue] = venueResult.rows;
-
           const insertShowSql = `
-        insert into "shows" ("venueId", "artistId", "date")
-        values ($1, $2, $3)
-        returning *;
-        `;
-
+          insert into "shows" ("venueId", "artistId", "date")
+          values ($1, $2, $3)
+          returning *;
+          `;
           const insertShowParams = [newVenue.venueId, artistId, date];
           db.query(insertShowSql, insertShowParams)
             .then(showResult => {
               const [newShow] = showResult.rows;
-
               const insertContactSql = `
-          insert into "contacts" ("email", "name", "phone", "showId")
-          values ($1, $2, $3, $4)
-          `;
+              insert into "contacts" ("email", "name", "phone", "showId")
+              values ($1, $2, $3, $4)
+              `;
               const insertContactParams = [contactEmail, contactName, contactPhone, newShow.showId];
               db.query(insertContactSql, insertContactParams)
                 .then(contactResult => {
-
                   const insertNoteSql = `
                    insert into "notes" ("details", "showId")
                    values($1, $2)
                   `;
-
                   const insertNoteParams = [notesDetails, newShow.showId];
                   db.query(insertNoteSql, insertNoteParams)
                     .then(noteResult => {
-
                       let paramNum = 2;
                       const eventsParams = [newShow.showId];
                       const eventValues = [];
-
                       scheduleEvents.forEach(event => {
                         const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
-
                         eventValues.push(value);
                         eventsParams.push(event.startTime, event.endTime, event.scheduleDetails);
                       });
-
                       const insertSchedulesSql = `
                         insert into "schedules" ("startTime", "endTime", "details", "showId")
                         values ${eventValues.join(', ')}
                        `;
                       db.query(insertSchedulesSql, eventsParams);
-
                       const newTourDate = {
                         newShow
                       };
@@ -554,16 +545,16 @@ app.delete('/api/delete-date', (req, res) => {
       db.query(deleteNoteSql, deleteNoteParams)
         .then(() => {
           const deleteScheduleSql = `
-        delete from "schedules"
-        where "showId" = $1
-        `;
+          delete from "schedules"
+          where "showId" = $1
+          `;
           const deleteScheduleParams = [showId];
           db.query(deleteScheduleSql, deleteScheduleParams)
             .then(() => {
               const deleteShowSql = `
-          delete from "shows"
-          where "showId" = $1
-         `;
+                delete from "shows"
+                where "showId" = $1
+              `;
               const deleteShowParams = [showId];
               db.query(deleteShowSql, deleteShowParams)
                 .then(res.status(204).json())
@@ -578,6 +569,115 @@ app.delete('/api/delete-date', (req, res) => {
     });
 });
 
+// EDIT / PATCH shows in the database 👇🏼
+app.patch('/api/edit-date/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  if (!Number.isInteger(showId) || showId < 1) {
+    res.status(400).json({
+      error: 'showId must be a positive integer'
+    });
+    return;
+  }
+  const
+    {
+      addressId,
+      date,
+      venueName,
+      scheduleEvents,
+      notesDetails,
+      contactEmail,
+      contactPhone,
+      contactName,
+      line1,
+      state,
+      city,
+      country
+    } = req.body;
+  const updateAddressSql = `
+      update "addresses"
+      set "line1" = $1,
+          "city" = $2,
+          "state" = $3,
+          "country" =$4
+      where "addressId" = $5
+      returning *
+      `;
+  const updateAddressParams = [line1, city, state, country, addressId];
+  db.query(updateAddressSql, updateAddressParams)
+    .then(result => {
+      const updateVenuesSql = `
+      update "venues"
+      set    "name" = $1
+      where  "addressId" = $2
+      returning *
+      `;
+      const updateVenuesParams = [venueName, addressId];
+      db.query(updateVenuesSql, updateVenuesParams)
+        .then(() => {
+          const updateShowSql = `
+            update "shows"
+            set "date" = $1
+            where "showId" = $2
+            returning *
+            `;
+          const updateShowParams = [date, showId];
+          db.query(updateShowSql, updateShowParams)
+            .then(() => {
+              const updateContactSql = `
+              update "contacts"
+              set "email" = $1,
+                  "name" = $2,
+                  "phone" = $3
+              where "showId" = $4
+              returning *
+              `;
+              const updateContactParams = [contactEmail, contactName, contactPhone, showId];
+              db.query(updateContactSql, updateContactParams)
+                .then(() => {
+                  const updateNotesSql = `
+                  update "notes"
+                  set "createdAt" = now(),
+                      "details" = $1
+                  where "showId" = $2
+                  returning *
+                  `;
+                  const updateNotesParams = [notesDetails, showId];
+                  db.query(updateNotesSql, updateNotesParams)
+                    .then(() => {
+                      const deleteScheduleSql = `
+                      delete from "schedules"
+                      where "showId" = $1
+                      `;
+                      const deleteScheduleParams = [showId];
+                      db.query(deleteScheduleSql, deleteScheduleParams)
+                        .then(() => {
+                          let paramNum = 2;
+                          const eventsParams = [showId];
+                          const eventValues = [];
+                          scheduleEvents.forEach(event => {
+                            const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+                            eventValues.push(value);
+                            eventsParams.push(event.startTime, event.endTime, event.details);
+                          });
+                          const insertSchedulesSql = `
+                                insert into "schedules" ("startTime", "endTime", "details", "showId")
+                               values ${eventValues.join(', ')}
+                              `;
+                          db.query(insertSchedulesSql, eventsParams)
+                            .then(res.status(204).json())
+                            .catch(err => {
+                              console.error(err);
+                              res.status(500).json({
+                                error: 'an unexpected error occured'
+                              });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {

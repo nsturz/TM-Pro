@@ -1,6 +1,8 @@
-// it looks like the correct items are being taken out of this.state.tourDates,
-// but we may need to rethink some of the logic. for instance, "event"
-// was valid in tourdates.jsx, but now that "event" doesnt exist in app.jsx.
+// 11/14/2022
+
+// app.patch now works successfully in index.js, but the corresponding fetch request in app.jsx does not :(
+// addresses, notes, contacts, and venues get updated in database, but for some reason,
+// the show also gets "deleted", but still shows up in the database?
 
 import React from 'react';
 import NewArtistForm from './new-artist-form';
@@ -12,6 +14,7 @@ import NotFound from '../pages/not-found';
 import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
+import EditTourDate from './edit-tour-date';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,6 +27,7 @@ export default class App extends React.Component {
     this.addName = this.addName.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
     this.deleteTourDate = this.deleteTourDate.bind(this);
+    this.editTourDate = this.editTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +63,9 @@ export default class App extends React.Component {
     if (route.path === 'new-date') {
       return <NewTourDate artists={this.state.artists}
       onSubmit={ this.addTourDate }/>;
+    }
+    if (route.path === 'edit-date') {
+      return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
     }
     return <NotFound />;
   }
@@ -112,6 +119,25 @@ export default class App extends React.Component {
         for (let i = 0; i < newTourDates.length; i++) {
           if (newTourDates[i].showId === selectedDate.showId) {
             newTourDates.splice(i, 1);
+          }
+        } this.setState({ tourDates: newTourDates });
+      })
+      .catch(console.error);
+  }
+
+  editTourDate(editedTourDate, showId) {
+    fetch(`/api/edit-date/${showId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedTourDate)
+    })
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === showId) {
+            newTourDates.splice(i, 1, editedTourDate);
           }
         } this.setState({ tourDates: newTourDates });
       })

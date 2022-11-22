@@ -17,26 +17,14 @@ export default class Dashboard extends React.Component {
       .then(res => res.json())
       .then(show => this.setState({ show }));
 
-    fetch('api/notes/1')
-      .then(res => res.json())
-      .then(notes => this.setState({ notes }));
-
-    fetch('api/contacts/1')
-      .then(res => res.json())
-      .then(contacts => this.setState({ contacts }));
-
     fetch('api/schedules')
       .then(res => res.json())
       .then(schedules => this.setState({ schedules }));
-
   }
 
   render() {
 
-    // console.log('this.props.tourDates:', this.props.tourDates)
-    const { city, date, line1, state, venueName } = this.state.show;
-    const { details } = this.state.notes;
-    const { email, name, contactPhone } = this.state.contacts;
+    const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="container dashboard-container d-flex flex-wrap mh-100">
         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
@@ -56,7 +44,7 @@ export default class Dashboard extends React.Component {
             <i className="fa-solid fa-clipboard-list mt-1" />
             <div className="row">
               <hr className="w-100" />
-              <pre className="pl-3">{details}</pre>
+              <pre className="pl-3">{notesDetails}</pre>
             </div>
           </div>
         </div>
@@ -84,8 +72,8 @@ export default class Dashboard extends React.Component {
             <h6 className="pl-2 d-inline">CONTACTS</h6>
             <i className="fa-solid fa-phone" />
             <hr className="w-100" />
-            <p className="pl-2">{ email } </p>
-            <p className="pl-2">{ name }</p>
+            <p className="pl-2">{ contactEmail } </p>
+            <p className="pl-2">{ contactName }</p>
             <p className="pl-2">{ contactPhone }</p>
           </div>
         </div>
