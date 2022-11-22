@@ -24,7 +24,6 @@ export default class Dashboard extends React.Component {
 
   render() {
 
-    // console.log('this.state.show:', this.state.show)
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="container dashboard-container d-flex flex-wrap mh-100">

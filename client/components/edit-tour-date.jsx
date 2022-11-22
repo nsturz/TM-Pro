@@ -189,7 +189,6 @@ export default class EditTourDate extends React.Component {
       date: this.state.date,
       venueName: this.state.venueName
     };
-    // console.log('inside EditTourDate - editedTourDate.showId:', editedTourDate.showId)
     this.props.onSubmit(editedTourDate, showId);
     this.setState({
       click: 0,
@@ -213,11 +212,6 @@ export default class EditTourDate extends React.Component {
   }
 
   render() {
-    // console.log('this.props.tourDates', this.props.tourDates)
-    // console.log('this.state:', this.state)
-    // console.log('<EditTourDate /> this.state.showId:',this.state.showId)
-    // console.log('this.state.scheduleEvents:', this.state.scheduleEvents)
-    // console.log('this.state.newScheduleEvents:', this.state.newScheduleEvents)
     return (
       <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
         <form

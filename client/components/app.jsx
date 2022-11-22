@@ -133,7 +133,6 @@ export default class App extends React.Component {
       },
       body: JSON.stringify(editedTourDate)
     })
-      // console.log('inside editedTourDate - showId', showId)
       .then(() => {
         const newTourDates = [...this.state.tourDates];
         for (let i = 0; i < newTourDates.length; i++) {
@@ -146,7 +145,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log('this.state.tourDates:', this.state.tourDates)
     return (
       <div>
         <NavBar artists={this.state.artists} />
