@@ -15,6 +15,7 @@ import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
+import RouteOverview from '../pages/route-overview';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +67,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'edit-date') {
       return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
+    }
+    if (route.path === 'route-overview') {
+      return <RouteOverview tourDates={this.state.tourDates} />;
     }
     return <NotFound />;
   }
@@ -145,6 +149,9 @@ export default class App extends React.Component {
   }
 
   render() {
+    // console.log('this.state.tourDates[0].showId:', this.state.tourDates[0].showId)
+    // console.log(
+    // this.state.tourDates[0].dateCity +  'is the next city date, foo ' + 'and ', this.state.tourDates[0].dateState + 'is the next state.');
     return (
       <div>
         <NavBar artists={this.state.artists} />
