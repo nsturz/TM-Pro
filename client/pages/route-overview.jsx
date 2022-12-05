@@ -24,6 +24,7 @@ export default class RouteOverview extends React.Component {
   }
 
   render() {
+
     return (
       <div className="container route-overview-container row col-12">
         <div className="col-lg-6">
@@ -54,7 +55,8 @@ export default class RouteOverview extends React.Component {
           </div>
         </div>
         <div className="col-lg-6 d-flex justify-content-center map-container">
-          <LoadScript>
+          <LoadScript
+          googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
             <GoogleMap
               mapContainerStyle={this.state.containerStyle}
               center={this.state.center}
