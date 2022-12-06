@@ -23,8 +23,20 @@ export default class RouteOverview extends React.Component {
     };
   }
 
-  render() {
+  // componentDidMount(){
+  //   const directionsRequest = {
+  //     origin: `${this.props.tourDates[0].dateCity} , ${this.props.tourDates[0].dateState}`,
+  //     destination: `${this.props.tourDates[1].dateCity} , ${this.props.tourDates[1].dateState}`,
+  //     travelMode: google.maps.TravelMode.DRIVING
+  //   }
+  // }
 
+  render() {
+    // const directionsRequest = {
+    //   origin: `${this.props.tourDates[0].dateCity} , ${this.props.tourDates[0].dateState}`,
+    //   destination: `${this.props.tourDates[1].dateCity} , ${this.props.tourDates[1].dateState}`
+    // }
+    // console.log('directionsRequest:', directionsRequest)
     return (
       <div className="container route-overview-container row col-12">
         <div className="col-lg-6">
