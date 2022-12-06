@@ -22,13 +22,16 @@ export default class RouteOverview extends React.Component {
       }
     };
   }
-
-  // componentDidMount(){
+  // gonna change this 👇🏼
+  // async componentDidMount(){
   //   const directionsRequest = {
   //     origin: `${this.props.tourDates[0].dateCity} , ${this.props.tourDates[0].dateState}`,
   //     destination: `${this.props.tourDates[1].dateCity} , ${this.props.tourDates[1].dateState}`,
   //     travelMode: google.maps.TravelMode.DRIVING
   //   }
+
+  //   const directionsService = new google.maps.DirectionsService;
+  //   const results = await directionsService.route(directionsRequest)
   // }
 
   render() {
