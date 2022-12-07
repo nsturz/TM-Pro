@@ -52,7 +52,6 @@ export default class RouteOverview extends React.Component {
   }
 
   render() {
-    // console.log('this.state.tourDates in <RouteOverview />:', this.state.tourdates)
     return (
       <div className="container route-overview-container row col-12">
         <div className="col-lg-6">
@@ -77,7 +76,8 @@ export default class RouteOverview extends React.Component {
               </div>
               <div className="row d-dlex justify-content-center">
                 <hr className="w-100" />
-                <p className="col-6">From:</p>
+                <p className="col-6">From: {this.state.origin} </p>
+                <p className="col-6">To: {this.state.destination} </p>
                 <p className="col-6">Distance: {this.state.distances[0]}</p>
                 <p className="col-6">Duration: {this.state.durations[0]}</p>
               </div>
