@@ -143,9 +143,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log('this.state.tourDates[0].showId:', this.state.tourDates[0].showId)
-    // console.log(
-    // this.state.tourDates[0].dateCity +  'is the next city date, foo ' + 'and ', this.state.tourDates[0].dateState + 'is the next state.');
     return (
       <div>
         <NavBar artists={this.state.artists} />
