@@ -1,17 +1,19 @@
-// dont forget these: Marker, DirectionsRenderer, useJsApiLoader
+// dont forget these!!!!!: Marker, DirectionsRenderer, useJsApiLoader
+// up next 12/6/22 - the page renders 13 times now that the google map is working. hhhmmmmmmmmm.....
 
 import React from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 
 export default class RouteOverview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      distance: '',
-      duration: '',
-      travelMode: '',
-      directionsResponse: null,
-      showsLeft: null,
+      origin: '',
+      destination: '',
+      travelMode: 'DRIVING',
+      response: null,
+      // distance: '',
+      // duration: '',
       containerStyle: {
         width: '500px',
         height: '450px'
@@ -21,25 +23,32 @@ export default class RouteOverview extends React.Component {
         lng: -118.193741
       }
     };
-  }
-  // gonna change this 👇🏼
-  // async componentDidMount(){
-  //   const directionsRequest = {
-  //     origin: `${this.props.tourDates[0].dateCity} , ${this.props.tourDates[0].dateState}`,
-  //     destination: `${this.props.tourDates[1].dateCity} , ${this.props.tourDates[1].dateState}`,
-  //     travelMode: google.maps.TravelMode.DRIVING
-  //   }
 
-  //   const directionsService = new google.maps.DirectionsService;
-  //   const results = await directionsService.route(directionsRequest)
-  // }
+    this.directionsCallback = this.directionsCallback.bind(this);
+  }
+
+  componentDidMount() {
+    fetch('api/shows')
+      .then(res => res.json())
+      .then(tourDates => this.setState({
+        origin: `${tourDates[0].dateCity},${tourDates[0].dateState}`,
+        destination: `${tourDates[1].dateCity},${tourDates[1].dateState}`
+      }));
+  }
+
+  directionsCallback(response) {
+    if (response !== null) {
+      if (response.status === 'OK') {
+        this.setState({
+          response
+        });
+      }
+    }
+  }
 
   render() {
-    // const directionsRequest = {
-    //   origin: `${this.props.tourDates[0].dateCity} , ${this.props.tourDates[0].dateState}`,
-    //   destination: `${this.props.tourDates[1].dateCity} , ${this.props.tourDates[1].dateState}`
-    // }
-    // console.log('directionsRequest:', directionsRequest)
+    // console.log('this.state.origin:', this.state.origin, 'this.state.destination:', this.state.destination)
+    // console.log('this.state.response in render()', this.state.response)
     return (
       <div className="container route-overview-container row col-12">
         <div className="col-lg-6">
@@ -75,7 +84,30 @@ export default class RouteOverview extends React.Component {
             <GoogleMap
               mapContainerStyle={this.state.containerStyle}
               center={this.state.center}
-              zoom={9} />
+              zoom={9} >
+              {
+                  (this.state.destination !== '' && this.state.origin !== '') &&
+                  (
+                  <DirectionsService
+                    options={{
+                      destination: this.state.destination,
+                      origin: this.state.origin,
+                      travelMode: this.state.travelMode
+                    }}
+                    callback={this.directionsCallback}
+                  />
+                  )
+                }
+              {
+                  (this.state.response !== null) &&
+                  (
+                    <DirectionsRenderer
+                      options={{
+                        directions: this.state.response
+                      }} />
+                  )
+                }
+            </GoogleMap>
           </LoadScript>
         </div>
       </div>
