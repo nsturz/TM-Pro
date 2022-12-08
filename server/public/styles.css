@@ -122,6 +122,7 @@ hr {
 }
 
 h6 {
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 20px;
@@ -206,6 +207,7 @@ nav {
 p {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
+  color: white;
 }
 
 pre {
@@ -215,6 +217,10 @@ pre {
 
 .remove-schedule-event-btn:focus {
   outline: 0;
+}
+
+.route-overview-container {
+  margin: auto;
 }
 
 .schedules {
@@ -283,6 +289,10 @@ ul {
     margin-right: 0;
   }
 
+  .map-container {
+    margin-top: 2rem;
+  }
+
   .navbar-top {
     height: 70px;
   }
@@ -290,6 +300,11 @@ ul {
   .new-tour-date-form {
     border: none;
     max-height: 700px;
+  }
+
+  .route-overview-container {
+    margin-bottom: 30%;
+    margin-left: 0.2rem;
   }
 
   .venues-notes-wrapper {

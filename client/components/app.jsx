@@ -1,9 +1,3 @@
-// 11/14/2022
-
-// app.patch now works successfully in index.js, but the corresponding fetch request in app.jsx does not :(
-// addresses, notes, contacts, and venues get updated in database, but for some reason,
-// the show also gets "deleted", but still shows up in the database?
-
 import React from 'react';
 import NewArtistForm from './new-artist-form';
 import Footer from './footer';
@@ -15,6 +9,7 @@ import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
+import RouteOverview from '../pages/route-overview';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -66,6 +61,9 @@ export default class App extends React.Component {
     }
     if (route.path === 'edit-date') {
       return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
+    }
+    if (route.path === 'route-overview') {
+      return <RouteOverview tourDates={this.state.tourDates} />;
     }
     return <NotFound />;
   }

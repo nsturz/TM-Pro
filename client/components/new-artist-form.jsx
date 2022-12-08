@@ -32,9 +32,9 @@ export default class NewArtistForm extends React.Component {
     return (
       <div className="d-flex justify-content-center form-wrapper">
         <form
-          className="d-flex justify-content-center align-self-center align-items-center flex-column"
+          className="d-flex justify-content-center align-self-center align-items-center flex-column mb-5"
           onSubmit={ this.handleSubmit} id="new-artist-form" >
-          <div className="form-group">
+          <div className="form-group mt-5">
             <label htmlFor="new-artist">Add a new artist.</label>
           </div>
           <div className="form-group">
@@ -47,7 +47,7 @@ export default class NewArtistForm extends React.Component {
             required/>
           </div>
           <div className="">
-            <button type="submit" className="btn new-artist-submit">Submit</button>
+            <button type="submit" className="btn new-artist-submit mb-5">Submit</button>
           </div>
         </form>
       </div>

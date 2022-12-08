@@ -50,10 +50,6 @@ export default class TourDates extends React.Component {
     });
   }
 
-  // handleClick(event){
-  //   console.log('event.target.id:', Number(event.target.id))
-  // }
-
   handleSubmit() {
     const showIdDefault = null;
     const modalClass = 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none';
@@ -70,6 +66,7 @@ export default class TourDates extends React.Component {
   }
 
   render() {
+
     return (
       <div className="container calendar-container">
         <div className="d-flex justify-content-lg-between row p-2">
