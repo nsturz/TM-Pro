@@ -30,8 +30,7 @@ body {
 }
 
 .clipboard-container {
-  position: relative;
-  bottom: 10%;
+  margin: 5rem;
   border: 2px solid #808080;
 }
 
@@ -291,10 +290,6 @@ ul {
 
   .map-container {
     margin-top: 2rem;
-  }
-
-  .navbar-top {
-    height: 70px;
   }
 
   .new-tour-date-form {

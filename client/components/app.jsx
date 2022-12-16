@@ -2,9 +2,7 @@ import React from 'react';
 import NewArtistForm from './new-artist-form';
 import Footer from './footer';
 import Dashboard from '../pages/dashboard';
-import NavBar from './navbar';
 import parseRoute from '../lib/parse-route';
-import NotFound from '../pages/not-found';
 import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
@@ -43,9 +41,6 @@ export default class App extends React.Component {
 
   renderPage() {
     const { route } = this.state;
-    if (route.path === 'dashboard') {
-      return <Dashboard tourDates={ this.state.tourDates } />;
-    }
     if (route.path === 'new-artist-form') {
       return <NewArtistForm onSubmit={ this.addName }/>;
     }
@@ -65,7 +60,7 @@ export default class App extends React.Component {
     if (route.path === 'route-overview') {
       return <RouteOverview tourDates={this.state.tourDates} />;
     }
-    return <NotFound />;
+    return <Dashboard tourDates={this.state.tourDates} />;
   }
 
   addName(newArtist) {
@@ -145,7 +140,6 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <NavBar artists={this.state.artists} />
         {this.renderPage()}
         <Footer />
       </div>
