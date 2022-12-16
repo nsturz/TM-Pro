@@ -12,6 +12,7 @@ import RouteOverview from '../pages/route-overview';
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       artists: [],
       tourDates: [],
