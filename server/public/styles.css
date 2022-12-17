@@ -103,7 +103,7 @@ form {
 }
 
 .form-wrapper {
-  min-height: 700px;
+  margin-top: 15%;
 }
 
 h2 {
@@ -218,10 +218,6 @@ pre {
   outline: 0;
 }
 
-.route-overview-container {
-  margin: auto;
-}
-
 .schedules {
   background-color: rgb(0, 0, 0, 0.4);
   overflow-y: scroll;
@@ -282,6 +278,14 @@ ul {
 
   .footer {
     background-color: black;
+  }
+
+  form {
+    border: none;
+  }
+
+  .form-wrapper {
+    margin-top: 60%;
   }
 
   .fa-clipboard-list {
