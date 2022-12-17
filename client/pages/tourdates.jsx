@@ -68,7 +68,7 @@ export default class TourDates extends React.Component {
   render() {
 
     return (
-      <div className="container calendar-container">
+      <div className="container calendar-container m-5">
         <div className="d-flex justify-content-lg-between row p-2">
           <h3 className="m-3 col-9">North American Tour 2023</h3>
           <a href="#new-date"><i className="fa-solid fa-plus pt-1 m-3" /></a>

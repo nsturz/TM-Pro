@@ -206,7 +206,7 @@ export default class NewTourDate extends React.Component {
 
   render() {
     return (
-      <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap">
+      <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
         <form
         className="row mb-5"
         id="new-tour-date-form"
