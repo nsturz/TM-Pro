@@ -7,12 +7,17 @@ export default class Dashboard extends React.Component {
       show: '',
       notes: '',
       contacts: '',
-      schedules: []
+      schedules: [],
+      tourDates: []
     };
 
   }
 
   componentDidMount() {
+    fetch('api/shows')
+      .then(res => res.json())
+      .then(tourDates => this.setState({ tourDates }));
+
     fetch('/api/shows/1')
       .then(res => res.json())
       .then(show => this.setState({ show }));
@@ -23,7 +28,6 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="container dashboard-container d-flex flex-wrap mh-100 m-5">
