@@ -213,7 +213,7 @@ export default class EditTourDate extends React.Component {
 
   render() {
     return (
-      <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
+      <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
         <form
           className="row mb-5"
           id="edit-tour-date-form"
@@ -221,7 +221,7 @@ export default class EditTourDate extends React.Component {
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center" />
-              <select name="artist-select-form" className="form-control col-6" onChange={this.selectDate}>
+              <select name="artist-select-form" className="form-select col-6" onChange={this.selectDate}>
                 <option value="">Select a tour date.</option>
                 {
                   this.props.tourDates.map(event => {

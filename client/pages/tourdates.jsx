@@ -93,7 +93,7 @@ export default class TourDates extends React.Component {
                       <p className="text-white font-weight-bold" id={event.showId}>{event.dateCity}</p>
                       <pre className="text-white font-weight-light font-italic m-0" id={event.showId}>{event.dateVenue}</pre>
                     </div>
-                    <div className="col-2 col-lg-2 ml-5">
+                    <div className="ml-5">
                       <button
                         className={this.state.trashClass}
                         onClick={this.showModal}>

@@ -30,7 +30,7 @@ export default class Dashboard extends React.Component {
   render() {
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
-      <div className="dashboard-container d-flex justify-center flex-wrap mh-100 m-5">
+      <div className="dashboard-container d-flex justify-center flex-wrap mt-5 mr-3 ml-3">
         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
         <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">
           <div className="venues col-12 h-50 info" id="venue">
@@ -82,15 +82,16 @@ export default class Dashboard extends React.Component {
           </div>
         </div>
         <div className="dates-wrapper col-lg-3 col-12" id="dates">
-          <div className=" dates col-12 mh-100 info m-0">
+          <div className=" dates col-12 info p-0">
             <h6 className='d-inline'>DATES</h6>
             <i className="fa-solid fa-calendar-days" />
+            <hr className="w-100" />
             <ul className="dates-list">
               {
                 this.props.tourDates.map(event => {
                   return (
-                    <li className="row date-wrapper" key={event.showId}>
-                      <a href="#" className="date col-6">{event.showDate}</a>
+                    <li className="row date-wrapper pl-3 " key={event.showId}>
+                      <a href="#" className="date col-6 ">{event.showDate}</a>
                       <a href="#" className="city"><b>{event.dateCity},{event.dateState} </b><br />{event.dateVenue}</a>
                     </li>
                   );

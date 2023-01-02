@@ -61,7 +61,6 @@ body {
 
 .dates {
   background-color: rgb(0, 0, 0, 0.4);
-  overflow-y: scroll;
 }
 
 .dates-list {
@@ -70,7 +69,7 @@ body {
 }
 
 .dates-wrapper {
-  max-height: 500px;
+  min-height: 500px;
 }
 
 .dates-wrapper:hover {
@@ -184,7 +183,6 @@ nav {
 }
 
 .new-tour-date-form {
-  max-height: 600px;
   overflow-y: scroll;
 }
 
@@ -233,16 +231,36 @@ ul {
   overflow-y: scroll;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 768px) {
   .dashboard-container {
-    margin-top: 2%;
+    height: 70vh;
+  }
+
+  .route-overview-container {
+    margin-bottom: 4rem;
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .contacts-wrapper,
-  .schedule-wrapper {
-    margin-top: 10%;
+  .contacts {
+    margin-top: 3rem;
+  }
+
+  .dates-wrapper {
+    min-height: 700px;
+  }
+
+  .map-container {
+    margin-top: 3rem;
+  }
+
+  .route-overview-container {
+    padding: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .venues-notes-wrapper {
+    margin-bottom: 10%;
   }
 }
 
@@ -261,10 +279,6 @@ ul {
 
   .dashboard-container {
     margin-top: 2%;
-  }
-
-  .dates {
-    margin-top: 5%;
   }
 
   .delete-modal-wrapper {
@@ -297,7 +311,6 @@ ul {
 
   .new-tour-date-form {
     border: none;
-    max-height: 700px;
   }
 
   .route-overview-container {

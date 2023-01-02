@@ -206,7 +206,7 @@ export default class NewTourDate extends React.Component {
 
   render() {
     return (
-      <div className="container new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
+      <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
         <form
         className="row mb-5"
         id="new-tour-date-form"
@@ -214,7 +214,7 @@ export default class NewTourDate extends React.Component {
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
-              <select name="artist-select-form" id="" className="form-control col-6" onChange={this.handleNameChange}>
+              <select name="artist-select-form" id="" className="form-select col-6" onChange={this.handleNameChange}>
                 <option value="">Select an artist</option>
                 {
                     this.props.artists.map(event => {
