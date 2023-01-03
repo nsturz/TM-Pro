@@ -155,6 +155,11 @@ nav {
   overflow-x: scroll;
 }
 
+.navigation {
+  color: white;
+  font-size: 60px;
+}
+
 .new-tour-date-form {
   overflow-y: scroll;
 }
