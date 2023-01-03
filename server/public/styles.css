@@ -63,20 +63,6 @@ body {
   background-color: rgb(0, 0, 0, 0.4);
 }
 
-.dates-list {
-  padding: 0;
-  list-style-type: none;
-}
-
-.dates-wrapper {
-  min-height: 500px;
-}
-
-.dates-wrapper:hover {
-  color: #f7343e;
-  cursor: pointer;
-}
-
 .delete-modal-wrapper {
   background-color: #e03039;
   bottom: 45%;
@@ -85,10 +71,6 @@ body {
 
 .fa-house {
   margin-left: 10%;
-}
-
-.fa-clipboard-list {
-  margin-right: 10%;
 }
 
 .fa-plus {

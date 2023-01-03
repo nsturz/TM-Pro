@@ -90,7 +90,7 @@ export default class TourDates extends React.Component {
                   key={event.showId}
                   >
                     <div className="col-xs-2 pl-4 mr-3 calendar-date">
-                      <p className="calendar-date-text text-center font-weight-bold d-block text-white">
+                      <p className="text-center font-weight-bold d-block text-white">
                         {event.showDate}
                       </p>
                     </div>
