@@ -211,6 +211,9 @@ export default class NewTourDate extends React.Component {
         className="row mb-5"
         id="new-tour-date-form"
         onSubmit={ this.handleSubmit }>
+          <div className="col-12 d-flex justify-content-center mt-3">
+            <h3 className="">New Date</h3>
+          </div>
           <div className="col-12 col-lg-6 form-group mt-3">
             <div className="row justify-content-center">
               <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>

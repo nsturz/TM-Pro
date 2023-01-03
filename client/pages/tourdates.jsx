@@ -68,12 +68,18 @@ export default class TourDates extends React.Component {
   render() {
 
     return (
-      <div className="container calendar-container mt-5">
-        <div className="d-flex justify-content-lg-between row p-2">
-          <h3 className="m-3 col-9">North American Tour 2023</h3>
-          <a href="#new-date"><i className="fa-solid fa-plus pt-1 m-3" /></a>
+      <div className="calendar-container">
+        <div className="row">
+          <div className="col-8 d-flex row p-2">
+            <h3 className="m-3 col-9">North American Tour 2023</h3>
+          </div>
+          <div className='col'>
+            <div className="row d-flex justify-content-end">
+              <a href="#new-date"><i className="fa-solid fa-plus pt-1 pr-2 m-4" /></a>
+            </div>
+          </div>
         </div>
-        <div className="row dates dates-wrapper">
+        <div className="row">
           <ul className="col-12">
             {
               this.props.tourDates.map(event => {
@@ -82,25 +88,26 @@ export default class TourDates extends React.Component {
                   id={event.showId}
                   className="row calendar-list-item"
                   key={event.showId}
-                  // onClick={this.handleClick}
                   >
-                    <div className="col-3 col-lg-1 mr-3 calendar-date">
+                    <div className="col-xs-2 pl-4 mr-3 calendar-date">
                       <p className="calendar-date-text text-center font-weight-bold d-block text-white">
                         {event.showDate}
                       </p>
                     </div>
-                    <div className="col-5 col-lg-8 ">
+                    <div className="col-xs-6">
                       <p className="text-white font-weight-bold" id={event.showId}>{event.dateCity}</p>
                       <pre className="text-white font-weight-light font-italic m-0" id={event.showId}>{event.dateVenue}</pre>
                     </div>
-                    <div className="ml-5">
-                      <button
-                        className={this.state.trashClass}
-                        onClick={this.showModal}>
-                        <i
-                        className='fa-solid fa-trash text-white text-sm'
-                        id={event.showId} />
-                      </button>
+                    <div className="col">
+                      <div className="row d-flex justify-content-end m-1">
+                        <button
+                          className={this.state.trashClass}
+                          onClick={this.showModal}>
+                          <i
+                            className='fa-solid fa-trash text-white text-sm'
+                            id={event.showId} />
+                        </button>
+                      </div>
                     </div>
                   </li>
                 );
