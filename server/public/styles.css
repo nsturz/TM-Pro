@@ -155,15 +155,6 @@ nav {
   overflow-x: scroll;
 }
 
-.not-found {
-  margin-top: 20%;
-}
-
-.navigation {
-  color: white;
-  font-size: 60px;
-}
-
 .new-tour-date-form {
   overflow-y: scroll;
 }
@@ -218,6 +209,10 @@ ul {
     height: 70vh;
   }
 
+  .form-wrapper {
+    margin-top: 50%;
+  }
+
   .route-overview-container {
     margin-bottom: 4rem;
   }
@@ -239,6 +234,10 @@ ul {
 
   .dates-wrapper {
     min-height: 700px;
+  }
+
+  .form-wrapper {
+    margin-top: 40%;
   }
 
   .map-container {
