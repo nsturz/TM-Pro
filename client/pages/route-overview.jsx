@@ -53,7 +53,7 @@ export default class RouteOverview extends React.Component {
 
   render() {
     return (
-      <div className="container route-overview-container row col-12 mt-5">
+      <div className="route-overview-container row col-12 mt-5">
         <div className="col-lg-6">
           <div className="row mb-3 d-flex justify-content-center">
             <h2>ROUTE OVERVIEW</h2>
