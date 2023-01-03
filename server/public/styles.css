@@ -63,20 +63,6 @@ body {
   background-color: rgb(0, 0, 0, 0.4);
 }
 
-.dates-list {
-  padding: 0;
-  list-style-type: none;
-}
-
-.dates-wrapper {
-  min-height: 500px;
-}
-
-.dates-wrapper:hover {
-  color: #f7343e;
-  cursor: pointer;
-}
-
 .delete-modal-wrapper {
   background-color: #e03039;
   bottom: 45%;
@@ -85,10 +71,6 @@ body {
 
 .fa-house {
   margin-left: 10%;
-}
-
-.fa-clipboard-list {
-  margin-right: 10%;
 }
 
 .fa-plus {
@@ -173,10 +155,6 @@ nav {
   overflow-x: scroll;
 }
 
-.not-found {
-  margin-top: 20%;
-}
-
 .navigation {
   color: white;
   font-size: 60px;
@@ -236,6 +214,10 @@ ul {
     height: 70vh;
   }
 
+  .form-wrapper {
+    margin-top: 50%;
+  }
+
   .route-overview-container {
     margin-bottom: 4rem;
   }
@@ -247,16 +229,16 @@ ul {
     margin-top: 25%;
   }
 
-  .clipboard-container {
-    margin-top: 30%;
-  }
-
   .contacts {
     margin-top: 3rem;
   }
 
   .dates-wrapper {
     min-height: 700px;
+  }
+
+  .form-wrapper {
+    margin-top: 40%;
   }
 
   .map-container {

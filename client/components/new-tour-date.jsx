@@ -268,7 +268,7 @@ export default class NewTourDate extends React.Component {
                 })
               }
             </ul>
-            <button type="button" className=" add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+            <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
               <i className="fa-solid fa-plus text-white" onClick={ this.addScheduleEvent } />
             </button>
           </div>

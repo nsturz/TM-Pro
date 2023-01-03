@@ -81,12 +81,12 @@ export default class Dashboard extends React.Component {
             <p className="pl-2">{ contactPhone }</p>
           </div>
         </div>
-        <div className="dates-wrapper col-lg-3 col-12" id="dates">
+        <div className="col-lg-3 col-12" id="dates">
           <div className=" dates col-12 info p-0">
             <h6 className='d-inline'>DATES</h6>
             <i className="fa-solid fa-calendar-days" />
             <hr className="w-100" />
-            <ul className="dates-list">
+            <ul>
               {
                 this.props.tourDates.map(event => {
                   return (

@@ -10,21 +10,10 @@ export default class TourDates extends React.Component {
       overlay: 'overlay d-none',
       modal: 'col-10 col-lg-4 delete-modal-wrapper text-center rounded position-absolute d-none'
     };
-
-    this.showIcons = this.showIcons.bind(this);
     this.hideIcons = this.hideIcons.bind(this);
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleClick = this.handleClick.bind(this);
-  }
-
-  showIcons(event) {
-    this.setState({
-      trashClass: 'btn btn-link m-2',
-      penClass: 'btn btn-link m-2'
-    });
-
   }
 
   showModal(event) {
@@ -66,7 +55,6 @@ export default class TourDates extends React.Component {
   }
 
   render() {
-
     return (
       <div className="calendar-container">
         <div className="row">
@@ -90,7 +78,7 @@ export default class TourDates extends React.Component {
                   key={event.showId}
                   >
                     <div className="col-xs-2 pl-4 mr-3 calendar-date">
-                      <p className="calendar-date-text text-center font-weight-bold d-block text-white">
+                      <p className="text-center font-weight-bold d-block text-white">
                         {event.showDate}
                       </p>
                     </div>
