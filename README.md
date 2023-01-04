@@ -66,7 +66,7 @@ Try TM Pro live at https://tm-pro.nicksturz.dev/#
    ```shell
    sudo service postgresql start
    ```
-5.  Create the database in the PostgreSQL database server. Use the database name you selected above.
+5. Create the database in the PostgreSQL database server. Use the database name you selected above.
    ```shell
    createdb nameOfDatabase
    ```
