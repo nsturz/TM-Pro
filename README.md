@@ -55,38 +55,31 @@ Try TM Pro live at https://tm-pro.nicksturz.dev/#
 ```shell
 git@github.com:nsturz/final-project.git
 ```
-
 2. Install all dependencies with NPM.
 
     ```shell
     npm install
     ```
-    
 3. Create an `.env.example file`, and change the name in the `DATABASE_URL` from `changeme` to a name of your choice.
     ```shell
     cp .env.example .env
     ```
-    
 4. Start PostgreSQL.
    ```shell
    sudo service postgresql start
    ```
-   
 5.  Create the database in the PostgreSQL database server. Use the database name you selected above.
   ```shell
   createdb nameOfDatabase
   ```
-  
 6. Import starting data from `data.sql`.  
   ```shell
   npm run db:import
   ```
-  
 7. Start the database. 
 ```shell
 pgweb --db=nameOfDatabase
 ```
-
 8. Start the project. It can be viewed at `http://localhost:3000 ` in your web browser. 
 ```shell 
 npm run dev
