@@ -51,12 +51,10 @@ Try TM Pro live at https://tm-pro.nicksturz.dev/#
 ## Getting started
 
 1. Clone the repository.
-
 ```shell
 git@github.com:nsturz/final-project.git
 ```
 2. Install all dependencies with NPM.
-
     ```shell
     npm install
     ```
