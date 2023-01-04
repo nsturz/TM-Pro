@@ -51,9 +51,9 @@ Try TM Pro live at https://tm-pro.nicksturz.dev/#
 ## Getting started
 
 1. Clone the repository.
-```shell
-git@github.com:nsturz/final-project.git
-```
+    ```shell
+    git@github.com:nsturz/final-project.git
+    ```
 2. Install all dependencies with NPM.
     ```shell
     npm install
@@ -67,18 +67,18 @@ git@github.com:nsturz/final-project.git
    sudo service postgresql start
    ```
 5.  Create the database in the PostgreSQL database server. Use the database name you selected above.
-  ```shell
-  createdb nameOfDatabase
-  ```
+   ```shell
+   createdb nameOfDatabase
+   ```
 6. Import starting data from `data.sql`.  
-  ```shell
-  npm run db:import
-  ```
+   ```shell
+   npm run db:import
+   ```
 7. Start the database. 
-```shell
-pgweb --db=nameOfDatabase
-```
+   ```shell
+   pgweb --db=nameOfDatabase
+   ```
 8. Start the project. It can be viewed at `http://localhost:3000 ` in your web browser. 
-```shell 
-npm run dev
-```
+   ```shell 
+   npm run dev
+   ```
