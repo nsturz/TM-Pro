@@ -17,6 +17,7 @@ body {
 
 .calendar-container {
   margin: 5rem;
+  padding: 1rem;
   border: 2px solid #808080;
 }
 
@@ -225,7 +226,6 @@ ul {
 
 @media screen and (max-width: 1000px) {
   .calendar-container {
-    padding: 1rem;
     margin-top: 25%;
   }
 
