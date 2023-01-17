@@ -33,35 +33,38 @@ export default class Dashboard extends React.Component {
       <div className="dashboard-container d-flex justify-center flex-wrap mt-5 mr-3 ml-3">
         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
         <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">
-          <div className="venues col-12 h-50 info" id="venue">
+          <div className="mb-3 mt-3">
             <h6 className="d-inline">VENUE</h6>
-            <i className="fa-solid fa-location-dot mt-1" />
-            <div className="row d-block">
-              <hr className="w-100" />
+            <i className="fa-solid fa-location-dot mt-1 info" />
+          </div>
+          <div className="venues col-12 h-50 info" id="venue">
+            <div className="row d-block mt-3">
               <p className="text-center lead">{venueName}</p>
               <p className="text-center lead">{line1}</p>
               <p className="text-center lead">{city}, {state}</p>
             </div>
           </div>
-          <div className="notes col-12 h-50 info" id="notes">
+          <div className="mb-3 mt-3">
             <h6 className="d-inline">NOTES</h6>
-            <i className="fa-solid fa-clipboard-list mt-1" />
-            <div className="row">
-              <hr className="w-100" />
+            <i className="fa-solid fa-clipboard-list mt-1 info" />
+          </div>
+          <div className="notes col-12 h-50 info" id="notes">
+            <div className="row mt-3">
               <pre className="pl-3">{notesDetails}</pre>
             </div>
           </div>
         </div>
         <div className="schedule-wrapper col-lg-3 col-12 mh-100 " id="schedule">
-          <div className=" schedules col-12 h-100 info">
+          <div className="mb-3 mt-3">
             <h6 className="pl-2 d-inline">SCHEDULE</h6>
-            <i className="fa-solid fa-clock" />
-            <hr className="w-100" />
+            <i className="fa-solid fa-clock info" />
+          </div>
+          <div className=" schedules col-12 h-100">
             <ul className="pl-2">
               {
                 this.state.schedules.map(event => {
                   return (
-                    <li key={event.scheduleId}>
+                    <li className="text-white" key={event.scheduleId}>
                       {event.startTime} - {event.endTime} {event.scheduleDetails}
                     </li>
                   );

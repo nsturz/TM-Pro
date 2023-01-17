@@ -2,7 +2,6 @@ import React from 'react';
 import NewArtistForm from './new-artist-form';
 import Dashboard from '../pages/dashboard';
 import parseRoute from '../lib/parse-route';
-import ClipBoard from '../pages/clipboard';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
@@ -44,9 +43,6 @@ export default class App extends React.Component {
     const { route } = this.state;
     if (route.path === 'new-artist-form') {
       return <NewArtistForm onSubmit={ this.addName }/>;
-    }
-    if (route.path === 'clipboard') {
-      return <ClipBoard />;
     }
     if (route.path === 'calendar') {
       return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
