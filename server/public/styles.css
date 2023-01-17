@@ -1,4 +1,5 @@
 a {
+  font-family: Lato, sans-serif;
   text-decoration: none;
   color: white;
 }
@@ -94,6 +95,7 @@ h2 {
 h3 {
   color: white;
   font-size: 25px;
+  font-family: Poppins, sans-serif;
 }
 
 hr {
@@ -103,7 +105,7 @@ hr {
 
 h6 {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins, sans-serif;
   font-weight: bold;
   font-size: 20px;
   margin-right: 0.5rem;
@@ -134,7 +136,7 @@ label {
 }
 
 li {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
   font-size: 12px;
   line-height: 2rem;
 }
@@ -180,14 +182,14 @@ nav {
 }
 
 p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
   font-size: 12px;
   color: white;
 }
 
 pre {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
 }
 
 .remove-schedule-event-btn:focus {
