@@ -1,6 +1,5 @@
 import React from 'react';
 import NewArtistForm from './new-artist-form';
-import Footer from './footer';
 import Dashboard from '../pages/dashboard';
 import parseRoute from '../lib/parse-route';
 import ClipBoard from '../pages/clipboard';
@@ -144,7 +143,6 @@ export default class App extends React.Component {
       <div>
         <NavBar />
         {this.renderPage()}
-        <Footer />
       </div>
     );
   }

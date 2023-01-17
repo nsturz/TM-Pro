@@ -71,6 +71,10 @@ body {
   left: 30%;
 }
 
+.dropdown-item:active {
+  background-color: #cd3c3a;
+}
+
 .fa-house {
   margin-left: 10%;
 }
@@ -283,20 +287,12 @@ ul {
     margin-left: 0;
   }
 
-  .footer {
-    background-color: black;
-  }
-
   form {
     border: none;
   }
 
   .form-wrapper {
     margin-top: 60%;
-  }
-
-  .fa-clipboard-list {
-    margin-right: 0;
   }
 
   .map-container {
