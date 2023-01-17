@@ -8,6 +8,7 @@ import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
 import RouteOverview from '../pages/route-overview';
+import NavBar from './navbar';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -141,6 +142,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
+        <NavBar />
         {this.renderPage()}
         <Footer />
       </div>
