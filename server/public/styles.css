@@ -43,9 +43,9 @@ body {
 }
 
 .contacts {
-  background-color: rgb(0, 0, 0, 0.4);
+  background-color: #3d3d3c;
+  border-radius: 5px;
   overflow-y: scroll;
-  padding: 0;
 }
 
 .confirm-button {
@@ -62,7 +62,8 @@ body {
 }
 
 .dates {
-  background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
+  background-color: #3d3d3c;
 }
 
 .delete-modal-wrapper {
@@ -241,12 +242,8 @@ ul {
     margin-top: 25%;
   }
 
-  .contacts {
-    margin-top: 3rem;
-  }
-
-  .dates-wrapper {
-    min-height: 700px;
+  .contacts-wrapper {
+    margin-top: 5rem;
   }
 
   .form-wrapper {
@@ -257,13 +254,21 @@ ul {
     margin-top: 3rem;
   }
 
+  .notes {
+    margin-top: 3rem;
+  }
+
   .route-overview-container {
     padding: 3rem;
     margin-bottom: 3rem;
   }
 
-  .venues-notes-wrapper {
-    margin-bottom: 10%;
+  .schedule-wrapper {
+    margin-top: 3rem;
+  }
+
+  .venues {
+    margin-bottom: 3rem;
   }
 }
 
@@ -314,7 +319,7 @@ ul {
     margin-left: 0.2rem;
   }
 
-  .venues-notes-wrapper {
-    margin-bottom: 10%;
+  .schedule-wrapper {
+    margin-top: 2rem;
   }
 }
