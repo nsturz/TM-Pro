@@ -19,16 +19,11 @@ body {
 .calendar-container {
   margin: 5rem;
   padding: 1rem;
-  border: 2px solid #808080;
+  border-radius: 5px;
 }
 
 .calendar-date-text {
   font-size: 1rem;
-}
-
-.calendar-list-item:hover {
-  cursor: pointer;
-  background-color: rgb(247, 52, 63, 0.4);
 }
 
 .clipboard-container {
@@ -212,6 +207,20 @@ pre {
   padding: 0;
 }
 
+.tourdates {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tourdates:hover {
+  background-color: #cd3c3a;
+}
+
+.tourdates-list {
+  background-color: #3d3d3c;
+  border-radius: 5px;
+}
+
 ul {
   padding: 0;
   list-style-type: none;
@@ -234,6 +243,10 @@ ul {
 
   .route-overview-container {
     margin-bottom: 4rem;
+  }
+
+  .venues-notes-wrapper {
+    margin-bottom: 2rem;
   }
 }
 
@@ -269,6 +282,10 @@ ul {
 
   .venues {
     margin-bottom: 3rem;
+  }
+
+  .venues-notes-wrapper {
+    margin-bottom: 14%;
   }
 }
 

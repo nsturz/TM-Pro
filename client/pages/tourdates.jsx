@@ -57,64 +57,58 @@ export default class TourDates extends React.Component {
   render() {
     return (
       <div className="calendar-container">
-        <div className="row">
-          <div className="col-8 d-flex row p-2">
-            <h3 className="m-3 col-9">North American Tour 2023</h3>
-          </div>
-          <div className='col'>
-            <div className="row d-flex justify-content-end">
-              <a href="#new-date"><i className="fa-solid fa-plus pt-1 pr-2 m-4" /></a>
-            </div>
-          </div>
+        <div className="col-8 d-flex row p-2">
+          <h3 className="m-3 col-9">North American Tour 2023</h3>
         </div>
+        <div className="row" />
         <div className="row">
-          <ul className="col-12">
+          <ul className="col-12 tourdates-list">
             {
-              this.props.tourDates.map(event => {
-                return (
-                  <li
-                  id={event.showId}
-                  className="row calendar-list-item"
-                  key={event.showId}
-                  >
-                    <div className="col-xs-2 pl-4 mr-3 calendar-date">
-                      <p className="text-center font-weight-bold d-block text-white">
-                        {event.showDate}
-                      </p>
-                    </div>
-                    <div className="col-xs-6">
-                      <p className="text-white font-weight-bold" id={event.showId}>{event.dateCity}</p>
-                      <pre className="text-white font-weight-light font-italic m-0" id={event.showId}>{event.dateVenue}</pre>
-                    </div>
-                    <div className="col">
-                      <div className="row d-flex justify-content-end m-1">
-                        <button
-                          className={this.state.trashClass}
-                          onClick={this.showModal}>
-                          <i
-                            className='fa-solid fa-trash text-white text-sm'
-                            id={event.showId} />
-                        </button>
+                this.props.tourDates.map(event => {
+                  return (
+                    <li
+                      id={event.showId}
+                      className="row calendar-list-item tourdates"
+                      key={event.showId}
+                    >
+                      <div className="col-xs-2 pl-4 mr-3 calendar-date">
+                        <p className="text-center font-weight-bold d-block text-white">
+                          {event.showDate}
+                        </p>
                       </div>
-                    </div>
-                  </li>
-                );
-              })
-            }
+                      <div className="col-xs-6">
+                        <p className="text-white font-weight-bold" id={event.showId}>{event.dateCity}</p>
+                        <pre className="text-white font-weight-light font-italic m-0" id={event.showId}>{event.dateVenue}</pre>
+                      </div>
+                      <div className="col">
+                        <div className="row d-flex justify-content-end m-1">
+                          <button
+                            className={this.state.trashClass}
+                            onClick={this.showModal}>
+                            <i
+                              className='fa-solid fa-trash text-white text-sm'
+                              id={event.showId} />
+                          </button>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })
+              }
           </ul>
         </div>
         <div className={this.state.overlay} />
         <div className={this.state.modal}>
           <h3 className="font-weight-bold m-3">DELETE THIS DATE?</h3>
           <button
-            type="submit"
-            className="btn confirm-button font-weight-bold text-white m-3"
-            onClick={this.handleSubmit}>
+              type="submit"
+              className="btn confirm-button font-weight-bold text-white m-3"
+              onClick={this.handleSubmit}>
             CONFIRM
           </button>
           <button
-            className="btn font-weight-bold m-3"
-            onClick={this.hideModal}>
+              className="btn font-weight-bold m-3"
+              onClick={this.hideModal}>
             CANCEL
           </button>
         </div>
