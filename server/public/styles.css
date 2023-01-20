@@ -17,7 +17,9 @@ body {
 }
 
 .calendar-container {
-  margin: 5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 2rem;
   padding: 1rem;
   border-radius: 5px;
 }
@@ -44,7 +46,7 @@ body {
 }
 
 .confirm-button {
-  background-color: black;
+  background-color: #cd3c3a;
 }
 
 .dashboard-container {
@@ -62,7 +64,7 @@ body {
 }
 
 .delete-modal-wrapper {
-  background-color: #e03039;
+  background-color: #fff;
   bottom: 45%;
   left: 30%;
 }
@@ -209,6 +211,8 @@ pre {
 
 .tourdates {
   cursor: pointer;
+  background-color: #3d3d3c;
+  border: black solid 2px;
   border-radius: 5px;
 }
 
@@ -216,10 +220,10 @@ pre {
   background-color: #cd3c3a;
 }
 
-.tourdates-list {
+/* .tourdates-list {
   background-color: #3d3d3c;
   border-radius: 5px;
-}
+} */
 
 ul {
   padding: 0;
@@ -251,10 +255,6 @@ ul {
 }
 
 @media screen and (max-width: 1000px) {
-  .calendar-container {
-    margin-top: 25%;
-  }
-
   .contacts-wrapper {
     margin-top: 5rem;
   }

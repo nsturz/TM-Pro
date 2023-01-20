@@ -99,7 +99,7 @@ export default class TourDates extends React.Component {
         </div>
         <div className={this.state.overlay} />
         <div className={this.state.modal}>
-          <h3 className="font-weight-bold m-3">DELETE THIS DATE?</h3>
+          <h3 className="font-weight-bold m-3 text-dark">DELETE THIS DATE?</h3>
           <button
               type="submit"
               className="btn confirm-button font-weight-bold text-white m-3"
