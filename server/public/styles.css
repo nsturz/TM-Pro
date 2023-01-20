@@ -96,6 +96,7 @@ form {
 
 h2 {
   color: white;
+  font-family: Poppins, sans-serif;
 }
 
 h3 {
@@ -202,6 +203,11 @@ pre {
   outline: 0;
 }
 
+.route-info {
+  background-color: #3c3c3c;
+  border-radius: 5px;
+}
+
 .schedules {
   border-radius: 5px;
   background-color: #3d3d3c;
@@ -219,11 +225,6 @@ pre {
 .tourdates:hover {
   background-color: #cd3c3a;
 }
-
-/* .tourdates-list {
-  background-color: #3d3d3c;
-  border-radius: 5px;
-} */
 
 ul {
   padding: 0;
