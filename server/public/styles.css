@@ -1,4 +1,5 @@
 a {
+  font-family: Poppins, sans-serif;
   text-decoration: none;
   color: white;
 }
@@ -12,22 +13,24 @@ a:hover {
 }
 
 body {
-  background-image: url("/images/live-shot.png");
+  background-color: #121212;
+}
+
+button:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 .calendar-container {
-  margin: 5rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  margin-top: 2rem;
   padding: 1rem;
-  border: 2px solid #808080;
+  border-radius: 5px;
 }
 
 .calendar-date-text {
   font-size: 1rem;
-}
-
-.calendar-list-item:hover {
-  cursor: pointer;
-  background-color: rgb(247, 52, 63, 0.4);
 }
 
 .clipboard-container {
@@ -42,13 +45,13 @@ body {
 }
 
 .contacts {
-  background-color: rgb(0, 0, 0, 0.4);
+  background-color: #3d3d3c;
+  border-radius: 5px;
   overflow-y: scroll;
-  padding: 0;
 }
 
 .confirm-button {
-  background-color: black;
+  background-color: #cd3c3a;
 }
 
 .dashboard-container {
@@ -61,17 +64,26 @@ body {
 }
 
 .dates {
-  background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
+  background-color: #3d3d3c;
 }
 
 .delete-modal-wrapper {
-  background-color: #e03039;
+  background-color: #fff;
   bottom: 45%;
   left: 30%;
 }
 
+.dropdown-item:active {
+  background-color: #cd3c3a;
+}
+
 .fa-house {
   margin-left: 10%;
+}
+
+.fa-location-house {
+  color: #cd3c3a;
 }
 
 .fa-plus {
@@ -80,7 +92,6 @@ body {
 
 form {
   width: 80%;
-  border: 2px solid #808080;
 }
 
 .form-wrapper {
@@ -89,11 +100,13 @@ form {
 
 h2 {
   color: white;
+  font-family: Poppins, sans-serif;
 }
 
 h3 {
   color: white;
   font-size: 25px;
+  font-family: Poppins, sans-serif;
 }
 
 hr {
@@ -103,7 +116,7 @@ hr {
 
 h6 {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins, sans-serif;
   font-weight: bold;
   font-size: 20px;
   margin-right: 0.5rem;
@@ -118,8 +131,7 @@ i:hover {
 }
 
 .info {
-  border: 2px solid #808080;
-  color: whitesmoke;
+  color: #cd3c3a;
 }
 
 input,
@@ -134,7 +146,7 @@ label {
 }
 
 li {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
   font-size: 12px;
   line-height: 2rem;
 }
@@ -150,15 +162,15 @@ nav {
 }
 
 .notes {
-  background-color: rgb(0, 0, 0, 0.4);
+  background-color: #3d3d3c;
+  border-radius: 5px;
   margin-top: 5%;
   overflow-y: scroll;
   overflow-x: scroll;
 }
 
-.navigation {
-  color: white;
-  font-size: 60px;
+.navbar-nav > .active > a {
+  color: red;
 }
 
 .new-tour-date-form {
@@ -166,7 +178,7 @@ nav {
 }
 
 .new-artist-submit {
-  background-color: #f7343e;
+  background-color: #cd3c3a;
   color: white;
 }
 
@@ -180,24 +192,41 @@ nav {
 }
 
 p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
   font-size: 12px;
   color: white;
 }
 
 pre {
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Lato, sans-serif;
 }
 
 .remove-schedule-event-btn:focus {
   outline: 0;
 }
 
+.route-info {
+  background-color: #3c3c3c;
+  border-radius: 5px;
+}
+
 .schedules {
-  background-color: rgb(0, 0, 0, 0.4);
+  border-radius: 5px;
+  background-color: #3d3d3c;
   overflow-y: scroll;
   padding: 0;
+}
+
+.tourdates {
+  cursor: pointer;
+  background-color: #3d3d3c;
+  border: #121212 solid 2px;
+  border-radius: 5px;
+}
+
+.tourdates:hover {
+  background-color: #cd3c3a;
 }
 
 ul {
@@ -206,7 +235,8 @@ ul {
 }
 
 .venues {
-  background-color: rgb(0, 0, 0, 0.4);
+  background-color: #3d3d3c;
+  border-radius: 5px;
   overflow-y: scroll;
 }
 
@@ -222,19 +252,15 @@ ul {
   .route-overview-container {
     margin-bottom: 4rem;
   }
+
+  .venues-notes-wrapper {
+    margin-bottom: 2rem;
+  }
 }
 
 @media screen and (max-width: 1000px) {
-  .calendar-container {
-    margin-top: 25%;
-  }
-
-  .contacts {
-    margin-top: 3rem;
-  }
-
-  .dates-wrapper {
-    min-height: 700px;
+  .contacts-wrapper {
+    margin-top: 5rem;
   }
 
   .form-wrapper {
@@ -245,13 +271,25 @@ ul {
     margin-top: 3rem;
   }
 
+  .notes {
+    margin-top: 3rem;
+  }
+
   .route-overview-container {
     padding: 3rem;
     margin-bottom: 3rem;
   }
 
+  .schedule-wrapper {
+    margin-top: 3rem;
+  }
+
+  .venues {
+    margin-bottom: 3rem;
+  }
+
   .venues-notes-wrapper {
-    margin-bottom: 10%;
+    margin-bottom: 14%;
   }
 }
 
@@ -281,20 +319,12 @@ ul {
     margin-left: 0;
   }
 
-  .footer {
-    background-color: black;
-  }
-
   form {
     border: none;
   }
 
   .form-wrapper {
     margin-top: 60%;
-  }
-
-  .fa-clipboard-list {
-    margin-right: 0;
   }
 
   .map-container {
@@ -310,7 +340,7 @@ ul {
     margin-left: 0.2rem;
   }
 
-  .venues-notes-wrapper {
-    margin-bottom: 10%;
+  .schedule-wrapper {
+    margin-top: 2rem;
   }
 }

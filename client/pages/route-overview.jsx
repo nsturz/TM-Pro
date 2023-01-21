@@ -59,23 +59,21 @@ export default class RouteOverview extends React.Component {
             <h2>ROUTE OVERVIEW</h2>
           </div>
           <div className="row justify-content-center mb-5">
-            <div className="col-lg-10 border border-white">
+            <div className="col-lg-10 route-info">
               <div className="row mt-3 ml-2">
                 <h6>SHOWS LEFT</h6>
               </div>
               <div className="row d-flex justify-content-center">
-                <hr className="w-100" />
                 <h6 className="m-4">{this.props.tourDates.length}</h6>
               </div>
             </div>
           </div>
           <div className="row justify-content-center">
-            <div className="col-lg-10 border border-white">
+            <div className="col-lg-10 route-info">
               <div className="row mt-3 ml-2">
                 <h6>NEXT TRIP</h6>
               </div>
-              <div className="row d-dlex justify-content-center">
-                <hr className="w-100" />
+              <div className="row d-dlex justify-content-center ">
                 <p className="col-6">From: {this.state.origin} </p>
                 <p className="col-6">To: {this.state.destination} </p>
                 <p className="col-6">Distance: {this.state.distances[0]}</p>
