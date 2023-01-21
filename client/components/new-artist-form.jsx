@@ -35,7 +35,7 @@ export default class NewArtistForm extends React.Component {
           className="d-flex justify-content-center align-self-center align-items-center flex-column mb-5"
           onSubmit={ this.handleSubmit} id="new-artist-form" >
           <div className="form-group mt-5">
-            <label htmlFor="new-artist">Add a new artist.</label>
+            <h3 htmlFor="new-artist">Add a new artist.</h3>
           </div>
           <div className="form-group">
             <input

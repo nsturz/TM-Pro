@@ -16,6 +16,11 @@ body {
   background-color: #121212;
 }
 
+button:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
+}
+
 .calendar-container {
   margin-left: 4rem;
   margin-right: 4rem;
@@ -87,7 +92,6 @@ body {
 
 form {
   width: 80%;
-  border: 2px solid #808080;
 }
 
 .form-wrapper {
@@ -165,9 +169,8 @@ nav {
   overflow-x: scroll;
 }
 
-.navigation {
-  color: white;
-  font-size: 60px;
+.navbar-nav > .active > a {
+  color: red;
 }
 
 .new-tour-date-form {
@@ -175,7 +178,7 @@ nav {
 }
 
 .new-artist-submit {
-  background-color: #f7343e;
+  background-color: #cd3c3a;
   color: white;
 }
 
@@ -218,7 +221,7 @@ pre {
 .tourdates {
   cursor: pointer;
   background-color: #3d3d3c;
-  border: black solid 2px;
+  border: #121212 solid 2px;
   border-radius: 5px;
 }
 
