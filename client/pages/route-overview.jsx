@@ -53,66 +53,69 @@ export default class RouteOverview extends React.Component {
 
   render() {
     return (
-      <div className="route-overview-container row col-12 mt-5">
-        <div className="col-lg-6">
-          <div className="row mb-3 d-flex justify-content-center">
-            <h2>ROUTE OVERVIEW</h2>
-          </div>
-          <div className="row justify-content-center mb-5">
-            <div className="col-lg-10 route-info">
-              <div className="row mt-3 ml-2">
-                <h6>SHOWS LEFT</h6>
+      <div className="container">
+        <div className="route-overview-container mt-5 row">
+          <div className="col-lg-6">
+            <div className="row mb-3 d-flex justify-content-center">
+              <h2>ROUTE OVERVIEW</h2>
+            </div>
+            <div className="row justify-content-center mb-5">
+              <div className="col-lg-10 route-info">
+                <div className="row mt-3 ml-2">
+                  <h6>SHOWS LEFT</h6>
+                </div>
+                <div className="row d-flex justify-content-center">
+                  <h6 className="m-4">{this.props.tourDates.length}</h6>
+                </div>
               </div>
-              <div className="row d-flex justify-content-center">
-                <h6 className="m-4">{this.props.tourDates.length}</h6>
+            </div>
+            <div className="row justify-content-center">
+              <div className="col-lg-10 route-info">
+                <div className="row mt-3 ml-2">
+                  <h6>NEXT TRIP</h6>
+                </div>
+                <div className="row d-dlex justify-content-center ">
+                  <p className="col-6">From: {this.state.origin} </p>
+                  <p className="col-6">To: {this.state.destination} </p>
+                  <p className="col-6">Distance: {this.state.distances[0]}</p>
+                  <p className="col-6">Duration: {this.state.durations[0]}</p>
+                </div>
               </div>
             </div>
           </div>
-          <div className="row justify-content-center">
-            <div className="col-lg-10 route-info">
-              <div className="row mt-3 ml-2">
-                <h6>NEXT TRIP</h6>
-              </div>
-              <div className="row d-dlex justify-content-center ">
-                <p className="col-6">From: {this.state.origin} </p>
-                <p className="col-6">To: {this.state.destination} </p>
-                <p className="col-6">Distance: {this.state.distances[0]}</p>
-                <p className="col-6">Duration: {this.state.durations[0]}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-lg-6 d-flex justify-content-center map-container">
-          <LoadScript
-          googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
-            <GoogleMap
-              mapContainerStyle={this.state.containerStyle}
-              center={this.state.center}
-              zoom={9} >
-              {
+          <div className="col-lg-6 d-flex justify-content-center map-container">
+            <LoadScript
+              googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
+              <GoogleMap
+                mapContainerStyle={this.state.containerStyle}
+                center={this.state.center}
+                zoom={9} >
+                {
                   (this.state.destination !== '' && this.state.origin !== '') &&
                   (
-                  <DirectionsService
-                    options={{
-                      destination: this.state.destination,
-                      origin: this.state.origin,
-                      travelMode: this.state.travelMode
-                    }}
-                    callback={this.directionsCallback}
-                  />
+                    <DirectionsService
+                      options={{
+                        destination: this.state.destination,
+                        origin: this.state.origin,
+                        travelMode: this.state.travelMode
+                      }}
+                      callback={this.directionsCallback}
+                    />
                   )
                 }
-              {
+                {
                   (this.state.response !== null) &&
                   (
                     <DirectionsRenderer
                       options={{ directions: this.state.response }} />
                   )
                 }
-            </GoogleMap>
-          </LoadScript>
+              </GoogleMap>
+            </LoadScript>
+          </div>
         </div>
       </div>
+
     );
   }
 }
