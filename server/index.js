@@ -157,6 +157,36 @@ app.get('/api/contacts/:contactId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+/// GET all things from all shows 👇🏼
+app.get('/api/all-shows', (req, res, next) => {
+  const sql = `
+select to_char("date",'yyyy-MM-dd') as "date",
+         "venues"."name" as "venueName",
+         "artistId",
+         "addressId",
+         "venueId",
+         "showId",
+         "line1",
+         "city",
+         "state",
+         "country",
+         "contacts"."email" as "contactEmail",
+         "contacts"."name" as "contactName",
+         "contacts"."phone" as "contactPhone",
+         "notes"."details" as "notesDetails"
+  from   "shows"
+  join "venues" using ("venueId")
+  join "addresses" using ("addressId")
+  join "artists" using ("artistId")
+  join "contacts" using ("showId")
+  join "notes" using ("showId")`;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 // GET specific show info 👇🏼
 app.get('/api/shows/:showId', (req, res, next) => {
   const showId = Number(req.params.showId);
