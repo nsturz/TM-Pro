@@ -8,7 +8,8 @@ export default class Dashboard extends React.Component {
       notes: '',
       contacts: '',
       schedules: [],
-      tourDates: []
+      tourDates: [],
+      testSchedules: []
     };
 
   }
@@ -25,9 +26,14 @@ export default class Dashboard extends React.Component {
     fetch('api/schedules')
       .then(res => res.json())
       .then(schedules => this.setState({ schedules }));
+
+    fetch('api/all-schedules')
+      .then(res => res.json())
+      .then(testSchedules => this.setState({ testSchedules }));
   }
 
   render() {
+    // console.log('this.state.testSchedules:', this.state.testSchedules)
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">

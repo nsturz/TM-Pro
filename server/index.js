@@ -118,7 +118,22 @@ app.get('/api/schedules/:showId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET specific SCHEDULE information (using showId?) 👇🏼
+// GET all schedule details from all shows 👇🏼
+app.get('/api/all-schedules', (req, res, next) => {
+  const sql = `
+    select "details" as "scheduleDetails",
+         to_char("endTime", 'HH:MI AM') as "endTime",
+         to_char("startTime", 'HH:MI AM') as "startTime",
+         "scheduleId",
+         "showId"
+  from "schedules"
+  order by "showId" asc`;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+// this GET request is for dashboard page, but it only grabs 1 date's worth of schedule info. delete soon 👇🏼
 app.get('/api/schedules', (req, res, next) => {
   const sql = `
   select "details" as "scheduleDetails",
