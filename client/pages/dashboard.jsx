@@ -1,3 +1,7 @@
+// on line 132, the app.get() method puts each schedule event into its own object, and pushes them into an array.
+// we like this. We will eventually need to go through this array, and sort out schedule events according
+// to showId, and in ascending order based on time.
+
 import React from 'react';
 
 export default class Dashboard extends React.Component {
