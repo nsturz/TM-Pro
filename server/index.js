@@ -614,6 +614,43 @@ app.delete('/api/delete-date', (req, res) => {
     });
 });
 
+// EDIT Venue Information 👇🏼
+
+app.patch('/api/edit-venue', (req, res) => {
+  const {
+    venueName,
+    line1,
+    city,
+    state,
+    country,
+    addressId
+  } = req.body;
+  const updateVenueAddressSql = `
+  update "addresses"
+  set    "line1" = $1,
+         "city" = $2,
+         "state" = $3,
+         "country" = $4
+  where "addressId" = $5
+  returning *`;
+  const updateVenueInfoParams = [line1, city, state, country, addressId];
+  db.query(updateVenueAddressSql, updateVenueInfoParams)
+    .then(result => {
+      const updateVenueNameSql = `
+    update "venues"
+    set    "name" = $1
+    where "addressId" = $2
+    returning *`;
+      const updateVenueNameParams = [venueName, addressId];
+      db.query(updateVenueNameSql, updateVenueNameParams)
+        .then(res.status(204).json())
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'an unexpected error occured.' });
+        });
+    });
+});
+
 // EDIT / PATCH shows in the database 👇🏼
 app.patch('/api/edit-date/:showId', (req, res) => {
   const showId = Number(req.params.showId);
