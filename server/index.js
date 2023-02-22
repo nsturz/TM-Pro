@@ -1,3 +1,8 @@
+// app.patch for venues works
+// a thought: when we get to the client side, we will need to think about how each little edit button
+// is going to behave differently. for instance, if we click the edit button on the first date's VENUES
+// section, how are we going to grab the correct data from the database and fill the inputs? do we need to fill the inputs?
+
 require('dotenv/config');
 const express = require('express');
 const ClientError = require('./client-error');
@@ -615,7 +620,6 @@ app.delete('/api/delete-date', (req, res) => {
 });
 
 // EDIT Venue Information 👇🏼
-
 app.patch('/api/edit-venue', (req, res) => {
   const {
     venueName,
@@ -650,6 +654,31 @@ app.patch('/api/edit-venue', (req, res) => {
         });
     });
 });
+
+// EDIT Contact and Notes information 👇🏼
+// app.patch('/api/edit-details', (req,res) =>{
+//   const showId = Number(req.params.showId);
+//   if (!Number.isInteger(showId) || showId < 1) {
+//     res.status(400).json({
+//       error: 'showId must be a positive integer'
+//     });
+//     return;
+//   }
+//   const {
+//     contactEmail,
+//     contactName,
+//     contactPhone,
+//     notesDetails
+//   } = req.body;
+
+//   const updateContactsSql = `
+//   update "contacts"
+//   set    "email" = $1,
+//          "name" = $2,
+//          "phone" = $3
+//   where  "showId" = $4
+//   returning *`;
+// })
 
 // EDIT / PATCH shows in the database 👇🏼
 app.patch('/api/edit-date/:showId', (req, res) => {
