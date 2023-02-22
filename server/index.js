@@ -656,29 +656,47 @@ app.patch('/api/edit-venue', (req, res) => {
 });
 
 // EDIT Contact and Notes information 👇🏼
-// app.patch('/api/edit-details', (req,res) =>{
-//   const showId = Number(req.params.showId);
-//   if (!Number.isInteger(showId) || showId < 1) {
-//     res.status(400).json({
-//       error: 'showId must be a positive integer'
-//     });
-//     return;
-//   }
-//   const {
-//     contactEmail,
-//     contactName,
-//     contactPhone,
-//     notesDetails
-//   } = req.body;
+app.patch('/api/edit-details/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  if (!Number.isInteger(showId) || showId < 1) {
+    res.status(400).json({
+      error: 'showId must be a positive integer'
+    });
+    return;
+  }
+  const {
+    contactEmail,
+    contactName,
+    contactPhone,
+    notesDetails
+  } = req.body;
 
-//   const updateContactsSql = `
-//   update "contacts"
-//   set    "email" = $1,
-//          "name" = $2,
-//          "phone" = $3
-//   where  "showId" = $4
-//   returning *`;
-// })
+  const updateContactsSql = `
+  update "contacts"
+  set    "email" = $1,
+         "name" = $2,
+         "phone" = $3
+  where  "showId" = $4
+  returning *`;
+
+  const updateContactsParams = [contactEmail, contactName, contactPhone, showId];
+  db.query(updateContactsSql, updateContactsParams)
+    .then(result => {
+      const updateNotesSql = `
+    update "notes"
+    set    "details" = $1
+    where  "showId" = $2
+    returning *`;
+
+      const updateNotesParams = [notesDetails, showId];
+      db.query(updateNotesSql, updateNotesParams)
+        .then(res.status(204).json())
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'an unexpected error occured' });
+        });
+    });
+});
 
 // EDIT / PATCH shows in the database 👇🏼
 app.patch('/api/edit-date/:showId', (req, res) => {
