@@ -41,6 +41,7 @@ export default class Dashboard extends React.Component {
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
+        <h3>BIG UPDATE COMING!!!</h3>
         <h3 className="col-12 mb-5">{ date } - { city }, { state }</h3>
         <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">
           <div className="mb-3 mt-3">

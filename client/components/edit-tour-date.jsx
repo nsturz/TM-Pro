@@ -212,7 +212,6 @@ export default class EditTourDate extends React.Component {
   }
 
   render() {
-    // console.log('this.state.scheduleEvents:', this.state.scheduleEvents)
     return (
       <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
         <form
