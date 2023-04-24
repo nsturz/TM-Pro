@@ -197,6 +197,11 @@ nav {
   overflow-x: scroll;
 }
 
+.notes-contacts-new {
+  min-height: 300px;
+  overflow-y: scroll;
+}
+
 .navbar-nav > .active > a {
   color: red;
 }

@@ -54,45 +54,50 @@ export default class Dashboard extends React.Component {
                 <hr className="hr-new" />
               </div>
             </div>
-            <div className="details-container d-flex flex-wrap mt-3 ">
-              <div className="col-lg-3 venues-new ml-1 mr-1">
+            <div className="details-container d-flex flex-wrap justify-content-center mt-3 ">
+              <div className="col-12 col-lg venues-new ml-1 mr-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col p-2 box-shadow rounded">
+                  <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded">
                     <div>
                       <p className="lato-dark m-0 ">Chain Reaction</p>
                       <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
                       <p className="lato-dark m-0">Anaheim, CA</p>
                       <p className="lato-dark m-0">90876</p>
                     </div>
-                    <div className="d-flex justify-content-center">
+                    <div className="d-flex justify-content-center mt-3">
                       <img src="../images/google-map-image.png" alt=""/>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 details-new ml-1 mr-1">
+              <div className="col-12 col-lg details-new ml-1 mr-2">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Details</h6>
                   <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col box-shadow rounded ">
-                    <div className="m-3">
-                      <p className="lato-dark">Tony D.</p>
-                      <p className="lato-dark">714-459-8898</p>
-                      <p className="lato-dark">tony@gabagoolbooking.com</p>
+                  <div className="col box-shadow rounded pt-3 pl-2 pr-2 notes-contacts-new">
+                    <div className="row">
+                      <div className="col">
+                        <p className="lato-dark">Tony D.</p>
+                        <p className="lato-dark">714-459-8898</p>
+                        <p className="lato-dark">tony@gabagoolbooking.com</p>
+                      </div>
                     </div>
-                    <div className="m-3">
-                      <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92</p>
+                    <div className="row">
+                      <div className="col">
+                        <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92 <br />SOMETHING <br /> SOMETHING ELSE</p>
+                        <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92 <br />SOMETHING <br /> SOMETHING ELSE</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 schedule-new ml-1 mr-1">
+              <div className="col-12 col-lg schedule-new ml-1 mr-1 ">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Schedules</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
