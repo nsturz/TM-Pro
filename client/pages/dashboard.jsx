@@ -40,19 +40,67 @@ export default class Dashboard extends React.Component {
     // console.log('this.state.testSchedules:', this.state.testSchedules)
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
-      <div className="DELETE">
-        <div className="container d-flex justify-center">
+      <div className="DELETE THIS DIV">
+        <div className="container justify-center">
           <div className="col-12 m-1">
             <div className="row">
-              <div className="col">
+              <div className="col p-0">
                 <hr className="hr-new" />
               </div>
               <div className="col m-0 p-0 text-center">
                 <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
-                <h6 className="date-new m-0 d-inline m-1 ">Feb 8th, 2023</h6>
+                <h6 className="poppins-dark m-0 d-inline m-1 ">Feb 8th, 2023</h6>
               </div>
-              <div className="col">
+              <div className="col p-0">
                 <hr className="hr-new" />
+              </div>
+            </div>
+            <div className="row d-flex flex-wrap">
+              <div className="col-lg-4 venues-new border border-success">
+                <div className="row">
+                  <h6 className="poppins-dark d-inline border border-danger">Venue</h6>
+                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                </div>
+                <div className="row">
+                  <div className="col p-0">
+                    <p className="lato-dark m-0">Chain Reaction</p>
+                    <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
+                    <p className="lato-dark m-0">Anaheim, CA</p>
+                    <p className="lato-dark m-0">90876</p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col p-0">
+                    <h4 className="lato-dark">MAP</h4>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 details-new border border-success">
+                <div className="row">
+                  <h6 className="poppins-dark d-inline border border-danger">Details</h6>
+                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                </div>
+                <div className="row">
+                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+                <div className="row">
+                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                </div>
+              </div>
+              <div className="col col-lg-4 schedule-new border border-success">
+                <div className="row">
+                  <h6 className="poppins-dark d-inline border border-danger">Schedules</h6>
+                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                </div>
+                <ul>
+                  <li className="lato-dark">Schedule</li>
+                  <li className="lato-dark">Schedule</li>
+                  <li className="lato-dark">Schedule</li>
+                  <li className="lato-dark">Schedule</li>
+                  <li className="lato-dark">Schedule</li>
+                </ul>
               </div>
             </div>
           </div>
