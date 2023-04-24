@@ -55,14 +55,14 @@ export default class Dashboard extends React.Component {
                 <hr className="hr-new" />
               </div>
             </div>
-            <div className="details-container row d-flex flex-wrap mt-3 justify-content-between">
-              <div className="col-lg-3 venues-new m-1">
+            <div className="details-container row d-flex flex-wrap mt-3 justify-content-center">
+              <div className="col-lg-3 venues-new m-4">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col p-0 box-shadow rounded">
+                  <div className="col p-2 box-shadow rounded">
                     <div>
                       <p className="lato-dark m-0 ">Chain Reaction</p>
                       <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
@@ -71,31 +71,31 @@ export default class Dashboard extends React.Component {
                     </div>
                     <div>
                       <div className="col p-0">
-                        <h4 className="lato-dark">MAP</h4>
+                        <h1>MAP</h1>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 details-new m-1 ">
+              <div className="col-lg-3 details-new m-4 ">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Details</h6>
                   <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
                 </div>
                 <div className="row">
                   <div className="col box-shadow rounded ">
-                    <div className="row">
-                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    <div className="m-3">
+                      <p className="lato-dark">Tony D.</p>
+                      <p className="lato-dark">714-459-8898</p>
+                      <p className="lato-dark">tony@gabagoolbooking.com</p>
                     </div>
-                    <div className="row">
-                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    <div className="m-3">
+                      <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col col-lg-3 schedule-new m-1 ">
+              <div className="col col-lg-3 schedule-new m-4">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Schedules</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
@@ -103,11 +103,11 @@ export default class Dashboard extends React.Component {
                 <div className="row">
                   <div className="col box-shadow rounded">
                     <ul>
-                      <li className="lato-dark">Schedule</li>
-                      <li className="lato-dark">Schedule</li>
-                      <li className="lato-dark">Schedule</li>
-                      <li className="lato-dark">Schedule</li>
-                      <li className="lato-dark">Schedule</li>
+                      <li className="lato-dark">9:30am - 10:30am: Travel</li>
+                      <li className="lato-dark">4:00pm - 5:00pm Load In </li>
+                      <li className="lato-dark">6:30pm - Doors</li>
+                      <li className="lato-dark">7:00pm - 7:30pm Support 1</li>
+                      <li className="lato-dark">7:45pm - End Limp Bizkit</li>
                     </ul>
                   </div>
                 </div>
