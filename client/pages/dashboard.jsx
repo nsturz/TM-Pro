@@ -48,18 +48,18 @@ export default class Dashboard extends React.Component {
                 <hr className="hr-new" />
               </div>
               <div className="col m-0 p-0 text-center">
-                <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
                 <h6 className="poppins-dark m-0 d-inline m-1 ">Feb 8th, 2023</h6>
+                <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
               </div>
               <div className="col p-0">
                 <hr className="hr-new" />
               </div>
             </div>
-            <div className="row d-flex flex-wrap">
-              <div className="col-lg-4 venues-new border border-success">
+            <div className="details-container row d-flex flex-wrap mt-3 justify-content-between">
+              <div className="col-lg-3 venues-new box-shadow m-1 rounded">
                 <div className="row">
-                  <h6 className="poppins-dark d-inline border border-danger">Venue</h6>
-                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                  <h6 className="poppins-dark d-inline">Venue</h6>
+                  <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
                 </div>
                 <div className="row">
                   <div className="col p-0">
@@ -75,10 +75,10 @@ export default class Dashboard extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 details-new border border-success">
+              <div className="col-lg-3 details-new box-shadow m-1 rounded">
                 <div className="row">
-                  <h6 className="poppins-dark d-inline border border-danger">Details</h6>
-                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                  <h6 className="poppins-dark d-inline ">Details</h6>
+                  <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
                 </div>
                 <div className="row">
                   <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
@@ -89,10 +89,10 @@ export default class Dashboard extends React.Component {
                   <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                 </div>
               </div>
-              <div className="col col-lg-4 schedule-new border border-success">
+              <div className="col col-lg-3 schedule-new box-shadow m-1 rounded">
                 <div className="row">
-                  <h6 className="poppins-dark d-inline border border-danger">Schedules</h6>
-                  <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+                  <h6 className="poppins-dark d-inline ">Schedules</h6>
+                  <i className="fa-solid fa-clock d-inline m-1 info-new" />
                 </div>
                 <ul>
                   <li className="lato-dark">Schedule</li>

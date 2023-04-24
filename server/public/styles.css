@@ -16,6 +16,10 @@ body {
   background-color: #fff;
 }
 
+.box-shadow {
+  box-shadow: 1px 1px 1px 1px #d8d8d8;
+}
+
 button:hover {
   transition: all 0.3s ease-in-out;
   transform: scale(1.1);
