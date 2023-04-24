@@ -44,19 +44,19 @@ export default class Dashboard extends React.Component {
         <div className="container justify-center">
           <div className="col-12 m-1">
             <div className="row">
-              <div className="col p-0">
+              <div className="col-lg-5 p-0">
                 <hr className="hr-new" />
               </div>
-              <div className="col m-0 p-0 text-center">
+              <div className="col-lg-2 m-0 p-0 text-center">
                 <h6 className="poppins-dark m-0 d-inline m-1 ">Feb 8th, 2023</h6>
                 <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
               </div>
-              <div className="col p-0">
+              <div className="col-lg-5 p-0">
                 <hr className="hr-new" />
               </div>
             </div>
             <div className="details-container row d-flex flex-wrap mt-3 justify-content-center">
-              <div className="col-lg-3 venues-new m-4">
+              <div className="col-lg-3 venues-new ml-3 mr-3">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
@@ -71,13 +71,13 @@ export default class Dashboard extends React.Component {
                     </div>
                     <div>
                       <div className="col p-0">
-                        <h1>MAP</h1>
+                        <img src="../images/google-map-image.png" alt="" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 details-new m-4 ">
+              <div className="col-lg-3 details-new ml-3 mr-3">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Details</h6>
                   <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
@@ -95,7 +95,7 @@ export default class Dashboard extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col col-lg-3 schedule-new m-4">
+              <div className="col col-lg-3 schedule-new mr-3 ml-3">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Schedules</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
@@ -108,6 +108,9 @@ export default class Dashboard extends React.Component {
                       <li className="lato-dark">6:30pm - Doors</li>
                       <li className="lato-dark">7:00pm - 7:30pm Support 1</li>
                       <li className="lato-dark">7:45pm - End Limp Bizkit</li>
+                      <li className="lato-dark">9:30am - 10:30am: Travel</li>
+                      <li className="lato-dark">4:00pm - 5:00pm Load In </li>
+                      <li className="lato-dark">6:30pm - Doors</li>
                     </ul>
                   </div>
                 </div>

@@ -124,7 +124,8 @@ hr {
 }
 
 .hr-new {
-  background-color: #008080;
+  border-top: 2px solid;
+  color: #008080;
 }
 
 h6 {
@@ -276,14 +277,19 @@ ul {
     margin-top: 50%;
   }
 
-  .venues-notes-wrapper {
+  .venues-notes-wrapper,
+  .venues-new {
     margin-bottom: 2rem;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .contacts-wrapper {
-    margin-top: 5rem;
+    margin-top: 3rem;
+  }
+
+  .details-new {
+    margin-bottom: 3rem;
   }
 
   .form-wrapper {
@@ -307,7 +313,8 @@ ul {
     margin-top: 3rem;
   }
 
-  .venues {
+  .venues,
+  .venues-new {
     margin-bottom: 3rem;
   }
 
