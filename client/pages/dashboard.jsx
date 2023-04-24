@@ -1,7 +1,6 @@
 // on line 132, the app.get() method puts each schedule event into its own object, and pushes them into an array.
 // we like this. We will eventually need to go through this array, and sort out schedule events according
 // to showId, and in ascending order based on time.
-
 import React from 'react';
 
 export default class Dashboard extends React.Component {
@@ -41,8 +40,8 @@ export default class Dashboard extends React.Component {
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="DELETE THIS DIV">
-        <div className="container justify-center">
-          <div className="col-12 m-1">
+        <div className="container">
+          <div className="mt-3">
             <div className="row">
               <div className="col-lg-5 p-0">
                 <hr className="hr-new" />
@@ -55,8 +54,8 @@ export default class Dashboard extends React.Component {
                 <hr className="hr-new" />
               </div>
             </div>
-            <div className="details-container row d-flex flex-wrap mt-3 justify-content-center">
-              <div className="col-lg-3 venues-new ml-3 mr-3">
+            <div className="details-container d-flex flex-wrap mt-3 ">
+              <div className="col-lg-3 venues-new ml-1 mr-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
@@ -69,15 +68,13 @@ export default class Dashboard extends React.Component {
                       <p className="lato-dark m-0">Anaheim, CA</p>
                       <p className="lato-dark m-0">90876</p>
                     </div>
-                    <div>
-                      <div className="col p-0">
-                        <img src="../images/google-map-image.png" alt="" />
-                      </div>
+                    <div className="d-flex justify-content-center">
+                      <img src="../images/google-map-image.png" alt=""/>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 details-new ml-3 mr-3">
+              <div className="col-lg-3 details-new ml-1 mr-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Details</h6>
                   <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
@@ -95,7 +92,7 @@ export default class Dashboard extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="col col-lg-3 schedule-new mr-3 ml-3">
+              <div className="col-lg-3 schedule-new ml-1 mr-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Schedules</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
