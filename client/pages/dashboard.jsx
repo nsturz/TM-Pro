@@ -56,51 +56,61 @@ export default class Dashboard extends React.Component {
               </div>
             </div>
             <div className="details-container row d-flex flex-wrap mt-3 justify-content-between">
-              <div className="col-lg-3 venues-new box-shadow m-1 rounded">
+              <div className="col-lg-3 venues-new m-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col p-0">
-                    <p className="lato-dark m-0">Chain Reaction</p>
-                    <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
-                    <p className="lato-dark m-0">Anaheim, CA</p>
-                    <p className="lato-dark m-0">90876</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col p-0">
-                    <h4 className="lato-dark">MAP</h4>
+                  <div className="col p-0 box-shadow rounded">
+                    <div>
+                      <p className="lato-dark m-0 ">Chain Reaction</p>
+                      <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
+                      <p className="lato-dark m-0">Anaheim, CA</p>
+                      <p className="lato-dark m-0">90876</p>
+                    </div>
+                    <div>
+                      <div className="col p-0">
+                        <h4 className="lato-dark">MAP</h4>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 details-new box-shadow m-1 rounded">
+              <div className="col-lg-3 details-new m-1 ">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Details</h6>
                   <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <div className="row">
-                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                  <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                  <div className="col box-shadow rounded ">
+                    <div className="row">
+                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                    <div className="row">
+                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                      <p className="lato-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="col col-lg-3 schedule-new box-shadow m-1 rounded">
+              <div className="col col-lg-3 schedule-new m-1 ">
                 <div className="row">
                   <h6 className="poppins-dark d-inline ">Schedules</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
                 </div>
-                <ul>
-                  <li className="lato-dark">Schedule</li>
-                  <li className="lato-dark">Schedule</li>
-                  <li className="lato-dark">Schedule</li>
-                  <li className="lato-dark">Schedule</li>
-                  <li className="lato-dark">Schedule</li>
-                </ul>
+                <div className="row">
+                  <div className="col box-shadow rounded">
+                    <ul>
+                      <li className="lato-dark">Schedule</li>
+                      <li className="lato-dark">Schedule</li>
+                      <li className="lato-dark">Schedule</li>
+                      <li className="lato-dark">Schedule</li>
+                      <li className="lato-dark">Schedule</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
