@@ -54,18 +54,19 @@ export default class Dashboard extends React.Component {
                 <hr className="hr-new" />
               </div>
             </div>
-            <div className="details-container d-flex flex-wrap justify-content-center mt-3 ">
+            <div className="details-container d-flex flex-wrap justify-content-center mt-3">
               <div className="col-12 col-lg venues-new ml-1 mr-1">
                 <div className="row">
                   <h6 className="poppins-dark d-inline">Venue</h6>
                   <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded">
+                  <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded overflow-y venue-details-new">
                     <div>
                       <p className="lato-dark m-0 ">Chain Reaction</p>
                       <p className="lato-dark m-0"> 1234 Lincoln Ave.</p>
                       <p className="lato-dark m-0">Anaheim, CA</p>
+                      <p className="lato-dark m-0">90876</p>
                       <p className="lato-dark m-0">90876</p>
                     </div>
                     <div className="d-flex justify-content-center mt-3">
@@ -91,7 +92,6 @@ export default class Dashboard extends React.Component {
                     <div className="row">
                       <div className="col">
                         <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92 <br />SOMETHING <br /> SOMETHING ELSE</p>
-                        <p className="lato-dark">Showers: No <br /> Catering: Albertos <br /> Drinks: 2 per band member <br /> Wifi: TM - Pro <br /> Password: fullstack92 <br />SOMETHING <br /> SOMETHING ELSE</p>
                       </div>
                     </div>
                   </div>
@@ -99,11 +99,11 @@ export default class Dashboard extends React.Component {
               </div>
               <div className="col-12 col-lg schedule-new ml-1 mr-1 ">
                 <div className="row">
-                  <h6 className="poppins-dark d-inline ">Schedules</h6>
+                  <h6 className="poppins-dark d-inline ">Schedule</h6>
                   <i className="fa-solid fa-clock d-inline m-1 info-new" />
                 </div>
                 <div className="row">
-                  <div className="col box-shadow rounded">
+                  <div className="col box-shadow rounded schedule-details-new">
                     <ul>
                       <li className="lato-dark">9:30am - 10:30am: Travel</li>
                       <li className="lato-dark">4:00pm - 5:00pm Load In </li>

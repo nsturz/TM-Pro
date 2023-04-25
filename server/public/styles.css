@@ -197,9 +197,12 @@ nav {
   overflow-x: scroll;
 }
 
-.notes-contacts-new {
-  min-height: 300px;
+.notes-contacts-new,
+.venue-details-new,
+.schedule-details-new {
+  height: 300px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .navbar-nav > .active > a {
