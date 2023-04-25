@@ -36,7 +36,8 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    // console.log('this.state.testSchedules:', this.state.testSchedules)
+    // console.log('this.state.tourDates:', this.state.tourDates)
+    // console.log('this.state.schedules:', this.state.schedules)
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="DELETE THIS DIV">
