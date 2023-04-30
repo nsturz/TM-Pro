@@ -12,7 +12,8 @@ export default class Dashboard extends React.Component {
       notes: '',
       contacts: '',
       schedules: [],
-      testSchedules: []
+      testSchedules: [],
+      reference: []
     };
 
   }
@@ -43,14 +44,17 @@ export default class Dashboard extends React.Component {
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
+    // console.log('this.state.testSchedules:', this.state.testSchedules)
+    // console.log('this.state.reference:', this.state.reference)
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="DELETE" >
         <ul className="mt-3">
           {
                 this.state.tourDates.map(event => {
+                  this.state.reference.push(event.showId);
                   return (
-                    <li className="container" key={event.showId}>
+                    <li className="tourDate container" key={event.showId} id={event.showId}>
                       <div className="row mt-5">
                         <div className="col-lg-5 p-0">
                           <hr className="hr-new" />
@@ -64,7 +68,7 @@ export default class Dashboard extends React.Component {
                         </div>
                       </div>
                       <div className="details-container d-flex flex-wrap justify-content-center mt-3 mb-5">
-                        <div className="col-12 col-lg venues-new ml-1 mr-1">
+                        <div className="col-12 col-lg venues-new ml-2 mr-2">
                           <div className="row">
                             <h6 className="poppins-dark d-inline">Venue</h6>
                             <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
@@ -83,7 +87,7 @@ export default class Dashboard extends React.Component {
                             </div>
                           </div>
                         </div>
-                        <div className="col-12 col-lg details-new ml-1 mr-2">
+                        <div className="col-12 col-lg details-new ml-2 mr-2">
                           <div className="row">
                             <h6 className="poppins-dark d-inline ">Details</h6>
                             <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
@@ -105,7 +109,7 @@ export default class Dashboard extends React.Component {
                             </div>
                           </div>
                         </div>
-                        <div className="col-12 col-lg schedule-new ml-1 mr-1 ">
+                        <div className="col-12 col-lg schedule-new ml-2 mr-2 ">
                           <div className="row">
                             <h6 className="poppins-dark d-inline ">Schedule</h6>
                             <i className="fa-solid fa-clock d-inline m-1 info-new" />
@@ -113,6 +117,13 @@ export default class Dashboard extends React.Component {
                           <div className="row">
                             <div className="col box-shadow rounded schedule-details-new">
                               <ul>
+                                {/* {
+                                  this.state.testSchedules.forEach(function(element, index){
+                                    console.log(element, index)
+                                  })
+                                } */}
+                              </ul>
+                              {/* <ul>
                                 <li className="lato-dark">9:30am - 10:30am: Travel</li>
                                 <li className="lato-dark">4:00pm - 5:00pm Load In </li>
                                 <li className="lato-dark">6:30pm - Doors</li>
@@ -121,7 +132,7 @@ export default class Dashboard extends React.Component {
                                 <li className="lato-dark">9:30am - 10:30am: Travel</li>
                                 <li className="lato-dark">4:00pm - 5:00pm Load In </li>
                                 <li className="lato-dark">6:30pm - Doors</li>
-                              </ul>
+                              </ul> */}
                             </div>
                           </div>
                         </div>
