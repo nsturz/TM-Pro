@@ -46,6 +46,7 @@ export default class Dashboard extends React.Component {
     // console.log('this.state.schedules:', this.state.schedules)
     // console.log('this.state.testSchedules:', this.state.testSchedules)
     // console.log('this.state.reference:', this.state.reference)
+    // const tourDates = this.state.tourDates;
     const { city, date, line1, state, venueName, notesDetails, contactEmail, contactPhone, contactName } = this.state.show;
     return (
       <div className="DELETE" >
@@ -119,7 +120,11 @@ export default class Dashboard extends React.Component {
                               <ul>
                                 {/* {
                                   this.state.testSchedules.forEach(function(element, index){
-                                    console.log(element, index)
+                                    if(element.showId === tourDates[index].showId){
+                                      return(
+                                        <li>something</li>
+                                      )
+                                    }
                                   })
                                 } */}
                               </ul>
