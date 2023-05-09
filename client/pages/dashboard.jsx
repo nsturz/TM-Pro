@@ -110,8 +110,11 @@ export default class Dashboard extends React.Component {
                                   // console.log('event.showId:', event.showId)
                                   // event.showId === this.state.tourDates[index].showId ? <p>hello</p>
                                   //   : <p>No Schedules to display for this date</p>
-                                  // console.log('eventId:', event.showId)
-                                  // console.log('index:', index)
+                                  // console.log('event.showId:', event.showId)
+                                  // console.log('event.scheduleId:', event.scheduleId)
+                                  // // console.log('index +1:', index + 1 )
+                                  // console.log('true index:', index)
+
                                   // console.log('this.state.tourDates[event.showId -1]', this.state.tourDates[event.showId -1].showId)
                                   return (
                                     event.showId === this.state.tourDates[event.showId - 1].showId
