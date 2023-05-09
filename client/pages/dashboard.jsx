@@ -16,6 +16,9 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    fetch('/api/all-schedules')
+      .then(res => res.json())
+      .then(schedules => this.setState({ schedules }));
     fetch('/api/all-shows')
       .then(res => res.json())
       .then(tourDates => {
@@ -23,16 +26,12 @@ export default class Dashboard extends React.Component {
           tourDates
         });
       });
-    fetch('/api/all-schedules')
-      .then(res => res.json())
-      .then(schedules => this.setState({ schedules }));
   }
 
   render() {
+
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
-    // const tourDates = this.state.tourDates;
-    // const schedules = this.state.schedules;
     return (
       <div className="DELETE" >
         <ul className="mt-3">
@@ -101,7 +100,15 @@ export default class Dashboard extends React.Component {
                         </div>
                         <div className="row">
                           <div className="col box-shadow rounded schedule-details-new">
-
+                            <ul>
+                              {
+                                this.state.schedules?.map((event, index) => {
+                                  // event.showId === this.state.tourDates[index].showId ? <p>hello</p>
+                                  //   : <p>No Schedules to display for this date</p>
+                                  return (<li key={event.showId}>{event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>);
+                                })
+                              }
+                            </ul>
                             {/* <ul>
                                 <li className="lato-dark">9:30am - 10:30am: Travel</li>
                                 <li className="lato-dark">4:00pm - 5:00pm Load In </li>
