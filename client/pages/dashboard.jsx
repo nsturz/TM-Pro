@@ -103,9 +103,21 @@ export default class Dashboard extends React.Component {
                             <ul>
                               {
                                 this.state.schedules?.map((event, index) => {
+                                  // const li = document.querySelector('.tourDate')
+                                  // console.log('li:', Number(li.id))
+                                  // const scheduleEvent = document.querySelector('.schedule-event')
+                                  // console.log('scheduleEvent:', scheduleEvent)
+                                  // console.log('event.showId:', event.showId)
                                   // event.showId === this.state.tourDates[index].showId ? <p>hello</p>
                                   //   : <p>No Schedules to display for this date</p>
-                                  return (<li key={event.showId}>{event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>);
+                                  // console.log('eventId:', event.showId)
+                                  // console.log('index:', index)
+                                  // console.log('this.state.tourDates[event.showId -1]', this.state.tourDates[event.showId -1].showId)
+                                  return (
+                                    event.showId === this.state.tourDates[event.showId - 1].showId
+                                      ? <li className='schedule-event'key={event.scheduleId}>{event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>
+                                      : <li>nothing to see here...</li>
+                                  );
                                 })
                               }
                             </ul>
