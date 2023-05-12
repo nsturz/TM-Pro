@@ -13,7 +13,6 @@ export default class Dashboard extends React.Component {
       contacts: '',
       schedules: []
     };
-    // this.doThing = this.doThing.bind(this)
   }
 
   componentDidMount() {
@@ -28,17 +27,22 @@ export default class Dashboard extends React.Component {
       .then(tourDates => {
         this.setState({ tourDates });
       });
+
+    fetch('/api/schedules/1')
+      .then(res => res.json())
+      .then(schedules => {
+        this.setState({ schedules });
+      });
   }
 
-  // doThing(){
-  //   //console.log('this.state.tourDates in doThing()', this.state.tourDates)
-  //   // this.state.tourDates.map(event =>{
-  //   //   fetch(`/api/schedules/${event.showId}`)
-  //   //   .then(res => res.json())
-  //   //   .then(schedules => {
-  //   //     this.setState({schedules})
-  //   //   })
+  // selectDate(event){
+  //   // const showId = Number(event.target.id);
+  //   // fetch(`/api/shows/${showId}`)
+  //   // .then(res => res.json())
+  //   // .then(show => {
+  //   //   this.setState({show})
   //   // })
+  //   console.log('event.target', event.target)
   // }
 
   render() {
@@ -47,9 +51,26 @@ export default class Dashboard extends React.Component {
     // console.log('this.state.schedules:', this.state.schedules)
     // console.log('this.state.show:', this.state)
     return (
-      <div className="DELETE" >
-        <li className="tourDate container" key={this.state.show.showId} id={this.state.show.showId}>
-          <div className="row mt-5">
+      <div className="DELETE container" >
+        <form className="d-flex mt-3">
+          <div className="col-lg-10 col-8 p-0 m-1">
+            <select name="" className="form-control" id="">
+              <option>Select a date.</option>
+              {
+                  this.state.tourDates.map(event => {
+                    return (
+                      <option key={event.showId} id={event.showId}>{event.date} - {event.city}, {event.state} @ {event.venueName}</option>
+                    );
+                  })
+                }
+            </select>
+          </div>
+          <div className="col-lg-2 p-0 m-1">
+            <button className="btn select-date-btn"> Select Date</button>
+          </div>
+        </form>
+        <div className="tourDate" key={this.state.show.showId} id={this.state.show.showId}>
+          <div className="row mt-4">
             <div className="col-lg-5 p-0">
               <hr className="hr-new" />
             </div>
@@ -110,40 +131,20 @@ export default class Dashboard extends React.Component {
               </div>
               <div className="row">
                 <div className="col box-shadow rounded schedule-details-new">
-                  {/* <ul>
-                              {
-                                this.state.schedules?.map((event, index) => {
-                                  // console.log('event.showId:', event.showId)
-                                  // console.log('event.scheduleId:', event.scheduleId)
-                                  // console.log('index:', index)
-                                    //  event.showId === this.state.tourDates[event.showId - 1].showId
-                                    //    ? console.log('event.startTime:', event.startTime, 'event.endTime:', event.endTime)
-
-                                    //    : console.log('potato')
-
-                                  // return (
-                                  //   event.showId === this.state.tourDates[event.showId - 1].showId
-                                  //     ? <li className='schedule-event'key={event.scheduleId}> {event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>
-                                  //     : <li>nothing to see here...</li>
-                                  // );
-                                })
-                              }
-                            </ul> */}
-                  {/* <ul>
-                                <li className="lato-dark">9:30am - 10:30am: Travel</li>
-                                <li className="lato-dark">4:00pm - 5:00pm Load In </li>
-                                <li className="lato-dark">6:30pm - Doors</li>
-                                <li className="lato-dark">7:00pm - 7:30pm Support 1</li>
-                                <li className="lato-dark">7:45pm - End Limp Bizkit</li>
-                                <li className="lato-dark">9:30am - 10:30am: Travel</li>
-                                <li className="lato-dark">4:00pm - 5:00pm Load In </li>
-                                <li className="lato-dark">6:30pm - Doors</li>
-                              </ul> */}
+                  <ul>
+                    {
+                        this.state.schedules?.map(event => {
+                          return (
+                            <li key={event.showId} >{event.startTime} - {event.endTime} : {event.details}</li>
+                          );
+                        })
+                       }
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
-        </li>
+        </div>
 
         {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
           <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>

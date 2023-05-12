@@ -99,10 +99,6 @@ button:hover {
   font-size: 1.5rem;
 }
 
-form {
-  width: 80%;
-}
-
 .form-wrapper {
   margin-top: 15%;
 }
@@ -257,6 +253,11 @@ pre {
   background-color: #3d3d3c;
   overflow-y: scroll;
   padding: 0;
+}
+
+.select-date-btn {
+  background-color: #1887d7;
+  color: white;
 }
 
 .tourdates {
