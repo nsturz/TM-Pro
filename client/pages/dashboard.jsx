@@ -7,115 +7,129 @@ export default class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      show: '',
       tourDates: [],
       notes: '',
       contacts: '',
       schedules: []
     };
-
+    // this.doThing = this.doThing.bind(this)
   }
 
   componentDidMount() {
-    fetch('/api/all-schedules')
+    fetch('/api/shows/1')
       .then(res => res.json())
-      .then(schedules => this.setState({ schedules }));
+      .then(show => {
+        this.setState({ show });
+      });
+
     fetch('/api/all-shows')
       .then(res => res.json())
       .then(tourDates => {
-        this.setState({
-          tourDates
-        });
+        this.setState({ tourDates });
       });
   }
+
+  // doThing(){
+  //   //console.log('this.state.tourDates in doThing()', this.state.tourDates)
+  //   // this.state.tourDates.map(event =>{
+  //   //   fetch(`/api/schedules/${event.showId}`)
+  //   //   .then(res => res.json())
+  //   //   .then(schedules => {
+  //   //     this.setState({schedules})
+  //   //   })
+  //   // })
+  // }
 
   render() {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
+    // console.log('this.state.show:', this.state)
     return (
       <div className="DELETE" >
-        <ul className="mt-3">
-          {
-              this.state.tourDates.map((event, index) => {
-                return (
-                  <li className="tourDate container" key={event.showId} id={event.showId}>
-                    <div className="row mt-5">
-                      <div className="col-lg-5 p-0">
-                        <hr className="hr-new" />
-                      </div>
-                      <div className="col-lg-2 m-0 p-0 text-center">
-                        <h6 className="poppins-dark m-0 d-inline m-1 ">{event.date}</h6>
-                        <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
-                      </div>
-                      <div className="col-lg-5 p-0">
-                        <hr className="hr-new" />
-                      </div>
+        <li className="tourDate container" key={this.state.show.showId} id={this.state.show.showId}>
+          <div className="row mt-5">
+            <div className="col-lg-5 p-0">
+              <hr className="hr-new" />
+            </div>
+            <div className="col-lg-2 m-0 p-0 text-center">
+              <h6 className="poppins-dark m-0 d-inline m-1 ">{this.state.show.date}</h6>
+              <i className="fa-solid fa-calendar-days d-inline m-1 info-new" />
+            </div>
+            <div className="col-lg-5 p-0">
+              <hr className="hr-new" />
+            </div>
+          </div>
+          <div className="details-container d-flex flex-wrap justify-content-center mt-3 mb-5">
+            <div className="col-12 col-lg venues-new ml-2 mr-2">
+              <div className="row">
+                <h6 className="poppins-dark d-inline">Venue</h6>
+                <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
+              </div>
+              <div className="row">
+                <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded overflow-y venue-details-new">
+                  <div>
+                    <p className="lato-dark m-0 ">{this.state.show.venueName}</p>
+                    <p className="lato-dark m-0"> {this.state.show.line1}</p>
+                    <p className="lato-dark m-0">{this.state.show.city}, {this.state.show.state}</p>
+                    <p className="lato-dark m-0">ZIP CODE</p>
+                  </div>
+                  <div className="d-flex justify-content-center mt-3">
+                    <img src="../images/google-map-image.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-lg details-new ml-2 mr-2">
+              <div className="row">
+                <h6 className="poppins-dark d-inline ">Details</h6>
+                <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
+              </div>
+              <div className="row">
+                <div className="col box-shadow rounded pt-3 pl-2 pr-2 notes-contacts-new">
+                  <div className="row">
+                    <div className="col">
+                      <p className="lato-dark">{this.state.show.contactName}</p>
+                      <p className="lato-dark">{this.state.show.contactPhone}</p>
+                      <p className="lato-dark">t{this.state.show.contactEmail}</p>
                     </div>
-                    <div className="details-container d-flex flex-wrap justify-content-center mt-3 mb-5">
-                      <div className="col-12 col-lg venues-new ml-2 mr-2">
-                        <div className="row">
-                          <h6 className="poppins-dark d-inline">Venue</h6>
-                          <i className="fa-solid fa-location-dot d-inline m-1 info-new" />
-                        </div>
-                        <div className="row">
-                          <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded overflow-y venue-details-new">
-                            <div>
-                              <p className="lato-dark m-0 ">{event.venueName}</p>
-                              <p className="lato-dark m-0"> {event.line1}</p>
-                              <p className="lato-dark m-0">{event.city}, {event.state}</p>
-                              <p className="lato-dark m-0">ZIP CODE</p>
-                            </div>
-                            <div className="d-flex justify-content-center mt-3">
-                              <img src="../images/google-map-image.png" alt="" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-12 col-lg details-new ml-2 mr-2">
-                        <div className="row">
-                          <h6 className="poppins-dark d-inline ">Details</h6>
-                          <i className="fa-solid fa-clipboard-list d-inline m-1 info-new" />
-                        </div>
-                        <div className="row">
-                          <div className="col box-shadow rounded pt-3 pl-2 pr-2 notes-contacts-new">
-                            <div className="row">
-                              <div className="col">
-                                <p className="lato-dark">{event.contactName}</p>
-                                <p className="lato-dark">{event.contactPhone}</p>
-                                <p className="lato-dark">t{event.contactEmail}</p>
-                              </div>
-                            </div>
-                            <div className="row">
-                              <div className="col">
-                                <p className="lato-dark">{event.notesDetails}</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-12 col-lg schedule-new ml-2 mr-2 ">
-                        <div className="row">
-                          <h6 className="poppins-dark d-inline ">Schedule</h6>
-                          <i className="fa-solid fa-clock d-inline m-1 info-new" />
-                        </div>
-                        <div className="row">
-                          <div className="col box-shadow rounded schedule-details-new">
-                            <ul>
+                  </div>
+                  <div className="row">
+                    <div className="col">
+                      <p className="lato-dark">{this.state.show.notesDetails}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-12 col-lg schedule-new ml-2 mr-2 ">
+              <div className="row">
+                <h6 className="poppins-dark d-inline ">Schedule</h6>
+                <i className="fa-solid fa-clock d-inline m-1 info-new" />
+              </div>
+              <div className="row">
+                <div className="col box-shadow rounded schedule-details-new">
+                  {/* <ul>
                               {
                                 this.state.schedules?.map((event, index) => {
                                   // console.log('event.showId:', event.showId)
                                   // console.log('event.scheduleId:', event.scheduleId)
                                   // console.log('index:', index)
+                                    //  event.showId === this.state.tourDates[event.showId - 1].showId
+                                    //    ? console.log('event.startTime:', event.startTime, 'event.endTime:', event.endTime)
 
-                                  return (
-                                    event.showId === this.state.tourDates[event.showId - 1].showId
-                                      ? <li className='schedule-event'key={event.scheduleId}>{event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>
-                                      : <li>nothing to see here...</li>
-                                  );
+                                    //    : console.log('potato')
+
+                                  // return (
+                                  //   event.showId === this.state.tourDates[event.showId - 1].showId
+                                  //     ? <li className='schedule-event'key={event.scheduleId}> {event.startTime} - {event.endTime} {event.scheduleDetails} | {event.showId}</li>
+                                  //     : <li>nothing to see here...</li>
+                                  // );
                                 })
                               }
-                            </ul>
-                            {/* <ul>
+                            </ul> */}
+                  {/* <ul>
                                 <li className="lato-dark">9:30am - 10:30am: Travel</li>
                                 <li className="lato-dark">4:00pm - 5:00pm Load In </li>
                                 <li className="lato-dark">6:30pm - Doors</li>
@@ -125,15 +139,12 @@ export default class Dashboard extends React.Component {
                                 <li className="lato-dark">4:00pm - 5:00pm Load In </li>
                                 <li className="lato-dark">6:30pm - Doors</li>
                               </ul> */}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                );
-              })
-            }
-        </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
         {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
           <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>
           <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">

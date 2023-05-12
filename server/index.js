@@ -111,7 +111,8 @@ app.get('/api/schedules/:showId', (req, res, next) => {
          "details",
          "scheduleId"
   from   "schedules"
-  where "showId" = $1 `;
+  where "showId" = $1
+  order by "startTime" asc`;
   const params = [showId];
   db.query(sql, params)
     .then(result => {
