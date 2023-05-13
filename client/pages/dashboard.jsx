@@ -19,11 +19,11 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/shows/1')
-      .then(res => res.json())
-      .then(show => {
-        this.setState({ show });
-      });
+    // fetch('/api/shows/1')
+    //   .then(res => res.json())
+    //   .then(show => {
+    //     this.setState({ show });
+    //   });
 
     fetch('/api/all-shows')
       .then(res => res.json())
@@ -31,11 +31,11 @@ export default class Dashboard extends React.Component {
         this.setState({ tourDates });
       });
 
-    fetch('/api/schedules/1')
-      .then(res => res.json())
-      .then(schedules => {
-        this.setState({ schedules });
-      });
+    // fetch('/api/schedules/1')
+    //   .then(res => res.json())
+    //   .then(schedules => {
+    //     this.setState({ schedules });
+    //   });
   }
 
   handleDateChange(event) {
@@ -43,9 +43,11 @@ export default class Dashboard extends React.Component {
   }
 
   selectDate(event) {
+    event.preventDefault();
     const tourDates = this.state.tourDates;
+    const date = this.state.date;
     for (let i = 0; i < tourDates.length; i++) {
-      if (event.target.value === tourDates[i].showDate) {
+      if (date === tourDates[i].date) {
         fetch(`/api/shows/${tourDates[i].showId}`)
           .then(response => response.json())
           .then(show => {
@@ -62,17 +64,18 @@ export default class Dashboard extends React.Component {
           });
       }
     }
+    document.getElementById('search-date-form').reset();
   }
 
   render() {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
-    // console.log('this.state.show:', this.state)
+    // console.log('this.state.show:', this.state.show)
     // console.log('this.state.date:', this.state.date)
     return (
       <div className="DELETE container" >
-        <form onSubmit={this.selectDate} className="d-flex mt-3">
+        <form onSubmit={this.selectDate} className="d-flex mt-3" id="search-date-form" >
           <div className="col-lg-10 col-8 p-0 m-1">
             <select onChange={this.handleDateChange} name="" className="form-control" id="select-deez">
               <option>Select a date.</option>
@@ -86,7 +89,7 @@ export default class Dashboard extends React.Component {
             </select>
           </div>
           <div className="col-lg-2 p-0 m-1">
-            <button className="btn select-date-btn"> Select Date</button>
+            <button type="submit" className="btn select-date-btn"> Select Date</button>
           </div>
         </form>
         <div className="tourDate" key={this.state.show.showId} id={this.state.show.showId}>
@@ -114,7 +117,6 @@ export default class Dashboard extends React.Component {
                     <p className="lato-dark m-0 ">{this.state.show.venueName}</p>
                     <p className="lato-dark m-0"> {this.state.show.line1}</p>
                     <p className="lato-dark m-0">{this.state.show.city}, {this.state.show.state}</p>
-                    <p className="lato-dark m-0">ZIP CODE</p>
                   </div>
                   <div className="d-flex justify-content-center mt-3">
                     <img src="../images/google-map-image.png" alt="" />
