@@ -11,8 +11,11 @@ export default class Dashboard extends React.Component {
       tourDates: [],
       notes: '',
       contacts: '',
-      schedules: []
+      schedules: [],
+      date: ''
     };
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.selectDate = this.selectDate.bind(this);
   }
 
   componentDidMount() {
@@ -35,31 +38,48 @@ export default class Dashboard extends React.Component {
       });
   }
 
-  // selectDate(event){
-  //   // const showId = Number(event.target.id);
-  //   // fetch(`/api/shows/${showId}`)
-  //   // .then(res => res.json())
-  //   // .then(show => {
-  //   //   this.setState({show})
-  //   // })
-  //   console.log('event.target', event.target)
-  // }
+  handleDateChange(event) {
+    this.setState({ date: event.target.value });
+  }
+
+  selectDate(event) {
+    const tourDates = this.state.tourDates;
+    for (let i = 0; i < tourDates.length; i++) {
+      if (event.target.value === tourDates[i].showDate) {
+        fetch(`/api/shows/${tourDates[i].showId}`)
+          .then(response => response.json())
+          .then(show => {
+            this.setState({
+              show
+            });
+            fetch(`/api/schedules/${tourDates[i].showId}`)
+              .then(response => response.json())
+              .then(schedules => {
+                this.setState({
+                  schedules
+                });
+              });
+          });
+      }
+    }
+  }
 
   render() {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
     // console.log('this.state.show:', this.state)
+    // console.log('this.state.date:', this.state.date)
     return (
       <div className="DELETE container" >
-        <form className="d-flex mt-3">
+        <form onSubmit={this.selectDate} className="d-flex mt-3">
           <div className="col-lg-10 col-8 p-0 m-1">
-            <select name="" className="form-control" id="">
+            <select onChange={this.handleDateChange} name="" className="form-control" id="select-deez">
               <option>Select a date.</option>
               {
                   this.state.tourDates.map(event => {
                     return (
-                      <option key={event.showId} id={event.showId}>{event.date} - {event.city}, {event.state} @ {event.venueName}</option>
+                      <option key={event.showId} id={event.showId}>{event.date}</option>
                     );
                   })
                 }
