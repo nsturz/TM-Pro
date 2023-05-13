@@ -19,11 +19,11 @@ export default class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    // fetch('/api/shows/1')
-    //   .then(res => res.json())
-    //   .then(show => {
-    //     this.setState({ show });
-    //   });
+    fetch('/api/shows/1')
+      .then(res => res.json())
+      .then(show => {
+        this.setState({ show });
+      });
 
     fetch('/api/all-shows')
       .then(res => res.json())
@@ -31,11 +31,11 @@ export default class Dashboard extends React.Component {
         this.setState({ tourDates });
       });
 
-    // fetch('/api/schedules/1')
-    //   .then(res => res.json())
-    //   .then(schedules => {
-    //     this.setState({ schedules });
-    //   });
+    fetch('/api/schedules/1')
+      .then(res => res.json())
+      .then(schedules => {
+        this.setState({ schedules });
+      });
   }
 
   handleDateChange(event) {
@@ -103,6 +103,19 @@ export default class Dashboard extends React.Component {
             </div>
             <div className="col-lg-5 p-0">
               <hr className="hr-new" />
+            </div>
+          </div>
+          <div className="row d-flex justify-content-end">
+            <div className="col-2">
+              <button className="bg-transparent border-0">
+                <i className="fa-regular fa-plus fa-xs" />
+              </button>
+              <button className="bg-transparent border-0">
+                <i className="fa-solid fa-pen-to-square" />
+              </button>
+              <button className="bg-transparent border-0">
+                <i className="fa-solid fa-trash ml-2" />
+              </button>
             </div>
           </div>
           <div className="details-container d-flex flex-wrap justify-content-center mt-3 mb-5">
