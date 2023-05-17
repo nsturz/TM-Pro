@@ -6,8 +6,8 @@ export default class RouteOverview extends React.Component {
     super(props);
     this.state = {
       tourDates: [],
-      origin: '',
-      destination: '',
+      // origin: '',
+      // destination: '',
       travelMode: 'DRIVING',
       response: null,
       distances: [],
@@ -25,15 +25,16 @@ export default class RouteOverview extends React.Component {
     this.directionsCallback = this.directionsCallback.bind(this);
   }
 
-  componentDidMount() {
-    fetch('api/shows')
-      .then(res => res.json())
-      .then(tourDates => this.setState({
-        tourDates,
-        origin: `${tourDates[0].dateCity},${tourDates[0].dateState}`,
-        destination: `${tourDates[1].dateCity},${tourDates[1].dateState}`
-      }));
-  }
+  // componentDidMount() {
+  //   fetch('/api/shows')
+  //     .then(res => res.json())
+  //     .then(tourDates =>
+  //       this.setState({
+  //       tourDates,
+  //       origin: `${this.state.tourDates[0].dateCity},${tourDates[0].dateState}`,
+  //       destination: `${this.state.tourDates[1].dateCity},${tourDates[1].dateState}`
+  //     }));
+  // }
 
   directionsCallback(response) {
     if (response !== null) {
@@ -52,6 +53,7 @@ export default class RouteOverview extends React.Component {
   }
 
   render() {
+    // console.log('tourDates in route overview:', this.state.tourDates)
     return (
       <div className="container">
         <div className="mb-3 mt-5 row d-flex flex-wrap">
@@ -61,7 +63,7 @@ export default class RouteOverview extends React.Component {
               <i className="fa-solid fa-route info-new ml-2 mt-1" />
             </div>
             <div className="row">
-              <div className="col route-info box-shadow rounded">
+              <div className="col col-12 route-info box-shadow rounded">
                 <div className="text-grey row d-dlex justify-content-center pt-3">
                   <p className="text-grey col-6">From: {this.state.origin} </p>
                   <p className="text-grey col-6">To: {this.state.destination} </p>
@@ -71,7 +73,7 @@ export default class RouteOverview extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-lg  d-flex justify-content-center mt-3">
+          <div className="col-lg  col-12 d-flex justify-content-center mt-3">
             <LoadScript
               googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
               <GoogleMap

@@ -14,6 +14,8 @@ export default class Dashboard extends React.Component {
       contacts: '',
       schedules: [],
       date: ''
+      // origin: '',
+      // destination: ''
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
@@ -168,7 +170,7 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
         </div>
-        <RouteOverview/>
+        <RouteOverview tourDates={this.state.tourDates}/>
 
         {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
           <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>
