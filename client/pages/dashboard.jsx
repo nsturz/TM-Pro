@@ -54,18 +54,22 @@ export default class Dashboard extends React.Component {
         fetch(`/api/shows/${tourDates[i].showId}`)
           .then(response => response.json())
           .then(show => {
+            // this.state.tourDates.length > 1 ?
             this.setState({
               show,
               origin: ` ${this.state.tourDates[i].city} , ${this.state.tourDates[i].state}`,
               destination: ` ${this.state.tourDates[i + 1].city} , ${this.state.tourDates[i + 1].state}`
             });
-            fetch(`/api/schedules/${tourDates[i].showId}`)
-              .then(response => response.json())
-              .then(schedules => {
-                this.setState({
-                  schedules
-                });
-              });
+            // : this.setState({
+            // origin: ` ${this.state.tourDates[i].city} , ${this.state.tourDates[i].state}`,
+            // destination: 'end of tour'
+          });
+        fetch(`/api/schedules/${tourDates[i].showId}`)
+          .then(response => response.json())
+          .then(schedules => {
+            this.setState({
+              schedules
+            });
           });
       }
     }
@@ -78,7 +82,7 @@ export default class Dashboard extends React.Component {
     // console.log('this.state.schedules:', this.state.schedules)
     // console.log('this.state.show:', this.state.show.city)
     // console.log('this.state.origin:', this.state.origin)
-    // onsole.log('this.state.destination: ', this.state.destination)
+    // console.log('this.state.destination:', this.state.destination)
     // console.log('this.state.date:', this.state.date)
     return (
       <div className="DELETE container" >

@@ -56,6 +56,9 @@ export default class RouteOverview extends React.Component {
     // console.log('tourDates in route overview:', this.state.tourDates)
     return (
       <div className="container">
+        {/* {
+          this.state.tourDates
+        } */}
         <div className="mb-3 mt-5 row d-flex flex-wrap">
           <div className="col-lg ">
             <div className="row mb-3 d-flex justify-content-start">
@@ -103,6 +106,12 @@ export default class RouteOverview extends React.Component {
                 }
               </GoogleMap>
             </LoadScript>
+          </div>
+        </div>
+        <div className="row d-flex justify-content-center">
+          <div className="col">
+            <h6 className="text-center d-block">No more trips.</h6>
+            <p className="text-center d-block">(you have reached the end of the tour...congrats 😎)</p>
           </div>
         </div>
       </div>
