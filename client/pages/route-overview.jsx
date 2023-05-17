@@ -13,7 +13,7 @@ export default class RouteOverview extends React.Component {
       distances: [],
       durations: [],
       containerStyle: {
-        width: '500px',
+        width: '600px',
         height: '450px'
       },
       center: {
@@ -75,7 +75,7 @@ export default class RouteOverview extends React.Component {
             <LoadScript
               googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}>
               <GoogleMap
-                className="rounded"
+                mapContainerClassName='google-map'
                 mapContainerStyle={this.state.containerStyle}
                 center={this.state.center}
                 zoom={9} >

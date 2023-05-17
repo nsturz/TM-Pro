@@ -291,6 +291,11 @@ ul {
     margin-top: 50%;
   }
 
+  .hr-new {
+    color: white;
+    border-top: 0;
+  }
+
   .venues-notes-wrapper,
   .venues-new {
     margin-bottom: 2rem;
