@@ -6,8 +6,8 @@ export default class RouteOverview extends React.Component {
     super(props);
     this.state = {
       tourDates: [],
-      // origin: '',
-      // destination: '',
+      origin: '',
+      destination: '',
       travelMode: 'DRIVING',
       response: null,
       distances: [],
@@ -65,8 +65,8 @@ export default class RouteOverview extends React.Component {
             <div className="row">
               <div className="col col-12 route-info box-shadow rounded">
                 <div className="text-grey row d-dlex justify-content-center pt-3">
-                  <p className="text-grey col-6">From: {this.state.origin} </p>
-                  <p className="text-grey col-6">To: {this.state.destination} </p>
+                  <p className="text-grey col-6">From: {this.props.origin} </p>
+                  <p className="text-grey col-6">To: {this.props.destination} </p>
                   <p className="text-grey col-6">Distance: {this.state.distances[0]}</p>
                   <p className="text-grey col-6">Duration: {this.state.durations[0]}</p>
                 </div>
@@ -86,8 +86,8 @@ export default class RouteOverview extends React.Component {
                   (
                     <DirectionsService
                       options={{
-                        destination: this.state.destination,
-                        origin: this.state.origin,
+                        destination: this.props.destination,
+                        origin: this.props.origin,
                         travelMode: this.state.travelMode
                       }}
                       callback={this.directionsCallback}

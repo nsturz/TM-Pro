@@ -13,9 +13,9 @@ export default class Dashboard extends React.Component {
       notes: '',
       contacts: '',
       schedules: [],
-      date: ''
-      // origin: '',
-      // destination: ''
+      date: '',
+      origin: '',
+      destination: ''
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
@@ -55,7 +55,9 @@ export default class Dashboard extends React.Component {
           .then(response => response.json())
           .then(show => {
             this.setState({
-              show
+              show,
+              origin: ` ${this.state.tourDates[i].city} , ${this.state.tourDates[i].state}`,
+              destination: ` ${this.state.tourDates[i + 1].city} , ${this.state.tourDates[i + 1].state}`
             });
             fetch(`/api/schedules/${tourDates[i].showId}`)
               .then(response => response.json())
@@ -74,7 +76,9 @@ export default class Dashboard extends React.Component {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
-    // console.log('this.state.show:', this.state.show)
+    // console.log('this.state.show:', this.state.show.city)
+    // console.log('this.state.origin:', this.state.origin)
+    // onsole.log('this.state.destination: ', this.state.destination)
     // console.log('this.state.date:', this.state.date)
     return (
       <div className="DELETE container" >
@@ -170,7 +174,7 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
         </div>
-        <RouteOverview tourDates={this.state.tourDates}/>
+        <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
 
         {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
           <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>
