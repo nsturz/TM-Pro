@@ -2,6 +2,7 @@
 // we like this. We will eventually need to go through this array, and sort out schedule events according
 // to showId, and in ascending order based on time.
 import React from 'react';
+import RouteOverview from './route-overview';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -105,19 +106,6 @@ export default class Dashboard extends React.Component {
               <hr className="hr-new" />
             </div>
           </div>
-          <div className="row d-flex justify-content-end">
-            <div className="col-2">
-              <button className="bg-transparent border-0">
-                <i className="fa-regular fa-plus fa-xs" />
-              </button>
-              <button className="bg-transparent border-0">
-                <i className="fa-solid fa-pen-to-square" />
-              </button>
-              <button className="bg-transparent border-0">
-                <i className="fa-solid fa-trash ml-2" />
-              </button>
-            </div>
-          </div>
           <div className="details-container d-flex flex-wrap justify-content-center mt-3 mb-5">
             <div className="col-12 col-lg venues-new ml-2 mr-2">
               <div className="row">
@@ -160,7 +148,7 @@ export default class Dashboard extends React.Component {
               </div>
             </div>
             <div className="col-12 col-lg schedule-new ml-2 mr-2 ">
-              <div className="row">
+              <div className="row d-flex">
                 <h6 className="poppins-dark d-inline ">Schedule</h6>
                 <i className="fa-solid fa-clock d-inline m-1 info-new" />
               </div>
@@ -180,6 +168,7 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
         </div>
+        <RouteOverview/>
 
         {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
           <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>

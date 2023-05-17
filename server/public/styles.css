@@ -104,7 +104,7 @@ button:hover {
 }
 
 h2 {
-  color: white;
+  color: #3d3d3c;
   font-family: Poppins, sans-serif;
 }
 
@@ -124,13 +124,13 @@ hr {
   color: #008080;
 }
 
-h6 {
+/* h6 {
   color: white;
   font-family: Poppins, sans-serif;
   font-weight: bold;
   font-size: 20px;
   margin-right: 0.5rem;
-}
+} */
 
 i {
   text-decoration: none;
@@ -232,6 +232,7 @@ p {
 .poppins-dark {
   font-family: Poppins, sans-serif;
   color: #3d3d3c;
+  font-size: 20px;
 }
 
 pre {
@@ -241,11 +242,6 @@ pre {
 
 .remove-schedule-event-btn:focus {
   outline: 0;
-}
-
-.route-info {
-  background-color: #3c3c3c;
-  border-radius: 5px;
 }
 
 .schedules {
@@ -258,6 +254,10 @@ pre {
 .select-date-btn {
   background-color: #1887d7;
   color: white;
+}
+
+.text-grey {
+  color: #3d3d3c;
 }
 
 .tourdates {
@@ -310,17 +310,8 @@ ul {
     margin-top: 40%;
   }
 
-  .map-container {
-    margin-top: 3rem;
-  }
-
   .notes {
     margin-top: 3rem;
-  }
-
-  .route-overview-container {
-    padding: 3rem;
-    margin-bottom: 3rem;
   }
 
   .schedule-wrapper {
@@ -371,8 +362,14 @@ ul {
     margin-top: 60%;
   }
 
+  .hr-new {
+    color: white;
+    border-top: 0;
+  }
+
   .map-container {
     margin-top: 2rem;
+    border: none;
   }
 
   .new-tour-date-form {
