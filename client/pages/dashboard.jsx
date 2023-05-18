@@ -14,6 +14,7 @@ export default class Dashboard extends React.Component {
       contacts: '',
       schedules: [],
       date: '',
+      lastTourDate: '',
       origin: '',
       destination: ''
     };
@@ -42,41 +43,45 @@ export default class Dashboard extends React.Component {
   }
 
   handleDateChange(event) {
-    this.setState({ date: event.target.value });
+    const tourDates = this.state.tourDates;
+    this.setState({
+      date: event.target.value,
+      lastTourDate: tourDates.length - 1
+    });
+
   }
 
   selectDate(event) {
     event.preventDefault();
     const tourDates = this.state.tourDates;
     const date = this.state.date;
-    for (let i = 0; i < tourDates.length; i++) {
-      if (date === tourDates[i].date && tourDates.length !== 1) {
-        fetch(`/api/shows/${tourDates[i].showId}`)
+    const lastTourDate = this.state.lastTourDate;
+    tourDates.forEach((event, index) => {
+      if (date === tourDates[index].date && index !== lastTourDate) {
+        fetch(`/api/shows/${tourDates[index].showId}`)
           .then(response => response.json())
           .then(show => {
             this.setState({
               show,
-              origin: `${tourDates[i].city}, ${tourDates[i].state}`,
-              destination: `${tourDates[i + 1].city}, ${tourDates[i + 1].state}`
+              origin: `${tourDates[index].city}, ${tourDates[index].state}`,
+              destination: `${tourDates[index + 1].city}, ${tourDates[index + 1].state}`
             });
           });
-        // .then(() => {
-        //   if (this.state.show.showId === tourDates[tourDates.length - 1].showId) {
-        //     console.log('last show has been reached')
-        //     // this.setState({
-        //     //   origin: `${tourDates[i].city}, ${tourDates[i].state}`
-        //     // })
-        //   }
-        // })
-        fetch(`/api/schedules/${tourDates[i].showId}`)
+        fetch(`/api/schedules/${tourDates[index].showId}`)
           .then(response => response.json())
           .then(schedules => {
             this.setState({
               schedules
             });
           });
+      } else {
+        // need to update some logic here to make sure the show and schedules still get updated 👇🏼
+        this.setState({
+          origin: 'none',
+          destination: 'none'
+        });
       }
-    }
+    });
     document.getElementById('search-date-form').reset();
   }
 
@@ -84,11 +89,11 @@ export default class Dashboard extends React.Component {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
-    // console.log('this.state.show.showId:', this.state.show.showId)
-
+    //  console.log('this.state.show', this.state.show)
     // console.log('this.state.origin:', this.state.origin)
     // console.log('this.state.destination:', this.state.destination)
     // console.log('this.state.date:', this.state.date)
+    // console.log('this.state.lastTourDate:', this.state.lastTourDate)
     return (
       <div className="DELETE container" >
         <form onSubmit={this.selectDate} className="d-flex mt-3" id="search-date-form" >
