@@ -50,20 +50,24 @@ export default class Dashboard extends React.Component {
     const tourDates = this.state.tourDates;
     const date = this.state.date;
     for (let i = 0; i < tourDates.length; i++) {
-      if (date === tourDates[i].date) {
+      if (date === tourDates[i].date && tourDates.length !== 1) {
         fetch(`/api/shows/${tourDates[i].showId}`)
           .then(response => response.json())
           .then(show => {
-            // this.state.tourDates.length > 1 ?
             this.setState({
               show,
-              origin: ` ${this.state.tourDates[i].city} , ${this.state.tourDates[i].state}`,
-              destination: ` ${this.state.tourDates[i + 1].city} , ${this.state.tourDates[i + 1].state}`
+              origin: `${tourDates[i].city}, ${tourDates[i].state}`,
+              destination: `${tourDates[i + 1].city}, ${tourDates[i + 1].state}`
             });
-            // : this.setState({
-            // origin: ` ${this.state.tourDates[i].city} , ${this.state.tourDates[i].state}`,
-            // destination: 'end of tour'
           });
+        // .then(() => {
+        //   if (this.state.show.showId === tourDates[tourDates.length - 1].showId) {
+        //     console.log('last show has been reached')
+        //     // this.setState({
+        //     //   origin: `${tourDates[i].city}, ${tourDates[i].state}`
+        //     // })
+        //   }
+        // })
         fetch(`/api/schedules/${tourDates[i].showId}`)
           .then(response => response.json())
           .then(schedules => {
@@ -80,7 +84,8 @@ export default class Dashboard extends React.Component {
 
     // console.log('this.state.tourDates:', this.state.tourDates)
     // console.log('this.state.schedules:', this.state.schedules)
-    // console.log('this.state.show:', this.state.show.city)
+    // console.log('this.state.show.showId:', this.state.show.showId)
+
     // console.log('this.state.origin:', this.state.origin)
     // console.log('this.state.destination:', this.state.destination)
     // console.log('this.state.date:', this.state.date)

@@ -53,7 +53,7 @@ export default class RouteOverview extends React.Component {
   }
 
   render() {
-    // console.log('tourDates in route overview:', this.state.tourDates)
+    // console.log('this.props.tourDates:', this.props.tourDates)
     return (
       <div className="container">
         {/* {
