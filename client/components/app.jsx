@@ -5,7 +5,6 @@ import parseRoute from '../lib/parse-route';
 import TourDates from '../pages/tourdates';
 import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
-import RouteOverview from '../pages/route-overview';
 import NavBar from './navbar';
 
 export default class App extends React.Component {
@@ -53,9 +52,6 @@ export default class App extends React.Component {
     }
     if (route.path === 'edit-date') {
       return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
-    }
-    if (route.path === 'route-overview') {
-      return <RouteOverview tourDates={this.state.tourDates} />;
     }
     return <Dashboard tourDates={this.state.tourDates} />;
   }

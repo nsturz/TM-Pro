@@ -4,7 +4,7 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg">
           <a className="navbar-brand ml-5" href="#">TOUR MANAGER PRO</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
@@ -16,9 +16,6 @@ export default class NavBar extends React.Component {
               </li>
               <li className="nav-item">
                 <a href="#calendar" className="nav-link font-weight-bold">DATES</a>
-              </li>
-              <li className="nav-item">
-                <a href="#route-overview" className="nav-link font-weight-bold">ROUTE</a>
               </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle font-weight-bold" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

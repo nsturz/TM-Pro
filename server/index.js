@@ -1,3 +1,8 @@
+// app.patch for venues works
+// a thought: when we get to the client side, we will need to think about how each little edit button
+// is going to behave differently. for instance, if we click the edit button on the first date's VENUES
+// section, how are we going to grab the correct data from the database and fill the inputs? do we need to fill the inputs?
+
 require('dotenv/config');
 const express = require('express');
 const ClientError = require('./client-error');
@@ -106,7 +111,8 @@ app.get('/api/schedules/:showId', (req, res, next) => {
          "details",
          "scheduleId"
   from   "schedules"
-  where "showId" = $1 `;
+  where "showId" = $1
+  order by "startTime" asc`;
   const params = [showId];
   db.query(sql, params)
     .then(result => {
@@ -118,7 +124,22 @@ app.get('/api/schedules/:showId', (req, res, next) => {
     .catch(err => next(err));
 });
 
-// GET specific SCHEDULE information (using showId?) 👇🏼
+// GET all schedule details from all shows 👇🏼
+app.get('/api/all-schedules', (req, res, next) => {
+  const sql = `
+    select "details" as "scheduleDetails",
+         to_char("endTime", 'HH:MI AM') as "endTime",
+         to_char("startTime", 'HH:MI AM') as "startTime",
+         "scheduleId",
+         "showId"
+  from "schedules"
+  order by "showId" asc`;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+// this GET request is for dashboard page, but it only grabs 1 date's worth of schedule info. delete soon 👇🏼
 app.get('/api/schedules', (req, res, next) => {
   const sql = `
   select "details" as "scheduleDetails",
@@ -157,6 +178,36 @@ app.get('/api/contacts/:contactId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+/// GET all things from all shows 👇🏼
+app.get('/api/all-shows', (req, res, next) => {
+  const sql = `
+  select  to_char("date",'yyyy-MM-dd') as "date",
+         "venues"."name" as "venueName",
+         "artistId",
+         "addressId",
+         "venueId",
+         "showId",
+         "line1",
+         "city",
+         "state",
+         "country",
+         "contacts"."email" as "contactEmail",
+         "contacts"."name" as "contactName",
+         "contacts"."phone" as "contactPhone",
+         "notes"."details" as "notesDetails"
+  from   "shows"
+  join "venues" using ("venueId")
+  join "addresses" using ("addressId")
+  join "artists" using ("artistId")
+  join "contacts" using ("showId")
+  join "notes" using ("showId")`;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => next(err));
+});
+
 // GET specific show info 👇🏼
 app.get('/api/shows/:showId', (req, res, next) => {
   const showId = Number(req.params.showId);
@@ -164,7 +215,8 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select to_char("date",'yyyy-MM-dd') as "date",
+
+  select to_char("date",'Mon dd yyyy') as "date",
          "venues"."name" as "venueName",
          "artistId",
          "addressId",
@@ -565,6 +617,123 @@ app.delete('/api/delete-date', (req, res) => {
                   });
                 });
             });
+        });
+    });
+});
+
+// EDIT Venue Information 👇🏼
+app.patch('/api/edit-venue', (req, res) => {
+  const {
+    venueName,
+    line1,
+    city,
+    state,
+    country,
+    addressId
+  } = req.body;
+  const updateVenueAddressSql = `
+  update "addresses"
+  set    "line1" = $1,
+         "city" = $2,
+         "state" = $3,
+         "country" = $4
+  where "addressId" = $5
+  returning *`;
+  const updateVenueInfoParams = [line1, city, state, country, addressId];
+  db.query(updateVenueAddressSql, updateVenueInfoParams)
+    .then(result => {
+      const updateVenueNameSql = `
+    update "venues"
+    set    "name" = $1
+    where "addressId" = $2
+    returning *`;
+      const updateVenueNameParams = [venueName, addressId];
+      db.query(updateVenueNameSql, updateVenueNameParams)
+        .then(res.status(204).json())
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'an unexpected error occured.' });
+        });
+    });
+});
+
+// EDIT Contact and Notes information 👇🏼
+app.patch('/api/edit-details/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  if (!Number.isInteger(showId) || showId < 1) {
+    res.status(400).json({
+      error: 'showId must be a positive integer'
+    });
+    return;
+  }
+  const {
+    contactEmail,
+    contactName,
+    contactPhone,
+    notesDetails
+  } = req.body;
+
+  const updateContactsSql = `
+  update "contacts"
+  set    "email" = $1,
+         "name" = $2,
+         "phone" = $3
+  where  "showId" = $4
+  returning *`;
+
+  const updateContactsParams = [contactEmail, contactName, contactPhone, showId];
+  db.query(updateContactsSql, updateContactsParams)
+    .then(result => {
+      const updateNotesSql = `
+    update "notes"
+    set    "details" = $1
+    where  "showId" = $2
+    returning *`;
+
+      const updateNotesParams = [notesDetails, showId];
+      db.query(updateNotesSql, updateNotesParams)
+        .then(res.status(204).json())
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: 'an unexpected error occured' });
+        });
+    });
+});
+
+// EDIT Schedule info for individual dates by showId 👇🏼{
+app.patch('/api/edit-schedule/:showId', (req, res) => {
+  const showId = Number(req.params.showId);
+  if (!Number.isInteger(showId) || showId < 1) {
+    res.status(400).json({
+      error: 'showId must be a positive integer'
+    });
+    return;
+  }
+  const { scheduleEvents } = req.body;
+  const deleteScheduleSql = `
+  delete from "schedules"
+  where "showId" = $1`;
+  const deleteScheduleParams = [showId];
+  db.query(deleteScheduleSql, deleteScheduleParams)
+    .then(() => {
+      let paramNum = 2;
+      const eventsParams = [showId];
+      const eventValues = [];
+      scheduleEvents.forEach(event => {
+        const value = `($${paramNum++}, $${paramNum++}, $${paramNum++}, $1)`;
+        eventValues.push(value);
+        eventsParams.push(event.startTime, event.endTime, event.details);
+      });
+      const insertSchedulesSql = `
+      insert into "schedules" ("startTime", "endTime", "details", "showId")
+      values ${eventValues.join(', ')}`;
+      db.query(insertSchedulesSql, eventsParams)
+        .then(res.status(204).json())
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({
+            error: 'an unexpected error occured'
+          });
         });
     });
 });

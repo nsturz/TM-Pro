@@ -13,7 +13,11 @@ a:hover {
 }
 
 body {
-  background-color: #121212;
+  background-color: #fff;
+}
+
+.box-shadow {
+  box-shadow: 1px 1px 1px 1px #d8d8d8;
 }
 
 button:hover {
@@ -63,6 +67,11 @@ button:hover {
   font-weight: bold;
 }
 
+.date-new {
+  font-family: Poppins, sans-serif;
+  color: #3d3d3c;
+}
+
 .dates {
   border-radius: 5px;
   background-color: #3d3d3c;
@@ -90,16 +99,12 @@ button:hover {
   font-size: 1.5rem;
 }
 
-form {
-  width: 80%;
-}
-
 .form-wrapper {
   margin-top: 15%;
 }
 
 h2 {
-  color: white;
+  color: #3d3d3c;
   font-family: Poppins, sans-serif;
 }
 
@@ -114,13 +119,18 @@ hr {
   padding-left: 0%;
 }
 
-h6 {
+.hr-new {
+  border-top: 2px solid;
+  color: #008080;
+}
+
+/* h6 {
   color: white;
   font-family: Poppins, sans-serif;
   font-weight: bold;
   font-size: 20px;
   margin-right: 0.5rem;
-}
+} */
 
 i {
   text-decoration: none;
@@ -130,8 +140,17 @@ i:hover {
   cursor: pointer;
 }
 
+img {
+  width: 100%;
+  height: 150px;
+}
+
 .info {
   color: #cd3c3a;
+}
+
+.info-new {
+  color: #1887d7;
 }
 
 input,
@@ -145,6 +164,11 @@ label {
   font-weight: bolder;
 }
 
+.lato-dark {
+  font-family: Lato, sans-serif;
+  color: #3c3c3c;
+}
+
 li {
   font-family: Lato, sans-serif;
   font-size: 12px;
@@ -153,7 +177,7 @@ li {
 
 nav {
   height: 10%;
-  background-color: rgb(0, 0, 0, 0.4);
+  background-color: #3d3d3c;
 }
 
 .nav-bottom-icon:hover {
@@ -167,6 +191,14 @@ nav {
   margin-top: 5%;
   overflow-y: scroll;
   overflow-x: scroll;
+}
+
+.notes-contacts-new,
+.venue-details-new,
+.schedule-details-new {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .navbar-nav > .active > a {
@@ -194,7 +226,13 @@ nav {
 p {
   font-family: Lato, sans-serif;
   font-size: 12px;
-  color: white;
+  color: #3d3d3c;
+}
+
+.poppins-dark {
+  font-family: Poppins, sans-serif;
+  color: #3d3d3c;
+  font-size: 20px;
 }
 
 pre {
@@ -206,16 +244,20 @@ pre {
   outline: 0;
 }
 
-.route-info {
-  background-color: #3c3c3c;
-  border-radius: 5px;
-}
-
 .schedules {
   border-radius: 5px;
   background-color: #3d3d3c;
   overflow-y: scroll;
   padding: 0;
+}
+
+.select-date-btn {
+  background-color: #1887d7;
+  color: white;
+}
+
+.text-grey {
+  color: #3d3d3c;
 }
 
 .tourdates {
@@ -249,38 +291,40 @@ ul {
     margin-top: 50%;
   }
 
-  .venues-notes-wrapper {
+  .hr-new {
+    color: white;
+    border-top: 0;
+  }
+
+  .venues-notes-wrapper,
+  .venues-new {
     margin-bottom: 2rem;
   }
 }
 
 @media screen and (max-width: 1000px) {
   .contacts-wrapper {
-    margin-top: 5rem;
+    margin-top: 3rem;
+  }
+
+  .details-new {
+    margin-bottom: 3rem;
   }
 
   .form-wrapper {
     margin-top: 40%;
   }
 
-  .map-container {
-    margin-top: 3rem;
-  }
-
   .notes {
     margin-top: 3rem;
-  }
-
-  .route-overview-container {
-    padding: 3rem;
-    margin-bottom: 3rem;
   }
 
   .schedule-wrapper {
     margin-top: 3rem;
   }
 
-  .venues {
+  .venues,
+  .venues-new {
     margin-bottom: 3rem;
   }
 
@@ -323,8 +367,14 @@ ul {
     margin-top: 60%;
   }
 
+  .hr-new {
+    color: white;
+    border-top: 0;
+  }
+
   .map-container {
     margin-top: 2rem;
+    border: none;
   }
 
   .new-tour-date-form {
