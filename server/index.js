@@ -180,9 +180,8 @@ app.get('/api/contacts/:contactId', (req, res, next) => {
 
 /// GET all things from all shows 👇🏼
 app.get('/api/all-shows', (req, res, next) => {
-  // CONVERT(char(3), "date", 0),
   const sql = `
-select  to_char("date",'yyyy-MM-dd') as "date",
+  select  to_char("date",'yyyy-MM-dd') as "date",
          "venues"."name" as "venueName",
          "artistId",
          "addressId",
@@ -216,7 +215,8 @@ app.get('/api/shows/:showId', (req, res, next) => {
     throw new ClientError(400, 'showId must be a positive integer');
   }
   const sql = `
-  select to_char("date",'yyyy-MM-dd') as "date",
+
+  select to_char("date",'Mon dd yyyy') as "date",
          "venues"."name" as "venueName",
          "artistId",
          "addressId",

@@ -17,9 +17,6 @@ export default class NavBar extends React.Component {
               <li className="nav-item">
                 <a href="#calendar" className="nav-link font-weight-bold">DATES</a>
               </li>
-              <li className="nav-item">
-                <a href="#route-overview" className="nav-link font-weight-bold">ROUTE</a>
-              </li>
               <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle font-weight-bold" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   MORE

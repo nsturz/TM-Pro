@@ -2,7 +2,7 @@
 // we like this. We will eventually need to go through this array, and sort out schedule events according
 // to showId, and in ascending order based on time.
 import React from 'react';
-import RouteOverview from './route-overview';
+import RouteOverview from '../components/route-overview';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -32,7 +32,11 @@ export default class Dashboard extends React.Component {
     fetch('/api/all-shows')
       .then(res => res.json())
       .then(tourDates => {
-        this.setState({ tourDates });
+        this.setState({
+          tourDates,
+          origin: `${tourDates[0].city}, ${tourDates[0].state}`,
+          destination: `${tourDates[1].city}, ${tourDates[1].state}`
+        });
       });
 
     fetch('/api/schedules/1')
@@ -74,12 +78,23 @@ export default class Dashboard extends React.Component {
               schedules
             });
           });
-      } else {
-        // need to update some logic here to make sure the show and schedules still get updated 👇🏼
-        this.setState({
-          origin: 'none',
-          destination: 'none'
-        });
+      } else if (date === tourDates[index].date) {
+        fetch(`/api/shows/${tourDates[index].showId}`)
+          .then(response => response.json())
+          .then(show => {
+            this.setState({
+              show,
+              origin: 'none',
+              destination: 'none'
+            });
+          });
+        fetch(`/api/schedules/${tourDates[index].showId}`)
+          .then(response => response.json())
+          .then(schedules => {
+            this.setState({
+              schedules
+            });
+          });
       }
     });
     document.getElementById('search-date-form').reset();
