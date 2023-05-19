@@ -42,7 +42,6 @@ export default class RouteOverview extends React.Component {
   }
 
   render() {
-    // console.log('this.props.destination:', this.props.destination)
     return (
       <div className="container">
         {

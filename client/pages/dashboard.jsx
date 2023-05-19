@@ -1,6 +1,3 @@
-// on line 132, the app.get() method puts each schedule event into its own object, and pushes them into an array.
-// we like this. We will eventually need to go through this array, and sort out schedule events according
-// to showId, and in ascending order based on time.
 import React from 'react';
 import RouteOverview from '../components/route-overview';
 
@@ -101,14 +98,6 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-
-    // console.log('this.state.tourDates:', this.state.tourDates)
-    // console.log('this.state.schedules:', this.state.schedules)
-    //  console.log('this.state.show', this.state.show)
-    // console.log('this.state.origin:', this.state.origin)
-    // console.log('this.state.destination:', this.state.destination)
-    // console.log('this.state.date:', this.state.date)
-    // console.log('this.state.lastTourDate:', this.state.lastTourDate)
     return (
       <div className="DELETE container" >
         <form onSubmit={this.selectDate} className="d-flex mt-3" id="search-date-form" >
@@ -193,7 +182,7 @@ export default class Dashboard extends React.Component {
                     {
                         this.state.schedules?.map(event => {
                           return (
-                            <li key={event.showId} >{event.startTime} - {event.endTime} : {event.details}</li>
+                            <li key={event.scheduleId} >{event.startTime} - {event.endTime} : {event.details}</li>
                           );
                         })
                        }
@@ -204,83 +193,6 @@ export default class Dashboard extends React.Component {
           </div>
         </div>
         <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
-
-        {/* <div className="dashboard-container d-flex justify-center flex-wrap mt-4 mr-3 ml-3">
-          <h3 className="col-12 mb-5">{date} - {city}, {state}</h3>
-          <div className="venues-notes-wrapper col-lg-3 col-12 mh-100">
-            <div className="mb-3 mt-3">
-              <h6 className="d-inline">VENUE</h6>
-              <i className="fa-solid fa-location-dot mt-1 info" />
-            </div>
-            <div className="venues col-12 info p-3" id="venue">
-              <div className="row d-block">
-                <p className="text-center lead">{venueName}</p>
-                <p className="text-center lead">{line1}</p>
-                <p className="text-center lead">{city}, {state}</p>
-              </div>
-            </div>
-            <div className="mb-3 mt-3">
-              <h6 className="d-inline">NOTES</h6>
-              <i className="fa-solid fa-clipboard-list mt-1 info" />
-            </div>
-            <div className="notes col-12 info" id="notes">
-              <div className="row mt-3">
-                <pre className="pl-3">{notesDetails}</pre>
-              </div>
-            </div>
-          </div>
-          <div className="schedule-wrapper col-lg-3 col-12 mh-100 " id="schedule">
-            <div className="mb-3 mt-3">
-              <h6 className="d-inline">SCHEDULE</h6>
-              <i className="fa-solid fa-clock info" />
-            </div>
-            <div className=" schedules col-12 h-100">
-              <ul className="pl-2">
-                {
-                          this.state.schedules.map(event => {
-                            return (
-                              <li className="text-white" key={event.scheduleId}>
-                                {event.startTime} - {event.endTime} {event.scheduleDetails}
-                              </li>
-                            );
-                          })
-                        }
-              </ul>
-
-            </div>
-          </div>
-          <div className="contacts-wrapper col-lg-3 col-12" id="contacts">
-            <div className="mb-3 mt-3">
-              <h6 className="d-inline">CONTACTS</h6>
-              <i className="fa-solid fa-phone info" />
-            </div>
-            <div className="contacts col-12 h-50 info p-3">
-              <p className="pl-2">{contactEmail} </p>
-              <p className="pl-2">{contactName}</p>
-              <p className="pl-2">{contactPhone}</p>
-            </div>
-          </div>
-          <div className="col-lg-3 col-12" id="dates">
-            <div className="mb-3 mt-3">
-              <h6 className='d-inline'>DATES</h6>
-              <i className="fa-solid fa-calendar-days info" />
-            </div>
-            <div className=" dates col-12 info p-0">
-              <ul>
-                {
-                          this.props.tourDates.map(event => {
-                            return (
-                              <li className="row date-wrapper pl-3 " key={event.showId}>
-                                <a href="#" className="date col-6 ">{event.showDate}</a>
-                                <a href="#" className="city"><b>{event.dateCity},{event.dateState} </b><br />{event.dateVenue}</a>
-                              </li>
-                            );
-                          })
-                        }
-              </ul>
-            </div>
-          </div>
-        </div> */}
       </div >
     );
   }
