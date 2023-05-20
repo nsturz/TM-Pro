@@ -206,104 +206,180 @@ export default class NewTourDate extends React.Component {
 
   render() {
     return (
-      <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
-        <form
-        className="row mb-5"
-        id="new-tour-date-form"
-        onSubmit={ this.handleSubmit }>
-          <div className="col-12 d-flex justify-content-center mt-3">
-            <h3 className="">New Date</h3>
+      <div className="DELETE container">
+        <button type="button" data-toggle="modal" data-target="#exampleModal"
+         className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
+          <i className="options-btn-icon fa-solid fa-plus text-light" />
+        </button>
+        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog modal-lg" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">New Date</h5>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <form action="" className="row mb-5" id="new-tour-date-form" onSubmit={this.handleSubmit}>
+                  <label htmlFor="artist-select" className="ml-2 font-weight-bold">Artist</label>
+                  <select id="artist-select" className="form-control fw-light mb-2 mr-2 ml-2" onChange={this.handleNameChange}>
+                    <option value="">Select an artist</option>
+                    {
+                      this.props.artists.map(event => {
+                        return (
+                          <option id={event.artistId} key={event.artistId}>{event.name}</option>
+                        );
+                      })
+                    }
+                  </select>
+                  <label htmlFor="date" className="ml-2 font-weight-bold">Date</label>
+                  <input name="date" type="date" className="form-control fw-light mb-2 mr-2 ml-2" onChange={this.handleDateChange} />
+                  <label htmlFor="address" className="ml-2 font-weight-bold">Location</label>
+                  <input name="address" type="text" placeholder="Address" className="mb-2 mr-2 ml-2 form-control" onChange={this.handleAddressChange} />
+                  <input name="city" type="text" placeholder="City" className="mb-2 mr-2 ml-2 form-control " onChange={this.handleCityChange} />
+                  <input name="state" type="text" placeholder='State' className="mb-2 mr-2 ml-2 form-control" onChange={this.handleStateChange} />
+                  <input name="country" type="text" placeholder='USA' className="mb-2 mr-2 ml-2 form-control" onChange={this.handleCountryChange} />
+                  <label htmlFor="" className="ml-2 font-weight-bold">Schedule</label>
+                  <ul>
+                    {
+                      this.state.scheduleEvents.map((event, index) => {
+                        return (
+                          <li className={event.class} id={event.id} key={event.id}>
+                            <div className="col-6">
+                              <label htmlFor="start-time" className="text-center col-12">Start Time</label>
+                              <input type="time" className="form-control h-50" onChange={event => this.handleStartTimeChange(event, index)} />
+                            </div>
+                            <div className="col-6">
+                              <label htmlFor="end-time" className="text-center col-12">End Time</label>
+                              <input type="time" className="form-control h-50" onChange={event => this.handleEndTimeChange(event, index)} />
+                            </div>
+                            <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
+                              <i className="fa-solid fa-x text-white" id={event.id} />
+                            </button>
+                            <div className="col-12 mt-3">
+                              <div className="row d-flex justify-content-center">
+                                <label htmlFor="details" className="text-center col-12">Details</label>
+                                <input type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index)} />
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      })
+                    }
+                  </ul>
+                  <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+                    <i className="fa-solid fa-plus" onClick={this.addScheduleEvent} />
+                  </button>
+                </form>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" className="btn btn-primary">Save changes</button>
+              </div>
+            </div>
           </div>
-          <div className="col-12 col-lg-6 form-group mt-3">
-            <div className="row justify-content-center">
-              <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
-              <select name="artist-select-form" id="" className="form-select col-6" onChange={this.handleNameChange}>
-                <option value="">Select an artist</option>
-                {
+        </div>
+        {/* OLD 👇🏼 NEW 👆🏼 */}
+        <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
+          <form
+            className="row mb-5"
+            id="new-tour-date-form"
+            onSubmit={this.handleSubmit}>
+            <div className="col-12 d-flex justify-content-center mt-3">
+              <h3 className="">New Date</h3>
+            </div>
+            <div className="col-12 col-lg-6 form-group mt-3">
+              <div className="row justify-content-center">
+                {/* <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label> */}
+                {/* <select name="artist-select-form" id="" className="form-select col-6" onChange={this.handleNameChange}>
+                  <option value="">Select an artist</option>
+                  {
                     this.props.artists.map(event => {
                       return (
                         <option id={event.artistId} key={event.artistId}>{event.name}</option>
                       );
                     })
                   }
-              </select>
-              <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
-              <input name="date" type="date" className="form-control col-6" onChange={ this.handleDateChange } />
-            </div>
-            <div className="row justify-content-center mt-3">
-              <label htmlFor="city" className="col-12 text-center">LOCATION</label>
-              <input name="city" type="text" placeholder="City" className="m-1 form-control col-5" onChange={ this.handleCityChange } />
-              <input name="state" type="text" placeholder='State' className="m-1 form-control col-2" onChange={ this.handleStateChange } />
-              <input name="country" type="text" placeholder='USA' className="m-1 form-control col-2" onChange={ this.handleCountryChange } />
-            </div>
-            <div className="row d-flex justify-content-center mt-3">
-              <label htmlFor="address" className="col-12 text-center">ADDRESS</label>
-              <input name="address" type="text" className="form-control col-6" onChange={ this.handleAddressChange }/>
-            </div>
-            <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
-            <ul>
-              {
-                this.state.scheduleEvents.map((event, index) => {
-                  return (
-                    <li className={event.class} id={event.id} key={event.id}>
-                      <div className="col-5">
-                        <label htmlFor="start-time" className="text-center col-12">Start Time</label>
-                        <input type="time" className="form-control h-50" onChange={ event => this.handleStartTimeChange(event, index) }/>
-                      </div>
-                      <div className="col-5">
-                        <label htmlFor="end-time" className="text-center col-12">End Time</label>
-                        <input type="time" className="form-control h-50" onChange={ event => this.handleEndTimeChange(event, index) } />
-                      </div>
-                      <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
-                        <i className="fa-solid fa-x text-white" id={event.id}/>
-                      </button>
-                      <div className="col-12 mt-3">
-                        <div className="row d-flex justify-content-center">
-                          <label htmlFor="details" className="text-center col-12">Details</label>
-                          <input type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index) } />
+                </select> */}
+                {/* <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
+                <input name="date" type="date" className="form-control col-6" onChange={this.handleDateChange} /> */}
+              </div>
+              <div className="row justify-content-center mt-3">
+                {/* <label htmlFor="city" className="col-12 text-center">LOCATION</label>
+                <input name="city" type="text" placeholder="City" className="m-1 form-control col-5" onChange={this.handleCityChange} />
+                <input name="state" type="text" placeholder='State' className="m-1 form-control col-2" onChange={this.handleStateChange} />
+                <input name="country" type="text" placeholder='USA' className="m-1 form-control col-2" onChange={this.handleCountryChange} /> */}
+              </div>
+              <div className="row d-flex justify-content-center mt-3">
+                {/* <label htmlFor="address" className="col-12 text-center">ADDRESS</label>
+                <input name="address" type="text" className="form-control col-6" onChange={this.handleAddressChange} /> */}
+              </div>
+              {/* <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label> */}
+              {/* <ul>
+                {
+                  this.state.scheduleEvents.map((event, index) => {
+                    return (
+                      <li className={event.class} id={event.id} key={event.id}>
+                        <div className="col-5">
+                          <label htmlFor="start-time" className="text-center col-12">Start Time</label>
+                          <input type="time" className="form-control h-50" onChange={event => this.handleStartTimeChange(event, index)} />
                         </div>
-                      </div>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-            <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
-              <i className="fa-solid fa-plus text-white" onClick={ this.addScheduleEvent } />
-            </button>
-          </div>
-          <div className="col-12 col-lg-6 form-group mt-3">
-            <div className="row d-flex justify-content-center">
-              <label htmlFor="venue" className="col-12 text-center">VENUE</label>
-              <input
-              name="venue"
-              type="text"
-              className="form-control col-6"
-              onChange={ this.handleVenueNameChange } />
+                        <div className="col-5">
+                          <label htmlFor="end-time" className="text-center col-12">End Time</label>
+                          <input type="time" className="form-control h-50" onChange={event => this.handleEndTimeChange(event, index)} />
+                        </div>
+                        <button type="button" className="remove-schedule-event-btn col-1 d-flex align-items-center mt-3 bg-transparent border-0" onClick={this.handleClick}>
+                          <i className="fa-solid fa-x text-white" id={event.id} />
+                        </button>
+                        <div className="col-12 mt-3">
+                          <div className="row d-flex justify-content-center">
+                            <label htmlFor="details" className="text-center col-12">Details</label>
+                            <input type="text" className="form-control col-8 h-50" onChange={event => this.handleScheduleDetailsChange(event, index)} />
+                          </div>
+                        </div>
+                      </li>
+                    );
+                  })
+                }
+              </ul> */}
+              {/* <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+                <i className="fa-solid fa-plus text-white" onClick={this.addScheduleEvent} />
+              </button> */}
+            </div>
+            <div className="col-12 col-lg-6 form-group mt-3">
+              <div className="row d-flex justify-content-center">
+                <label htmlFor="venue" className="col-12 text-center">VENUE</label>
+                <input
+                  name="venue"
+                  type="text"
+                  className="form-control col-6"
+                  onChange={this.handleVenueNameChange} />
 
-            </div>
-            <div className="row d-flex justify-content-center mt-5">
-              <label htmlFor="notes" className="col-12 text-center">NOTES</label>
-              <textarea name="notes" id="" className="form-control col-8" onChange={ this.handleNotesChange } />
-            </div>
-            <div className="row d-flex justify-content-center mt-5">
-              <label
-              htmlFor="contacts"
-              className="col-12 text-center"
-              >CONTACT</label>
+              </div>
+              <div className="row d-flex justify-content-center mt-5">
+                <label htmlFor="notes" className="col-12 text-center">NOTES</label>
+                <textarea name="notes" id="" className="form-control col-8" onChange={this.handleNotesChange} />
+              </div>
+              <div className="row d-flex justify-content-center mt-5">
+                <label
+                  htmlFor="contacts"
+                  className="col-12 text-center"
+                >CONTACT</label>
 
-              <input type="text" className="form-control col-8 m-1" placeholder='Name' onChange={this.handleContactNameChange} />
-              <input type="text" className='form-control col-8 m-1' placeholder='Phone' onChange={this.handleContactPhoneChange} />
-              <input type="text" className='form-control col-8 m-1' placeholder='Email' onChange={this.handleContactEmailChange} />
+                <input type="text" className="form-control col-8 m-1" placeholder='Name' onChange={this.handleContactNameChange} />
+                <input type="text" className='form-control col-8 m-1' placeholder='Phone' onChange={this.handleContactPhoneChange} />
+                <input type="text" className='form-control col-8 m-1' placeholder='Email' onChange={this.handleContactEmailChange} />
 
+              </div>
             </div>
-          </div>
-          <div className="col-12 mt-3 mb-3">
-            <div className="d-flex justify-content-center">
-              <button type="submit" className="btn new-artist-submit">Submit</button>
+            <div className="col-12 mt-3 mb-3">
+              <div className="d-flex justify-content-center">
+                <button type="submit" className="btn new-artist-submit">Submit</button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     );
   }
