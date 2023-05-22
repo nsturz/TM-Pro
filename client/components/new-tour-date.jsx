@@ -205,6 +205,7 @@ export default class NewTourDate extends React.Component {
   }
 
   render() {
+    // console.log('this.state:', this.state)
     return (
       <div className="DELETE container">
         <button type="button" data-toggle="modal" data-target="#exampleModal"
@@ -221,7 +222,7 @@ export default class NewTourDate extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form action="" className="row d-flex  mb-5" id="new-tour-date-form" onSubmit={this.handleSubmit}>
+                <form id="new-tour-date-form" onSubmit={this.handleSubmit}>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="artist-select" className="font-weight-bold">Artist</label>
                     <select id="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
@@ -294,13 +295,13 @@ export default class NewTourDate extends React.Component {
                       })
                     }
                   </ul>
-                  <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+                  <button type="button" className="add-schedule-event-btn col-12 mt-3 bg-transparent border-0 mb-3">
                     <i className="fa-solid fa-plus" onClick={this.addScheduleEvent} />
                   </button>
                   {/* 🤔👇🏼 */}
-                  <div className="d-flex justify-content-end">
+                  <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" className="btn btn-primary">Save changes</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
                 </form>
               </div>
@@ -308,7 +309,7 @@ export default class NewTourDate extends React.Component {
           </div>
         </div>
         {/* OLD 👇🏼 NEW 👆🏼 */}
-        <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
+        {/* <div className="new-tour-date-form  d-flex justify-content-center flex-wrap m-5">
           <form
             className="row mb-5"
             id="new-tour-date-form"
@@ -318,8 +319,8 @@ export default class NewTourDate extends React.Component {
             </div>
             <div className="col-12 col-lg-6 form-group mt-3">
               <div className="row justify-content-center">
-                {/* <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label> */}
-                {/* <select name="artist-select-form" id="" className="form-select col-6" onChange={this.handleNameChange}>
+                <label htmlFor="artist-select-form" className="col-12 text-center">ARTIST</label>
+                <select name="artist-select-form" id="" className="form-select col-6" onChange={this.handleNameChange}>
                   <option value="">Select an artist</option>
                   {
                     this.props.artists.map(event => {
@@ -328,22 +329,22 @@ export default class NewTourDate extends React.Component {
                       );
                     })
                   }
-                </select> */}
-                {/* <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
-                <input name="date" type="date" className="form-control col-6" onChange={this.handleDateChange} /> */}
+                </select>
+                <label htmlFor="date" className="col-12 text-center mt-3">DATE</label>
+                <input name="date" type="date" className="form-control col-6" onChange={this.handleDateChange} />
               </div>
               <div className="row justify-content-center mt-3">
-                {/* <label htmlFor="city" className="col-12 text-center">LOCATION</label>
+                <label htmlFor="city" className="col-12 text-center">LOCATION</label>
                 <input name="city" type="text" placeholder="City" className="m-1 form-control col-5" onChange={this.handleCityChange} />
                 <input name="state" type="text" placeholder='State' className="m-1 form-control col-2" onChange={this.handleStateChange} />
-                <input name="country" type="text" placeholder='USA' className="m-1 form-control col-2" onChange={this.handleCountryChange} /> */}
+                <input name="country" type="text" placeholder='USA' className="m-1 form-control col-2" onChange={this.handleCountryChange} />
               </div>
               <div className="row d-flex justify-content-center mt-3">
-                {/* <label htmlFor="address" className="col-12 text-center">ADDRESS</label>
-                <input name="address" type="text" className="form-control col-6" onChange={this.handleAddressChange} /> */}
+                <label htmlFor="address" className="col-12 text-center">ADDRESS</label>
+                <input name="address" type="text" className="form-control col-6" onChange={this.handleAddressChange} />
               </div>
-              {/* <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label> */}
-              {/* <ul>
+              <label htmlFor="" className=" col-12 text-center mt-3 mb-3">SCHEDULE</label>
+              <ul>
                 {
                   this.state.scheduleEvents.map((event, index) => {
                     return (
@@ -369,34 +370,34 @@ export default class NewTourDate extends React.Component {
                     );
                   })
                 }
-              </ul> */}
-              {/* <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
+              </ul>
+              <button type="button" className="add-schedule-event-btn col-12 d-flex justify-content-center mt-3 bg-transparent border-0">
                 <i className="fa-solid fa-plus text-white" onClick={this.addScheduleEvent} />
-              </button> */}
+              </button>
             </div>
             <div className="col-12 col-lg-6 form-group mt-3">
               <div className="row d-flex justify-content-center">
-                {/* <label htmlFor="venue" className="col-12 text-center">VENUE</label>
+                <label htmlFor="venue" className="col-12 text-center">VENUE</label>
                 <input
                   name="venue"
                   type="text"
                   className="form-control col-6"
-                  onChange={this.handleVenueNameChange} /> */}
+                  onChange={this.handleVenueNameChange} />
 
               </div>
               <div className="row d-flex justify-content-center mt-5">
-                {/* <label htmlFor="notes" className="col-12 text-center">NOTES</label>
-                <textarea name="notes" id="" className="form-control col-8" onChange={this.handleNotesChange} /> */}
+                <label htmlFor="notes" className="col-12 text-center">NOTES</label>
+                <textarea name="notes" id="" className="form-control col-8" onChange={this.handleNotesChange} />
               </div>
               <div className="row d-flex justify-content-center mt-5">
-                {/* <label
+                <label
                   htmlFor="contacts"
                   className="col-12 text-center"
                 >CONTACT</label>
 
                 <input type="text" className="form-control col-8 m-1" placeholder='Name' onChange={this.handleContactNameChange} />
                 <input type="text" className='form-control col-8 m-1' placeholder='Phone' onChange={this.handleContactPhoneChange} />
-                <input type="text" className='form-control col-8 m-1' placeholder='Email' onChange={this.handleContactEmailChange} /> */}
+                <input type="text" className='form-control col-8 m-1' placeholder='Email' onChange={this.handleContactEmailChange} />
 
               </div>
             </div>
@@ -406,7 +407,7 @@ export default class NewTourDate extends React.Component {
               </div>
             </div>
           </form>
-        </div>
+        </div> */}
       </div>
     );
   }
