@@ -221,26 +221,35 @@ export default class NewTourDate extends React.Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form action="" className="row mb-5" id="new-tour-date-form" onSubmit={this.handleSubmit}>
-                  <label htmlFor="artist-select" className="ml-2 font-weight-bold">Artist</label>
-                  <select id="artist-select" className="form-control fw-light mb-2 mr-2 ml-2" onChange={this.handleNameChange}>
-                    <option value="">Select an artist</option>
-                    {
-                      this.props.artists.map(event => {
-                        return (
-                          <option id={event.artistId} key={event.artistId}>{event.name}</option>
-                        );
-                      })
-                    }
-                  </select>
-                  <label htmlFor="date" className="ml-2 font-weight-bold">Date</label>
-                  <input name="date" type="date" className="form-control fw-light mb-2 mr-2 ml-2" onChange={this.handleDateChange} />
-                  <label htmlFor="address" className="ml-2 font-weight-bold">Location</label>
-                  <input name="address" type="text" placeholder="Address" className="mb-2 mr-2 ml-2 form-control" onChange={this.handleAddressChange} />
-                  <input name="city" type="text" placeholder="City" className="mb-2 mr-2 ml-2 form-control " onChange={this.handleCityChange} />
-                  <input name="state" type="text" placeholder='State' className="mb-2 mr-2 ml-2 form-control" onChange={this.handleStateChange} />
-                  <input name="country" type="text" placeholder='USA' className="mb-2 mr-2 ml-2 form-control" onChange={this.handleCountryChange} />
-                  <label htmlFor="" className="ml-2 font-weight-bold">Schedule</label>
+                <form action="" className="row d-flex justify-content-center mb-5" id="new-tour-date-form" onSubmit={this.handleSubmit}>
+                  <div className="col-12 mb-2 mt-2">
+                    <label htmlFor="artist-select" className="font-weight-bold">Artist</label>
+                    <select id="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
+                      <option value="">Select an artist</option>
+                      {
+                        this.props.artists.map(event => {
+                          return (
+                            <option id={event.artistId} key={event.artistId}>{event.name}</option>
+                          );
+                        })
+                      }
+                    </select>
+                  </div>
+                  <div className="col-12 mb-2 mt-2">
+                    <label htmlFor="date" className="font-weight-bold">Date</label>
+                    <input name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
+                  </div>
+                  <div className="col-12 mb-2 mt-2">
+                    <label htmlFor="address" className="font-weight-bold">Location</label>
+                    <input name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
+                    <div className="d-flex">
+                      <input name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
+                      <input name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
+                      <input name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
+                    </div>
+
+                  </div>
+                  <label htmlFor="" className="ml-2 font-weight-bold col-12">Schedule</label>
                   <ul>
                     {
                       this.state.scheduleEvents.map((event, index) => {
