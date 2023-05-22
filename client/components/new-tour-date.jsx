@@ -6,6 +6,7 @@ export default class NewTourDate extends React.Component {
       click: 0,
       scheduleEvents: [],
       artistId: null,
+      artist: '',
       id: 0,
       line1: '',
       city: '',
@@ -38,13 +39,15 @@ export default class NewTourDate extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleVenueNameChange = this.handleVenueNameChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleNameChange(event) {
     for (let i = 0; i < this.props.artists.length; i++) {
       if (event.target.value === this.props.artists[i].name) {
         this.setState({
-          artistId: this.props.artists[i].artistId
+          artistId: this.props.artists[i].artistId,
+          artist: this.props.artists[i].name
         });
       }
     }
@@ -166,6 +169,27 @@ export default class NewTourDate extends React.Component {
     }
   }
 
+  closeModal(event) {
+    this.setState({
+      click: 0,
+      scheduleEvents: [],
+      artistId: null,
+      artist: '',
+      id: 0,
+      line1: '',
+      city: '',
+      state: '',
+      country: '',
+      contactEmail: '',
+      contactName: '',
+      contactPhone: '',
+      showId: '',
+      date: null,
+      venueName: '',
+      notesDetails: ''
+    });
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const newTourDate = {
@@ -207,7 +231,7 @@ export default class NewTourDate extends React.Component {
   render() {
     // console.log('this.state:', this.state)
     return (
-      <div className="DELETE container">
+      <div className="">
         <button type="button" data-toggle="modal" data-target="#exampleModal"
          className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
           <i className="options-btn-icon fa-solid fa-plus text-light" />
@@ -217,7 +241,7 @@ export default class NewTourDate extends React.Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">New Date</h5>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <button onClick={this.closeModal} type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
@@ -225,10 +249,10 @@ export default class NewTourDate extends React.Component {
                 <form id="new-tour-date-form" onSubmit={this.handleSubmit}>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="artist-select" className="font-weight-bold">Artist</label>
-                    <select id="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
+                    <select value={this.state.artist} id="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
                       <option value="">Select an artist</option>
                       {
-                        this.props.artists.map(event => {
+                        this.props.artists?.map(event => {
                           return (
                             <option id={event.artistId} key={event.artistId}>{event.name}</option>
                           );
@@ -300,7 +324,7 @@ export default class NewTourDate extends React.Component {
                   </button>
                   {/* 🤔👇🏼 */}
                   <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onClick={this.closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" className="btn btn-primary">Submit</button>
                   </div>
                 </form>

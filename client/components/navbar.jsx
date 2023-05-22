@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                   MORE
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a className="dropdown-item" href="#new-date">NEW DATE</a>
+                  {/* <a className="dropdown-item" href="#new-date">NEW DATE</a> */}
                   <a className="dropdown-item" href="#edit-date">EDIT DATE</a>
                   <a className="dropdown-item" href="#new-artist-form">NEW ARTIST</a>
                 </div>

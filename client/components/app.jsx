@@ -3,7 +3,7 @@ import NewArtistForm from './new-artist-form';
 import Dashboard from '../pages/dashboard';
 import parseRoute from '../lib/parse-route';
 import TourDates from '../pages/tourdates';
-import NewTourDate from './new-tour-date';
+// import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
 import NavBar from './navbar';
 
@@ -17,7 +17,6 @@ export default class App extends React.Component {
       route: parseRoute(window.location.hash)
     };
     this.addName = this.addName.bind(this);
-    this.addTourDate = this.addTourDate.bind(this);
     this.deleteTourDate = this.deleteTourDate.bind(this);
     this.editTourDate = this.editTourDate.bind(this);
   }
@@ -46,14 +45,17 @@ export default class App extends React.Component {
     if (route.path === 'calendar') {
       return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
     }
-    if (route.path === 'new-date') {
-      return <NewTourDate artists={this.state.artists}
-      onSubmit={ this.addTourDate }/>;
-    }
+    // if (route.path === 'new-date') {
+    //   return <NewTourDate artists={this.state.artists}
+    //   onSubmit={ this.addTourDate }/>;
+    // }
     if (route.path === 'edit-date') {
       return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
     }
-    return <Dashboard tourDates={this.state.tourDates} />;
+    // if (route.path === 'route-overview') {
+    //   return <RouteOverview tourDates={this.state.tourDates} />;
+    // }
+    return <Dashboard tourDates={this.state.tourDates} artists={this.state.artists} />;
   }
 
   addName(newArtist) {
@@ -68,25 +70,6 @@ export default class App extends React.Component {
       .then(name => {
         this.setState({
           name: this.state.name.concat(name)
-        });
-      })
-      .catch(console.error);
-  }
-
-  addTourDate(newTourDate) {
-    fetch('/api/new-date', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newTourDate)
-    })
-      .then(response => response.json())
-      .then(newTourDate => {
-        const tourDatesCopy = [...this.state.tourDates];
-        tourDatesCopy.push(newTourDate);
-        this.setState({
-          tourDates: tourDatesCopy
         });
       })
       .catch(console.error);

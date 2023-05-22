@@ -1,5 +1,6 @@
 import React from 'react';
 import RouteOverview from '../components/route-overview';
+import NewTourDate from '../components/new-tour-date';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class Dashboard extends React.Component {
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
+    this.addTourDate = this.addTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +99,25 @@ export default class Dashboard extends React.Component {
     document.getElementById('search-date-form').reset();
   }
 
+  addTourDate(newTourDate) {
+    fetch('/api/new-date', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newTourDate)
+    })
+      .then(response => response.json())
+      .then(newTourDate => {
+        const tourDatesCopy = [...this.state.tourDates];
+        tourDatesCopy.push(newTourDate);
+        this.setState({
+          tourDates: tourDatesCopy
+        });
+      })
+      .catch(console.error);
+  }
+
   render() {
     return (
       <div className="container" >
@@ -131,6 +152,7 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
+            <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists}/>
             <button className="options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
