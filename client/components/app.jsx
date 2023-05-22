@@ -55,7 +55,7 @@ export default class App extends React.Component {
     // if (route.path === 'route-overview') {
     //   return <RouteOverview tourDates={this.state.tourDates} />;
     // }
-    return <Dashboard tourDates={this.state.tourDates} artists={this.state.artists} />;
+    return <Dashboard artists={this.state.artists} />;
   }
 
   addName(newArtist) {
