@@ -225,6 +225,7 @@ export default class NewTourDate extends React.Component {
       venuePhone: '',
       notesDetails: ''
     });
+    document.getElementById('exampleModal').classList.remove('show', 'd-block');
     document.getElementById('new-tour-date-form').reset();
   }
 
