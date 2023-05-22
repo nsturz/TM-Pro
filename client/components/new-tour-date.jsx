@@ -16,7 +16,7 @@ export default class NewTourDate extends React.Component {
       contactName: '',
       contactPhone: '',
       showId: '',
-      date: null,
+      date: '',
       venueName: '',
       notesDetails: ''
     };
@@ -184,7 +184,7 @@ export default class NewTourDate extends React.Component {
       contactName: '',
       contactPhone: '',
       showId: '',
-      date: null,
+      date: '',
       venueName: '',
       notesDetails: ''
     });
@@ -220,7 +220,7 @@ export default class NewTourDate extends React.Component {
       contactName: '',
       contactPhone: '',
       showId: '',
-      date: null,
+      date: '',
       venueName: '',
       venuePhone: '',
       notesDetails: ''
@@ -262,30 +262,30 @@ export default class NewTourDate extends React.Component {
                   </div>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="date" className="font-weight-bold">Date</label>
-                    <input name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
+                    <input value={this.state.date} name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
                   </div>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="venue" className="font-weight-bold">Venue</label>
-                    <input name="venue" type="text" className="form-control" onChange={this.handleVenueNameChange} />
+                    <input value={this.state.venueName} name="venue" type="text" className="form-control" onChange={this.handleVenueNameChange} />
                   </div>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="address" className="font-weight-bold">Location</label>
-                    <input name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
+                    <input value={this.state.line1} name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
                     <div className="d-flex">
-                      <input name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
-                      <input name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
-                      <input name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
+                      <input value={this.state.city} name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
+                      <input value={this.state.state} name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
+                      <input value={this.state.country} name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
                     </div>
                   </div>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="notes" className="font-weight-bold">Notes</label>
-                    <textarea name="notes" id="" className="form-control" onChange={this.handleNotesChange} />
+                    <textarea value={this.state.notesDetails} name="notes" id="" className="form-control" onChange={this.handleNotesChange} />
                   </div>
                   <div className="col-12 mb-2 mt-2">
                     <label htmlFor="contacts" className="font-weight-bold">Contact</label>
-                    <input type="text" className="form-control mt-2 mb-2" placeholder='Name' onChange={this.handleContactNameChange} />
-                    <input type="text" className='form-control mt-2 mb-2' placeholder='Phone' onChange={this.handleContactPhoneChange} />
-                    <input type="text" className='form-control mt-2 mb-2' placeholder='Email' onChange={this.handleContactEmailChange} />
+                    <input value={this.state.contactName} type="text" className="form-control mt-2 mb-2" placeholder='Name' onChange={this.handleContactNameChange} />
+                    <input value={this.state.contactPhone} type="text" className='form-control mt-2 mb-2' placeholder='Phone' onChange={this.handleContactPhoneChange} />
+                    <input value={this.state.contactEmail} type="text" className='form-control mt-2 mb-2' placeholder='Email' onChange={this.handleContactEmailChange} />
                   </div>
                   <label htmlFor="" className="ml-2 font-weight-bold col-12">Schedule</label>
                   <ul className="col-12">
