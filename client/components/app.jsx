@@ -3,7 +3,6 @@ import NewArtistForm from './new-artist-form';
 import Dashboard from '../pages/dashboard';
 import parseRoute from '../lib/parse-route';
 import TourDates from '../pages/tourdates';
-import EditTourDate from './edit-tour-date';
 import NavBar from './navbar';
 
 export default class App extends React.Component {
@@ -17,7 +16,6 @@ export default class App extends React.Component {
     };
     this.addName = this.addName.bind(this);
     this.deleteTourDate = this.deleteTourDate.bind(this);
-    this.editTourDate = this.editTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -43,9 +41,6 @@ export default class App extends React.Component {
     }
     if (route.path === 'calendar') {
       return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
-    }
-    if (route.path === 'edit-date') {
-      return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
     }
     return <Dashboard artists={this.state.artists} />;
   }
@@ -80,25 +75,6 @@ export default class App extends React.Component {
         for (let i = 0; i < newTourDates.length; i++) {
           if (newTourDates[i].showId === selectedDate.showId) {
             newTourDates.splice(i, 1);
-          }
-        } this.setState({ tourDates: newTourDates });
-      })
-      .catch(console.error);
-  }
-
-  editTourDate(editedTourDate, showId) {
-    fetch(`/api/edit-date/${showId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(editedTourDate)
-    })
-      .then(() => {
-        const newTourDates = [...this.state.tourDates];
-        for (let i = 0; i < newTourDates.length; i++) {
-          if (newTourDates[i].showId === showId) {
-            newTourDates.splice(i, 1, editedTourDate);
           }
         } this.setState({ tourDates: newTourDates });
       })

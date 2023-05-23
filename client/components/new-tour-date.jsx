@@ -231,15 +231,15 @@ export default class NewTourDate extends React.Component {
   render() {
     return (
       <div className="">
-        <button type="button" data-toggle="modal" data-target="#exampleModal"
+        <button type="button" data-toggle="modal" data-target="#newShowModal"
          className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
           <i className="options-btn-icon fa-solid fa-plus text-light" />
         </button>
-        <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="newShowModal" tabIndex="-1" role="dialog" aria-labelledby="newShowModalLabel" aria-hidden="true">
           <div className="modal-dialog modal-lg" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">New Date</h5>
+                <h5 className="modal-title" id="newShowModalLabel">New Date</h5>
                 <button onClick={this.closeModal} type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>

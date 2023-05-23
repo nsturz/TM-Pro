@@ -1,6 +1,7 @@
 import React from 'react';
 import RouteOverview from '../components/route-overview';
 import NewTourDate from '../components/new-tour-date';
+import EditTourDate from '../components/edit-tour-date';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ export default class Dashboard extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
+    this.editTourDate = this.editTourDate.bind(this);
   }
 
   componentDidMount() {
@@ -118,7 +120,27 @@ export default class Dashboard extends React.Component {
       .catch(console.error);
   }
 
+  editTourDate(editedTourDate, showId) {
+    fetch(`/api/edit-date/${showId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedTourDate)
+    })
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === showId) {
+            newTourDates.splice(i, 1, editedTourDate);
+          }
+        } this.setState({ tourDates: newTourDates });
+      })
+      .catch(console.error);
+  }
+
   render() {
+    // console.log('this.state.tourdates in dashboard.jsx:', this.state.tourDates)
     return (
       <div className="container" >
         <form onSubmit={this.selectDate} className="d-flex mt-3" id="search-date-form" >
@@ -126,7 +148,7 @@ export default class Dashboard extends React.Component {
             <select onChange={this.handleDateChange} name="" className="form-control" id="select-deez">
               <option>Select a date.</option>
               {
-                  this.state.tourDates.map(event => {
+                  this.state.tourDates?.map(event => {
                     return (
                       <option key={event.showId} id={event.showId}>{event.date}</option>
                     );
@@ -153,9 +175,7 @@ export default class Dashboard extends React.Component {
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
             <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists}/>
-            <button className="options-btn mr-2 ml-2 rounded-circle border-0">
-              <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
-            </button>
+            <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates} />
             <button className="options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>

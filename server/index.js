@@ -252,6 +252,50 @@ app.get('/api/shows/:showId', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// GET specific show info for EDIT DATE FORM👇🏼
+app.get('/api/select-show/:showId', (req, res, next) => {
+  const showId = Number(req.params.showId);
+  if (!showId) {
+    throw new ClientError(400, 'showId must be a positive integer');
+  }
+  const sql = `
+
+  select to_char("date",'yyyy-MM-dd') as "date",
+         "venues"."name" as "venueName",
+         "artistId",
+         "addressId",
+         "venueId",
+         "showId",
+         "line1",
+         "city",
+         "state",
+         "country",
+         "startTime",
+         "endTime",
+         "schedules"."details" as "scheduleDetails",
+         "contacts"."email" as "contactEmail",
+         "contacts"."name" as "contactName",
+         "contacts"."phone" as "contactPhone",
+         "notes"."details" as "notesDetails"
+  from   "shows"
+  join "venues" using ("venueId")
+  join "addresses" using ("addressId")
+  join "artists" using ("artistId")
+  join "contacts" using ("showId")
+  join "notes" using ("showId")
+  join "schedules" using ("showId")
+  where "showId" = $1`;
+  const params = [showId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find show with showId ${showId}`);
+      }
+      res.json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 // GET DATE info for DATES section 👇🏼
 app.get('/api/shows', (req, res, next) => {
   const sql = `
