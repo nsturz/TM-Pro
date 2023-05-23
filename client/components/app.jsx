@@ -3,7 +3,6 @@ import NewArtistForm from './new-artist-form';
 import Dashboard from '../pages/dashboard';
 import parseRoute from '../lib/parse-route';
 import TourDates from '../pages/tourdates';
-// import NewTourDate from './new-tour-date';
 import EditTourDate from './edit-tour-date';
 import NavBar from './navbar';
 
@@ -45,16 +44,9 @@ export default class App extends React.Component {
     if (route.path === 'calendar') {
       return <TourDates tourDates={ this.state.tourDates } onSubmit={this.deleteTourDate} />;
     }
-    // if (route.path === 'new-date') {
-    //   return <NewTourDate artists={this.state.artists}
-    //   onSubmit={ this.addTourDate }/>;
-    // }
     if (route.path === 'edit-date') {
       return <EditTourDate tourDates={this.state.tourDates} onSubmit={ this.editTourDate }/>;
     }
-    // if (route.path === 'route-overview') {
-    //   return <RouteOverview tourDates={this.state.tourDates} />;
-    // }
     return <Dashboard artists={this.state.artists} />;
   }
 
