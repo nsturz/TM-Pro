@@ -6,7 +6,7 @@ export default class NavBar extends React.Component {
       <div>
         <nav className="navbar navbar-expand-lg">
           <a className="navbar-brand ml-5" href="#">TOUR MANAGER PRO</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button className="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                   MORE
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a className="dropdown-item" href="#new-date">NEW DATE</a>
+                  {/* <a className="dropdown-item" href="#new-date">NEW DATE</a> */}
                   <a className="dropdown-item" href="#edit-date">EDIT DATE</a>
                   <a className="dropdown-item" href="#new-artist-form">NEW ARTIST</a>
                 </div>

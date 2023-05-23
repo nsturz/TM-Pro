@@ -216,7 +216,7 @@ app.get('/api/shows/:showId', (req, res, next) => {
   }
   const sql = `
 
-  select to_char("date",'Mon dd yyyy') as "date",
+  select to_char("date",'Mon dd, yyyy') as "date",
          "venues"."name" as "venueName",
          "artistId",
          "addressId",
