@@ -19,8 +19,7 @@ export default class EditTourDate extends React.Component {
       contactPhone: '',
       contactEmail: '',
       scheduleEvents: [],
-      newScheduleEvents: [],
-      modalClass: 'modal fade'
+      newScheduleEvents: []
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
@@ -231,21 +230,24 @@ export default class EditTourDate extends React.Component {
       scheduleEvents: [],
       newScheduleEvents: []
     });
-    // document.getElementById('edit-tour-date-form').reset();
   }
 
   render() {
     return (
       <div>
         <div>
-          <button type="button" data-toggle="modal" data-target="#editShowModal"
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#editShowModal"
             className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
             <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
           </button>
-          <div className={this.state.modalClass}
+          <div className="modal fade"
                id="editShowModal"
                tabIndex="-1"
-               role="dialog" aria-labelledby="editShowModalLabel" aria-hidden="true" data-backdrop="true">
+               role="dialog" aria-labelledby="editShowModalLabel"
+               aria-hidden="true">
             <div className="modal-dialog modal-lg" role="document">
               <div className="modal-content">
                 <div className="modal-header">
