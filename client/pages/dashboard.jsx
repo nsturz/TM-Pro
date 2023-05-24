@@ -15,12 +15,15 @@ export default class Dashboard extends React.Component {
       date: '',
       lastTourDate: '',
       origin: '',
-      destination: ''
+      destination: '',
+      editModalStatus: 'position-absolute edit-modal-wrapper d-none'
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
     this.editTourDate = this.editTourDate.bind(this);
+    this.showEditModal = this.showEditModal.bind(this);
+    this.hideEditModal = this.hideEditModal.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +48,14 @@ export default class Dashboard extends React.Component {
       .then(schedules => {
         this.setState({ schedules });
       });
+  }
+
+  showEditModal() {
+    this.setState({ editModalStatus: 'position-absolute edit-modal-wrapper' });
+  }
+
+  hideEditModal() {
+    this.setState({ editModalStatus: 'd-none' });
   }
 
   handleDateChange(event) {
@@ -154,7 +165,7 @@ export default class Dashboard extends React.Component {
             </select>
           </div>
           <div className="col-lg-2 p-0 m-1">
-            <button type="submit" className="btn select-date-btn"> Select Date</button>
+            <button type="submit" className="btn blue-btn"> Select Date</button>
           </div>
         </form>
         <div className="tourDate" key={this.state.show.showId} id={this.state.show.showId}>
@@ -172,7 +183,11 @@ export default class Dashboard extends React.Component {
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
             <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists}/>
-            <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates} />
+            <button onClick={this.showEditModal}
+            className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0"
+            >
+              <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
+            </button>
             <button className="options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>
@@ -240,6 +255,22 @@ export default class Dashboard extends React.Component {
           </div>
         </div>
         <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
+        <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates}
+                      editModalStatus={this.state.editModalStatus}
+                      hideEditModal={this.hideEditModal} />
+        {/* <div className="modal-container d-flex justify-content-center border border-danger">
+          <div className="edit-modal-body col-10">
+            <div className="edit-modal-title">
+              <h5>Edit Date</h5>
+            </div>
+            <div>
+              <label htmlFor="date-input"></label>
+              <select className="form-control" name="date-input" id="date-input">
+                <option value="">select a date</option>
+              </select>
+            </div>
+          </div>
+        </div> */}
       </div >
     );
   }
