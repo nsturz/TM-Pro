@@ -16,7 +16,10 @@ export default class Dashboard extends React.Component {
       lastTourDate: '',
       origin: '',
       destination: '',
-      editModalStatus: 'position-absolute edit-modal-wrapper d-none'
+      editModalStatus: 'position-absolute modal-wrapper d-none',
+      addModalStatus: 'position-absolute modal-wrapper d-none',
+      editModalOverlay: 'overlay d-none',
+      addModalOverlay: 'overlay d-none'
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
@@ -24,6 +27,8 @@ export default class Dashboard extends React.Component {
     this.editTourDate = this.editTourDate.bind(this);
     this.showEditModal = this.showEditModal.bind(this);
     this.hideEditModal = this.hideEditModal.bind(this);
+    this.showAddModal = this.showAddModal.bind(this);
+    this.hideAddModal = this.hideAddModal.bind(this);
   }
 
   componentDidMount() {
@@ -50,12 +55,32 @@ export default class Dashboard extends React.Component {
       });
   }
 
+  showAddModal() {
+    this.setState({
+      addModalStatus: 'position-absolute modal-wrapper',
+      addModalOverlay: 'overlay'
+    });
+  }
+
+  hideAddModal() {
+    this.setState({
+      addModalStatus: 'position-absolute modal-wrapper d-none',
+      addModalOverlay: 'overlay d-none'
+    });
+  }
+
   showEditModal() {
-    this.setState({ editModalStatus: 'position-absolute edit-modal-wrapper' });
+    this.setState({
+      editModalStatus: 'position-absolute modal-wrapper',
+      editModalOverlay: 'overlay'
+    });
   }
 
   hideEditModal() {
-    this.setState({ editModalStatus: 'd-none' });
+    this.setState({
+      editModalStatus: 'position-absolute modal-wrapper d-none',
+      editModalOverlay: 'overlay d-none'
+    });
   }
 
   handleDateChange(event) {
@@ -182,10 +207,12 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
-            <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists}/>
-            <button onClick={this.showEditModal}
-            className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0"
-            >
+            <button onClick={this.showAddModal}
+                    type="button"
+                    className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
+              <i className="options-btn-icon fa-solid fa-plus text-light" />
+            </button>
+            <button onClick={this.showEditModal} className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
             <button className="options-btn mr-2 ml-2 rounded-circle border-0">
@@ -255,22 +282,10 @@ export default class Dashboard extends React.Component {
           </div>
         </div>
         <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
+        <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists} addModalStatus={this.state.addModalStatus}
+          showAddModal={this.showAddModal} hideAddModal={this.hideAddModal} addModalOverlay={this.state.addModalOverlay} />
         <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates}
-                      editModalStatus={this.state.editModalStatus}
-                      hideEditModal={this.hideEditModal} />
-        {/* <div className="modal-container d-flex justify-content-center border border-danger">
-          <div className="edit-modal-body col-10">
-            <div className="edit-modal-title">
-              <h5>Edit Date</h5>
-            </div>
-            <div>
-              <label htmlFor="date-input"></label>
-              <select className="form-control" name="date-input" id="date-input">
-                <option value="">select a date</option>
-              </select>
-            </div>
-          </div>
-        </div> */}
+          editModalStatus={this.state.editModalStatus} hideEditModal={this.hideEditModal} editModalOverlay={this.state.editModalOverlay} />
       </div >
     );
   }

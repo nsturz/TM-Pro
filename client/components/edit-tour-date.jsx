@@ -236,133 +236,22 @@ export default class EditTourDate extends React.Component {
 
   render() {
     return (
-      <div className={this.props.editModalStatus}>
-        {/* <div>
-          <button
-            type="button"
-            data-toggle="modal"
-            data-target="#editShowModal"
-            className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
-            <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
-          </button>
-          <div className="modal fade"
-               id="editShowModal"
-               tabIndex="-1"
-               role="dialog" aria-labelledby="editShowModalLabel"
-               aria-hidden="true">
-            <div className="modal-dialog modal-lg" role="document">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title" id="editShowModalLabel">Edit Date</h5>
-                  <button onClick={this.closeModal} type="button" className="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  ✅<form id="edit-tour-date-form" onSubmit={this.handleSubmit}>
-                    ✅<div className="col-12 mb-2 mt-2">
-                      ✅<label htmlFor="artist-select" className="font-weight-bold" />
-                      ✅<select name="artist-select" className="form-control font-weight-light" onChange={this.selectDate}>
-                        <option value="">Select a tour date.</option>
-                        {
-                          this.props.tourDates.map(event => {
-                            return (
-                              <option
-                                id={event.showId}
-                                key={event.showId}>
-                                {event.date}
-                              </option>
-                            );
-                          })
-                        }
-                      </select>
-                    </div>
-                    ✅<div className="col-12 mb-2 mt-2">
-                      ✅<label htmlFor="date" className="font-weight-bold">Date</label>
-                      ✅<input value={this.state.date} name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
-                    </div>
-                    ✅<div className="col-12 mb-2 mt-2">
-                      <label htmlFor="venue" className="font-weight-bold">Venue</label>
-                      <input value={this.state.venueName} name="venue" type="text" className="form-control" onChange={this.handleVenueNameChange} />
-                    </div>
-                    ✅<div className="col-12 mb-2 mt-2">
-                      <label htmlFor="address" className="font-weight-bold">Location</label>
-                      <input value={this.state.line1} name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
-                      ✅<div className="d-flex">
-                        <input value={this.state.city} name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
-                        <input value={this.state.state} name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
-                        <input value={this.state.country} name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
-                      </div>
-                    </div>
-                    ✅<div className="col-12 mb-2 mt-2">
-                      <label htmlFor="notes" className="font-weight-bold">Notes</label>
-                      <textarea value={this.state.notesDetails} name="notes" id="" className="form-control" onChange={this.handleNotesDetailsChange} />
-                    </div>
-                   ✅ <div className="col-12 mb-2 mt-2">
-                      <label htmlFor="contacts" className="font-weight-bold">Contact</label>
-                      <input value={this.state.contactName} type="text" className="form-control mt-2 mb-2" placeholder='Name' onChange={this.handleContactNameChange} />
-                      <input value={this.state.contactPhone} type="text" className='form-control mt-2 mb-2' placeholder='Phone' onChange={this.handleContactPhoneChange} />
-                      <input value={this.state.contactEmail} type="text" className='form-control mt-2 mb-2' placeholder='Email' onChange={this.handleContactEmailChange} />
-                    </div>
-                    ✅ <label htmlFor="" className="ml-2 font-weight-bold col-12">Schedule</label>
-                    ✅ <ul className="col-12">
-                      {
-                        this.state.scheduleEvents.map((event, index) => {
-                          return (
-                            <li id={event.id} key={event.id}>
-                              <div className="d-flex">
-                                <div className="col-6">
-                                  <label htmlFor="start-time" className="text-center">Start Time</label>
-                                  <input value={event.startTime} type="time" className="form-control" onChange={event => this.handleStartTimeChange(event, index)} />
-                                </div>
-                                <div className="col-6">
-                                  <label htmlFor="end-time" className="text-center">End Time</label>
-                                  <input value={event.endTime} type="time" className="form-control" onChange={event => this.handleEndTimeChange(event, index)} />
-                                </div>
-                              </div>
-                              <div className="d-flex">
-                                <div className="col-11">
-                                  <label htmlFor="details" className="text-center">Details</label>
-                                  <input value={event.details} type="text" className="form-control" onChange={event => this.handleScheduleDetailsChange(event, index)} />
-                                </div>
-                                <div className="col-1">
-                                  <button type="button" className="remove-schedule-event-btn bg-transparent border-0 mt-2 pr-5" onClick={this.handleClick}>
-                                    <i className="fa-solid fa-x text-dark fa-lg mt-5" id={event.id} />
-                                  </button>
-                                </div>
-                              </div>
-                            </li>
-                          );
-                        })
-                      }
-                    </ul>
-                    ✅<button type="button" className="add-schedule-event-btn col-12 mt-3 bg-transparent border-0 mb-3">
-                      <i className="fa-solid fa-plus" onClick={this.addScheduleEvent} />
-                    </button>
-                    <div className="modal-footer">
-                      <button onClick={this.closeModal} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="submit" className="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
-                </div>
+      <div className="container">
+        <div className={this.props.editModalOverlay} />
+        <div className={this.props.editModalStatus}>
+          <div className="modal-container d-flex justify-content-center bg-white rounded pt-3">
+            <form id="edit-tour-date-form" onSubmit={this.handleSubmit} className="col-10 mb-2 mt-2">
+              <div className="edit-modal-title d-flex justify-content-between">
+                <h5>Edit Date</h5>
+                <button onClick={() => {
+                  this.props.hideEditModal();
+                  this.closeModal();
+                }} className="border-0 bg-transparent">x</button>
               </div>
-            </div>
-          </div>
-        </div> */}
-
-        <div className="modal-container d-flex justify-content-center border border-danger bg-white rounded">
-          <form id="edit-tour-date-form" onSubmit={this.handleSubmit} className="col-10 mb-2 mt-2">
-            <div className="edit-modal-title d-flex justify-content-between">
-              <h5 className="text-center">Edit Date</h5>
-              <button onClick={() => {
-                this.props.hideEditModal();
-                this.closeModal();
-              }} className="border-0 bg-transparent">x</button>
-            </div>
-            <div className="mb-2 mt-2">
-              <select name="artist-select" className="form-control font-weight-light" onChange={this.selectDate}>
-                <option value="">Select a tour date to edit.</option>
-                {
+              <div className="mb-2 mt-2">
+                <select value={this.state.date} name="artist-select" className="form-control font-weight-light" onChange={this.selectDate}>
+                  <option value="">Select a tour date to edit.</option>
+                  {
                     this.props.tourDates.map(event => {
                       return (
                         <option
@@ -373,79 +262,80 @@ export default class EditTourDate extends React.Component {
                       );
                     })
                   }
-              </select>
-            </div>
-            <div className="mb-2 mt-2">
-              <label htmlFor="date" className="font-weight-bold">Date</label>
-              <input value={this.state.date} name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
-            </div>
-            <div className="mb-2 mt-2">
-              <label htmlFor="venue" className="font-weight-bold">Venue</label>
-              <input value={this.state.venueName} name="venue" type="text" className="form-control" onChange={this.handleVenueNameChange} />
-            </div>
-            <div className="mb-2 mt-2">
-              <label htmlFor="address" className="font-weight-bold">Location</label>
-              <input value={this.state.line1} name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
-            </div>
-            <div className="d-flex">
-              <input value={this.state.city} name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
-              <input value={this.state.state} name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
-              <input value={this.state.country} name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
-            </div>
-            <div className="mb-2 mt-2">
-              <label htmlFor="notes" className="font-weight-bold">Notes</label>
-              <textarea value={this.state.notesDetails} name="notes" id="" className="form-control" onChange={this.handleNotesDetailsChange} />
-            </div>
-            <div className="mb-2 mt-2">
-              <label htmlFor="contacts" className="font-weight-bold">Contact</label>
-              <input value={this.state.contactName} type="text" className="form-control mt-2 mb-2" placeholder='Name' onChange={this.handleContactNameChange} />
-              <input value={this.state.contactPhone} type="text" className='form-control mt-2 mb-2' placeholder='Phone' onChange={this.handleContactPhoneChange} />
-              <input value={this.state.contactEmail} type="text" className='form-control mt-2 mb-2' placeholder='Email' onChange={this.handleContactEmailChange} />
-            </div>
-            <label htmlFor="schedule" className="font-weight-bold col-12">Schedule</label>
-            <ul name="schedule" className="col-12">
-              {
-                this.state.scheduleEvents.map((event, index) => {
-                  return (
-                    <li id={event.id} key={event.id}>
-                      <div className="d-flex">
-                        <div className="col-6">
-                          <label htmlFor="start-time" className="text-center">Start Time</label>
-                          <input value={event.startTime} type="time" className="form-control" onChange={event => this.handleStartTimeChange(event, index)} />
+                </select>
+              </div>
+              <div className="mb-2 mt-2">
+                <label htmlFor="date" className="font-weight-bold">Date</label>
+                <input value={this.state.date} name="date" type="date" className="form-control fw-light" onChange={this.handleDateChange} />
+              </div>
+              <div className="mb-2 mt-2">
+                <label htmlFor="venue" className="font-weight-bold">Venue</label>
+                <input value={this.state.venueName} name="venue" type="text" className="form-control" onChange={this.handleVenueNameChange} />
+              </div>
+              <div className="mb-2 mt-2">
+                <label htmlFor="address" className="font-weight-bold">Location</label>
+                <input value={this.state.line1} name="address" type="text" placeholder="Address" className="form-control" onChange={this.handleAddressChange} />
+              </div>
+              <div className="d-flex">
+                <input value={this.state.city} name="city" type="text" placeholder="City" className="form-control mt-2 mb-2 mr-2" onChange={this.handleCityChange} />
+                <input value={this.state.state} name="state" type="text" placeholder='State' className="form-control mt-2 mb-2 ml-2 mr-2" onChange={this.handleStateChange} />
+                <input value={this.state.country} name="country" type="text" placeholder='USA' className="form-control mt-2 mb-2 ml-2" onChange={this.handleCountryChange} />
+              </div>
+              <div className="mb-2 mt-2">
+                <label htmlFor="notes" className="font-weight-bold">Notes</label>
+                <textarea value={this.state.notesDetails} name="notes" id="" className="form-control" onChange={this.handleNotesDetailsChange} />
+              </div>
+              <div className="mb-2 mt-2">
+                <label htmlFor="contacts" className="font-weight-bold">Contact</label>
+                <input value={this.state.contactName} type="text" className="form-control mt-2 mb-2" placeholder='Name' onChange={this.handleContactNameChange} />
+                <input value={this.state.contactPhone} type="text" className='form-control mt-2 mb-2' placeholder='Phone' onChange={this.handleContactPhoneChange} />
+                <input value={this.state.contactEmail} type="text" className='form-control mt-2 mb-2' placeholder='Email' onChange={this.handleContactEmailChange} />
+              </div>
+              <label htmlFor="schedule" className="font-weight-bold col-12">Schedule</label>
+              <ul name="schedule" className="col-12">
+                {
+                  this.state.scheduleEvents.map((event, index) => {
+                    return (
+                      <li id={event.id} key={event.id}>
+                        <div className="d-flex">
+                          <div className="col-6">
+                            <label htmlFor="start-time" className="text-center">Start Time</label>
+                            <input value={event.startTime} type="time" className="form-control" onChange={event => this.handleStartTimeChange(event, index)} />
+                          </div>
+                          <div className="col-6">
+                            <label htmlFor="end-time" className="text-center">End Time</label>
+                            <input value={event.endTime} type="time" className="form-control" onChange={event => this.handleEndTimeChange(event, index)} />
+                          </div>
                         </div>
-                        <div className="col-6">
-                          <label htmlFor="end-time" className="text-center">End Time</label>
-                          <input value={event.endTime} type="time" className="form-control" onChange={event => this.handleEndTimeChange(event, index)} />
+                        <div className="d-flex">
+                          <div className="col-11">
+                            <label htmlFor="details" className="text-center">Details</label>
+                            <input value={event.details} type="text" className="form-control" onChange={event => this.handleScheduleDetailsChange(event, index)} />
+                          </div>
+                          <div className="col-1">
+                            <button type="button" className="remove-schedule-event-btn bg-transparent border-0 mt-2 pr-5" onClick={this.handleClick}>
+                              <i className="fa-solid fa-x text-dark fa-lg mt-5" id={event.id} />
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                      <div className="d-flex">
-                        <div className="col-11">
-                          <label htmlFor="details" className="text-center">Details</label>
-                          <input value={event.details} type="text" className="form-control" onChange={event => this.handleScheduleDetailsChange(event, index)} />
-                        </div>
-                        <div className="col-1">
-                          <button type="button" className="remove-schedule-event-btn bg-transparent border-0 mt-2 pr-5" onClick={this.handleClick}>
-                            <i className="fa-solid fa-x text-dark fa-lg mt-5" id={event.id} />
-                          </button>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })
-              }
-            </ul>
-            <button type="button" className="add-schedule-event-btn col-12 mt-3 bg-transparent border-0 mb-3">
-              <i className="fa-solid fa-plus" onClick={this.addScheduleEvent} />
-            </button>
-            <hr />
-            <div className="d-flex justify-content-end">
-              <button onClick={() => {
-                this.props.hideEditModal();
-                this.closeModal();
-              }} type="button" className="btn btn-secondary mr-3">Close</button>
-              <button type="submit" className="btn blue-btn">Submit</button>
-            </div>
-          </form>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+              <button type="button" className="add-schedule-event-btn col-12 mt-3 bg-transparent border-0 mb-3">
+                <i className="fa-solid fa-plus" onClick={this.addScheduleEvent} />
+              </button>
+              <hr />
+              <div className="d-flex justify-content-end">
+                <button onClick={() => {
+                  this.props.hideEditModal();
+                  this.closeModal();
+                }} type="button" className="btn btn-secondary mr-3">Close</button>
+                <button type="submit" className="btn blue-btn">Submit</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );

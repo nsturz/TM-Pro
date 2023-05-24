@@ -89,11 +89,6 @@ button:hover {
   left: 35%;
 }
 
-.edit-modal-wrapper {
-  left: 20%;
-  top: 20%;
-}
-
 .dropdown-item:active {
   background-color: #cd3c3a;
 }
@@ -184,6 +179,11 @@ li {
   font-family: Lato, sans-serif;
   font-size: 12px;
   line-height: 2rem;
+}
+
+.modal-wrapper {
+  left: 23%;
+  top: 20%;
 }
 
 nav {
@@ -304,7 +304,7 @@ ul {
     margin-bottom: 3rem;
   }
 
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 16%;
   }
 
@@ -331,37 +331,37 @@ ul {
 }
 
 @media screen and (max-width: 950px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 15%;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 13%;
   }
 }
 
 @media screen and (max-width: 875px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 12%;
   }
 }
 
 @media screen and (max-width: 850px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 11%;
   }
 }
 
 @media screen and (max-width: 825px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 9%;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 8%;
   }
 }
@@ -371,7 +371,7 @@ ul {
     height: 70vh;
   }
 
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 6%;
   }
 
@@ -412,7 +412,7 @@ ul {
     left: 8%;
   }
 
-  .edit-modal-wrapper {
+  .modal-wrapper {
     left: 0%;
   }
 
