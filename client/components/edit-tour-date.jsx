@@ -230,12 +230,10 @@ export default class EditTourDate extends React.Component {
       scheduleEvents: [],
       newScheduleEvents: []
     });
-    document.getElementById('edit-tour-date-form').reset();
+    // document.getElementById('edit-tour-date-form').reset();
   }
 
   render() {
-    // console.log('this.state:', this.state)
-    // console.log('this.props.tourDates:', this.props.tourDates)
     return (
       <div>
         <div>
@@ -256,7 +254,7 @@ export default class EditTourDate extends React.Component {
                   <form id="edit-tour-date-form" onSubmit={this.handleSubmit}>
                     <div className="col-12 mb-2 mt-2">
                       <label htmlFor="artist-select" className="font-weight-bold" />
-                      <select value={this.state.date} name="artist-select" className="form-control font-weight-light" onChange={this.selectDate}>
+                      <select name="artist-select" className="form-control font-weight-light" onChange={this.selectDate}>
                         <option value="">Select a tour date.</option>
                         {
                           this.props.tourDates.map(event => {

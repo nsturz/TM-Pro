@@ -80,7 +80,7 @@ button:hover {
 .delete-modal-wrapper {
   background-color: #fff;
   bottom: 45%;
-  left: 30%;
+  left: 35%;
 }
 
 .dropdown-item:active {
@@ -234,7 +234,6 @@ nav {
 p {
   font-family: Lato, sans-serif;
   font-size: 12px;
-  color: #3d3d3c;
 }
 
 .poppins-dark {

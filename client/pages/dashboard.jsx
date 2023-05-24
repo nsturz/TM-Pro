@@ -111,10 +111,8 @@ export default class Dashboard extends React.Component {
     })
       .then(response => response.json())
       .then(newTourDate => {
-        const tourDatesCopy = [...this.state.tourDates];
-        tourDatesCopy.push(newTourDate);
         this.setState({
-          tourDates: tourDatesCopy
+          tourDates: this.state.tourDates.concat(newTourDate)
         });
       })
       .catch(console.error);
@@ -140,7 +138,6 @@ export default class Dashboard extends React.Component {
   }
 
   render() {
-    // console.log('this.state.tourdates in dashboard.jsx:', this.state.tourDates)
     return (
       <div className="container" >
         <form onSubmit={this.selectDate} className="d-flex mt-3" id="search-date-form" >
@@ -148,7 +145,7 @@ export default class Dashboard extends React.Component {
             <select onChange={this.handleDateChange} name="" className="form-control" id="select-deez">
               <option>Select a date.</option>
               {
-                  this.state.tourDates?.map(event => {
+                  this.state.tourDates.map(event => {
                     return (
                       <option key={event.showId} id={event.showId}>{event.date}</option>
                     );
