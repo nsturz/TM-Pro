@@ -2,6 +2,7 @@ import React from 'react';
 import RouteOverview from '../components/route-overview';
 import NewTourDate from '../components/new-tour-date';
 import EditTourDate from '../components/edit-tour-date';
+import DeleteTourDate from '../components/delete-date';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -18,8 +19,10 @@ export default class Dashboard extends React.Component {
       destination: '',
       editModalStatus: 'position-absolute modal-wrapper d-none',
       addModalStatus: 'position-absolute modal-wrapper d-none',
+      deleteModalStatus: 'position-absolute delete-modal-wrapper col-lg-7 col-10 mb-2 mt-2 rounded bg-white d-none',
       editModalOverlay: 'overlay d-none',
-      addModalOverlay: 'overlay d-none'
+      addModalOverlay: 'overlay d-none',
+      deleteModalOverlay: 'overlay d-none'
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
@@ -29,6 +32,8 @@ export default class Dashboard extends React.Component {
     this.hideEditModal = this.hideEditModal.bind(this);
     this.showAddModal = this.showAddModal.bind(this);
     this.hideAddModal = this.hideAddModal.bind(this);
+    this.showDeleteModal = this.showDeleteModal.bind(this);
+    this.hideDeleteModal = this.hideDeleteModal.bind(this);
   }
 
   componentDidMount() {
@@ -54,6 +59,8 @@ export default class Dashboard extends React.Component {
         this.setState({ schedules });
       });
   }
+
+  // ***MODAL SHOWING / HIDING 👇🏼***
 
   showAddModal() {
     this.setState({
@@ -82,6 +89,22 @@ export default class Dashboard extends React.Component {
       editModalOverlay: 'overlay d-none'
     });
   }
+
+  showDeleteModal() {
+    this.setState({
+      deleteModalStatus: 'position-absolute delete-modal-wrapper col-lg-7 col-10 mb-2 mt-2 rounded bg-white',
+      deleteModalOverlay: 'overlay'
+    });
+  }
+
+  hideDeleteModal() {
+    this.setState({
+      deleteModalStatus: 'position-absolute delete-modal-wrapper modal-container d-flex justify-content-center d-none',
+      deleteModalOverlay: 'overlay d-none'
+    });
+  }
+
+  // ***MODAL SHOWING / HIDING 👆🏼***
 
   handleDateChange(event) {
     const tourDates = this.state.tourDates;
@@ -207,15 +230,13 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
-            <button onClick={this.showAddModal}
-                    type="button"
-                    className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
+            <button onClick={this.showAddModal} type="button" className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-plus text-light" />
             </button>
             <button onClick={this.showEditModal} className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
-            <button className="options-btn mr-2 ml-2 rounded-circle border-0">
+            <button onClick={this.showDeleteModal}className="options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>
           </div>
@@ -286,6 +307,8 @@ export default class Dashboard extends React.Component {
           showAddModal={this.showAddModal} hideAddModal={this.hideAddModal} addModalOverlay={this.state.addModalOverlay} />
         <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates}
           editModalStatus={this.state.editModalStatus} hideEditModal={this.hideEditModal} editModalOverlay={this.state.editModalOverlay} />
+        <DeleteTourDate deleteModalStatus={this.state.deleteModalStatus} deleteModalOverlay={this.state.deleteModalOverlay}
+                        hideDeleteModal={this.hideDeleteModal}/>
       </div >
     );
   }

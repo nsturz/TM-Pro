@@ -84,9 +84,8 @@ button:hover {
 }
 
 .delete-modal-wrapper {
-  background-color: #fff;
-  bottom: 45%;
-  left: 35%;
+  bottom: 25%;
+  left: 23%;
 }
 
 .dropdown-item:active {
