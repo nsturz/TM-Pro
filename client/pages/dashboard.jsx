@@ -1,6 +1,8 @@
 import React from 'react';
 import RouteOverview from '../components/route-overview';
 import NewTourDate from '../components/new-tour-date';
+import EditTourDate from '../components/edit-tour-date';
+import DeleteTourDate from '../components/delete-date';
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -14,11 +16,25 @@ export default class Dashboard extends React.Component {
       date: '',
       lastTourDate: '',
       origin: '',
-      destination: ''
+      destination: '',
+      editModalStatus: 'position-absolute modal-wrapper d-none',
+      addModalStatus: 'position-absolute modal-wrapper d-none',
+      deleteModalStatus: 'position-absolute delete-modal-wrapper d-none',
+      editModalOverlay: 'overlay d-none',
+      addModalOverlay: 'overlay d-none',
+      deleteModalOverlay: 'overlay d-none'
     };
     this.handleDateChange = this.handleDateChange.bind(this);
     this.selectDate = this.selectDate.bind(this);
     this.addTourDate = this.addTourDate.bind(this);
+    this.editTourDate = this.editTourDate.bind(this);
+    this.deleteTourDate = this.deleteTourDate.bind(this);
+    this.showEditModal = this.showEditModal.bind(this);
+    this.hideEditModal = this.hideEditModal.bind(this);
+    this.showAddModal = this.showAddModal.bind(this);
+    this.hideAddModal = this.hideAddModal.bind(this);
+    this.showDeleteModal = this.showDeleteModal.bind(this);
+    this.hideDeleteModal = this.hideDeleteModal.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +61,52 @@ export default class Dashboard extends React.Component {
       });
   }
 
+  // ***MODAL SHOWING / HIDING 👇🏼***
+
+  showAddModal() {
+    this.setState({
+      addModalStatus: 'position-absolute modal-wrapper',
+      addModalOverlay: 'overlay'
+    });
+  }
+
+  hideAddModal() {
+    this.setState({
+      addModalStatus: 'position-absolute modal-wrapper d-none',
+      addModalOverlay: 'overlay d-none'
+    });
+  }
+
+  showEditModal() {
+    this.setState({
+      editModalStatus: 'position-absolute modal-wrapper',
+      editModalOverlay: 'overlay'
+    });
+  }
+
+  hideEditModal() {
+    this.setState({
+      editModalStatus: 'position-absolute modal-wrapper d-none',
+      editModalOverlay: 'overlay d-none'
+    });
+  }
+
+  showDeleteModal() {
+    this.setState({
+      deleteModalStatus: 'position-absolute delete-modal-wrapper',
+      deleteModalOverlay: 'overlay'
+    });
+  }
+
+  hideDeleteModal() {
+    this.setState({
+      deleteModalStatus: 'position-absolute delete-modal-wrapper d-none ',
+      deleteModalOverlay: 'overlay d-none'
+    });
+  }
+
+  // ***MODAL SHOWING / HIDING 👆🏼***
+
   handleDateChange(event) {
     const tourDates = this.state.tourDates;
     this.setState({
@@ -66,8 +128,8 @@ export default class Dashboard extends React.Component {
           .then(show => {
             this.setState({
               show,
-              origin: `${tourDates[index].city}, ${tourDates[index].state}`,
-              destination: `${tourDates[index + 1].city}, ${tourDates[index + 1].state}`
+              origin: `${tourDates[index].city},${tourDates[index].state}`,
+              destination: `${tourDates[index + 1].city},${tourDates[index + 1].state}`
             });
           });
         fetch(`/api/schedules/${tourDates[index].showId}`)
@@ -109,11 +171,47 @@ export default class Dashboard extends React.Component {
     })
       .then(response => response.json())
       .then(newTourDate => {
-        const tourDatesCopy = [...this.state.tourDates];
-        tourDatesCopy.push(newTourDate);
         this.setState({
-          tourDates: tourDatesCopy
+          tourDates: this.state.tourDates.concat(newTourDate)
         });
+      })
+      .catch(console.error);
+  }
+
+  editTourDate(editedTourDate, showId) {
+    fetch(`/api/edit-date/${showId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedTourDate)
+    })
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === showId) {
+            newTourDates.splice(i, 1, editedTourDate);
+          }
+        } this.setState({ tourDates: newTourDates });
+      })
+      .catch(console.error);
+  }
+
+  deleteTourDate(selectedDate) {
+    fetch('/api/delete-date', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(selectedDate)
+    })
+      .then(() => {
+        const newTourDates = [...this.state.tourDates];
+        for (let i = 0; i < newTourDates.length; i++) {
+          if (newTourDates[i].showId === selectedDate.showId) {
+            newTourDates.splice(i, 1);
+          }
+        } this.setState({ tourDates: newTourDates });
       })
       .catch(console.error);
   }
@@ -135,7 +233,7 @@ export default class Dashboard extends React.Component {
             </select>
           </div>
           <div className="col-lg-2 p-0 m-1">
-            <button type="submit" className="btn select-date-btn"> Select Date</button>
+            <button type="submit" className="btn blue-btn"> Select Date</button>
           </div>
         </form>
         <div className="tourDate" key={this.state.show.showId} id={this.state.show.showId}>
@@ -152,11 +250,13 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
           <div className="row d-flex justify-content-lg-end justify-content-center mr-2">
-            <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists}/>
-            <button className="options-btn mr-2 ml-2 rounded-circle border-0">
+            <button onClick={this.showAddModal} type="button" className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
+              <i className="options-btn-icon fa-solid fa-plus text-light" />
+            </button>
+            <button onClick={this.showEditModal} className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
-            <button className="options-btn mr-2 ml-2 rounded-circle border-0">
+            <button onClick={this.showDeleteModal} className="btn btn-secondary options-btn mr-2 ml-2 rounded-circle border-0" disabled>
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>
           </div>
@@ -169,13 +269,11 @@ export default class Dashboard extends React.Component {
               <div className="row">
                 <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded overflow-y venue-details-new">
                   <div>
-                    <p className="lato-dark m-0 ">{this.state.show.venueName}</p>
-                    <p className="lato-dark m-0"> {this.state.show.line1}</p>
-                    <p className="lato-dark m-0">{this.state.show.city}, {this.state.show.state}</p>
+                    <h6 className="lato-dark m-0">{this.state.show.venueName}</h6>
+                    <h6 className="lato-dark m-0"> {this.state.show.line1}</h6>
+                    <h6 className="lato-dark m-0">{this.state.show.city}, {this.state.show.state}</h6>
                   </div>
-                  <div className="d-flex justify-content-center mt-3">
-                    <img src="../images/google-map-image.png" alt="" />
-                  </div>
+                  <div className="d-flex justify-content-center mt-3" />
                 </div>
               </div>
             </div>
@@ -223,6 +321,12 @@ export default class Dashboard extends React.Component {
           </div>
         </div>
         <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
+        <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists} addModalStatus={this.state.addModalStatus}
+          showAddModal={this.showAddModal} hideAddModal={this.hideAddModal} addModalOverlay={this.state.addModalOverlay} />
+        <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates}
+          editModalStatus={this.state.editModalStatus} hideEditModal={this.hideEditModal} editModalOverlay={this.state.editModalOverlay} />
+        <DeleteTourDate deleteModalStatus={this.state.deleteModalStatus} deleteModalOverlay={this.state.deleteModalOverlay}
+          hideDeleteModal={this.hideDeleteModal} showId={this.state.show.showId} onSubmit={this.deleteTourDate}/>
       </div >
     );
   }

@@ -12,6 +12,11 @@ a:hover {
   outline: 0;
 }
 
+.blue-btn {
+  background-color: #1887d7;
+  color: white;
+}
+
 body {
   background-color: #fff;
 }
@@ -23,76 +28,16 @@ body {
 button:hover {
   transition: all 0.3s ease-in-out;
   transform: scale(1.1);
-}
-
-.calendar-container {
-  margin-left: 4rem;
-  margin-right: 4rem;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-radius: 5px;
-}
-
-.calendar-date-text {
-  font-size: 1rem;
-}
-
-.clipboard-container {
-  margin: 5rem;
-  border: 2px solid #808080;
-}
-
-.clipboard-links {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-}
-
-.contacts {
-  background-color: #3d3d3c;
-  border-radius: 5px;
-  overflow-y: scroll;
+  cursor: pointer;
 }
 
 .confirm-button {
   background-color: #cd3c3a;
 }
 
-.dashboard-container {
-  height: 50vh;
-}
-
-.date {
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.date-new {
-  font-family: Poppins, sans-serif;
-  color: #3d3d3c;
-}
-
-.dates {
-  border-radius: 5px;
-  background-color: #3d3d3c;
-}
-
 .delete-modal-wrapper {
-  background-color: #fff;
-  bottom: 45%;
-  left: 30%;
-}
-
-.dropdown-item:active {
-  background-color: #cd3c3a;
-}
-
-.fa-house {
-  margin-left: 10%;
-}
-
-.fa-location-house {
-  color: #cd3c3a;
+  top: 40%;
+  left: 33%;
 }
 
 .fa-plus {
@@ -101,11 +46,6 @@ button:hover {
 
 .form-wrapper {
   margin-top: 15%;
-}
-
-h2 {
-  color: #3d3d3c;
-  font-family: Poppins, sans-serif;
 }
 
 h3 {
@@ -124,14 +64,6 @@ hr {
   color: #008080;
 }
 
-/* h6 {
-  color: white;
-  font-family: Poppins, sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-right: 0.5rem;
-} */
-
 i {
   text-decoration: none;
 }
@@ -140,24 +72,9 @@ i:hover {
   cursor: pointer;
 }
 
-img {
-  width: 100%;
-  height: 150px;
-}
-
-.info {
-  color: #cd3c3a;
-}
-
 .info-new {
   color: #1887d7;
   font-size: 20px;
-}
-
-input,
-select,
-textarea {
-  background-color: whitesmoke;
 }
 
 label {
@@ -175,22 +92,14 @@ li {
   line-height: 2rem;
 }
 
+.modal-wrapper {
+  left: 23%;
+  top: 20%;
+}
+
 nav {
   height: 10%;
   background-color: #3d3d3c;
-}
-
-.nav-bottom-icon:hover {
-  cursor: pointer;
-  color: #f7343e;
-}
-
-.notes {
-  background-color: #3d3d3c;
-  border-radius: 5px;
-  margin-top: 5%;
-  overflow-y: scroll;
-  overflow-x: scroll;
 }
 
 .notes-contacts-new,
@@ -199,14 +108,6 @@ nav {
   height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
-}
-
-.navbar-nav > .active > a {
-  color: red;
-}
-
-.new-tour-date-form {
-  overflow-y: scroll;
 }
 
 .new-artist-submit {
@@ -234,7 +135,6 @@ nav {
 p {
   font-family: Lato, sans-serif;
   font-size: 12px;
-  color: #3d3d3c;
 }
 
 .poppins-dark {
@@ -257,11 +157,6 @@ pre {
   background-color: #3d3d3c;
   overflow-y: scroll;
   padding: 0;
-}
-
-.select-date-btn {
-  background-color: #1887d7;
-  color: white;
 }
 
 .text-grey {
@@ -290,9 +185,87 @@ ul {
   overflow-y: scroll;
 }
 
+@media screen and (max-width: 1000px) {
+  .contacts-wrapper {
+    margin-top: 3rem;
+  }
+
+  .details-new {
+    margin-bottom: 3rem;
+  }
+
+  .modal-wrapper {
+    left: 16%;
+  }
+
+  .form-wrapper {
+    margin-top: 40%;
+  }
+
+  .venues,
+  .venues-new {
+    margin-bottom: 3rem;
+  }
+
+  .venues-notes-wrapper {
+    margin-bottom: 14%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 30%;
+  }
+
+  .modal-wrapper {
+    left: 15%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 27%;
+  }
+
+  .modal-wrapper {
+    left: 13%;
+  }
+}
+
+@media screen and (max-width: 875px) {
+  .modal-wrapper {
+    left: 12%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .modal-wrapper {
+    left: 11%;
+  }
+}
+
+@media screen and (max-width: 825px) {
+  .modal-wrapper {
+    left: 9%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 24%;
+  }
+
+  .modal-wrapper {
+    left: 8%;
+  }
+}
+
 @media screen and (max-width: 768px) {
-  .dashboard-container {
-    height: 70vh;
+  .modal-wrapper {
+    left: 6%;
   }
 
   .form-wrapper {
@@ -310,34 +283,17 @@ ul {
   }
 }
 
-@media screen and (max-width: 1000px) {
-  .contacts-wrapper {
-    margin-top: 3rem;
+@media screen and (max-width: 700px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 20%;
   }
+}
 
-  .details-new {
-    margin-bottom: 3rem;
-  }
-
-  .form-wrapper {
-    margin-top: 40%;
-  }
-
-  .notes {
-    margin-top: 3rem;
-  }
-
-  .schedule-wrapper {
-    margin-top: 3rem;
-  }
-
-  .venues,
-  .venues-new {
-    margin-bottom: 3rem;
-  }
-
-  .venues-notes-wrapper {
-    margin-bottom: 14%;
+@media screen and (max-width: 600px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 17%;
   }
 }
 
@@ -360,7 +316,12 @@ ul {
   }
 
   .delete-modal-wrapper {
-    left: 8%;
+    left: 15%;
+    top: 40%;
+  }
+
+  .modal-wrapper {
+    left: 0%;
   }
 
   .fa-house {
@@ -388,8 +349,32 @@ ul {
   .new-tour-date-form {
     border: none;
   }
+}
 
-  .schedule-wrapper {
-    margin-top: 2rem;
+@media screen and (max-width: 550px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 13%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 7%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 3%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .delete-modal-wrapper {
+    left: 0%;
+    top: 40%;
   }
 }
