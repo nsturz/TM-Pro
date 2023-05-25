@@ -19,7 +19,7 @@ export default class Dashboard extends React.Component {
       destination: '',
       editModalStatus: 'position-absolute modal-wrapper d-none',
       addModalStatus: 'position-absolute modal-wrapper d-none',
-      deleteModalStatus: 'position-absolute delete-modal-wrapper col-lg-7 col-10 mb-2 mt-2 rounded bg-white d-none',
+      deleteModalStatus: 'position-absolute delete-modal-wrapper d-none',
       editModalOverlay: 'overlay d-none',
       addModalOverlay: 'overlay d-none',
       deleteModalOverlay: 'overlay d-none'
@@ -92,14 +92,14 @@ export default class Dashboard extends React.Component {
 
   showDeleteModal() {
     this.setState({
-      deleteModalStatus: 'position-absolute delete-modal-wrapper col-lg-7 col-10 mb-2 mt-2 rounded bg-white',
+      deleteModalStatus: 'position-absolute delete-modal-wrapper',
       deleteModalOverlay: 'overlay'
     });
   }
 
   hideDeleteModal() {
     this.setState({
-      deleteModalStatus: 'position-absolute delete-modal-wrapper modal-container d-flex justify-content-center d-none',
+      deleteModalStatus: 'position-absolute delete-modal-wrapper d-none ',
       deleteModalOverlay: 'overlay d-none'
     });
   }
@@ -236,7 +236,7 @@ export default class Dashboard extends React.Component {
             <button onClick={this.showEditModal} className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
-            <button onClick={this.showDeleteModal}className="options-btn mr-2 ml-2 rounded-circle border-0">
+            <button onClick={this.showDeleteModal} className="options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>
           </div>

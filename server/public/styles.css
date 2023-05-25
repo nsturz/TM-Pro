@@ -84,8 +84,8 @@ button:hover {
 }
 
 .delete-modal-wrapper {
-  bottom: 25%;
-  left: 23%;
+  top: 40%;
+  left: 33%;
 }
 
 .dropdown-item:active {
@@ -128,14 +128,6 @@ hr {
   border-top: 2px solid;
   color: #008080;
 }
-
-/* h6 {
-  color: white;
-  font-family: Poppins, sans-serif;
-  font-weight: bold;
-  font-size: 20px;
-  margin-right: 0.5rem;
-} */
 
 i {
   text-decoration: none;
@@ -330,12 +322,22 @@ ul {
 }
 
 @media screen and (max-width: 950px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 30%;
+  }
+
   .modal-wrapper {
     left: 15%;
   }
 }
 
 @media screen and (max-width: 900px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 27%;
+  }
+
   .modal-wrapper {
     left: 13%;
   }
@@ -360,6 +362,11 @@ ul {
 }
 
 @media screen and (max-width: 800px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 24%;
+  }
+
   .modal-wrapper {
     left: 8%;
   }
@@ -389,6 +396,20 @@ ul {
   }
 }
 
+@media screen and (max-width: 700px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 20%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 17%;
+  }
+}
+
 @media screen and (max-width: 575px) {
   .calendar-container {
     margin: 1rem;
@@ -408,7 +429,8 @@ ul {
   }
 
   .delete-modal-wrapper {
-    left: 8%;
+    left: 15%;
+    top: 40%;
   }
 
   .modal-wrapper {
@@ -443,5 +465,33 @@ ul {
 
   .schedule-wrapper {
     margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 13%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 7%;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .delete-modal-wrapper {
+    top: 40%;
+    left: 3%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .delete-modal-wrapper {
+    left: 0%;
+    top: 40%;
   }
 }

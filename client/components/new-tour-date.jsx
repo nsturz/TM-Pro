@@ -245,7 +245,7 @@ export default class NewTourDate extends React.Component {
               </div>
               <div className="mb-2 mt-2">
                 <label htmlFor="artist-select" className="font-weight-bold">Artist</label>
-                <select value={this.state.artist} id="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
+                <select value={this.state.artist} name="artist-select" className="form-control fw-light" onChange={this.handleNameChange}>
                   <option value="">Select an artist</option>
                   {
                          this.props.artists?.map(event => {
