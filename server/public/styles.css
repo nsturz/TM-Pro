@@ -31,73 +31,13 @@ button:hover {
   cursor: pointer;
 }
 
-.calendar-container {
-  margin-left: 4rem;
-  margin-right: 4rem;
-  margin-top: 2rem;
-  padding: 1rem;
-  border-radius: 5px;
-}
-
-.calendar-date-text {
-  font-size: 1rem;
-}
-
-.clipboard-container {
-  margin: 5rem;
-  border: 2px solid #808080;
-}
-
-.clipboard-links {
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-}
-
-.contacts {
-  background-color: #3d3d3c;
-  border-radius: 5px;
-  overflow-y: scroll;
-}
-
 .confirm-button {
   background-color: #cd3c3a;
-}
-
-.dashboard-container {
-  height: 50vh;
-}
-
-.date {
-  font-size: 15px;
-  font-weight: bold;
-}
-
-.date-new {
-  font-family: Poppins, sans-serif;
-  color: #3d3d3c;
-}
-
-.dates {
-  border-radius: 5px;
-  background-color: #3d3d3c;
 }
 
 .delete-modal-wrapper {
   top: 40%;
   left: 33%;
-}
-
-.dropdown-item:active {
-  background-color: #cd3c3a;
-}
-
-.fa-house {
-  margin-left: 10%;
-}
-
-.fa-location-house {
-  color: #cd3c3a;
 }
 
 .fa-plus {
@@ -106,11 +46,6 @@ button:hover {
 
 .form-wrapper {
   margin-top: 15%;
-}
-
-h2 {
-  color: #3d3d3c;
-  font-family: Poppins, sans-serif;
 }
 
 h3 {
@@ -137,24 +72,9 @@ i:hover {
   cursor: pointer;
 }
 
-img {
-  width: 100%;
-  height: 150px;
-}
-
-.info {
-  color: #cd3c3a;
-}
-
 .info-new {
   color: #1887d7;
   font-size: 20px;
-}
-
-input,
-select,
-textarea {
-  background-color: whitesmoke;
 }
 
 label {
@@ -182,33 +102,12 @@ nav {
   background-color: #3d3d3c;
 }
 
-.nav-bottom-icon:hover {
-  cursor: pointer;
-  color: #f7343e;
-}
-
-.notes {
-  background-color: #3d3d3c;
-  border-radius: 5px;
-  margin-top: 5%;
-  overflow-y: scroll;
-  overflow-x: scroll;
-}
-
 .notes-contacts-new,
 .venue-details-new,
 .schedule-details-new {
   height: 300px;
   overflow-y: scroll;
   overflow-x: hidden;
-}
-
-.navbar-nav > .active > a {
-  color: red;
-}
-
-.new-tour-date-form {
-  overflow-y: scroll;
 }
 
 .new-artist-submit {
@@ -303,14 +202,6 @@ ul {
     margin-top: 40%;
   }
 
-  .notes {
-    margin-top: 3rem;
-  }
-
-  .schedule-wrapper {
-    margin-top: 3rem;
-  }
-
   .venues,
   .venues-new {
     margin-bottom: 3rem;
@@ -373,10 +264,6 @@ ul {
 }
 
 @media screen and (max-width: 768px) {
-  .dashboard-container {
-    height: 70vh;
-  }
-
   .modal-wrapper {
     left: 6%;
   }
@@ -461,10 +348,6 @@ ul {
 
   .new-tour-date-form {
     border: none;
-  }
-
-  .schedule-wrapper {
-    margin-top: 2rem;
   }
 }
 

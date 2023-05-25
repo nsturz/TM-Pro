@@ -1,13 +1,27 @@
 import React from 'react';
 
 export default class DeleteTourDate extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(props) {
+    const selectedDate = {
+      showId: this.props.showId
+    };
+    this.props.onSubmit(selectedDate);
+    this.props.hideDeleteModal();
+  }
+
   render() {
     return (
       <div className="container">
         <div className={this.props.deleteModalOverlay} />
         <div className={this.props.deleteModalStatus}>
           <div className="rounded bg-white mb-2 mt-2 p-3">
-            <form className="d-flex justify-content-center" autoComplete='false'>
+            <form onSubmit={this.handleSubmit} className="d-flex justify-content-center" autoComplete='false'>
               <div>
                 <h5 className="text-center mt-5">Are you sure you want to delete this date?</h5>
                 <div className="row d-flex flex-nowrap justify-content-center">

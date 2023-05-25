@@ -77,7 +77,7 @@ export default class RouteOverview extends React.Component {
                     center={this.state.center}
                     zoom={9} >
                     {
-                      (this.state.destination !== '' && this.state.origin !== '') &&
+                      (this.props.destination !== '' && this.props.origin !== '') &&
                       (
                         <DirectionsService
                           options={{
