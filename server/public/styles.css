@@ -4,10 +4,6 @@ a {
   color: white;
 }
 
-a:hover {
-  color: #f7343e;
-}
-
 .add-schedule-event-btn:focus {
   outline: 0;
 }
@@ -31,6 +27,10 @@ button:hover {
   cursor: pointer;
 }
 
+.circle-sm {
+  font-size: 9px;
+}
+
 .confirm-button {
   background-color: #cd3c3a;
 }
@@ -40,12 +40,20 @@ button:hover {
   left: 33%;
 }
 
+.fa-check {
+  font-size: 100px;
+}
+
 .fa-plus {
   font-size: 1.5rem;
 }
 
 .form-wrapper {
   margin-top: 15%;
+}
+
+.gif {
+  width: 100%;
 }
 
 h3 {
@@ -77,6 +85,10 @@ i:hover {
   font-size: 20px;
 }
 
+.instructions-text {
+  font-size: 15px;
+}
+
 label {
   color: #3d3d3c;
 }
@@ -92,6 +104,10 @@ li {
   line-height: 2rem;
 }
 
+.light-grey {
+  background-color: #fbfbfb;
+}
+
 .modal-wrapper {
   left: 23%;
   top: 20%;
@@ -100,6 +116,10 @@ li {
 nav {
   height: 10%;
   background-color: #3d3d3c;
+}
+
+.nav-link {
+  font-size: 12px;
 }
 
 .notes-contacts-new,
@@ -324,12 +344,13 @@ ul {
     left: 0%;
   }
 
-  .fa-house {
-    margin-left: 0;
-  }
-
   form {
     border: none;
+  }
+
+  h4,
+  h5 {
+    font-size: 17px;
   }
 
   .form-wrapper {
