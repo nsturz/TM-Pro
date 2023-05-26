@@ -35,6 +35,12 @@ button:hover {
   background-color: #cd3c3a;
 }
 
+.dashboard-gif {
+  width: 100%;
+
+  /* object-fit: contain; */
+}
+
 .delete-modal-wrapper {
   top: 40%;
   left: 33%;
@@ -77,6 +83,10 @@ i:hover {
   font-size: 20px;
 }
 
+.instructions-text {
+  font-size: 15px;
+}
+
 label {
   color: #3d3d3c;
 }
@@ -90,6 +100,10 @@ li {
   font-family: Lato, sans-serif;
   font-size: 12px;
   line-height: 2rem;
+}
+
+.light-grey {
+  background-color: #fbfbfb;
 }
 
 .modal-wrapper {
