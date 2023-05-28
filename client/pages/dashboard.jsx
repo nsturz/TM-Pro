@@ -1,5 +1,4 @@
 import React from 'react';
-import RouteOverview from '../components/route-overview';
 import NewTourDate from '../components/new-tour-date';
 import EditTourDate from '../components/edit-tour-date';
 import DeleteTourDate from '../components/delete-date';
@@ -320,7 +319,6 @@ export default class Dashboard extends React.Component {
             </div>
           </div>
         </div>
-        <RouteOverview tourDates={this.state.tourDates} origin={this.state.origin} destination={this.state.destination}/>
         <NewTourDate onSubmit={this.addTourDate} artists={this.props.artists} addModalStatus={this.state.addModalStatus}
           showAddModal={this.showAddModal} hideAddModal={this.hideAddModal} addModalOverlay={this.state.addModalOverlay} />
         <EditTourDate onSubmit={this.editTourDate} tourDates={this.state.tourDates}
