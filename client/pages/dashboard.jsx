@@ -255,7 +255,7 @@ export default class Dashboard extends React.Component {
             <button onClick={this.showEditModal} className="btn btn-primary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-pen-to-square text-light" />
             </button>
-            <button onClick={this.showDeleteModal} className="btn btn-secondary options-btn mr-2 ml-2 rounded-circle border-0" disabled>
+            <button onClick={this.showDeleteModal} className="btn btn-secondary options-btn mr-2 ml-2 rounded-circle border-0">
               <i className="options-btn-icon fa-solid fa-trash text-light" />
             </button>
           </div>
@@ -287,7 +287,7 @@ export default class Dashboard extends React.Component {
                     <div className="col">
                       <p className="lato-dark">{this.state.show.contactName}</p>
                       <p className="lato-dark">{this.state.show.contactPhone}</p>
-                      <p className="lato-dark">t{this.state.show.contactEmail}</p>
+                      <p className="lato-dark">{this.state.show.contactEmail}</p>
                     </div>
                   </div>
                   <div className="row">

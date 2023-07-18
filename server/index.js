@@ -200,7 +200,8 @@ app.get('/api/all-shows', (req, res, next) => {
   join "addresses" using ("addressId")
   join "artists" using ("artistId")
   join "contacts" using ("showId")
-  join "notes" using ("showId")`;
+  join "notes" using ("showId")
+  order by "date" asc`;
   db.query(sql)
     .then(result => {
       res.json(result.rows);
