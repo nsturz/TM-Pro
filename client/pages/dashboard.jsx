@@ -287,7 +287,7 @@ export default class Dashboard extends React.Component {
                     <div className="col">
                       <p className="lato-dark">{this.state.show.contactName}</p>
                       <p className="lato-dark">{this.state.show.contactPhone}</p>
-                      <p className="lato-dark">t{this.state.show.contactEmail}</p>
+                      <p className="lato-dark">{this.state.show.contactEmail}</p>
                     </div>
                   </div>
                   <div className="row">
