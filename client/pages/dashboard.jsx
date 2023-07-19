@@ -268,9 +268,9 @@ export default class Dashboard extends React.Component {
               <div className="row">
                 <div className="col pl-2 pr-2 pb-3 pt-3 box-shadow rounded overflow-y venue-details-new">
                   <div>
-                    <h6 className="lato-dark m-0">{this.state.show.venueName}</h6>
-                    <h6 className="lato-dark m-0"> {this.state.show.line1}</h6>
-                    <h6 className="lato-dark m-0">{this.state.show.city}, {this.state.show.state}</h6>
+                    <h6 className="lato-dark m-2">{this.state.show.venueName}</h6>
+                    <h6 className="lato-dark m-2"> {this.state.show.line1}</h6>
+                    <h6 className="lato-dark m-2">{this.state.show.city}, {this.state.show.state}</h6>
                   </div>
                   <div className="d-flex justify-content-center mt-3" />
                 </div>
@@ -285,13 +285,23 @@ export default class Dashboard extends React.Component {
                 <div className="col box-shadow rounded pt-3 pl-2 pr-2 notes-contacts-new">
                   <div className="row">
                     <div className="col">
-                      <p className="lato-dark">{this.state.show.contactName}</p>
-                      <p className="lato-dark">{this.state.show.contactPhone}</p>
-                      <p className="lato-dark">{this.state.show.contactEmail}</p>
+                      <div className="d-flex">
+                        <p className="text-primary d-inline mr-1">Contact: </p>
+                        <p className="lato-dark">{this.state.show.contactName}</p>
+                      </div>
+                      <div className="d-flex">
+                        <p className="text-primary mr-1"> Phone: </p>
+                        <p className="lato-dark">{this.state.show.contactPhone}</p>
+                      </div>
+                      <div className="d-flex">
+                        <p className="text-primary mr-1">Email: </p>
+                        <p className="lato-dark">{this.state.show.contactEmail}</p>
+                      </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col">
+                      <p className="text-primary">Notes: </p>
                       <p className="lato-dark">{this.state.show.notesDetails}</p>
                     </div>
                   </div>
