@@ -2,169 +2,55 @@ insert into "artists" ("name")
 values      ('Wilder.');
 
 insert into "addresses" ("line1", "city", "state", "country")
-values      ('1652 Lincoln Ave', 'Anaheim', 'CA', 'USA'),
-            ('2303 E Indian School Rd', 'Phoenix', 'AZ', 'USA');
-            -- ('310 Pacific Ave', 'Henderson', 'NV', 'USA'),
-            -- ('1489 Major St', 'Salt Lake City', 'UT', 'USA'),
-            -- ('2935 W 7th Ave', 'Denver', 'CO', 'USA');
+values      ('2142 E. 4th St.', 'Long Beach', 'CA', 'USA'),
+            ('207 E. H St.', 'Tehachapi', 'CA', 'USA'),
+            ('1710 Mission St.', 'San Francisco', 'CA', 'USA'),
+            ('2708 J St.', 'Sacramento', 'CA', 'USA');
 
 insert into "venues" ("name", "addressId")
-values      ('Chain Reaction', 1),
-            ('Rebel Lounge', 2);
-            -- ('Eagles Aerie Hall', 3),
-            -- ('Loading Dock', 4),
-            -- ('7th Circle', 5);
+values          ('Vine', 1),
+                ('Westlane Brewing', 2),
+                ('Brick and Mortar', 3),
+                ('The Starlet', 4);
 
 insert into "shows" ("venueId", "artistId", "date")
-values      (1, 1, DATE '2023-1-5'),
-            (2, 1, DATE '2023-1-6');
-            -- (3, 1, DATE '2023-1-7'),
-            -- (4, 1, DATE '2023-1-8'),
-            -- (5, 1, DATE '2023-1-9');
+values          (1, 1, DATE '2023-07-19'),
+                (2, 1, DATE '2023-07-21'),
+                (3, 1, DATE '2023-07-22'),
+                (4, 1, DATE '2023-07-23');
 
 insert into "notes" ("details", "showId")
-values      (
-  'Showers: Yes
-   Laundry: No
-   Catering: Albertos
-   Drinks: 2 tix per band member
-   Wifi: genericWifiName
-   Password: lfzFinalProject',
-   1
-),
-(
-  'Gonna be HOT today. Stay hydrated',
-  2
-);
--- (
---   'Show ends early - early bus call so we can hit the strip.',
---   3
--- ),
--- (
---   '12 hour drive next day. Sleep up.',
---   4
--- ),
--- (
---   'coffee beforehand @ HuckleBerry.',
---   5
--- );
+values     ('Street parking only | 5PM load in | 2 drink tickets per band member | $100 guarantee | All 3 bands will use Wilders cabs and drums (but their own heads / snare / cymbals) show must be over by 10pm.', 1),
+          ('Andy will be at venue at 5pm for load in | Door split between bands | Parking in front of the venue | Show must end by 10pm SHARP.', 2),
+          ('Bands get 70% of door after $400 (under 150 tickets) | $100 catering | No merch cuts | Parking in front of venue', 3),
+          ('Parking in rear. Venue is upstairs. 65% of ticket sales to bands.', 4);
 
 insert into "contacts" ("email", "name", "phone","showId")
-values      ('booker@booking.com', 'Edgy Promoter Dude','7777777', 1),
-            ('jon@theagency.com', 'Jon V.', '6267726524', 2);
-            -- ('bane@theagency.com', 'Jim Bane', '5624425672', 3),
-            -- ('tomingo@theagency.com', 'Vlad T.', '6765526726', 4),
-            -- ('vilash@theagency.com', 'Perdeep V.', '7876252442', 5);
+values          ('booking@vinelb.com', 'Dustin', 'No Phone Provided', 1),
+                ('No Email Provided', 'Andy Franchere', '6612137959', 2),
+                ('gerald@brickandmortarmusic.com', 'Gerald Kirwan', 'No Phone Provided', 3),
+                ('daniel@harlows.com', 'Daniel Romandia', 'No Phone Provided', 4);
+
 
 insert into "schedules" ("startTime", "endTime", "details", "showId")
-values
-('8:00', '11:00', 'TRAVEL', 1
-),(
-  '16:00', '17:00', 'LOAD IN', 1
-),(
-  '17:00', '18:00', 'WILDER SOUNDCHECK', 1
-),(
-  '18:00', '19:00', 'SUPPORT SOUNDCHECK', 1
-),(
-  '19:00', '20:00', 'DOORS', 1
-),(
-  '20:00', '20:30', 'SUPPORT 1', 1
-),(
-  '20:30', '20:45', 'CHANGEOVER', 1
-),(
-  '20:45', '21:15', 'SUPPORT 2', 1
-),(
-  '21:15', '21:30', 'CHANGEOVER', 1
-),(
-  '21:30', '22:30', 'WILDER', 1
-),(
-  '23:00', '23:30', 'CURFEW', 1
-),
-('8:00', '11:00', 'TRAVEL', 2
-),(
-  '16:00', '17:00', 'LOAD IN', 2
-),(
-  '17:00', '18:00', 'WILDER SOUNDCHECK', 2
-),(
-  '18:00', '19:00', 'SUPPORT SOUNDCHECK', 2
-),(
-  '19:00', '20:00', 'DOORS', 2
-),(
-  '20:00', '20:30', 'SUPPORT 1', 2
-),(
-  '20:30', '20:45', 'CHANGEOVER', 2
-),(
-  '20:45', '21:15', 'SUPPORT 2', 2
-),(
-  '21:15', '21:30', 'CHANGEOVER', 2
-),(
-  '21:30', '22:30', 'WILDER', 2
-),(
-  '23:00', '23:30', 'CURFEW', 2
-);
--- ('8:00', '11:00', 'TRAVEL', 3
--- ),(
---   '16:00', '17:00', 'LOAD IN', 3
--- ),(
---   '17:00', '18:00', 'WILDER SOUNDCHECK', 3
--- ),(
---   '18:00', '19:00', 'SUPPORT SOUNDCHECK', 3
--- ),(
---   '19:00', '20:00', 'DOORS', 3
--- ),(
---   '20:00', '20:30', 'SUPPORT 1', 3
--- ),(
---   '20:30', '20:45', 'CHANGEOVER', 3
--- ),(
---   '20:45', '21:15', 'SUPPORT 2', 3
--- ),(
---   '21:15', '21:30', 'CHANGEOVER', 3
--- ),(
---   '21:30', '22:30', 'WILDER', 3
--- ),(
---   '23:00', '23:30', 'CURFEW', 3
--- ),
--- ('8:00', '11:00', 'TRAVEL', 4
--- ),(
---   '16:00', '17:00', 'LOAD IN', 4
--- ),(
---   '17:00', '18:00', 'WILDER SOUNDCHECK', 4
--- ),(
---   '18:00', '19:00', 'SUPPORT SOUNDCHECK', 4
--- ),(
---   '19:00', '20:00', 'DOORS', 4
--- ),(
---   '20:00', '20:30', 'SUPPORT 1', 4
--- ),(
---   '20:30', '20:45', 'CHANGEOVER', 4
--- ),(
---   '20:45', '21:15', 'SUPPORT 2', 4
--- ),(
---   '21:15', '21:30', 'CHANGEOVER', 4
--- ),(
---   '21:30', '22:30', 'WILDER', 4
--- ),(
---   '23:00', '23:30', 'CURFEW', 4
--- ),
--- ('8:00', '11:00', 'TRAVEL', 5
--- ),(
---   '16:00', '17:00', 'LOAD IN', 5
--- ),(
---   '17:00', '18:00', 'WILDER SOUNDCHECK', 5
--- ),(
---   '18:00', '19:00', 'SUPPORT SOUNDCHECK', 5
--- ),(
---   '19:00', '20:00', 'DOORS', 5
--- ),(
---   '20:00', '20:30', 'SUPPORT 1', 5
--- ),(
---   '20:30', '20:45', 'CHANGEOVER', 5
--- ),(
---   '20:45', '21:15', 'SUPPORT 2', 5
--- ),(
---   '21:15', '21:30', 'CHANGEOVER', 5
--- ),(
---   '21:30', '22:30', 'WILDER', 5
--- ),(
---   '23:00', '23:30', 'CURFEW', 5
--- );
+values     ('17:00', '18:00', 'Load In', 1),
+           ('20:00', '20:00', 'Doors', 1),
+           ('20:00', '20:30', 'Nifegun', 1),
+           ('20:45', '21:15', 'Slowtrip', 1),
+           ('21:30', '22:00', 'Wilder.', 1),
+           ('17:00:00', '18:00:00', 'Load In', 2),
+           ('18:00:00', '18:20:00', 'Idle Heads', 2),
+           ('18:30:00', '18:50:00', 'The Downsides', 2),
+           ('19:00:00', '19:25:00', 'Slowtrip', 2),
+           ('19:35:00', '20:00:00', 'Wilder', 2),
+           ('20:10:00', '20:30:00', 'Out Of Line', 2),
+           ('20:40:00', '21:00:00', 'War Is Hell', 2),
+           ('16:30:00', '17:00:00', 'Load In', 3),
+           ('17:00:00', '18:30:00', 'Soundcheck', 3),
+           ('18:30:00', '19:15:00',  'Doors', 3),
+           ('19:15:00', '19:45:00', 'Death By Fireworks', 3),
+           ('20:00:00', '20:30:00', 'Slowtrip', 3),
+           ('20:45:00', '21:15:00', 'Wilder', 3),
+           ('21:30:00',' 21:30:00', 'END', 3),
+           ('21:45:00', '21:45:00', 'Load Out', 3),
+           ('12:00', '12:00', 'NA', 4);

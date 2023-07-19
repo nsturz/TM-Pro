@@ -106,8 +106,8 @@ app.get('/api/schedules/:showId', (req, res, next) => {
     throw new ClientError(400, 'scheduleId must be a positive integer');
   }
   const sql = `
-  select "startTime",
-         "endTime",
+  select to_char("startTime", 'HH:MI AM') "startTime",
+         to_char("endTime", 'HH:MI AM') as"endTime",
          "details",
          "scheduleId"
   from   "schedules"
@@ -151,7 +151,9 @@ app.get('/api/schedules', (req, res, next) => {
   order by "startTime" asc
 `;
   db.query(sql)
-    .then(result => res.json(result.rows))
+    .then(result => {
+      res.json(result.rows);
+    })
     .catch(err => next(err));
 });
 
