@@ -9,7 +9,8 @@
     "dev": "NODE_ENV=development nodemon .",
     "build": "NODE_ENV=production webpack",
     "db:import": "sh database/import.sh",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prod:db:import": "sh database/prod-import.sh"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.7",
